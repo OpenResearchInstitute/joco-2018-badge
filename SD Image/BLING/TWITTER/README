@@ -1,0 +1,13 @@
+AND!XOR DC25 Badge Custom Twitter Bling Mode
+
+STEP 1 Download your twitter avatar:
+wget https://twitter.com/[USERNAME]/profile_image?size=original -O avatar.jpg
+Example:
+wget https://twitter.com/andnxor/profile_image?size=original -O avatar.jpg
+
+
+STEP 2 Convert the avatar to RAW, this will overwrite the default:
+ffmpeg -i avatar.jpg -f image2 -s 128x128 -pix_fmt rgb565be TWITTER.RAW
+
+
+STEP 3 Profit

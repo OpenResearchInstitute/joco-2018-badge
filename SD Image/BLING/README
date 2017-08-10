@@ -1,0 +1,89 @@
+                      .-.
+                     (   )
+                      '-'
+                      J L
+                      | |
+                     J   L
+                     |   |
+                    J     L
+                  .-'.___.'-.
+                 /___________\
+            _.-""'           `bmw._
+          .'                       `.
+        J                            `.
+       F                               L
+      J                                 J
+     J                                  `
+     |                                   L
+     |                                   |
+     |                                   |
+     |                                   J
+     |                                    L
+     |                                    |
+     |             ,.___          ___....--._
+     |           ,'     `""""""""'           `-._
+     |          J           _____________________`-.
+     |         F         .-'   `-88888-'    `Y8888b.`.
+     |         |       .'         `P'         `88888b \
+     |         |      J       #     L      #    q8888b L
+     |         |      |             |           )8888D )
+     |         J      \             J           d8888P P
+     |          L      `.         .b.         ,88888P /
+     |           `.      `-.___,o88888o.___,o88888P'.'
+     |             `-.__________________________..-'
+     |                                    |
+     |         .-----.........____________J
+     |       .' |       |      |       |
+     |      J---|-----..|...___|_______|
+     |      |   |       |      |       |
+     |      Y---|-----..|...___|_______|
+     |       `. |       |      |       |
+     |         `'-------:....__|______.J
+     |                                  |
+      L___                              |
+          """----...______________....--'
+
+
+===============================================================================
+
+Oh look what you found? Want to make your own? Well you can!
+
+
+===============================================================================
+SCREEN ANIMATIONS
+
+Grab any square gif, don't worry, non-square are okay if you crop or letterbox.
+
+We've traded SD storage for pure speed and FPS. Theoretically there is no max
+size for the code, you're only limited to the SD card. Each frame uses 32.8kB.
+
+To do the conversion we used ffmpeg on Linux. It may work on Windows but that's
+your job to figure out.
+
+Convert animated gif to raw video format:
+ffmpeg -i BACKERS.gif -r 22 -f rawvideo -s 128x128 -pix_fmt rgb565be BACKERS.RAW
+
+
+
+===============================================================================
+LED ANIMATIONS
+
+Wait? Wut? Yes, you can animate the LEDs too. This takes some effort, but we
+know you're up for the challenge.
+
+Key here is to select an animation with a 5x4 ratio. Seamless looping
+animations work best. Highly saturated images will need to be darkened and 
+toned down to look right on the LEDs. Dark images will need to be brightened.
+
+Convert animated gif to RGB file for LED animation:
+ffmpeg -i flames-small.gif -r 20 -f rawvideo -s 5x4 -pix_fmt rgb24 FLAMES.RGB
+
+
+
+===============================================================================
+USAGE
+
+Place the .RAW and .RGB file(s) into /BLING directory. The "Custom" bling tool
+will see these and add them to the menus.
+
+If you come up with something good, please share it.

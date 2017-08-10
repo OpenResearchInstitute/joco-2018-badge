@@ -1,0 +1,153 @@
+AND!XOR DC25 TCL-ish Scripting
+
+                        `. ___
+                        __,' __`.                _..----....____
+            __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'
+      _..-''-------'   `'   `'   `'     O ``-''._   (,;') _,'
+    ,'________________                          \`-._`-','
+     `._              ```````````------...___   '-.._'-:
+        ```--.._      ,.                     ````--...__\-.
+                `.--. `-`   AND!XOR             ____    |  |`
+                  `. `.                       ,'`````.  ;  ;`
+                    `._`.        __________   `.      \'__/`
+                       `-:._____/______/___/____`.     \  `
+                                   |       `._    `.    \
+                                   `._________`-.   `.   `.___
+                                                      `------'`
+
+We wanted to build upon what we did at DC24 with an even more hackable badge. 
+But we’re taking a different route from last year. No POS Arduino IDE, no 
+specialized STM32 framework, no USB, or special drivers. This year the badge is
+scriptable. We didn’t want hackers spending their con configuring an arcane 
+build environment. We want you to hack the badge on day 1, share you hacks 
+during the con, and show us all the great things you can do. 
+
+So what have we done? We’ve embedded a scripting engine. Not only that but 
+we’ve created basic, easy-to-understand APIs for almost everything in the 
+badge. As much as we could come up with. We looked at Python but was not 
+impressed with anything out there. We even had a Javascript engine running on 
+the badge at one point, but it used 25% of the flash space, we needed that for
+bling. We ended up adopting a very limited TCL engine. Your favorite TCL 
+scripts won’t run on the badge, that’s not the point.
+ 
+===============================================================================
+Bender TCL Language Support
+Bender supports command grouping with double quotes “”, braces {}, and brackets 
+[].
+
+Bender also supports variable substitution with $.
+
+Bender does not support regular expressions.
+
+Note that some commands are executed in RPN (Reverse Polish Notation)
+
+===============================================================================
+The following commands are supported:
+set
+subst
+puts
+proc
+if
+for
+while
+return
+break
+continue
+Mathematical expressions
++, -, *, /, >, >=, <, <=, ==, !=
+
+===============================================================================
+Special Commands
+
+cls - Clears the screen
+
+delay <ms> - Pauses execution for specified milliseconds
+
+incr <variable> - Increments the given variable by 1
+
+io_read <pin> - returns 1 for high or 0 for low
+
+io_write <pin> <HIGH|LOW> - Sets the given pin to high or low
+
+led_set <index> <red> <green> <blue> - Sets RGB value of the given led
+
+led_set_hsv <index> <hue> <saturation> <value> - Sets HSV value of the given
+led. Where hue, saturation, and value are 0-100.
+
+play <path/to/raw/file> - Plays the given raw file once. 
+
+print <x> <y> <message> - Prints the message coordinates x,y
+
+rand <max> returns a value between 0 and max.
+
+set_color <color> - sets current color for printing text
+
+circle <x> <y> <radius> <color> - Draws a circle with radius at x,y and given 
+color
+
+image <x> <y> <width> <height> <path/to/raw/file> - Draws raw file at x,y with 
+given width and height
+
+line <x1> <y1> <x2> <y2> <color> - Draws a line x1,y1 to x2,y2 and given color.
+
+rect <x> <y> <width> <height> <color> - Draws an empty rectangle with given 
+width and height at x,y
+
+fill_rect <x> <y> <width> <height> <color> - Draws a filled rectangle with 
+given width and height at x
+
+pixel <x> <y> <color> - Draws a single pixel at x,y and given color.
+
+scroll <message> - Scroll the message once
+
+triangle <x1> <y1> <x2> <y2> <x3> <y3> <color> - Draws empty triangle at x1, y1, 
+to x2, y2, to x3, y3 with given color
+
+up - Returns 1 if up button is currently pressed
+
+down - Returns 1 if down button is currently pressed
+
+left - Returns 1 if left button is currently pressed
+
+right - Returns 1 if right button is currently pressed
+
+action - Returns 1 if action button is currently pressed
+
+button_clear - Clears current button state, useful for preventing button holding
+
+button_state - returns state of all buttons as a 8-bit mask
+
+button_wait - blocks execution until any button is pressed
+
+===============================================================================
+Color support:
+
+Graphics and fonts support 8 bit color. Format is RRRGGGBB. See: 
+https://en.wikipedia.org/wiki/8-bit_color
+
+Some examples:
+0: Black
+3: Blue
+28: Green
+252: Yellow
+224: Red
+
+===============================================================================
+Examples
+
+EXAMPLE1.TCL: Prints blue and green text to the screen just like your first 
+BASIC program.
+
+EXAMPLE2.TCL: Scrolls a message on the screen.
+
+EXAMPLE3.TCL: Plays Rick Roll until user holds a button
+
+EXAMPLE4.TCL: Cycles the eye color hues.
+
+EXAMPLE5.TCL: Prints text in the middle of the screen using ascii conversions
+
+EXAMPLE6.TCL: Demonstrates drawing graphics to the display
+
+EXAMPLE7.TCL: Toggles IO 0 on and off
+
+EXAMPLE8.TCL: Prints random numbers to the screen
