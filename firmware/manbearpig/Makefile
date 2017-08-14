@@ -10,10 +10,10 @@ $(OUTPUT_DIRECTORY)/nrf52832_xxaa.out: \
   LINKER_SCRIPT  := gcc_nrf52.ld
 # Source files common to all targets
 SRC_FILES += \
-    $(SDK_ROOT)/components/ble/ble_advertising/ble_advertising.c \
-    $(SDK_ROOT)/components/ble/ble_db_discovery/ble_db_discovery.c \
-    $(SDK_ROOT)/components/ble/ble_services/ble_nus/ble_nus.c \
- 	$(SDK_ROOT)/components/ble/common/ble_advdata.c \
+	$(SDK_ROOT)/components/ble/ble_advertising/ble_advertising.c \
+	$(SDK_ROOT)/components/ble/ble_db_discovery/ble_db_discovery.c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_nus/ble_nus.c \
+	$(SDK_ROOT)/components/ble/common/ble_advdata.c \
 	$(SDK_ROOT)/components/ble/common/ble_conn_params.c \
 	$(SDK_ROOT)/components/ble/common/ble_conn_state.c \
 	$(SDK_ROOT)/components/ble/common/ble_srv_common.c \
@@ -42,177 +42,177 @@ SRC_FILES += \
 	$(SDK_ROOT)/components/drivers_nrf/timer/nrf_drv_timer.c \
 	$(SDK_ROOT)/components/drivers_nrf/twi_master/nrf_drv_twi.c \
 	$(SDK_ROOT)/components/libraries/block_dev/sdc/nrf_block_dev_sdc.c \
-  	$(SDK_ROOT)/components/libraries/button/app_button.c \
-  	$(SDK_ROOT)/components/libraries/csense/nrf_csense.c \
-  	$(SDK_ROOT)/components/libraries/csense_drv/nrf_drv_csense.c \
-  	$(SDK_ROOT)/components/libraries/fds/fds.c \
-  	$(SDK_ROOT)/components/libraries/fifo/app_fifo.c \
- 	$(SDK_ROOT)/components/libraries/fstorage/fstorage.c \
- 	$(SDK_ROOT)/components/libraries/gpiote/app_gpiote.c \
- 	$(SDK_ROOT)/components/libraries/hardfault/hardfault_implementation.c \
- 	$(SDK_ROOT)/components/libraries/queue/nrf_queue.c \
- 	$(SDK_ROOT)/components/libraries/scheduler/app_scheduler.c \
- 	$(SDK_ROOT)/components/libraries/sdcard/app_sdcard.c \
- 	$(SDK_ROOT)/components/libraries/timer/app_timer.c \
+	$(SDK_ROOT)/components/libraries/button/app_button.c \
+	$(SDK_ROOT)/components/libraries/csense/nrf_csense.c \
+	$(SDK_ROOT)/components/libraries/csense_drv/nrf_drv_csense.c \
+	$(SDK_ROOT)/components/libraries/fds/fds.c \
+	$(SDK_ROOT)/components/libraries/fifo/app_fifo.c \
+	$(SDK_ROOT)/components/libraries/fstorage/fstorage.c \
+	$(SDK_ROOT)/components/libraries/gpiote/app_gpiote.c \
+	$(SDK_ROOT)/components/libraries/hardfault/hardfault_implementation.c \
+	$(SDK_ROOT)/components/libraries/queue/nrf_queue.c \
+	$(SDK_ROOT)/components/libraries/scheduler/app_scheduler.c \
+	$(SDK_ROOT)/components/libraries/sdcard/app_sdcard.c \
+	$(SDK_ROOT)/components/libraries/timer/app_timer.c \
 	$(SDK_ROOT)/components/libraries/util/app_error.c \
 	$(SDK_ROOT)/components/libraries/util/app_error_weak.c \
-  	$(SDK_ROOT)/components/libraries/util/app_util_platform.c \
+	$(SDK_ROOT)/components/libraries/util/app_util_platform.c \
 	$(SDK_ROOT)/components/libraries/util/nrf_assert.c \
 	$(SDK_ROOT)/components/libraries/util/sdk_mapped_flags.c \
 	$(SDK_ROOT)/components/softdevice/common/softdevice_handler/softdevice_handler.c \
 	$(SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf52.S \
-  	$(SDK_ROOT)/components/toolchain/system_nrf52.c \
-  	$(SDK_ROOT)/external/fatfs/port/diskio_blkdev.c \
-  	$(SDK_ROOT)/external/fatfs/src/ff.c \
-  	$(SDK_ROOT)/external/segger_rtt/RTT_Syscalls_GCC.c \
-  	$(SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c \
-  	$(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
-  	bling/mbp_bling.c \
-  	bling/mbp_custom_bling.c \
-  	flappydefcon.c \
-  	ntshell/core/ntlibc.c \
-  	ntshell/core/ntshell.c \
-  	ntshell/core/text_editor.c \
-  	ntshell/core/text_history.c \
-  	ntshell/core/vtrecv.c \
-  	ntshell/core/vtsend.c \
-  	ntshell/util/ntopt.c \
-  	partcl/tcl.c \
-  	util/util.c \
-  	util/util_ble.c \
-  	util/util_button.c \
-    util/util_gfx.c \
-    util/util_led.c \
-    util/util_math.c \
-    util/util_sd.c \
-    util/util_tilt.c \
-    beacon_ble.c \
-    botnet.c \
-    botnet_ble.c \
-  	chip8.c \
-    drv_apa102.c \
-    drv_st7735.c \
-    drv_ws2812b.c \
-    main.c \
-    mbp_master.c \
-    mbp_master_ble.c \
-    mbp_medea.c \
-    mbp_menu.c \
-    mbp_state.c \
-    mbp_system.c \
-    mbp_tcl.c \
-    mbp_term.c \
-    mbp_ui.c \
-    skifree.c 
+	$(SDK_ROOT)/components/toolchain/system_nrf52.c \
+	$(SDK_ROOT)/external/fatfs/port/diskio_blkdev.c \
+	$(SDK_ROOT)/external/fatfs/src/ff.c \
+	$(SDK_ROOT)/external/segger_rtt/RTT_Syscalls_GCC.c \
+	$(SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c \
+	$(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
+	bling/mbp_bling.c \
+	bling/mbp_custom_bling.c \
+	flappydefcon.c \
+	ntshell/core/ntlibc.c \
+	ntshell/core/ntshell.c \
+	ntshell/core/text_editor.c \
+	ntshell/core/text_history.c \
+	ntshell/core/vtrecv.c \
+	ntshell/core/vtsend.c \
+	ntshell/util/ntopt.c \
+	partcl/tcl.c \
+	util/util.c \
+	util/util_ble.c \
+	util/util_button.c \
+	util/util_gfx.c \
+	util/util_led.c \
+	util/util_math.c \
+	util/util_sd.c \
+	util/util_tilt.c \
+	beacon_ble.c \
+	botnet.c \
+	botnet_ble.c \
+	chip8.c \
+	drv_apa102.c \
+	drv_st7735.c \
+	drv_ws2812b.c \
+	main.c \
+	mbp_master.c \
+	mbp_master_ble.c \
+	mbp_medea.c \
+	mbp_menu.c \
+	mbp_state.c \
+	mbp_system.c \
+	mbp_tcl.c \
+	mbp_term.c \
+	mbp_ui.c \
+	skifree.c 
 
 
 # Include folders common to all targets
 INC_FOLDERS += \
-  	$(SDK_ROOT)/components \
-    $(SDK_ROOT)/components/ble/ble_db_discovery \
-    $(SDK_ROOT)/components/ble/ble_advertising \
-    $(SDK_ROOT)/components/ble/ble_dtm \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_ancs_c \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_ans_c \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_bas \
-    $(SDK_ROOT)/components/ble/ble_services/ble_bas_c \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_cscs \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_cts_c \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_dfu \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_dis \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_gls \
-    $(SDK_ROOT)/components/ble/ble_services/ble_hids \
+	$(SDK_ROOT)/components \
+	$(SDK_ROOT)/components/ble/ble_db_discovery \
+	$(SDK_ROOT)/components/ble/ble_advertising \
+	$(SDK_ROOT)/components/ble/ble_dtm \
+	$(SDK_ROOT)/components/ble/ble_services/ble_ancs_c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_ans_c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_bas \
+	$(SDK_ROOT)/components/ble/ble_services/ble_bas_c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_cscs \
+	$(SDK_ROOT)/components/ble/ble_services/ble_cts_c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_dfu \
+	$(SDK_ROOT)/components/ble/ble_services/ble_dis \
+	$(SDK_ROOT)/components/ble/ble_services/ble_gls \
+	$(SDK_ROOT)/components/ble/ble_services/ble_hids \
 	$(SDK_ROOT)/components/ble/ble_services/ble_hrs \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_hrs_c \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_hts \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_ias \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_ias_c \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_lbs \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_lbs_c \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_lls \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_nus \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_nus_c \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_rscs \
-  	$(SDK_ROOT)/components/ble/ble_services/ble_rscs_c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_hrs_c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_hts \
+	$(SDK_ROOT)/components/ble/ble_services/ble_ias \
+	$(SDK_ROOT)/components/ble/ble_services/ble_ias_c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_lbs \
+	$(SDK_ROOT)/components/ble/ble_services/ble_lbs_c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_lls \
+	$(SDK_ROOT)/components/ble/ble_services/ble_nus \
+	$(SDK_ROOT)/components/ble/ble_services/ble_nus_c \
+	$(SDK_ROOT)/components/ble/ble_services/ble_rscs \
+	$(SDK_ROOT)/components/ble/ble_services/ble_rscs_c \
 	$(SDK_ROOT)/components/ble/ble_services/ble_tps \
 	$(SDK_ROOT)/components/ble/ble_racp \
-  	$(SDK_ROOT)/components/ble/common \
-  	$(SDK_ROOT)/components/ble/nrf_ble_gatt \
-  	$(SDK_ROOT)/components/ble/nrf_ble_qwr \
-  	$(SDK_ROOT)/components/ble/peer_manager \
-  	$(SDK_ROOT)/components/device \
-  	$(SDK_ROOT)/components/drivers_nrf/adc \
-  	$(SDK_ROOT)/components/drivers_nrf/clock \
-  	$(SDK_ROOT)/components/drivers_nrf/common \
-    $(SDK_ROOT)/components/drivers_nrf/comp \
-    $(SDK_ROOT)/components/drivers_nrf/delay \
-    $(SDK_ROOT)/components/drivers_nrf/gpiote \
-    $(SDK_ROOT)/components/drivers_nrf/hal \
-  	$(SDK_ROOT)/components/drivers_nrf/i2s \
-  	$(SDK_ROOT)/components/drivers_nrf/lpcomp \
-  	$(SDK_ROOT)/components/drivers_nrf/pdm \
-  	$(SDK_ROOT)/components/drivers_nrf/ppi \
-  	$(SDK_ROOT)/components/drivers_nrf/pwm \
-  	$(SDK_ROOT)/components/drivers_nrf/qdec \
-  	$(SDK_ROOT)/components/drivers_nrf/rng \
-  	$(SDK_ROOT)/components/drivers_nrf/rtc \
-  	$(SDK_ROOT)/components/drivers_nrf/saadc \
-  	$(SDK_ROOT)/components/drivers_nrf/spi_master \
-  	$(SDK_ROOT)/components/drivers_nrf/spi_slave \
-  	$(SDK_ROOT)/components/drivers_nrf/swi \
-  	$(SDK_ROOT)/components/drivers_nrf/timer \
-  	$(SDK_ROOT)/components/drivers_nrf/twi_master \
-  	$(SDK_ROOT)/components/drivers_nrf/uart \
-  	$(SDK_ROOT)/components/drivers_nrf/wdt \
-  	$(SDK_ROOT)/components/libraries/block_dev \
-  	$(SDK_ROOT)/components/libraries/block_dev/sdc \
-  	$(SDK_ROOT)/components/libraries/button \
-  	$(SDK_ROOT)/components/libraries/crc16 \
-  	$(SDK_ROOT)/components/libraries/crc32 \
+	$(SDK_ROOT)/components/ble/common \
+	$(SDK_ROOT)/components/ble/nrf_ble_gatt \
+	$(SDK_ROOT)/components/ble/nrf_ble_qwr \
+	$(SDK_ROOT)/components/ble/peer_manager \
+	$(SDK_ROOT)/components/device \
+	$(SDK_ROOT)/components/drivers_nrf/adc \
+	$(SDK_ROOT)/components/drivers_nrf/clock \
+	$(SDK_ROOT)/components/drivers_nrf/common \
+	$(SDK_ROOT)/components/drivers_nrf/comp \
+	$(SDK_ROOT)/components/drivers_nrf/delay \
+	$(SDK_ROOT)/components/drivers_nrf/gpiote \
+	$(SDK_ROOT)/components/drivers_nrf/hal \
+	$(SDK_ROOT)/components/drivers_nrf/i2s \
+	$(SDK_ROOT)/components/drivers_nrf/lpcomp \
+	$(SDK_ROOT)/components/drivers_nrf/pdm \
+	$(SDK_ROOT)/components/drivers_nrf/ppi \
+	$(SDK_ROOT)/components/drivers_nrf/pwm \
+	$(SDK_ROOT)/components/drivers_nrf/qdec \
+	$(SDK_ROOT)/components/drivers_nrf/rng \
+	$(SDK_ROOT)/components/drivers_nrf/rtc \
+	$(SDK_ROOT)/components/drivers_nrf/saadc \
+	$(SDK_ROOT)/components/drivers_nrf/spi_master \
+	$(SDK_ROOT)/components/drivers_nrf/spi_slave \
+	$(SDK_ROOT)/components/drivers_nrf/swi \
+	$(SDK_ROOT)/components/drivers_nrf/timer \
+	$(SDK_ROOT)/components/drivers_nrf/twi_master \
+	$(SDK_ROOT)/components/drivers_nrf/uart \
+	$(SDK_ROOT)/components/drivers_nrf/wdt \
+	$(SDK_ROOT)/components/libraries/block_dev \
+	$(SDK_ROOT)/components/libraries/block_dev/sdc \
+	$(SDK_ROOT)/components/libraries/button \
+	$(SDK_ROOT)/components/libraries/crc16 \
+	$(SDK_ROOT)/components/libraries/crc32 \
 	$(SDK_ROOT)/components/libraries/csense \
 	$(SDK_ROOT)/components/libraries/csense_drv \
-  	$(SDK_ROOT)/components/libraries/experimental_section_vars \
-  	$(SDK_ROOT)/components/libraries/fds \
-  	$(SDK_ROOT)/components/libraries/fifo \
-  	$(SDK_ROOT)/components/libraries/fstorage \
-  	$(SDK_ROOT)/components/libraries/gpiote \
-  	$(SDK_ROOT)/components/libraries/hardfault \
-  	$(SDK_ROOT)/components/libraries/hci \
-  	$(SDK_ROOT)/components/libraries/led_softblink \
-  	$(SDK_ROOT)/components/libraries/log \
-  	$(SDK_ROOT)/components/libraries/log/src \
-  	$(SDK_ROOT)/components/libraries/low_power_pwm \
-  	$(SDK_ROOT)/components/libraries/mailbox \
-  	$(SDK_ROOT)/components/libraries/mem_manager \
-  	$(SDK_ROOT)/components/libraries/pwm \
-  	$(SDK_ROOT)/components/libraries/queue \
-  	$(SDK_ROOT)/components/libraries/scheduler \
-  	$(SDK_ROOT)/components/libraries/sdcard \
-  	$(SDK_ROOT)/components/libraries/slip \
-  	$(SDK_ROOT)/components/libraries/timer \
-  	$(SDK_ROOT)/components/libraries/twi \
-  	$(SDK_ROOT)/components/libraries/uart \
-  	$(SDK_ROOT)/components/libraries/util \
+	$(SDK_ROOT)/components/libraries/experimental_section_vars \
+	$(SDK_ROOT)/components/libraries/fds \
+	$(SDK_ROOT)/components/libraries/fifo \
+	$(SDK_ROOT)/components/libraries/fstorage \
+	$(SDK_ROOT)/components/libraries/gpiote \
+	$(SDK_ROOT)/components/libraries/hardfault \
+	$(SDK_ROOT)/components/libraries/hci \
+	$(SDK_ROOT)/components/libraries/led_softblink \
+	$(SDK_ROOT)/components/libraries/log \
+	$(SDK_ROOT)/components/libraries/log/src \
+	$(SDK_ROOT)/components/libraries/low_power_pwm \
+	$(SDK_ROOT)/components/libraries/mailbox \
+	$(SDK_ROOT)/components/libraries/mem_manager \
+	$(SDK_ROOT)/components/libraries/pwm \
+	$(SDK_ROOT)/components/libraries/queue \
+	$(SDK_ROOT)/components/libraries/scheduler \
+	$(SDK_ROOT)/components/libraries/sdcard \
+	$(SDK_ROOT)/components/libraries/slip \
+	$(SDK_ROOT)/components/libraries/timer \
+	$(SDK_ROOT)/components/libraries/twi \
+	$(SDK_ROOT)/components/libraries/uart \
+	$(SDK_ROOT)/components/libraries/util \
 	$(SDK_ROOT)/components/softdevice/common/softdevice_handler \
-  	$(SDK_ROOT)/components/softdevice/s132/headers \
-  	$(SDK_ROOT)/components/toolchain \
-  	$(SDK_ROOT)/components/toolchain/cmsis/include \
-  	$(SDK_ROOT)/components/toolchain/gcc \
-  	$(SDK_ROOT)/external/fatfs/port \
-  	$(SDK_ROOT)/external/fatfs/src \
-  	$(SDK_ROOT)/external/protothreads \
-  	$(SDK_ROOT)/external/protothreads/pt-1.4 \
-  	$(SDK_ROOT)/external/segger_rtt \
-    $(SDK_ROOT)/components/softdevice/s132/headers/nrf52 \
-    adafruit \
-    bling \
-    config \
-    fonts \
-    ntshell/core \
-    ntshell/util \
-    partcl \
-  	util \
-  	$(PROJ_ROOT) 
+	$(SDK_ROOT)/components/softdevice/s132/headers \
+	$(SDK_ROOT)/components/toolchain \
+	$(SDK_ROOT)/components/toolchain/cmsis/include \
+	$(SDK_ROOT)/components/toolchain/gcc \
+	$(SDK_ROOT)/external/fatfs/port \
+	$(SDK_ROOT)/external/fatfs/src \
+	$(SDK_ROOT)/external/protothreads \
+	$(SDK_ROOT)/external/protothreads/pt-1.4 \
+	$(SDK_ROOT)/external/segger_rtt \
+	$(SDK_ROOT)/components/softdevice/s132/headers/nrf52 \
+	adafruit \
+	bling \
+	config \
+	fonts \
+	ntshell/core \
+	ntshell/util \
+	partcl \
+	util \
+	$(PROJ_ROOT) 
 
 # Libraries common to all targets
 LIB_FILES += \
@@ -247,6 +247,8 @@ CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -mcpu=cortex-m4
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
 CFLAGS +=  -Wall -Werror -O0 -g3
+# This appears to erroneously trip with uint8_t, so make it a warning
+CFLAGS += -Wno-error=char-subscripts
 CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in separate section, this allows linker to discard unused ones
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing 
@@ -322,7 +324,7 @@ flash_softdevice:
 	@echo Flashing: s132_nrf52_3.0.0_softdevice.hex
 	$(NRFJPROG_PATH)/nrfjprog --program $(SDK_ROOT)/components/softdevice/s132/hex/s132_nrf52_3.0.0_softdevice.hex -f nrf52 --chiperase 
 	$(NRFJPROG_PATH)/nrfjprog --reset -f nrf52
-	
+
 full_erase:
 	@echo ***Erasing NRF52! Soft Device will need to be reflashed!***
 	$(NRFJPROG_PATH)/nrfjprog -e -f nrf52
