@@ -1,0 +1,23 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP AN91445
+F /src/joco-2018-badge/board/kicad-libs/AN91445.pdf
+$ENDCMP
+#
+$CMP DM00024648
+F /src/joco-2018-badge/board/kicad-libs/DM00024648.pdf
+$ENDCMP
+#
+$CMP SWRA117D
+F /src/joco-2018-badge/board/kicad-libs/swra117d.pdf
+$ENDCMP
+#
+$CMP SWRA118
+F /src/joco-2018-badge/board/kicad-libs/swra118.pdf
+$ENDCMP
+#
+$CMP SWRU120B
+F /src/joco-2018-badge/board/kicad-libs/swru120b.pdf
+$ENDCMP
+#
+#End Doc Library

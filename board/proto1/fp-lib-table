@@ -1,0 +1,9 @@
+(fp_lib_table
+  (lib (name 1140084168)(type Legacy)(uri /src/joco-2018-badge/board/kicad-libs/1140084168.mod)(options "")(descr ""))
+  (lib (name MCP1603T-330I_OS)(type Legacy)(uri /src/joco-2018-badge/board/kicad-libs/MCP1603T-330I_OS.mod)(options "")(descr ""))
+  (lib (name SSSS810701)(type Legacy)(uri /src/joco-2018-badge/board/kicad-libs/SSSS810701.mod)(options "")(descr ""))
+  (lib (name WS2812B)(type Legacy)(uri /src/joco-2018-badge/board/kicad-libs/WS2812B.mod)(options "")(descr ""))
+  (lib (name NFC-antenna-test)(type KiCad)(uri /src/joco-2018-badge/board/NFC-antenna-test)(options "")(descr ""))
+  (lib (name inductor)(type KiCad)(uri /src/joco-2018-badge/board/kicad-libs/inductor.pretty)(options "")(descr ""))
+  (lib (name pts810)(type KiCad)(uri /src/joco-2018-badge/board/kicad-libs/pts810.pretty)(options "")(descr ""))
+)

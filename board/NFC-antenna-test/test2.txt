@@ -1,0 +1,14 @@
+.png was generated here: https://kbeckmann.github.io/nfc-antenna-generator/
+
+Parameters:
+1000 DPI
+100 pixel margin
+5 turns
+25mm wide
+24mm high
+1.0 oz
+21 mil track width
+20 mil track spacing
+
+Calculated inductance: .965 uH
+
