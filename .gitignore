@@ -53,3 +53,5 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+!/board/kicad-libs/*.lib
+!/board/kicad-libs/*.mod

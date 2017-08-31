@@ -1,0 +1,31 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# MCP1603T-330I/OS
+#
+DEF MCP1603T-330I/OS U 0 40 Y Y 1 L N
+F0 "U" -186 459 50 H V L BNN
+F1 "MCP1603T-330I/OS" -225 -765 50 H V L BNN
+F2 "SOT95P280X110-5N" 0 0 50 H I L BNN
+F3 "0.94 USD" 0 0 50 H I L BNN "Price"
+F4 "MCP1603T-330I/OS" 0 0 50 H I L BNN "MP"
+F5 "TSOT-23 Microchip" 0 0 50 H I L BNN "Package"
+F6 "Good" 0 0 50 H I L BNN "Availability"
+F7 "MCP1603 Series 2.8 MHz 500 mA Surface Mount Synchronous Buck Regulator - TSOT-5" 0 0 50 H I L BNN "Description"
+F8 "Microchip" 0 0 50 H I L BNN "MF"
+DRAW
+P 2 0 0 16 -800 300 -800 -600 N
+P 2 0 0 16 -800 -600 800 -600 N
+P 2 0 0 16 800 -600 800 300 N
+P 2 0 0 16 800 300 -800 300 N
+X VIN 1 -1000 100 200 R 40 40 0 0 I 
+X ~SHDN 3 -1000 -100 200 R 40 40 0 0 I 
+X LX 5 -1000 -200 200 R 40 40 0 0 I 
+X GND 2 -1000 -400 200 R 40 40 0 0 P 
+X VFB/VOUT 4 1000 100 200 L 40 40 0 0 O 
+ENDDRAW
+ENDDEF
+#
+# End Library

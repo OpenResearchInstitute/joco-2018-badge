@@ -1,0 +1,28 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# SSSS810701
+#
+DEF SSSS810701 B 0 40 N N 1 L N
+F0 "B" -100 150 50 H V L BNN
+F1 "SSSS810701" -100 -75 50 H V L BNN
+F2 "SSSS810701" 0 0 50 H I L BNN
+F3 "0.52 USD" 0 0 50 H I L BNN "Price"
+F4 "SSSS810701" 0 0 50 H I L BNN "MP"
+F5 "None" 0 0 50 H I L BNN "Package"
+F6 "Good" 0 0 50 H I L BNN "Availability"
+F7 "Slide Switch %E2%80%A2 Rating %28max.%29%3A 0.3 A 5 VDC %E2%80%A2 Poles%3A 1 %E2%80%A2 Positions%3A 2 %E2%80%A2 Travel %3A 1.5 mm %E2%80%A2 Operating direction%3A Horizontal" 0 0 50 H I L BNN "Description"
+F8 "ALPS" 0 0 50 H I L BNN "MF"
+DRAW
+P 2 0 0 6 -100 100 -5 50 N
+C 0 100 12 0 0 6 N
+C 0 0 12 0 0 6 N
+X COM 2 -100 100 0 R 40 40 0 0 B 
+X A 3 0 100 0 L 40 40 0 0 B 
+X B 1 0 0 0 L 40 40 0 0 B 
+ENDDRAW
+ENDDEF
+#
+# End Library

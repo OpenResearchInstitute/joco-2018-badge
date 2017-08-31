@@ -1,0 +1,132 @@
+PCBNEW-LibModule-V1  
+# encoding utf-8
+Units mm
+$INDEX
+SSSS810701
+$EndINDEX
+$MODULE SSSS810701
+Po 0 0 0 15 00000000 00000000 ~~
+Li SSSS810701
+Cd 
+Sc 00000000
+At SMD
+Op 0 0 0
+.SolderMask 0
+.SolderPaste 0
+T0 -4.95585 -0.127073 0.800461 0.800461 900 0.05 N V 21 "SSSS810701"
+T1 5.21127 -0.635521 0.800656 0.800656 900 0.05 N V 21 "VAL**"
+DP 0 0 0 0 4 0.381 21
+Dl -2.4502 -2.2
+Dl -2.05 -2.2
+Dl -2.05 -1.3001
+Dl -2.4502 -1.3001
+DS 3.35 -1.3 -3.35 -1.3 0.1 21
+DS -3.35 -1.3 -3.35 1.3 0.1 21
+DS 0 1.3 1.3 1.3 0.1 21
+DS 1.3 1.3 3.35 1.3 0.1 21
+DS 3.35 1.3 3.35 -1.3 0.1 21
+DP 0 0 0 0 4 0.381 21
+Dl 0.550107 -2.2
+Dl 0.95 -2.2
+Dl 0.95 -1.30025
+Dl 0.550107 -1.30025
+DP 0 0 0 0 4 0.381 21
+Dl 2.05175 -2.2
+Dl 2.45 -2.2
+Dl 2.45 -1.30111
+Dl 2.05175 -1.30111
+DP 0 0 0 0 4 0.381 21
+Dl 3.35228 -1.35
+Dl 3.85 -1.35
+Dl 3.85 -0.950645
+Dl 3.35228 -0.950645
+DP 0 0 0 0 4 0.381 21
+Dl 3.35025 0.95
+Dl 3.85 0.95
+Dl 3.85 1.3501
+Dl 3.35025 1.3501
+DP 0 0 0 0 4 0.381 21
+Dl -3.85691 0.95
+Dl -3.35 0.95
+Dl -3.35 1.35242
+Dl -3.85691 1.35242
+DP 0 0 0 0 4 0.381 21
+Dl -3.85685 -1.35
+Dl -3.35 -1.35
+Dl -3.35 -0.951691
+Dl -3.85685 -0.951691
+DS 0 1.3 0 2.5 0.1 21
+DS 0 2.5 0.3 2.8 0.1 21
+DS 0.3 2.8 1 2.8 0.1 21
+DS 1 2.8 1.3 2.5 0.1 21
+DS 1.3 2.5 1.3 1.3 0.1 21
+DS 0 1.3 -3.35 1.3 0.1 21
+$PAD
+Sh "3" R 0.7 1.5 0 0 0
+At SMD N 00888000
+.SolderMask 0
+.SolderPaste 0
+Ne 0 ""
+Po 2.25 -2
+$EndPAD
+$PAD
+Sh "2" R 0.7 1.5 0 0 0
+At SMD N 00888000
+.SolderMask 0
+.SolderPaste 0
+Ne 0 ""
+Po 0.75 -2
+$EndPAD
+$PAD
+Sh "1" R 0.7 1.5 0 0 0
+At SMD N 00888000
+.SolderMask 0
+.SolderPaste 0
+Ne 0 ""
+Po -2.25 -2
+$EndPAD
+$PAD
+Sh "Hole" C 0.9 0.9 0 0 0
+Dr 0.9 0 0
+At HOLE N 0
+Po 1.5 0
+$EndPAD
+$PAD
+Sh "Hole" C 0.9 0.9 0 0 0
+Dr 0.9 0 0
+At HOLE N 0
+Po -1.5 0
+$EndPAD
+$PAD
+Sh "4.3" R 1 0.8 0 0 0
+At SMD N 00888000
+.SolderMask 0
+.SolderPaste 0
+Ne 0 ""
+Po -3.65 1.1
+$EndPAD
+$PAD
+Sh "4.1" R 1 0.8 0 0 0
+At SMD N 00888000
+.SolderMask 0
+.SolderPaste 0
+Ne 0 ""
+Po -3.65 -1.1
+$EndPAD
+$PAD
+Sh "4.2" R 1 0.8 0 0 0
+At SMD N 00888000
+.SolderMask 0
+.SolderPaste 0
+Ne 0 ""
+Po 3.65 -1.1
+$EndPAD
+$PAD
+Sh "4.4" R 1 0.8 0 0 0
+At SMD N 00888000
+.SolderMask 0
+.SolderPaste 0
+Ne 0 ""
+Po 3.65 1.1
+$EndPAD
+$EndMODULE SSSS810701
