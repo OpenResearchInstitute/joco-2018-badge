@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:proto1-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -51,58 +52,58 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L CONN_01X10 J9
+L Conn_01x10 J9
 U 1 1 599A30C6
-P 650 1800
-F 0 "J9" H 650 2350 50  0000 C CNN
-F 1 "J9" V 750 1800 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 650 1800 50  0001 C CNN
-F 3 "" H 650 1800 50  0001 C CNN
-	1    650  1800
+P 650 1850
+F 0 "J9" H 650 2400 50  0000 C CNN
+F 1 "J9" V 750 1850 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 650 1850 50  0001 C CNN
+F 3 "" H 650 1850 50  0001 C CNN
+	1    650  1850
 	-1   0    0    1   
 $EndComp
 $Comp
-L CONN_01X10 J6
+L Conn_01x10 J6
 U 1 1 599A3483
-P 650 3900
-F 0 "J6" H 650 4450 50  0000 C CNN
-F 1 "J6" V 750 3900 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 650 3900 50  0001 C CNN
-F 3 "" H 650 3900 50  0001 C CNN
-	1    650  3900
+P 650 3950
+F 0 "J6" H 650 4500 50  0000 C CNN
+F 1 "J6" V 750 3950 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 650 3950 50  0001 C CNN
+F 3 "" H 650 3950 50  0001 C CNN
+	1    650  3950
 	-1   0    0    1   
 $EndComp
 $Comp
-L CONN_01X08 J7
+L Conn_01x08 J7
 U 1 1 599A35F6
-P 650 2850
-F 0 "J7" H 650 3300 50  0000 C CNN
-F 1 "J7" V 750 2850 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 650 2850 50  0001 C CNN
-F 3 "" H 650 2850 50  0001 C CNN
-	1    650  2850
+P 650 2900
+F 0 "J7" H 650 3350 50  0000 C CNN
+F 1 "J7" V 750 2900 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 650 2900 50  0001 C CNN
+F 3 "" H 650 2900 50  0001 C CNN
+	1    650  2900
 	-1   0    0    1   
 $EndComp
 $Comp
-L CONN_01X08 J5
+L Conn_01x08 J5
 U 1 1 599A361D
-P 650 4950
-F 0 "J5" H 650 5400 50  0000 C CNN
-F 1 "J5" V 750 4950 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 650 4950 50  0001 C CNN
-F 3 "" H 650 4950 50  0001 C CNN
-	1    650  4950
+P 650 5000
+F 0 "J5" H 650 5450 50  0000 C CNN
+F 1 "J5" V 750 5000 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 650 5000 50  0001 C CNN
+F 3 "" H 650 5000 50  0001 C CNN
+	1    650  5000
 	-1   0    0    1   
 $EndComp
 $Comp
-L CONN_01X06 J8
+L Conn_01x06 J8
 U 1 1 599A3702
-P 650 5800
-F 0 "J8" H 650 6150 50  0000 C CNN
-F 1 "J8" V 750 5800 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 650 5800 50  0001 C CNN
-F 3 "" H 650 5800 50  0001 C CNN
-	1    650  5800
+P 650 5850
+F 0 "J8" H 650 6200 50  0000 C CNN
+F 1 "J8" V 750 5850 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 650 5850 50  0001 C CNN
+F 3 "" H 650 5850 50  0001 C CNN
+	1    650  5850
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -306,17 +307,6 @@ Wire Wire Line
 Wire Wire Line
 	850  6050 1350 6050
 NoConn ~ 850  4600
-$Comp
-L CONN_02X03 J11
-U 1 1 599A4686
-P 1550 6500
-F 0 "J11" H 1550 6700 50  0000 C CNN
-F 1 "J11" H 1550 6300 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x03_Pitch2.54mm" H 1550 5300 50  0001 C CNN
-F 3 "" H 1550 5300 50  0001 C CNN
-	1    1550 6500
-	1    0    0    -1  
-$EndComp
 Text GLabel 1900 6400 2    60   BiDi ~ 0
 +5-USB
 Text GLabel 2350 6500 2    60   BiDi ~ 0
@@ -351,58 +341,58 @@ Wire Wire Line
 Wire Wire Line
 	1800 6600 1900 6600
 $Comp
-L CONN_01X10 J9A1
+L Conn_01x10 J9A1
 U 1 1 599B0ED8
-P 3250 1800
-F 0 "J9A1" H 3250 2350 50  0000 C CNN
-F 1 "J9A" V 3350 1800 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 3250 1800 50  0001 C CNN
-F 3 "" H 3250 1800 50  0001 C CNN
-	1    3250 1800
+P 3250 1850
+F 0 "J9A1" H 3250 2400 50  0000 C CNN
+F 1 "J9A" V 3350 1850 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 3250 1850 50  0001 C CNN
+F 3 "" H 3250 1850 50  0001 C CNN
+	1    3250 1850
 	-1   0    0    1   
 $EndComp
 $Comp
-L CONN_01X10 J6A1
+L Conn_01x10 J6A1
 U 1 1 599B0EDE
-P 3250 3900
-F 0 "J6A1" H 3250 4450 50  0000 C CNN
-F 1 "J6A" V 3350 3900 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 3250 3900 50  0001 C CNN
-F 3 "" H 3250 3900 50  0001 C CNN
-	1    3250 3900
+P 3250 3950
+F 0 "J6A1" H 3250 4500 50  0000 C CNN
+F 1 "J6A" V 3350 3950 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 3250 3950 50  0001 C CNN
+F 3 "" H 3250 3950 50  0001 C CNN
+	1    3250 3950
 	-1   0    0    1   
 $EndComp
 $Comp
-L CONN_01X08 J7A1
+L Conn_01x08 J7A1
 U 1 1 599B0EE4
-P 3250 2850
-F 0 "J7A1" H 3250 3300 50  0000 C CNN
-F 1 "J7A" V 3350 2850 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 3250 2850 50  0001 C CNN
-F 3 "" H 3250 2850 50  0001 C CNN
-	1    3250 2850
+P 3250 2900
+F 0 "J7A1" H 3250 3350 50  0000 C CNN
+F 1 "J7A" V 3350 2900 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 3250 2900 50  0001 C CNN
+F 3 "" H 3250 2900 50  0001 C CNN
+	1    3250 2900
 	-1   0    0    1   
 $EndComp
 $Comp
-L CONN_01X08 J5A1
+L Conn_01x08 J5A1
 U 1 1 599B0EEA
-P 3250 4950
-F 0 "J5A1" H 3250 5400 50  0000 C CNN
-F 1 "J5A" V 3350 4950 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 3250 4950 50  0001 C CNN
-F 3 "" H 3250 4950 50  0001 C CNN
-	1    3250 4950
+P 3250 5000
+F 0 "J5A1" H 3250 5450 50  0000 C CNN
+F 1 "J5A" V 3350 5000 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 3250 5000 50  0001 C CNN
+F 3 "" H 3250 5000 50  0001 C CNN
+	1    3250 5000
 	-1   0    0    1   
 $EndComp
 $Comp
-L CONN_01X06 J8A1
+L Conn_01x06 J8A1
 U 1 1 599B0EF0
-P 3250 5800
-F 0 "J8A1" H 3250 6150 50  0000 C CNN
-F 1 "J8A" V 3350 5800 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 3250 5800 50  0001 C CNN
-F 3 "" H 3250 5800 50  0001 C CNN
-	1    3250 5800
+P 3250 5850
+F 0 "J8A1" H 3250 6200 50  0000 C CNN
+F 1 "J8A" V 3350 5850 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 3250 5850 50  0001 C CNN
+F 3 "" H 3250 5850 50  0001 C CNN
+	1    3250 5850
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -604,17 +594,6 @@ Wire Wire Line
 Wire Wire Line
 	3450 6050 3950 6050
 NoConn ~ 3450 4600
-$Comp
-L CONN_02X03 J11A1
-U 1 1 599B0F60
-P 4150 6500
-F 0 "J11A1" H 4150 6700 50  0000 C CNN
-F 1 "J11A" H 4150 6300 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x03_Pitch2.54mm" H 4150 5300 50  0001 C CNN
-F 3 "" H 4150 5300 50  0001 C CNN
-	1    4150 6500
-	1    0    0    -1  
-$EndComp
 Text GLabel 4500 6400 2    60   BiDi ~ 0
 +5-USB
 Text GLabel 4950 6500 2    60   BiDi ~ 0
@@ -893,39 +872,6 @@ F 3 "" H 4550 7600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C22
-U 1 1 599CCF2E
-P 4800 7600
-F 0 "C22" H 4825 7700 50  0000 L CNN
-F 1 "0.1" H 4825 7500 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805" H 4838 7450 50  0001 C CNN
-F 3 "" H 4800 7600 50  0001 C CNN
-	1    4800 7600
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C23
-U 1 1 599CCFA1
-P 5050 7600
-F 0 "C23" H 5075 7700 50  0000 L CNN
-F 1 "0.1" H 5075 7500 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805" H 5088 7450 50  0001 C CNN
-F 3 "" H 5050 7600 50  0001 C CNN
-	1    5050 7600
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C24
-U 1 1 599CD01B
-P 5300 7600
-F 0 "C24" H 5325 7700 50  0000 L CNN
-F 1 "0.1" H 5325 7500 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805" H 5338 7450 50  0001 C CNN
-F 3 "" H 5300 7600 50  0001 C CNN
-	1    5300 7600
-	1    0    0    -1  
-$EndComp
-$Comp
 L C C4
 U 1 1 599CD0C4
 P 3050 7200
@@ -988,8 +934,6 @@ Wire Wire Line
 	2600 7400 5800 7400
 Wire Wire Line
 	2450 7850 5800 7850
-Wire Wire Line
-	5300 7850 5300 7750
 Wire Wire Line
 	2150 6950 5300 6950
 Wire Wire Line
@@ -1065,15 +1009,6 @@ Wire Wire Line
 	4550 7350 4550 7450
 Connection ~ 4550 7400
 Wire Wire Line
-	4800 7350 4800 7450
-Connection ~ 4800 7400
-Wire Wire Line
-	5050 7350 5050 7450
-Connection ~ 5050 7400
-Wire Wire Line
-	5300 7350 5300 7450
-Connection ~ 5300 7400
-Wire Wire Line
 	4050 7750 4050 7850
 Connection ~ 4050 7850
 Wire Wire Line
@@ -1082,12 +1017,6 @@ Connection ~ 4300 7850
 Wire Wire Line
 	4550 7750 4550 7850
 Connection ~ 4550 7850
-Wire Wire Line
-	4800 7750 4800 7850
-Connection ~ 4800 7850
-Wire Wire Line
-	5050 7750 5050 7850
-Connection ~ 5050 7850
 $Comp
 L Micro_SD_Card_Det J1
 U 1 1 599CFECD
@@ -1472,7 +1401,7 @@ Wire Wire Line
 Wire Wire Line
 	14200 5350 14300 5350
 $Comp
-L CONN_01X01 J2
+L Conn_01x01 J2
 U 1 1 599F492A
 P 15900 5350
 F 0 "J2" H 15900 5450 50  0000 C CNN
@@ -2024,14 +1953,14 @@ Wire Wire Line
 	4650 8950 4650 9200
 Connection ~ 4350 8950
 $Comp
-L CONN_01X02 J15
+L Conn_01x02 J15
 U 1 1 59A04619
-P 5150 9000
-F 0 "J15" H 5150 9150 50  0000 C CNN
-F 1 "3.3V Out" H 5400 9000 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 5150 9000 50  0001 C CNN
-F 3 "" H 5150 9000 50  0001 C CNN
-	1    5150 9000
+P 5150 8950
+F 0 "J15" H 5150 9100 50  0000 C CNN
+F 1 "3.3V Out" H 5400 8950 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 5150 8950 50  0001 C CNN
+F 3 "" H 5150 8950 50  0001 C CNN
+	1    5150 8950
 	1    0    0    -1  
 $EndComp
 Connection ~ 4650 8950
@@ -2092,14 +2021,14 @@ Wire Wire Line
 	8150 6850 8350 6850
 Connection ~ 8350 6850
 $Comp
-L CONN_01X10 J14
+L Conn_01x10 J14
 U 1 1 59A08E68
-P 14850 8550
-F 0 "J14" H 14850 9100 50  0000 C CNN
-F 1 "LCD" H 14850 9200 50  0000 C CNN
-F 2 "kicad-libs:ZIF-505110-1092" H 14850 8550 50  0001 C CNN
-F 3 "" H 14850 8550 50  0001 C CNN
-	1    14850 8550
+P 14850 8500
+F 0 "J14" H 14850 9050 50  0000 C CNN
+F 1 "LCD" H 14850 9150 50  0000 C CNN
+F 2 "kicad-libs:ZIF-505110-1092" H 14850 8500 50  0001 C CNN
+F 3 "" H 14850 8500 50  0001 C CNN
+	1    14850 8500
 	1    0    0    -1  
 $EndComp
 Text Notes 14950 8150 0    60   ~ 0
@@ -2174,7 +2103,7 @@ Wire Wire Line
 	14300 8350 14500 8350
 Connection ~ 14500 8350
 Text GLabel 14100 8600 0    60   Input ~ 0
-P0.07
+P0.14
 Text GLabel 14550 8700 0    60   Input ~ 0
 P0.13
 Text GLabel 14100 8800 0    60   Input ~ 0
@@ -2197,17 +2126,6 @@ Text Notes 14350 7750 0    60   ~ 0
 LCD Display
 Text Notes 12650 10250 0    60   ~ 0
 JoCo Cruise badge development Shield
-$Comp
-L CONN_02X04 J3
-U 1 1 59A0E25D
-P 14450 6900
-F 0 "J3" H 14450 7150 50  0000 C CNN
-F 1 "Expansion" H 14450 6650 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x04_Pitch2.54mm" H 14450 5700 50  0001 C CNN
-F 3 "" H 14450 5700 50  0001 C CNN
-	1    14450 6900
-	1    0    0    -1  
-$EndComp
 Text GLabel 13750 6750 0    60   Input ~ 0
 +3.3-SHIELD
 Text GLabel 14100 6850 0    60   Input ~ 0
@@ -2253,47 +2171,47 @@ Wire Wire Line
 Text Notes 14150 6550 0    60   ~ 0
 Expansion Port
 $Comp
-L CONN_01X04 J4
+L Conn_01x04 J4
 U 1 1 59A13031
-P 10750 7000
-F 0 "J4" H 10750 7250 50  0000 C CNN
-F 1 "+3.3V" V 10850 7000 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 10750 7000 50  0001 C CNN
-F 3 "" H 10750 7000 50  0001 C CNN
-	1    10750 7000
+P 10750 6950
+F 0 "J4" H 10750 7200 50  0000 C CNN
+F 1 "+3.3V" V 10850 6950 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 10750 6950 50  0001 C CNN
+F 3 "" H 10750 6950 50  0001 C CNN
+	1    10750 6950
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X04 J10
+L Conn_01x04 J10
 U 1 1 59A1318D
-P 10750 7650
-F 0 "J10" H 10750 7900 50  0000 C CNN
-F 1 "GND" V 10850 7650 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 10750 7650 50  0001 C CNN
-F 3 "" H 10750 7650 50  0001 C CNN
-	1    10750 7650
+P 10750 7600
+F 0 "J10" H 10750 7850 50  0000 C CNN
+F 1 "GND" V 10850 7600 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 10750 7600 50  0001 C CNN
+F 3 "" H 10750 7600 50  0001 C CNN
+	1    10750 7600
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X04 J12
+L Conn_01x04 J12
 U 1 1 59A133BF
-P 1350 8150
-F 0 "J12" H 1350 8400 50  0000 C CNN
-F 1 "VBatt" V 1450 8150 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 1350 8150 50  0001 C CNN
-F 3 "" H 1350 8150 50  0001 C CNN
-	1    1350 8150
+P 1350 8100
+F 0 "J12" H 1350 8350 50  0000 C CNN
+F 1 "VBatt" V 1450 8100 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 1350 8100 50  0001 C CNN
+F 3 "" H 1350 8100 50  0001 C CNN
+	1    1350 8100
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X04 J13
+L Conn_01x04 J13
 U 1 1 59A13CCD
-P 2350 8350
-F 0 "J13" H 2350 8600 50  0000 C CNN
-F 1 "VBattSw" V 2450 8350 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 2350 8350 50  0001 C CNN
-F 3 "" H 2350 8350 50  0001 C CNN
-	1    2350 8350
+P 2350 8300
+F 0 "J13" H 2350 8550 50  0000 C CNN
+F 1 "VBattSw" V 2450 8300 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 2350 8300 50  0001 C CNN
+F 3 "" H 2350 8300 50  0001 C CNN
+	1    2350 8300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -2404,5 +2322,60 @@ Wire Wire Line
 	5800 7400 5800 7250
 Wire Wire Line
 	5800 7850 5800 7700
-Connection ~ 5300 7850
+Wire Wire Line
+	4800 7350 4800 7450
+Connection ~ 4800 7400
+Wire Wire Line
+	5050 7350 5050 7400
+Connection ~ 5050 7400
+Wire Wire Line
+	5300 7350 5300 7400
+Connection ~ 5300 7400
+$Comp
+L C C22
+U 1 1 59AC9D90
+P 4800 7600
+F 0 "C22" H 4825 7700 50  0000 L CNN
+F 1 "0.1" H 4825 7500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 4838 7450 50  0001 C CNN
+F 3 "" H 4800 7600 50  0001 C CNN
+	1    4800 7600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 7750 4800 7850
+Connection ~ 4800 7850
+$Comp
+L Conn_02x03_Odd_Even J11
+U 1 1 59ACFDC9
+P 1500 6500
+F 0 "J11" H 1550 6700 50  0000 C CNN
+F 1 "J11" H 1550 6300 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x03_Pitch2.54mm" H 1500 6500 50  0001 C CNN
+F 3 "" H 1500 6500 50  0001 C CNN
+	1    1500 6500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_02x03_Odd_Even J11A1
+U 1 1 59ACFF3C
+P 4100 6500
+F 0 "J11A1" H 4150 6700 50  0000 C CNN
+F 1 "J11A" H 4150 6300 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x03_Pitch2.54mm" H 4100 6500 50  0001 C CNN
+F 3 "" H 4100 6500 50  0001 C CNN
+	1    4100 6500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_02x04_Odd_Even J3
+U 1 1 59AD0C05
+P 14400 6850
+F 0 "J3" H 14450 7050 50  0000 C CNN
+F 1 "Conn_02x04_Odd_Even" H 14450 6550 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x04_Pitch2.54mm" H 14400 6850 50  0001 C CNN
+F 3 "" H 14400 6850 50  0001 C CNN
+	1    14400 6850
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
