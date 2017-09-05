@@ -55,3 +55,4 @@ Mkfile.old
 dkms.conf
 !/board/kicad-libs/*.lib
 !/board/kicad-libs/*.mod
+!/board/proto1/*.lib
