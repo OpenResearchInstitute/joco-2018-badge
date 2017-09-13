@@ -113,10 +113,9 @@ int main(void) {
 	}
 
 	if (!mbp_state_load()) {
-		mbp_ui_popup("AND!XOR", "Welcome to the AND!XOR DC25 Badge! Select a name and avatar. You can change your name later from settings.");
+		mbp_ui_popup("AND!XOR", "Welcome to the AND!XOR DC25 Badge! Select a name. You can change your name later from settings.");
 		mbp_state_new();
 		mbp_system_name_select();
-		botnet_screen_pick_avatar();
 		mbp_state_save();
 	}
 
@@ -127,8 +126,8 @@ int main(void) {
 		util_ble_on();
 	}
 
-	//Startup botnet game
-	botnet_start();
+	//Startup game
+	// TBD
 
 	//Start terminal
 	mbp_term_start();

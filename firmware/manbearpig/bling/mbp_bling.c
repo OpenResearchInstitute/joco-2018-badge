@@ -1190,18 +1190,8 @@ static void __cigar_sch_handler(void * p_event_data, uint16_t event_size) {
 
 	//Update the LEDs
 	util_led_set_rgb(LED_LEFT_EYE_INDEX, eye_rgb);
+        util_led_set_rgb(LED_RIGHT_EYE_INDEX, eye_rgb);
 
-	//Offset right eye hue if infected
-	if (mbp_master_c2_infected()) {
-		float hue = m_eye_hue + 0.5;
-		if (hue > 1) {
-			hue -= 1;
-		}
-		uint32_t rgb2 = util_led_hsv_to_rgb(hue, 1, 1);
-		util_led_set_rgb(LED_RIGHT_EYE_INDEX, rgb2);
-	} else {
-		util_led_set_rgb(LED_RIGHT_EYE_INDEX, eye_rgb);
-	}
 	util_led_set_rgb(LED_CIGAR_INDEX, rgb);
 	util_led_show();
 

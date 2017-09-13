@@ -119,7 +119,6 @@
 
 //AND!XOR
 #include "beacon_ble.h"
-#include "botnet.h"
 #include "chip8.h"
 #include "drv_apa102.h"
 #include "drv_st7735.h"
@@ -127,7 +126,7 @@
 #include "bling/mbp_bling.h"
 #include "bling/mbp_custom_bling.h"
 #include "flappydefcon.h"
-#include "mbp_master.h"
+#include "joco_gamedata.h"
 #include "mbp_medea.h"
 #include "mbp_menu.h"
 #include "mbp_state.h"
@@ -147,7 +146,5 @@
 #include "util_math.h"
 #include "util_sd.h"
 #include "util_tilt.h"
-#include "botnet_ble.h"
-#include "mbp_master_ble.h"
 
 #endif /* SYSTEM_H_ */
