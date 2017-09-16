@@ -1,0 +1,80 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+Block\ Diagrams/**/*.pdf
+
+# Debug files
+*.dSYM/
+
+.DS_Store
+extract.ulp
+import/*
+partslist.txt
+*partslist
+*partslist.csv
+*parts
+*Workbook1.xslx
+
+# Python compiled modules
+*.pyc
+
+
+# MPLAB
+*.cof
+*.mum
+*SuppressibleMessageMemo.properties
+*.p1
+*.d
+*.pre
+*.cmf
+*.lst
+*.map
+*.rlf
+*.sdb
+*.sym
+*.hxl
+*.mk
+
+backup/*
+*/funclist
+Thumbs.db
+
+# editor remnants
+*.orig
+~*
+
+# eagle files
+*.lck
+*.s#*
+*.b#*
+*.s##
+*.b##
+*.l#*
+*.zip
+*.lck
+
