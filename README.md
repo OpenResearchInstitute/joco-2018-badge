@@ -17,7 +17,7 @@ Download the Nordic SDK from https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_
 `sudo apt-get install gcc-arm-none-eabi
 sudo dpkg -i ubuntu-dependencies/JLink_Linux_V618b_x86_64.deb
 cd bin
-tar xvf ../ubuntu-dependencies/nRF5x-Command-Line-Tools_9_0_0_Linux-x86_64.tar`
+tar xvf ../ubuntu-dependencies/nRF5x-Command-Line-Tools_9_7_0_Linux-x86_64.tar`
 
 ### Build the code
 
