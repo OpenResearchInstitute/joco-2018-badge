@@ -14,29 +14,38 @@ Download the Nordic SDK from https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_
 
 ### Ubuntu Dependencies
 
-`sudo apt-get install gcc-arm-none-eabi
-sudo dpkg -i ubuntu-dependencies/JLink_Linux_V618b_x86_64.deb
-cd bin
-tar xvf ../ubuntu-dependencies/nRF5x-Command-Line-Tools_9_7_0_Linux-x86_64.tar`
+Download the latest GNU ARM Embedded Toolchain from https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads and unpack it into its own directory in `/usr/local`. Or, if you prefer, `sudo apt-get install gcc-arm-none-eabi`. Then edit `nRF5x/components/toolchain/gcc/Makefile.posix` and change the value for `GNU_INSTALL_ROOT` to the directory where your toolchain was installed.
+
+`sudo dpkg -i ubuntu-dependencies/JLink_Linux_V618b_x86_64.deb`
+
+`cd bin`
+
+`tar xvf ../ubuntu-dependencies/nRF5x-Command-Line-Tools_9_7_0_Linux-x86_64.tar`
 
 ### Build the code
 
-`cd firmware/manbearpig
-make
-cd ..
-./update.sh`
+`cd firmware/manbearpig`
+
+`make`
+
+`cd ..`
+
+`./update.sh`
 
 ### Flashing the target
 
 Two ways, either:
 
-`cd firmware
-./provision.sh`
+`cd firmware`
+
+`./provision.sh`
 
 or
 
-`cd firmware/manbearpig
-make flash_softdevice
-make flash`
+`cd firmware/manbearpig`
+
+`make flash_softdevice`
+
+`make flash`
 
 The `make flash_softdevice` can be omitted after the first time.
