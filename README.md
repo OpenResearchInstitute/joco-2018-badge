@@ -8,7 +8,7 @@ All code and hardware design files are closed until Feb 26th, 2018 and then are 
 
 ## Getting Started
 
-Download the Nordic SDK from https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_612.x.x/nRF5_SDK_12.3.0_d7731ad.zip and unzip it into the top level directory. Then link it as follows:
+Download the Nordic SDK from https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v12.x.x/nRF5_SDK_12.3.0_d7731ad.zip and unzip it into the top level directory. Then link it as follows:
 
 `ln -s nRF5_SDK_12.3.0_d7731ad nRF5x`
 
