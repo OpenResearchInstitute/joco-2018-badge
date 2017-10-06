@@ -31,8 +31,6 @@
 //uncomment this for red badges
 //TODO: This should be a file check like APA102
 //#define RED_BADGE			1
-//uncomment this to put botnet into debug mode
-//#define BOTNET_DEBUG_MODE	1
 
 extern void mbp_system_about();
 extern void mbp_system_airplane_mode_select();

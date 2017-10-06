@@ -87,15 +87,11 @@ SRC_FILES += \
 	util/util_sd.c \
 	util/util_tilt.c \
 	beacon_ble.c \
-	botnet.c \
-	botnet_ble.c \
 	chip8.c \
 	drv_apa102.c \
 	drv_st7735.c \
 	drv_ws2812b.c \
 	main.c \
-	mbp_master.c \
-	mbp_master_ble.c \
 	mbp_medea.c \
 	mbp_menu.c \
 	mbp_state.c \

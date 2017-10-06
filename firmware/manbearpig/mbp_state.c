@@ -200,7 +200,6 @@ void mbp_state_new() {
 	m_badge_state.airplane_mode_enabled = SETTING_AIRPLANE_MODE_DEFAULT;
 	m_badge_state.tilt_enabled = SETTING_TILT_ENABLED_DEFAULT;
 	m_badge_state.canary = CANARY;
-	botnet_new(&m_badge_state.botnet_state);
 	m_badge_state.game_exit_pop_up = SETTING_GAME_EXIT_POPUP_DEFAULT;
 	m_badge_state.game_led_sound = SETTING_GAME_LED_SOUND_DEFAULT;
 	m_badge_state.chip8_fg_color = SETTING_CHIP8_FG_COLOR_DEFAULT;
@@ -216,11 +215,6 @@ void mbp_state_new() {
 	strcpy(m_badge_state.wall_messages[3], "Msg 4 None");
 	strcpy(m_badge_state.wall_messages[4], "Msg 5 None");
 	m_badge_state.wall_current_spot = 0;
-
-	//Init c2 state
-	m_badge_state.c2_level = false;
-	m_badge_state.c2_points = false;
-	m_badge_state.c2_unlock = false;
 
 	//Reset the counter to 0
 	m_cbc_state.counter = 0;
@@ -272,7 +266,6 @@ bool mbp_state_load() {
 	memcpy(&m_badge_state, m_cbc_state.cipher_text, sizeof(badge_state_t));
 
 	if ((m_badge_state.canary == CANARY)) {
-		util_ble_level_set(m_badge_state.botnet_state.level);
 		util_ble_name_set(m_badge_state.name);
 		util_ble_avatar_update();
 		return true;
@@ -392,30 +385,6 @@ void mbp_state_airplane_mode_set(bool enabled) {
 	m_badge_state.airplane_mode_enabled = enabled;
 }
 
-bool mbp_state_c2_level_get() {
-	return m_badge_state.c2_level;
-}
-
-void mbp_state_c2_level_set(bool level) {
-	m_badge_state.c2_level = level;
-}
-
-bool mbp_state_c2_points_get() {
-	return m_badge_state.c2_points;
-}
-
-void mbp_state_c2_points_set(bool points) {
-	m_badge_state.c2_points = points;
-}
-
-bool mbp_state_c2_unlock_get() {
-	return m_badge_state.c2_unlock;
-}
-
-void mbp_state_c2_unlock_set(bool unlock) {
-	m_badge_state.c2_unlock = unlock;
-}
-
 void mbp_state_name_get(char *name) {
 	snprintf(name, SETTING_NAME_LENGTH, "%s", m_badge_state.name);
 }
@@ -423,10 +392,6 @@ void mbp_state_name_get(char *name) {
 void mbp_state_name_set(char *name) {
 	snprintf(m_badge_state.name, SETTING_NAME_LENGTH, "%s", name);
 	util_ble_name_set(name);
-}
-
-botnet_state_t *mbp_state_botnet_state_get() {
-	return &m_badge_state.botnet_state;
 }
 
 bool mbp_state_game_led_sound_get() {

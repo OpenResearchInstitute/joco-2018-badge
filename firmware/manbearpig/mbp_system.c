@@ -76,8 +76,6 @@ void mbp_system_code() {
 	//Badge activation
 	else if (strcmp(code, "RHAC6+7X") == 0) {
 		mbp_state_activated_set(true);
-		botnet_state_t *p_state = mbp_state_botnet_state_get();
-		p_state->points = 0;
 		mbp_state_save();
 		mbp_ui_popup("Activated", "Badge Activated!");
 	}
@@ -312,7 +310,6 @@ void mbp_system_reset() {
 	}
 
 	mbp_system_name_select();
-	botnet_screen_pick_avatar();
 }
 
 bool mbp_system_seekrit_get() {

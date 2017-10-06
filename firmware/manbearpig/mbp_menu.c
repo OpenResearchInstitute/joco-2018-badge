@@ -72,12 +72,8 @@ uint8_t mbp_menu(menu_t *p_menu) {
 
 		//Draw preview
 		if (selected.preview == NULL) {
-			if (mbp_master_c2_infected()) {
-				util_gfx_draw_raw_file("BOTNET/WORM.PRV", MENU_SIZE, MENU_INDICATOR_H, GFX_WIDTH - MENU_SIZE, GFX_HEIGHT - MENU_INDICATOR_H, NULL, false, NULL);
-			} else {
-				util_gfx_draw_raw_file("MENU/DEFAULT.PRV", MENU_SIZE, MENU_INDICATOR_H, GFX_WIDTH - MENU_SIZE, GFX_HEIGHT - MENU_INDICATOR_H, NULL, false,
-				NULL);
-			}
+                    util_gfx_draw_raw_file("MENU/DEFAULT.PRV", MENU_SIZE, MENU_INDICATOR_H, GFX_WIDTH - MENU_SIZE, GFX_HEIGHT - MENU_INDICATOR_H, NULL, false,
+                                           NULL);
 		} else {
 			util_gfx_draw_raw_file(selected.preview, MENU_SIZE, MENU_INDICATOR_H, GFX_WIDTH - MENU_SIZE, GFX_HEIGHT - MENU_INDICATOR_H, NULL,
 			false, NULL);
@@ -94,10 +90,6 @@ uint8_t mbp_menu(menu_t *p_menu) {
 
 		if (mbp_state_airplane_mode_get()) {
 			util_gfx_draw_raw_file("MENU/INDPLANE.RAW", 113, 1, 14, 14, NULL, false, NULL);
-		}
-
-		if (botnet_immune()) {
-			util_gfx_draw_raw_file("MENU/INDSHLD.RAW", 98, 1, 14, 14, NULL, false, NULL);
 		}
 
 		//Setup font again to ensure something else hasn't changed it to small
@@ -128,7 +120,6 @@ uint8_t mbp_menu(menu_t *p_menu) {
 		//Track that screen is in a valid state
 		util_gfx_validate();
 
-//		util_button_clear();
 		util_button_wait();
 
 		if (util_button_down()) {
@@ -526,7 +517,7 @@ static void mbp_menu_system() {
 	menu.count = 0;
 
 	items[menu.count++] = (menu_item_t ) { "Name", "MENU/NAME.ICO", NULL, &mbp_system_name_edit, NULL };
-	items[menu.count++] = (menu_item_t ) { "Avatar", "MENU/MASTER.ICO", NULL, &botnet_screen_pick_avatar, NULL };
+	//items[menu.count++] = (menu_item_t ) { "Avatar", "MENU/MASTER.ICO", NULL, &botnet_screen_pick_avatar, NULL };
 	items[menu.count++] = (menu_item_t ) { "About", "MENU/ABOUT.ICO", NULL, &mbp_system_about, NULL };
 	items[menu.count++] = (menu_item_t ) { "Shouts", "MENU/SHOUTS.ICO", NULL, &mbp_system_shouts, NULL };
 	items[menu.count++] = (menu_item_t ) { "Games", "MENU/CONTROL.ICO", NULL, &mbp_system_game_menu, NULL };
@@ -551,7 +542,6 @@ void mbp_menu_main() {
 
 #ifndef OPSEC
 	if (mbp_state_activated_get()) {
-		items[menu.count++] = (menu_item_t ) { "Botnet", "MENU/BOTNET.ICO", NULL, &botnet_main_screen, NULL };
 		items[menu.count++] = (menu_item_t ) { "TCL", "MENU/TCL.ICO", NULL, &mbp_tcl_menu, NULL };
 	}
 #endif
@@ -559,9 +549,10 @@ void mbp_menu_main() {
 	items[menu.count++] = (menu_item_t ) { "Code", "MENU/CODE.ICO", NULL, &mbp_system_code, NULL };
 	items[menu.count++] = (menu_item_t ) { "System", "MENU/GEAR.ICO", NULL, &mbp_menu_system, NULL };
 
-	if (mbp_state_master_get()) {
-		items[menu.count++] = (menu_item_t ) { "Master", "MENU/MASTER.ICO", NULL, &mbp_master_menu_main, NULL };
-	}
+// JOCO TODO we should put back in a master control functionality
+//	if (mbp_state_master_get()) {
+//		items[menu.count++] = (menu_item_t ) { "Master", "MENU/MASTER.ICO", NULL, &mbp_master_menu_main, NULL };
+//	}
 
 	menu.items = items;
 	menu.title = "AND!XOR";

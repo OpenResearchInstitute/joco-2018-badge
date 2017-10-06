@@ -31,7 +31,6 @@ typedef struct {
 	char name[SETTING_NAME_LENGTH];
 	bool airplane_mode_enabled;
 	bool tilt_enabled;
-	botnet_state_t botnet_state;
 	bool game_exit_pop_up;
 	bool game_led_sound;
 	uint16_t chip8_fg_color;
@@ -40,9 +39,6 @@ typedef struct {
 	bool master_badge;
 	char pw_scruffy[9];
 	char pw_root[9];
-	bool c2_unlock;
-	bool c2_points;
-	bool c2_level;
 	uint16_t wall_current_spot;
 	char wall_messages[5][16];
 } badge_state_t;
@@ -59,7 +55,6 @@ extern void mbp_state_pw_scruffy_get(char *pw);
 extern void mbp_state_pw_root_set(char *pw);
 extern void mbp_state_pw_root_get(char *pw);
 
-extern botnet_state_t *mbp_state_botnet_state_get();
 extern void mbp_state_name_get(char *name);
 extern void mbp_state_name_set(char *name);
 extern bool mbp_state_game_exit_pop_up_get();
@@ -74,14 +69,6 @@ extern void mbp_state_activated_set(bool activated);
 //Get and set the airplane mode setting
 extern bool mbp_state_airplane_mode_get();
 extern void mbp_state_airplane_mode_set(bool enabled);
-
-//C2 getters/setters
-extern bool mbp_state_c2_level_get();
-extern void mbp_state_c2_level_set(bool);
-extern bool mbp_state_c2_points_get();
-extern void mbp_state_c2_points_set(bool);
-extern bool mbp_state_c2_unlock_get();
-extern void mbp_state_c2_unlock_set(bool);
 
 extern uint16_t mbp_state_chip8_fg_color_get();
 extern void mbp_state_chip8_fg_color_set(uint16_t c);

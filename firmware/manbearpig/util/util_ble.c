@@ -230,10 +230,7 @@ static void __ble_evt_dispatch(ble_evt_t * p_ble_evt) {
 	pm_on_ble_evt(p_ble_evt);
 	ble_db_discovery_on_ble_evt(&m_ble_db_discovery, p_ble_evt);
 	ble_conn_params_on_ble_evt(p_ble_evt);
-#ifndef BLE_ONLY_BUILD
-	botnet_ble_on_ble_evt(p_ble_evt);
-#endif
-	mbp_master_ble_on_ble_evt(p_ble_evt);
+	//mbp_master_ble_on_ble_evt(p_ble_evt);
 	mbp_medea_on_ble_evt(p_ble_evt);
 	nrf_ble_gatt_on_ble_evt(&m_gatt, p_ble_evt);
 	ble_nus_on_ble_evt(&m_nus, p_ble_evt);
@@ -292,10 +289,7 @@ static void __conn_params_init(void) {
 }
 
 static void __db_discovery_handler(ble_db_discovery_evt_t * p_evt) {
-#ifndef BLE_ONLY_BUILD
-	botnet_ble_on_db_disc_evt(p_evt);
-#endif
-	mbp_master_ble_on_db_disc_evt(p_evt);
+    //mbp_master_ble_on_db_disc_evt(p_evt);
 	mbp_medea_on_db_disc_evt(p_evt);
 }
 
@@ -491,10 +485,6 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 			}
 		}
 
-		//Process C2 data
-		if (c2.seq > 0) {
-			mbp_master_c2_process(c2);
-		}
 		//Say hello!
 		else if (badge.rssi > HELLO_MIN_RSSI && badge.said_hello == false) {
 
@@ -720,8 +710,7 @@ static void __pm_init() {
 static void __services_init() {
 #ifndef BLE_ONLY_BUILD
 	mbp_medea_ble_init();
-	botnet_ble_init();
-	mbp_master_ble_init();
+	//mbp_master_ble_init();
 
 	//Init NUS
 	ble_nus_init_t nus_init;
@@ -923,8 +912,8 @@ static void sys_evt_dispatch(uint32_t sys_evt) {
 void util_ble_avatar_update() {
 	ble_gap_conn_sec_mode_t sec_mode;
 	BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
-	botnet_state_t *p_state = mbp_state_botnet_state_get();
-	m_manuf_data.data.p_data[BLE_DATA_INDEX_AVATAR] = p_state->avatar;
+        // joco TODO This field was used by the bender badge for avatar
+	m_manuf_data.data.p_data[BLE_DATA_INDEX_AVATAR] = 0; //p_state->avatar;
 	ble_advdata_set(&m_adv_data, NULL);
 }
 

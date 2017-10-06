@@ -23,17 +23,13 @@
  * 	@lacosteaef
  * 	@bitstr3m
  *****************************************************************************/
-#include "system.h"
+#ifndef JOCO_GAMEDATA_H_
+#define JOCO_GAMEDATA_H_
 
-#ifndef BOTNET_BLE_H_
-#define BOTNET_BLE_H_
+typedef struct {
+	uint16_t seq;
+	uint8_t cmd;
+	uint8_t data;
+} master_c2_t;
 
-extern void botnet_ble_attack(ble_badge_t *p_badge, botnet_attack_t *p_attack);
-extern bool botnet_ble_connect_blocking(ble_badge_t *p_badge) ;
-extern void botnet_ble_on_ble_evt(const ble_evt_t * p_ble_evt);
-extern void botnet_ble_on_db_disc_evt(const ble_db_discovery_evt_t * p_evt);
-extern uint32_t botnet_ble_init();
-extern uint8_t botnet_ble_scan_get(ble_badge_t *p_badge);
-extern void botnet_ble_update_service_status();
-
-#endif /* BOTNET_BLE_H_ */
+#endif /* JOCO_GAMEDATA_H_ */
