@@ -2,9 +2,9 @@ PROJECT_NAME     := man_bear_pig_dc25
 TARGETS          := nrf52832_xxaa
 OUTPUT_DIRECTORY := _build
 
-SDK_ROOT := ../../nRF5x
+SDK_ROOT ?= SET_SDK_ROOT_ENV_VARIABLE
 PROJ_DIR := 
-NRFJPROG_PATH := ../../bin/nrfjprog
+NRFJ_BIN ?= SET_NRFJ_BIN_ENV_VARIABLE
 
 $(OUTPUT_DIRECTORY)/nrf52832_xxaa.out: \
   LINKER_SCRIPT  := gcc_nrf52.ld
@@ -313,14 +313,14 @@ $(foreach target, $(TARGETS), $(call define_target, $(target)))
 # Flash the program
 flash: $(OUTPUT_DIRECTORY)/nrf52832_xxaa.hex
 	@echo Flashing: $<
-	$(NRFJPROG_PATH)/nrfjprog --program $< -f nrf52 --sectorerase
-	$(NRFJPROG_PATH)/nrfjprog --reset -f nrf52
+	$(NRFJ_BIN)/nrfjprog/nrfjprog --program $< -f nrf52 --sectorerase
+	$(NRFJ_BIN)/nrfjprog/nrfjprog --reset -f nrf52
 # Flash softdevice
 flash_softdevice:
 	@echo Flashing: s132_nrf52_3.0.0_softdevice.hex
-	$(NRFJPROG_PATH)/nrfjprog --program $(SDK_ROOT)/components/softdevice/s132/hex/s132_nrf52_3.0.0_softdevice.hex -f nrf52 --chiperase 
-	$(NRFJPROG_PATH)/nrfjprog --reset -f nrf52
+	$(NRFJ_BIN)/nrfjprog/nrfjprog --program $(SDK_ROOT)/components/softdevice/s132/hex/s132_nrf52_3.0.0_softdevice.hex -f nrf52 --chiperase 
+	$(NRFJ_BIN)/nrfjprog/nrfjprog --reset -f nrf52
 
 full_erase:
 	@echo ***Erasing NRF52! Soft Device will need to be reflashed!***
-	$(NRFJPROG_PATH)/nrfjprog -e -f nrf52
+	$(NRFJ_BIN)/nrfjprog/nrfjprog -e -f nrf52

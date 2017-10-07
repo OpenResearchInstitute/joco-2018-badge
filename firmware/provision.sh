@@ -1,13 +1,13 @@
 #!/bin/bash
 HEX_FILE=andnxor_dc25_1.6.hex
 NRF5_CHIP_FAMILY=nrf52
-NRFJPROG_PATH=../bin/nrfjprog
-SDK_ROOT=../nRF5x
+: "${NRFJ_BIN:?Need to set NRFJ_BIN env variable (see project README)}"
+: "${SDK_ROOT:?Need to set SDK_ROOT env variable (see project README)}"
 echo Provisioning...
 
 echo =============== RECOVER ===============
-$NRFJPROG_PATH/nrfjprog --recover -f $NRF5_CHIP_FAMILY
+$NRFJ_BIN/nrfjprog/nrfjprog --recover -f $NRF5_CHIP_FAMILY
 
 echo ============= FIRMWARE ================
 echo Flashing $HEX_FILE
-$NRFJPROG_PATH/nrfjprog --program $HEX_FILE --verify --chiperase -f $NRF5_CHIP_FAMILY
+$NRFJ_BIN/nrfjprog/nrfjprog --program $HEX_FILE --verify --chiperase -f $NRF5_CHIP_FAMILY

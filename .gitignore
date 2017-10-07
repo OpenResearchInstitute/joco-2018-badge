@@ -58,6 +58,4 @@ dkms.conf
 !/board/proto1/*.lib
 
 #Badgelife
-/nRF5*
-/bin
 _build/

@@ -8,13 +8,21 @@ All code and hardware design files are closed until Feb 26th, 2018 and then are 
 
 ## Getting Started
 
-Download the version 12.3 of the Nordic SDK from <https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v12.x.x/nRF5_SDK_12.3.0_d7731ad.zip> and unzip it into the top level directory. Then link it as follows:
+Some resources must be installed outside of this source tree. One of these is the Nordic SDK.
 
-`ln -s nRF5_SDK_12.3.0_d7731ad nRF5x`
+Choose a place to install these on your file system. For example, we'll use "/src/joco-support/".
 
-It's known that later versions of the SDK are not compatible with the existing badge code. We may work on fixing that, which is why we use a symlink to the SDK.
+Download the version 12.3 of the Nordic SDK [from here](https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v12.x.x/nRF5_SDK_12.3.0_d7731ad.zip) and unzip it into the directory you chose.
 
-### Ubuntu Dependencies
+It's known that later versions of the SDK are not compatible with the existing badge code. We may work on fixing that, which is why we don't install the SDK in the source tree for the project.
+
+Now edit your shell init or rc file to set the following environment variable when you create a shell, substituting your chosen path:
+
+```
+export SDK_ROOT=/src/joco-support/nRF5_SDK_12.3.0_d7731ad
+```
+
+### Ubuntu Installation (non-ARM host)
 
 Download the GNU ARM Embedded Toolchain. Choose one of these methods:
 
@@ -30,13 +38,19 @@ If you plan to hook up hardware for programming and debugging, you'll need the S
 
 `sudo dpkg -i ubuntu-dependencies/JLink_Linux_V618b_x86_64.deb`
 
-You'll also need a couple of command line tools.
+You'll also need a couple of command line tools. Install these in a location outside this project, like the Nordic SDK. For example using the location "/src/joco-support", you can do the following:
 
-`mkdir bin`
+```
+mkdir -p /src/joco-support/bin
+cd /src/joco-support/bin
+tar xvf <path-to-joco-project>/ubuntu-dependencies/nRF5x-Command-Line-Tools_9_7_0_Linux-x86_64.tar
+```
 
-`cd bin`
+Now edit your shell init or rc file to set the following environment variable when you create a shell, substituting your chosen path:
 
-`tar xvf ../ubuntu-dependencies/nRF5x-Command-Line-Tools_9_7_0_Linux-x86_64.tar`
+```
+export NRFJ_BIN=/src/joco-support/bin
+```
 
 #### Ubuntu on an ARM Host
 
