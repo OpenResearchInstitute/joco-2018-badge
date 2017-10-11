@@ -32,7 +32,7 @@ Download the GNU ARM Embedded Toolchain. Choose one of these methods:
 
 * `sudo apt-get install gcc-arm-none-eabi` and take your chances on whatever version is current for your Linux. This may be your only option if you're running Linux on a non-x86 platform.
 
-Then edit `nRF5x/components/toolchain/gcc/Makefile.posix` and change the value for `GNU_INSTALL_ROOT` to the directory where your toolchain was installed.
+Then edit `$SDK_ROOT/components/toolchain/gcc/Makefile.posix` and change the value for `GNU_INSTALL_ROOT` to the directory where your toolchain was installed.
 
 If you plan to hook up hardware for programming and debugging, you'll need the Segger JLink software. If you're running Ubuntu on an Intel PC, you can just:
 
