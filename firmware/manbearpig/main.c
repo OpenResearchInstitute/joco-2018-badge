@@ -53,14 +53,14 @@ void __boot() {
 	util_gfx_set_font(FONT_SMALL);
 	util_gfx_set_cursor(0, 4);
 	util_gfx_set_color(COLOR_WHITE);
-	util_gfx_print("AND!XOR DEF CON 25\n");
+	util_gfx_print("JOCO Cruise 2018\n");
 	nrf_delay_ms(400);
 	util_gfx_print("64K RAM SYSTEM 38911 BYTES FREE\n");
 	nrf_delay_ms(1000);
 
 	util_gfx_print("READY\n");
 	nrf_delay_ms(400);
-	util_gfx_print("# /bin/bender --gui\n");
+	util_gfx_print("# /bin/joco --gui\n");
 	nrf_delay_ms(400);
 	util_gfx_print("Launching...");
 	nrf_delay_ms(1000);
