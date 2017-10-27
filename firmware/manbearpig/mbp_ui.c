@@ -61,6 +61,8 @@
 #define TEXTBOX_FG			COLOR_WHITE
 #define TEXTBOX_PADDING		3
 
+#define BUTTON_DELAY		200 // mS
+
 char INPUT_CHARS[] = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.!?,()[]{}<>/\\|;:&^%$#@*-_+";
 
 static void __mbp_ui_popup(char *title, char *text, uint16_t title_bg, uint16_t title_fg) {
@@ -298,14 +300,14 @@ void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars
 
 		//If right is pressed move cursor to the right
 		if (util_button_right() > 0) {
-			nrf_delay_ms(100);
+			nrf_delay_ms(BUTTON_DELAY);
 			util_gfx_fill_rect(0, INPUT_TITLE_H + 1, GFX_WIDTH, GFX_HEIGHT - INPUT_TITLE_H, COLOR_BLACK);
 			cursor = (cursor + 1) % SETTING_INPUT_MAX;
 		}
 
 		//If left is pressed move cursor to the right
 		if (util_button_left() > 0) {
-			nrf_delay_ms(100);
+			nrf_delay_ms(BUTTON_DELAY);
 			util_gfx_fill_rect(0, INPUT_TITLE_H + 1, GFX_WIDTH, GFX_HEIGHT - INPUT_TITLE_H, COLOR_BLACK);
 			cursor--;
 			if (cursor < 0) {
@@ -315,7 +317,7 @@ void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars
 
 		//If up is pressed, rotate rolodex
 		if (util_button_up() > 0) {
-			nrf_delay_ms(100);
+			nrf_delay_ms(BUTTON_DELAY);
 			util_gfx_fill_rect(0, INPUT_TITLE_H + 1, GFX_WIDTH, GFX_HEIGHT - INPUT_TITLE_H, COLOR_BLACK);
 			int8_t index = util_index_of(INPUT_CHARS, temp_input[cursor]);
 			index = (index + 1) % INPUT_CHARS_COUNT;
@@ -324,7 +326,7 @@ void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars
 
 		//If down is pressed, rotate rolodex
 		if (util_button_down() > 0) {
-			nrf_delay_ms(100);
+			nrf_delay_ms(BUTTON_DELAY);
 			util_gfx_fill_rect(0, INPUT_TITLE_H + 1, GFX_WIDTH, GFX_HEIGHT - INPUT_TITLE_H, COLOR_BLACK);
 			int8_t index = util_index_of(INPUT_CHARS, temp_input[cursor]);
 			index--;
