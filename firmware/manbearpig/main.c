@@ -119,6 +119,10 @@ int main(void) {
 		mbp_state_save();
 	}
 
+        // Near-Field Comms setup
+        util_nfc_init();
+        util_nfc_start();
+
 	//Airplane mode?
 	if (mbp_state_airplane_mode_get()) {
 		util_ble_off();

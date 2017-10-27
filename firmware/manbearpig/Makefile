@@ -62,6 +62,7 @@ SRC_FILES += \
 	$(SDK_ROOT)/components/softdevice/common/softdevice_handler/softdevice_handler.c \
 	$(SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf52.S \
 	$(SDK_ROOT)/components/toolchain/system_nrf52.c \
+	$(SDK_ROOT)/components/nfc/t2t_lib/hal_t2t/hal_nfc_t2t.c \
 	$(SDK_ROOT)/external/fatfs/port/diskio_blkdev.c \
 	$(SDK_ROOT)/external/fatfs/src/ff.c \
 	$(SDK_ROOT)/external/segger_rtt/RTT_Syscalls_GCC.c \
@@ -80,6 +81,7 @@ SRC_FILES += \
 	partcl/tcl.c \
 	util/util.c \
 	util/util_ble.c \
+	util/util_nfc.c \
 	util/util_button.c \
 	util/util_gfx.c \
 	util/util_led.c \
@@ -194,6 +196,8 @@ INC_FOLDERS += \
 	$(SDK_ROOT)/components/toolchain \
 	$(SDK_ROOT)/components/toolchain/cmsis/include \
 	$(SDK_ROOT)/components/toolchain/gcc \
+	$(SDK_ROOT)/components/nfc/t2t_lib/hal_t2t \
+	$(SDK_ROOT)/components/nfc/t2t_lib \
 	$(SDK_ROOT)/external/fatfs/port \
 	$(SDK_ROOT)/external/fatfs/src \
 	$(SDK_ROOT)/external/protothreads \

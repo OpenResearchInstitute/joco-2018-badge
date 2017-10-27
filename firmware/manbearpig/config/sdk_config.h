@@ -35,6 +35,13 @@
 #endif
 
 //==========================================================
+// <e> NFC_HAL_ENABLED - NFC HAL driver
+//==========================================================
+#ifndef NFC_HAL_ENABLED
+#define NFC_HAL_ENABLED 1
+#endif
+
+//==========================================================
 // <e> GPIOTE_ENABLED - nrf_drv_gpiote - GPIOTE peripheral driver
 //==========================================================
 #ifndef GPIOTE_ENABLED
