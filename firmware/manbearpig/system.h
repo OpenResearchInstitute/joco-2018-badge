@@ -108,6 +108,7 @@
 #include <nrf_saadc.h>
 #include <peer_manager.h>
 #include <softdevice_handler.h>
+#include <hal_nfc_t2t.h>
 
 //Nordic external FATFS
 #include "diskio_blkdev.h"
@@ -140,6 +141,7 @@
 #include "skifree.h"
 #include "util.h"
 #include "util_ble.h"
+#include "util_nfc.h"
 #include "util_button.h"
 #include "util_gfx.h"
 #include "util_led.h"
