@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -5200,6 +5200,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="SUPPLY31" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY32" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY33" library="supply2" deviceset="GND" device=""/>
+<part name="FRAME1" library="frames" deviceset="FRAME_B_L" device="" value="21"/>
 </parts>
 <sheets>
 <sheet>
@@ -6178,6 +6179,74 @@ Source: AVX .. aphvc.pdf</description>
 <label x="154.94" y="160.02" size="1.27" layer="91" rot="R180" xref="yes"/>
 </segment>
 </net>
+</nets>
+</sheet>
+<sheet>
+<plain>
+<text x="340.36" y="26.67" size="1.778" layer="95">some statement of gracious attribution</text>
+<text x="358.14" y="31.75" size="1.778" layer="95">JoCo Badge</text>
+<wire x1="147.32" y1="53.34" x2="223.52" y2="53.34" width="1.27" layer="95"/>
+<wire x1="147.32" y1="7.62" x2="223.52" y2="7.62" width="1.27" layer="95"/>
+<wire x1="147.32" y1="12.7" x2="223.52" y2="12.7" width="0.6096" layer="95"/>
+<wire x1="147.32" y1="17.78" x2="223.52" y2="17.78" width="0.6096" layer="95"/>
+<wire x1="147.32" y1="27.94" x2="223.52" y2="27.94" width="0.6096" layer="95"/>
+<wire x1="147.32" y1="33.02" x2="223.52" y2="33.02" width="0.6096" layer="95"/>
+<wire x1="147.32" y1="43.18" x2="223.52" y2="43.18" width="0.6096" layer="95"/>
+<wire x1="147.32" y1="48.26" x2="223.52" y2="48.26" width="0.6096" layer="95"/>
+<text x="12.7" y="264.16" size="2.54" layer="95">NOTES (UNLESS OTHERWISE SPECIFIED)</text>
+<text x="17.78" y="259.08" size="2.54" layer="95">1. THE PWB MUST BE LEAD FREE ASSEMBLY PROCESS COMPATIBLE</text>
+<text x="17.78" y="254" size="2.54" layer="95">2. PLATING FINISH - BOTH SIDES ENIG (ELECTROLESS NICKEL IMMERSION GOLD):</text>
+<text x="40.64" y="248.92" size="2.54" layer="95">1-3u INCH OF GOLD OVER</text>
+<text x="40.64" y="243.84" size="2.54" layer="95">2.54-6.350 MICRON (100-250 MICROINCH) OF NICKEL.</text>
+<text x="17.78" y="238.76" size="2.54" layer="95">3. ALL THROUGH HOLE VIAS MAY BE PLATED SHUT</text>
+<text x="17.78" y="233.68" size="2.54" layer="95">4. SOLDERMASK - BLACK  COLOR, BOTH SIDES</text>
+<text x="17.78" y="228.6" size="2.54" layer="95">5. SILKSCREEN - WHITE INK, BOTH SIDES.  NO SILK ON PADS.</text>
+<text x="17.78" y="223.52" size="2.54" layer="95">6. ELECTRICAL TEST - 100%</text>
+<text x="17.78" y="218.44" size="2.54" layer="95">7. SUPPLIER MARKINGS - ALL MUST BE ON REAR OF PWB</text>
+<text x="17.78" y="213.36" size="2.54" layer="95">8. MINIMUM CONDUCTIVE WIDTH/SPACING TO BE .004" / .004" EXCEPT IN DDR3 SIGNALS WHICH IS .004" / .0037"</text>
+<text x="17.78" y="208.28" size="2.54" layer="95">9. DIMENSIONAL OUTLINE OF PWB IN COMPONENT SILKSCREEN FILE</text>
+<text x="17.78" y="198.12" size="2.54" layer="95">11. FILE DESIGNATIONS:</text>
+<text x="25.4" y="180.34" size="2.54" layer="95">".CMP"  COMPONENT SIDE GERBER RS274X</text>
+<text x="25.4" y="170.18" size="2.54" layer="95">".LY2"  LAYER 2 GERBER RS274X</text>
+<text x="25.4" y="165.1" size="2.54" layer="95">".LY3"  LAYER 3 GERBER RS274X</text>
+<text x="25.4" y="139.7" size="2.54" layer="95">".SOL"  SOLDER SIDE GERBER RS274X</text>
+<text x="25.4" y="190.5" size="2.54" layer="95">".PLC"  COMPONENT SIDE SILKSCREEN</text>
+<text x="25.4" y="129.54" size="2.54" layer="95">".PLS"  SOLDER SIDE SILKSCREEN</text>
+<text x="25.4" y="124.46" size="2.54" layer="95">".CRC"  COMPONENT SIDE CREAM</text>
+<text x="25.4" y="119.38" size="2.54" layer="95">".CRS"  SOLDER SIDE CREAM</text>
+<text x="25.4" y="185.42" size="2.54" layer="95">".STC"  COMPONENT SIDE SOLDER MASK STOP</text>
+<text x="25.4" y="134.62" size="2.54" layer="95">".STS"  SOLDER SIDE SOLDER MASK STOP</text>
+<text x="25.4" y="109.22" size="2.54" layer="95">".DRD"  EXCELLON DRILL FILE</text>
+<text x="25.4" y="104.14" size="2.54" layer="95">".MNT"  XYRS DATA FILE FOR PLACEMENT</text>
+<text x="229.87" y="52.07" size="2.54" layer="95">LAYER 1 - COMPONENT SIDE, 1oz FINISH</text>
+<text x="229.87" y="46.99" size="2.54" layer="95">LAYER 2 - GROUND, 1/2oz</text>
+<text x="229.87" y="41.91" size="2.54" layer="95">LAYER 3 - INNER SIGNAL LAYER, 1/2oz</text>
+<text x="229.87" y="31.75" size="2.54" layer="95">LAYER 4 - GROUND , 1/2oz</text>
+<text x="229.87" y="26.67" size="2.54" layer="95">LAYER 5 - POWER, 1/2oz</text>
+<text x="229.87" y="16.51" size="2.54" layer="95">LAYER 6 - INNER SIGNAL LAYER, 1/2oz</text>
+<text x="229.87" y="11.43" size="2.54" layer="95">LAYER 7 - GROUND, 1/2oz</text>
+<text x="229.87" y="6.35" size="2.54" layer="95">LAYER 8 - SOLDER SIDE, 1oz FINISH</text>
+<text x="101.219" y="36.957" size="2.54" layer="95">DIELECTRIC THICKNESSES</text>
+<text x="181.61" y="49.53" size="2.1844" layer="95">6 mil</text>
+<text x="181.61" y="8.89" size="2.1844" layer="95">6 mil</text>
+<text x="181.61" y="44.45" size="2.1844" layer="95">6 mil</text>
+<text x="181.61" y="29.21" size="2.1844" layer="95">6 mil</text>
+<text x="181.61" y="13.97" size="2.1844" layer="95">6 mil</text>
+<text x="180.34" y="36.83" size="2.1844" layer="95">15 mil</text>
+<text x="180.34" y="21.59" size="2.1844" layer="95">15 mil</text>
+<text x="161.417" y="63.119" size="3.175" layer="95">LAYER STACKUP DETAIL</text>
+<text x="16.51" y="97.79" size="2.54" layer="95">12. PLATED HOLE TOLERANCE  .003"</text>
+<text x="25.4" y="114.3" size="2.54" layer="97">".MIL"  MILLING LAYER FOR INNER CUTOUTS (NOT PLATED)</text>
+<text x="17.78" y="203.2" size="2.54" layer="95">10. 15mil MAX RADIUS  INSIDE MILLING CORNERS FOR SMALL RECTANGULAR OPENINGS</text>
+<text x="25.4" y="175.26" size="2.54" layer="95">".DIM"  DIMENSION LAYER WITH OUTSIDE DIMENSIONS IN MM</text>
+</plain>
+<instances>
+<instance part="FRAME1" gate="G$1" x="0" y="0"/>
+<instance part="FRAME1" gate="G$2" x="325.12" y="0"/>
+</instances>
+<busses>
+</busses>
+<nets>
 </nets>
 </sheet>
 </sheets>
