@@ -251,8 +251,8 @@
 <text x="-5.08" y="-8.89" size="1.27" layer="27">&gt;VALUE</text>
 </package>
 <package name="SW-200D">
-<pad name="1" x="-20.25" y="0" drill="0.6"/>
-<pad name="2" x="15.25" y="0" drill="0.6"/>
+<pad name="A" x="-20.25" y="0" drill="2.54"/>
+<pad name="C" x="15.25" y="0" drill="2.54"/>
 <wire x1="-5.25" y1="-1.8" x2="5.25" y2="-1.8" width="0.127" layer="21"/>
 <wire x1="5.25" y1="-1.8" x2="5.25" y2="0" width="0.127" layer="21"/>
 <wire x1="5.25" y1="0" x2="5.25" y2="1.8" width="0.127" layer="21"/>
@@ -263,7 +263,7 @@
 <wire x1="5.25" y1="0" x2="14.5" y2="0" width="0.127" layer="21"/>
 <text x="-5" y="3" size="1.27" layer="25">&gt;NAME</text>
 <text x="-5.5" y="-4" size="1.27" layer="27">&gt;VALUE</text>
-<text x="7.5" y="0.5" size="1.27" layer="27">GOLD</text>
+<text x="7.5" y="0.5" size="1.27" layer="21">GOLD</text>
 </package>
 <package name="WS2812B">
 <smd name="1" x="-2.45" y="1.6" dx="1.5" dy="1" layer="1"/>
@@ -509,7 +509,11 @@
 <gate name="G$1" symbol="ROLL-SW" x="0" y="0"/>
 </gates>
 <devices>
-<device name="">
+<device name="" package="SW-200D">
+<connects>
+<connect gate="G$1" pin="P$1" pad="A"/>
+<connect gate="G$1" pin="P$2" pad="C"/>
+</connects>
 <technologies>
 <technology name=""/>
 </technologies>
