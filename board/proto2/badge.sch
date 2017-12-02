@@ -520,19 +520,19 @@
 <text x="-2.5" y="-3.75" size="0.8128" layer="27">&gt;VALUE</text>
 </package>
 <package name="SW-200D">
-<pad name="A" x="-20.25" y="0" drill="2.54"/>
-<pad name="C" x="15.25" y="0" drill="2.54"/>
+<pad name="A" x="-10.09" y="0" drill="0.6"/>
+<pad name="C" x="8.9" y="0" drill="0.6"/>
 <wire x1="-5.25" y1="-1.8" x2="5.25" y2="-1.8" width="0.127" layer="21"/>
 <wire x1="5.25" y1="-1.8" x2="5.25" y2="0" width="0.127" layer="21"/>
 <wire x1="5.25" y1="0" x2="5.25" y2="1.8" width="0.127" layer="21"/>
 <wire x1="5.25" y1="1.8" x2="-5.25" y2="1.8" width="0.127" layer="21"/>
 <wire x1="-5.25" y1="1.8" x2="-5.25" y2="0" width="0.127" layer="21"/>
 <wire x1="-5.25" y1="0" x2="-5.25" y2="-1.8" width="0.127" layer="21"/>
-<wire x1="-19.5" y1="0" x2="-5.25" y2="0" width="0.127" layer="21"/>
-<wire x1="5.25" y1="0" x2="14.5" y2="0" width="0.127" layer="21"/>
+<wire x1="-9.34" y1="0" x2="-5.25" y2="0" width="0.127" layer="21"/>
+<wire x1="5.25" y1="0" x2="8.15" y2="0" width="0.127" layer="21"/>
 <text x="-5" y="3" size="1.27" layer="25">&gt;NAME</text>
 <text x="-5.5" y="-4" size="1.27" layer="27">&gt;VALUE</text>
-<text x="7.5" y="0.5" size="1.27" layer="21">GOLD</text>
+<text x="6.23" y="3.04" size="1.27" layer="21">GOLD</text>
 </package>
 <package name="114-00841-68">
 <smd name="8" x="-4.5" y="0.875" dx="0.7" dy="1.75" layer="1"/>
@@ -569,6 +569,22 @@
 <pad name="10" x="1.27" y="-5.08" drill="0.5" shape="octagon"/>
 <text x="-1.27" y="-6.35" size="1.27" layer="25" rot="R90">&gt;NAME</text>
 <text x="3.81" y="-6.35" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+</package>
+<package name="CFAF128128B">
+<wire x1="-16.65" y1="16.64" x2="16.65" y2="16.64" width="0.127" layer="21"/>
+<wire x1="16.65" y1="16.64" x2="16.65" y2="-21.56" width="0.127" layer="21"/>
+<wire x1="16.65" y1="-21.56" x2="-16.65" y2="-21.56" width="0.127" layer="21"/>
+<wire x1="-16.65" y1="-21.56" x2="-16.65" y2="16.64" width="0.127" layer="21"/>
+<wire x1="-13.85" y1="14.62" x2="13.85" y2="14.62" width="0.127" layer="21"/>
+<wire x1="13.85" y1="14.62" x2="13.85" y2="-14.62" width="0.127" layer="21"/>
+<wire x1="13.85" y1="-14.62" x2="-13.85" y2="-14.62" width="0.127" layer="21"/>
+<wire x1="-13.85" y1="-14.62" x2="-13.85" y2="14.62" width="0.127" layer="21"/>
+<wire x1="-15" y1="-21" x2="15" y2="-21" width="0" layer="20"/>
+<wire x1="15" y1="-21" x2="15" y2="-23" width="0" layer="20"/>
+<wire x1="15" y1="-23" x2="-15" y2="-23" width="0" layer="20"/>
+<wire x1="-15" y1="-23" x2="-15" y2="-21" width="0" layer="20"/>
+<hole x="-16.3" y="16.3" drill="0.7"/>
+<hole x="16.3" y="16.3" drill="0.7"/>
 </package>
 </packages>
 <symbols>
@@ -727,6 +743,15 @@
 <pin name="5" x="-7.62" y="0" visible="pad" length="middle" direction="pas" swaplevel="1"/>
 <pin name="3" x="-7.62" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1"/>
 <pin name="1" x="-7.62" y="5.08" visible="pad" length="middle" direction="pas" swaplevel="1"/>
+</symbol>
+<symbol name="CFAF128128B">
+<wire x1="-7.62" y1="10.16" x2="7.62" y2="10.16" width="0.254" layer="94"/>
+<wire x1="7.62" y1="10.16" x2="7.62" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-10.16" x2="-7.62" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-10.16" x2="-7.62" y2="10.16" width="0.254" layer="94"/>
+<text x="-7.62" y="12.7" size="1.27" layer="95">&gt;NAME</text>
+<text x="-7.62" y="-12.7" size="1.27" layer="96">&gt;VALUE</text>
+<text x="-3.81" y="3.81" size="1.27" layer="94">DISPLAY</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -915,6 +940,18 @@
 <connect gate="G$1" pin="8" pad="8"/>
 <connect gate="G$1" pin="9" pad="9"/>
 </connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="CFAF128128B" prefix="OLED">
+<gates>
+<gate name="G$1" symbol="CFAF128128B" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CFAF128128B">
 <technologies>
 <technology name=""/>
 </technologies>
@@ -5553,6 +5590,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="SUPPLY41" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY42" library="supply2" deviceset="GND" device=""/>
 <part name="C28" library="rcl" deviceset="C-US" device="C0402K" value=".1u"/>
+<part name="OLED1" library="badge" deviceset="CFAF128128B" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5713,6 +5751,7 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="SUPPLY41" gate="GND" x="46.99" y="99.06"/>
 <instance part="SUPPLY42" gate="GND" x="204.47" y="213.36"/>
 <instance part="C28" gate="G$1" x="204.47" y="220.98" rot="MR0"/>
+<instance part="OLED1" gate="G$1" x="128.27" y="241.3"/>
 </instances>
 <busses>
 </busses>
@@ -6137,7 +6176,7 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="SUPPLY42" gate="GND" pin="GND"/>
 </segment>
 </net>
-<net name="N$10" class="0">
+<net name="VIN" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="+"/>
 <pinref part="S6" gate="G$1" pin="3"/>
@@ -6374,7 +6413,7 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="64.77" y1="246.38" x2="69.85" y2="246.38" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$12" class="0">
+<net name="FB" class="0">
 <segment>
 <pinref part="R6" gate="G$1" pin="1"/>
 <pinref part="R7" gate="G$1" pin="2"/>
