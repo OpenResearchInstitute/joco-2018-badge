@@ -281,6 +281,30 @@
 <text x="-2.5" y="3" size="0.8128" layer="25">&gt;NAME</text>
 <text x="-2.5" y="-3.75" size="0.8128" layer="27">&gt;VALUE</text>
 </package>
+<package name="NFCANT">
+</package>
+<package name="114-00841-68">
+<smd name="8" x="-4.5" y="0.875" dx="0.7" dy="1.75" layer="1"/>
+<smd name="7" x="-3.4" y="0.875" dx="0.7" dy="1.75" layer="1"/>
+<smd name="6" x="-2.3" y="0.875" dx="0.7" dy="1.75" layer="1"/>
+<smd name="5" x="-1.2" y="0.875" dx="0.7" dy="1.75" layer="1"/>
+<smd name="4" x="-0.1" y="0.875" dx="0.7" dy="1.75" layer="1"/>
+<smd name="3" x="1" y="0.875" dx="0.7" dy="1.75" layer="1"/>
+<smd name="2" x="2.1" y="0.875" dx="0.7" dy="1.75" layer="1"/>
+<smd name="1" x="3.2" y="0.875" dx="0.7" dy="1.75" layer="1"/>
+<smd name="G1" x="-5.7" y="1" dx="1.3" dy="1.5" layer="1"/>
+<smd name="G2" x="5.65" y="1" dx="1.5" dy="1.5" layer="1"/>
+<smd name="G3" x="-5.975" y="8.6" dx="0.8" dy="1.5" layer="1"/>
+<smd name="G4" x="5.975" y="9.25" dx="0.8" dy="1.4" layer="1"/>
+<smd name="SWA" x="-5.625" y="10.1" dx="1.45" dy="1" layer="1"/>
+<smd name="SWB" x="5.575" y="11.675" dx="1" dy="1.55" layer="1"/>
+<wire x1="-5.975" y1="0.5" x2="5.975" y2="0.5" width="0.127" layer="21"/>
+<wire x1="5.975" y1="0.5" x2="5.975" y2="11.95" width="0.127" layer="21"/>
+<wire x1="5.975" y1="11.95" x2="-5.975" y2="11.95" width="0.127" layer="21"/>
+<wire x1="-5.975" y1="11.95" x2="-5.975" y2="0.5" width="0.127" layer="21"/>
+<text x="-6" y="12.5" size="1.27" layer="25">&gt;NAME</text>
+<text x="-6" y="14" size="1.27" layer="27">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="BATT-HOLDER">
@@ -392,6 +416,24 @@
 <wire x1="-7.62" y1="-5.08" x2="-7.62" y2="5.08" width="0.254" layer="94"/>
 <text x="-7.62" y="7.62" size="1.778" layer="95">&gt;NAME</text>
 <text x="-7.62" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
+</symbol>
+<symbol name="114-00841-68">
+<pin name="DATA2" x="-10.16" y="10.16" length="short"/>
+<pin name="DATA3/CD" x="-10.16" y="7.62" length="short"/>
+<pin name="CMD/RESP" x="-10.16" y="2.54" length="short"/>
+<pin name="SUPPLY" x="-10.16" y="-12.7" length="short"/>
+<pin name="CLOCK" x="-10.16" y="0" length="short"/>
+<pin name="GND" x="-10.16" y="-15.24" length="short"/>
+<pin name="DATA0" x="-10.16" y="15.24" length="short"/>
+<pin name="DATA1" x="-10.16" y="12.7" length="short"/>
+<pin name="SWA" x="-10.16" y="-5.08" length="short"/>
+<pin name="SWB" x="-10.16" y="-7.62" length="short"/>
+<wire x1="-7.62" y1="17.78" x2="-7.62" y2="-17.78" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-17.78" x2="7.62" y2="-17.78" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-17.78" x2="7.62" y2="17.78" width="0.254" layer="94"/>
+<wire x1="7.62" y1="17.78" x2="-7.62" y2="17.78" width="0.254" layer="94"/>
+<text x="-7.62" y="20.32" size="1.27" layer="95">&gt;NAME</text>
+<text x="-7.62" y="22.86" size="1.27" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -531,6 +573,30 @@
 <connect gate="G$1" pin="DOUT" pad="2"/>
 <connect gate="G$1" pin="VDD" pad="1"/>
 <connect gate="G$1" pin="VSS" pad="3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="114-00841-68" prefix="SD">
+<gates>
+<gate name="G$1" symbol="114-00841-68" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="114-00841-68">
+<connects>
+<connect gate="G$1" pin="CLOCK" pad="5"/>
+<connect gate="G$1" pin="CMD/RESP" pad="3"/>
+<connect gate="G$1" pin="DATA0" pad="7"/>
+<connect gate="G$1" pin="DATA1" pad="8"/>
+<connect gate="G$1" pin="DATA2" pad="1"/>
+<connect gate="G$1" pin="DATA3/CD" pad="2"/>
+<connect gate="G$1" pin="GND" pad="6 G1 G2 G3 G4"/>
+<connect gate="G$1" pin="SUPPLY" pad="4"/>
+<connect gate="G$1" pin="SWA" pad="SWA"/>
+<connect gate="G$1" pin="SWB" pad="SWB"/>
 </connects>
 <technologies>
 <technology name=""/>
