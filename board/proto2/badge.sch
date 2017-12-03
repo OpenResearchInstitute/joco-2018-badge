@@ -5466,7 +5466,7 @@ Source: AVX .. aphvc.pdf</description>
 </class>
 </classes>
 <parts>
-<part name="U1" library="BMD-300" deviceset="BMD-300" device=""/>
+<part name="U1" library="BMD-300" deviceset="BMD-300" device="" value="BMD-300"/>
 <part name="FRAME13" library="frames" deviceset="FRAME_B_L" device="" value="21"/>
 <part name="B1" library="badge" deviceset="12BH331P-GR" device=""/>
 <part name="S1" library="badge" deviceset="PTS810" device=""/>
@@ -5566,7 +5566,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="SD1" library="badge" deviceset="114-00841-68" device=""/>
 <part name="SUPPLY35" library="supply2" deviceset="GND" device=""/>
 <part name="+3V7" library="supply1" deviceset="+3V3" device=""/>
-<part name="JP1" library="pinhead" deviceset="PINHD-2X4" device=""/>
+<part name="JP1" library="pinhead" deviceset="PINHD-2X4" device="" value="NP"/>
 <part name="+3V8" library="supply1" deviceset="+3V3" device=""/>
 <part name="SUPPLY36" library="supply2" deviceset="GND" device=""/>
 <part name="J2" library="badge" deviceset="M05X2X1.27" device=""/>
@@ -5600,7 +5600,7 @@ Source: AVX .. aphvc.pdf</description>
 <text x="86.36" y="168.91" size="1.27" layer="98">ACTION</text>
 <text x="246.38" y="132.08" size="1.778" layer="97" rot="R90">TILT SWITCH</text>
 <text x="190.5" y="95.25" size="1.778" layer="97">NFC ANTENNA</text>
-<text x="64.77" y="99.06" size="1.778" layer="97">EXPANSION</text>
+<text x="63.5" y="96.52" size="1.778" layer="97">EXPANSION</text>
 <text x="223.52" y="232.41" size="1.778" layer="97">PROGRAM</text>
 </plain>
 <instances>
@@ -6419,26 +6419,6 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="185.42" y1="240.03" x2="185.42" y2="236.22" width="0.1524" layer="91"/>
 <label x="185.42" y="236.22" size="1.27" layer="91" rot="R270" xref="yes"/>
 <pinref part="J1" gate="G$1" pin="!CS"/>
-</segment>
-</net>
-<net name="P0.15" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="TRACED[2]/P0.15"/>
-<wire x1="213.36" y1="165.1" x2="220.98" y2="165.1" width="0.1524" layer="91"/>
-<label x="220.98" y="165.1" size="1.27" layer="91" xref="yes"/>
-</segment>
-</net>
-<net name="P0.16" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="TRACED[1]/P0.16"/>
-<wire x1="213.36" y1="167.64" x2="220.98" y2="167.64" width="0.1524" layer="91"/>
-<label x="220.98" y="167.64" size="1.27" layer="91" xref="yes"/>
-</segment>
-</net>
-<net name="P0.17" class="0">
-<segment>
-<wire x1="214.63" y1="170.18" x2="220.98" y2="170.18" width="0.1524" layer="91"/>
-<label x="220.98" y="170.18" size="1.27" layer="91" xref="yes"/>
 </segment>
 </net>
 <net name="P0.11" class="0">

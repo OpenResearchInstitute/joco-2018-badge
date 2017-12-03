@@ -1776,7 +1776,7 @@ design rules under a new name.
 </pass>
 </autorouter>
 <elements>
-<element name="U1" library="BMD-300" package="BMD-300" value="" x="105.89691875" y="71.377684375" smashed="yes" rot="R332">
+<element name="U1" library="BMD-300" package="BMD-300" value="BMD-300" x="105.89691875" y="71.377684375" smashed="yes" rot="R332">
 <attribute name="NAME" x="113.5096625" y="75.25790625" size="1.27" layer="51" rot="R332" align="center"/>
 <attribute name="NAME" x="111.06475625" y="82.4947" size="0.8128" layer="25" font="vector" rot="R62" align="bottom-right"/>
 </element>
@@ -1998,7 +1998,7 @@ design rules under a new name.
 <attribute name="NAME" x="88.488" y="90.478" size="0.8128" layer="25" font="vector"/>
 <attribute name="VALUE" x="88.488" y="91.978" size="1.27" layer="27"/>
 </element>
-<element name="JP1" library="pinhead" package="2X04" value="" x="22.606" y="71.628" smashed="yes" rot="R270">
+<element name="JP1" library="pinhead" package="2X04" value="NP" x="22.606" y="71.628" smashed="yes" rot="R270">
 <attribute name="NAME" x="25.781" y="76.708" size="0.8128" layer="25" font="vector" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="18.161" y="76.708" size="1.27" layer="27" rot="R270"/>
 </element>
@@ -2902,12 +2902,6 @@ design rules under a new name.
 <wire x1="113.792" y1="65.786" x2="113.792" y2="63.754" width="0.254" layer="16"/>
 <wire x1="113.792" y1="63.754" x2="113.284" y2="63.246" width="0.254" layer="16"/>
 <wire x1="113.284" y1="63.246" x2="110.744" y2="63.246" width="0.254" layer="16"/>
-</signal>
-<signal name="P0.15">
-<contactref element="U1" pad="P33"/>
-</signal>
-<signal name="P0.16">
-<contactref element="U1" pad="P34"/>
 </signal>
 <signal name="P0.11">
 <contactref element="U1" pad="P27"/>
