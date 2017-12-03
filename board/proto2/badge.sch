@@ -532,7 +532,7 @@
 <wire x1="5.25" y1="0" x2="8.15" y2="0" width="0.127" layer="21"/>
 <text x="-5" y="3" size="1.27" layer="25">&gt;NAME</text>
 <text x="-5.5" y="-4" size="1.27" layer="27">&gt;VALUE</text>
-<text x="6.23" y="3.04" size="1.27" layer="21">GOLD</text>
+<text x="6.23" y="0.5" size="1.27" layer="21">G</text>
 </package>
 <package name="114-00841-68">
 <smd name="8" x="-4.5" y="0.875" dx="0.7" dy="1.75" layer="1"/>

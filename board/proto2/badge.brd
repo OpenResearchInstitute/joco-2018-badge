@@ -30,9 +30,9 @@
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
@@ -1210,6 +1210,14 @@
 <vertex x="63.048" y="48.456"/>
 <vertex x="62.832" y="49.452" curve="31.366039"/>
 </polygon>
+<text x="19.304" y="68.834" size="0.8128" layer="21" font="vector" rot="R90">EXPANSION</text>
+<text x="68.199" y="93.98" size="1.27" layer="22" font="vector" rot="MR0" align="center">#badgelife
+JoCo Badge Team: </text>
+<text x="67.3354" y="86.732871875" size="1.27" layer="22" font="vector" rot="MR54" align="center-left">AI4QR</text>
+<text x="69.0626" y="86.732871875" size="1.27" layer="22" font="vector" rot="MR126" align="center-left">N5AC</text>
+<text x="69.215" y="85.7758" size="1.27" layer="22" font="vector" rot="MR198" align="center-left">W5NYV</text>
+<text x="68.199" y="85.0392" size="1.27" layer="22" font="vector" rot="MR270" align="center-left">AI6TK</text>
+<text x="67.183" y="85.7758" size="1.27" layer="22" font="vector" rot="MR342" align="center-left">AI6ZU</text>
 </plain>
 <libraries>
 <library name="BMD-300">
@@ -1416,7 +1424,7 @@
 <wire x1="5.25" y1="0" x2="8.15" y2="0" width="0.127" layer="21"/>
 <text x="-5" y="3" size="1.27" layer="25">&gt;NAME</text>
 <text x="-5.5" y="-4" size="1.27" layer="27">&gt;VALUE</text>
-<text x="6.23" y="3.04" size="1.27" layer="21">GOLD</text>
+<text x="6.23" y="0.5" size="1.27" layer="21">G</text>
 </package>
 <package name="114-00841-68">
 <smd name="8" x="-4.5" y="0.875" dx="0.7" dy="1.75" layer="1"/>
@@ -1768,39 +1776,90 @@ design rules under a new name.
 </pass>
 </autorouter>
 <elements>
-<element name="U1" library="BMD-300" package="BMD-300" value="" x="105.89691875" y="71.377684375" rot="R332"/>
-<element name="B1" library="badge" package="12BH331P-GR" value="12BH331P-GR" x="68.199" y="37.846" rot="MR0"/>
-<element name="S1" library="badge" package="PTS810" value="PTS810" x="18.415" y="38.735"/>
-<element name="S2" library="badge" package="PTS810" value="PTS810" x="12.065" y="33.655"/>
-<element name="S3" library="badge" package="PTS810" value="PTS810" x="24.765" y="33.655"/>
-<element name="S4" library="badge" package="PTS810" value="PTS810" x="18.415" y="28.575"/>
-<element name="S5" library="badge" package="PTS810" value="PTS810" x="117.475" y="34.29"/>
-<element name="R1" library="rcl" package="R0603" value="1.0k" x="30.988" y="61.976" rot="R90"/>
-<element name="R2" library="rcl" package="R0603" value="1.0k" x="32.512" y="61.976" rot="R90"/>
-<element name="R3" library="rcl" package="R0603" value="1.0k" x="35.56" y="61.976" rot="R90"/>
-<element name="R4" library="rcl" package="R0603" value="1.0k" x="34.036" y="61.976" rot="R90"/>
-<element name="R5" library="rcl" package="R0603" value="1.0k" x="115.824" y="63.5"/>
-<element name="C1" library="rcl" package="C0402K" value=".1u" x="30.226" y="58.166" rot="R180"/>
-<element name="C2" library="rcl" package="C0402K" value=".1u" x="30.226" y="56.896" rot="R180"/>
-<element name="C3" library="rcl" package="C0402K" value=".1u" x="36.322" y="58.166"/>
-<element name="C4" library="rcl" package="C0402K" value=".1u" x="36.322" y="56.896"/>
-<element name="C5" library="rcl" package="C0402K" value=".1u" x="114.3" y="61.722" rot="R180"/>
+<element name="U1" library="BMD-300" package="BMD-300" value="" x="105.89691875" y="71.377684375" smashed="yes" rot="R332">
+<attribute name="NAME" x="113.5096625" y="75.25790625" size="1.27" layer="51" rot="R332" align="center"/>
+<attribute name="NAME" x="111.06475625" y="82.4947" size="0.8128" layer="25" font="vector" rot="R62" align="bottom-right"/>
+</element>
+<element name="B1" library="badge" package="12BH331P-GR" value="12BH331P-GR" x="68.199" y="37.846" smashed="yes" rot="MR0">
+<attribute name="NAME" x="40.259" y="64.516" size="1.27" layer="26" rot="MR180"/>
+<attribute name="VALUE" x="40.259" y="12.446" size="1.27" layer="28" rot="MR180"/>
+</element>
+<element name="S1" library="badge" package="PTS810" value="PTS810" x="18.415" y="38.735" smashed="yes">
+<attribute name="NAME" x="30.099" y="35.433" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="15.875" y="34.925" size="1.27" layer="27"/>
+</element>
+<element name="S2" library="badge" package="PTS810" value="PTS810" x="12.065" y="33.655" smashed="yes">
+<attribute name="NAME" x="28.575" y="34.163" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="9.525" y="29.845" size="1.27" layer="27"/>
+</element>
+<element name="S3" library="badge" package="PTS810" value="PTS810" x="24.765" y="33.655" smashed="yes">
+<attribute name="NAME" x="31.115" y="34.163" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="22.225" y="29.845" size="1.27" layer="27"/>
+</element>
+<element name="S4" library="badge" package="PTS810" value="PTS810" x="18.415" y="28.575" smashed="yes">
+<attribute name="NAME" x="29.845" y="32.639" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="15.875" y="24.765" size="1.27" layer="27"/>
+</element>
+<element name="S5" library="badge" package="PTS810" value="PTS810" x="117.475" y="34.29" smashed="yes">
+<attribute name="NAME" x="114.935" y="36.83" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="114.935" y="30.48" size="1.27" layer="27"/>
+</element>
+<element name="R1" library="rcl" package="R0603" value="1.0k" x="30.988" y="61.976" smashed="yes" rot="R90">
+<attribute name="NAME" x="29.083" y="61.341" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="33.02" y="61.087" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R2" library="rcl" package="R0603" value="1.0k" x="32.512" y="61.976" smashed="yes" rot="R90">
+<attribute name="NAME" x="30.099" y="61.341" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="34.544" y="61.087" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R3" library="rcl" package="R0603" value="1.0k" x="35.56" y="61.976" smashed="yes" rot="R90">
+<attribute name="NAME" x="38.227" y="61.341" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="37.592" y="61.087" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R4" library="rcl" package="R0603" value="1.0k" x="34.036" y="61.976" smashed="yes" rot="R90">
+<attribute name="NAME" x="37.211" y="61.341" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="36.068" y="61.087" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="R5" library="rcl" package="R0603" value="1.0k" x="115.824" y="63.5" smashed="yes">
+<attribute name="NAME" x="117.729" y="63.119" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="114.935" y="61.468" size="1.27" layer="27"/>
+</element>
+<element name="C1" library="rcl" package="C0402K" value=".1u" x="30.226" y="58.166" smashed="yes" rot="R180">
+<attribute name="NAME" x="31.758" y="57.829" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="30.726" y="59.616" size="1.016" layer="27" rot="R180"/>
+</element>
+<element name="C2" library="rcl" package="C0402K" value=".1u" x="30.226" y="56.896" smashed="yes" rot="R180">
+<attribute name="NAME" x="31.758" y="56.559" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="30.726" y="58.346" size="1.016" layer="27" rot="R180"/>
+</element>
+<element name="C3" library="rcl" package="C0402K" value=".1u" x="36.322" y="58.166" smashed="yes">
+<attribute name="NAME" x="35.044" y="58.503" size="0.8128" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="35.822" y="56.716" size="1.016" layer="27"/>
+</element>
+<element name="C4" library="rcl" package="C0402K" value=".1u" x="36.322" y="56.896" smashed="yes">
+<attribute name="NAME" x="35.044" y="57.487" size="0.8128" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="35.822" y="55.446" size="1.016" layer="27"/>
+</element>
+<element name="C5" library="rcl" package="C0402K" value=".1u" x="114.3" y="61.722" smashed="yes" rot="R180">
+<attribute name="NAME" x="114.8" y="61.043" size="0.8128" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="114.8" y="63.172" size="1.016" layer="27" rot="R180"/>
+</element>
 <element name="IC1" library="badge" package="DBV-5" value="TLV62569" x="33.02" y="23.368" smashed="yes" rot="R90">
 <attribute name="NAME" x="36.346" y="19.272" size="0.8128" layer="25" font="vector"/>
 <attribute name="VALUE" x="34.52" y="25.868" size="0.6096" layer="27" rot="R180"/>
 </element>
 <element name="C6" library="rcl" package="C0805K" value="10u" x="29.464" y="23.622" smashed="yes" rot="R270">
 <attribute name="MPN" value="JMK212BJ106KD-T" x="29.464" y="23.622" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="28.972" y="25.767" size="0.8128" layer="25" font="vector"/>
+<attribute name="NAME" x="30.113" y="26.178" size="0.8128" layer="25" font="vector" rot="R90"/>
 <attribute name="VALUE" x="27.564" y="24.622" size="1.016" layer="27" rot="R270"/>
 </element>
 <element name="C7" library="rcl" package="C0805K" value="10u" x="36.576" y="24.13" smashed="yes" rot="R270">
 <attribute name="MPN" value="JMK212BJ106KD-T" x="36.576" y="24.13" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="36.435" y="21.828" size="0.8128" layer="25" font="vector" rot="R270"/>
+<attribute name="NAME" x="39.64" y="25.005" size="0.8128" layer="25" font="vector"/>
 <attribute name="VALUE" x="34.676" y="25.13" size="1.016" layer="27" rot="R270"/>
 </element>
 <element name="L1" library="badge" package="NR3015" value="NR3015T1R0N" x="33.528" y="26.924" smashed="yes">
-<attribute name="NAME" x="29.972" y="27.432" size="0.8128" layer="25" font="vector"/>
+<attribute name="NAME" x="31.242" y="29.21" size="0.8128" layer="25" font="vector"/>
 <attribute name="VALUE" x="29.718" y="23.114" size="1.27" layer="27"/>
 </element>
 <element name="R6" library="rcl" package="R0603" value="453k" x="33.528" y="20.574" smashed="yes">
@@ -1815,47 +1874,167 @@ design rules under a new name.
 <attribute name="NAME" x="30.226" y="14.097" size="0.8128" layer="25" font="vector"/>
 <attribute name="VALUE" x="31.115" y="11.43" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="R8" library="rcl" package="R0603" value="47" x="50.8" y="73.914" rot="R180"/>
-<element name="J1" library="badge" package="5051101092" value="5051101092" x="68.199" y="71.882" rot="MR0"/>
-<element name="LED1" library="badge" package="WS2812B" value="WS2812B" x="80.2680125" y="54.866740625" rot="R338"/>
-<element name="LED2" library="badge" package="WS2812B" value="WS2812B" x="86.533659375" y="52.326615625" rot="R338"/>
-<element name="LED3" library="badge" package="WS2812B" value="WS2812B" x="92.79930625" y="49.7864875" rot="R338"/>
-<element name="LED4" library="badge" package="WS2812B" value="WS2812B" x="99.064953125" y="47.2463625" rot="R338"/>
-<element name="LED5" library="badge" package="WS2812B" value="WS2812B" x="78.2359125" y="49.7864875" rot="R338"/>
-<element name="LED6" library="badge" package="WS2812B" value="WS2812B" x="84.501559375" y="47.2463625" rot="R338"/>
-<element name="LED7" library="badge" package="WS2812B" value="WS2812B" x="90.76720625" y="44.706234375" rot="R338"/>
-<element name="LED8" library="badge" package="WS2812B" value="WS2812B" x="97.032853125" y="42.16610625" rot="R338"/>
-<element name="LED9" library="badge" package="WS2812B" value="WS2812B" x="76.203809375" y="44.706234375" rot="R338"/>
-<element name="LED10" library="badge" package="WS2812B" value="WS2812B" x="82.46945625" y="42.16610625" rot="R338"/>
-<element name="LED11" library="badge" package="WS2812B" value="WS2812B" x="88.735103125" y="39.62598125" rot="R338"/>
-<element name="LED12" library="badge" package="WS2812B" value="WS2812B" x="95.00075" y="37.085853125" rot="R338"/>
-<element name="LED13" library="badge" package="WS2812B" value="WS2812B" x="54.189375" y="43.859525"/>
-<element name="LED14" library="badge" package="WS2812B" value="WS2812B" x="58.42291875" y="19.47430625" rot="R344"/>
-<element name="R9" library="rcl" package="R0603" value="47" x="83.312" y="59.69" rot="R90"/>
-<element name="C8" library="rcl" package="C0402K" value=".1u" x="77.216" y="59.69" rot="R90"/>
-<element name="C9" library="rcl" package="C0402K" value=".1u" x="86.36" y="57.912" rot="R68"/>
-<element name="C10" library="rcl" package="C0402K" value=".1u" x="92.456" y="55.372" rot="R68"/>
-<element name="C11" library="rcl" package="C0402K" value=".1u" x="98.806" y="52.832" rot="R68"/>
-<element name="C12" library="rcl" package="C0402K" value=".1u" x="74.676" y="53.594" rot="R68"/>
-<element name="C13" library="rcl" package="C0402K" value=".1u" x="72.898" y="48.26" rot="R68"/>
-<element name="C14" library="rcl" package="C0402K" value=".1u" x="93.472" y="33.528" rot="R338"/>
-<element name="C15" library="rcl" package="C0402K" value=".1u" x="87.122" y="36.322" rot="R338"/>
-<element name="C16" library="rcl" package="C0402K" value=".1u" x="80.772" y="38.862" rot="R338"/>
-<element name="C17" library="rcl" package="C0402K" value=".1u" x="74.676" y="41.402" rot="R338"/>
-<element name="S7" library="badge" package="SW-200D" value="SW-200D" x="47.117" y="86.614" rot="R90"/>
-<element name="C19" library="rcl" package="C0603K" value="300p" x="104.648" y="51.308" rot="R90"/>
-<element name="C23" library="rcl" package="C0603K" value="300p" x="107.696" y="51.308" rot="R90"/>
-<element name="SD1" library="badge" package="114-00841-68" value="114-00841-68" x="94.488" y="77.978"/>
-<element name="JP1" library="pinhead" package="2X04" value="" x="22.606" y="71.628" rot="R270"/>
-<element name="J2" library="badge" package="2X5X1.27" value="M05X2X1.27" x="120.777" y="71.247" rot="R332"/>
-<element name="C24" library="rcl" package="C0402K" value=".1u" x="107.188" y="68.58" rot="R270"/>
-<element name="C25" library="rcl" package="C0402K" value=".1u" x="50.038" y="75.946" rot="R90"/>
-<element name="C26" library="rcl" package="C0402K" value=".1u" x="94.488" y="76.2" rot="R270"/>
-<element name="C27" library="rcl" package="C0402K" value=".1u" x="22.606" y="77.724"/>
-<element name="C28" library="rcl" package="C0402K" value=".1u" x="119.126" y="71.628" rot="R242"/>
-<element name="OLED1" library="badge" package="CFAF128128B" value="CFAF128128B" x="68.199" y="86.106"/>
-<element name="C18" library="rcl" package="C0402K" value=".1u" x="56.896" y="24.257" rot="R90"/>
-<element name="C20" library="rcl" package="C0402K" value=".1u" x="51.816" y="47.879" rot="R90"/>
+<element name="R8" library="rcl" package="R0603" value="47" x="50.8" y="73.914" smashed="yes" rot="R180">
+<attribute name="NAME" x="50.673" y="73.025" size="0.8128" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="51.689" y="75.946" size="1.27" layer="27" rot="R180"/>
+</element>
+<element name="J1" library="badge" package="5051101092" value="5051101092" x="68.199" y="71.882" smashed="yes" rot="MR0">
+<attribute name="NAME" x="73.279" y="65.532" size="1.27" layer="26" rot="MR0"/>
+<attribute name="VALUE" x="73.279" y="62.992" size="1.27" layer="28" rot="MR0"/>
+</element>
+<element name="LED1" library="badge" package="WS2812B" value="WS2812B" x="80.2680125" y="54.866740625" smashed="yes" rot="R338">
+<attribute name="NAME" x="79.073871875" y="58.58480625" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="76.545278125" y="52.326315625" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED2" library="badge" package="WS2812B" value="WS2812B" x="86.533659375" y="52.326615625" smashed="yes" rot="R338">
+<attribute name="NAME" x="85.33951875" y="56.04468125" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="82.810925" y="49.786190625" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED3" library="badge" package="WS2812B" value="WS2812B" x="92.79930625" y="49.7864875" smashed="yes" rot="R338">
+<attribute name="NAME" x="91.605165625" y="53.504553125" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="89.076571875" y="47.2460625" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED4" library="badge" package="WS2812B" value="WS2812B" x="99.064953125" y="47.2463625" smashed="yes" rot="R338">
+<attribute name="NAME" x="97.6168125" y="50.964428125" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="95.34221875" y="44.7059375" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED5" library="badge" package="WS2812B" value="WS2812B" x="78.2359125" y="49.7864875" smashed="yes" rot="R338">
+<attribute name="NAME" x="77.295771875" y="50.202553125" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="74.513178125" y="47.2460625" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED6" library="badge" package="WS2812B" value="WS2812B" x="84.501559375" y="47.2463625" smashed="yes" rot="R338">
+<attribute name="NAME" x="83.30741875" y="47.916428125" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="80.778825" y="44.7059375" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED7" library="badge" package="WS2812B" value="WS2812B" x="90.76720625" y="44.706234375" smashed="yes" rot="R338">
+<attribute name="NAME" x="89.827065625" y="45.1223" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="87.044471875" y="42.165809375" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED8" library="badge" package="WS2812B" value="WS2812B" x="97.032853125" y="42.16610625" smashed="yes" rot="R338">
+<attribute name="NAME" x="95.5847125" y="42.836171875" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="93.31011875" y="39.62568125" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED9" library="badge" package="WS2812B" value="WS2812B" x="76.203809375" y="44.706234375" smashed="yes" rot="R338">
+<attribute name="NAME" x="75.51766875" y="44.6143" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="72.481075" y="42.165809375" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED10" library="badge" package="WS2812B" value="WS2812B" x="82.46945625" y="42.16610625" smashed="yes" rot="R338">
+<attribute name="NAME" x="81.275315625" y="42.328171875" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="78.746721875" y="39.62568125" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED11" library="badge" package="WS2812B" value="WS2812B" x="88.735103125" y="39.62598125" smashed="yes" rot="R338">
+<attribute name="NAME" x="87.5409625" y="39.788046875" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="85.01236875" y="37.08555625" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED12" library="badge" package="WS2812B" value="WS2812B" x="95.00075" y="37.085853125" smashed="yes" rot="R338">
+<attribute name="NAME" x="96.693390625" y="36.66608125" size="0.8128" layer="25" font="vector" rot="R158"/>
+<attribute name="VALUE" x="91.278015625" y="34.545428125" size="0.8128" layer="27" rot="R338"/>
+</element>
+<element name="LED13" library="badge" package="WS2812B" value="WS2812B" x="54.189375" y="43.859525" smashed="yes">
+<attribute name="NAME" x="52.451375" y="40.255525" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="51.689375" y="40.109525" size="0.8128" layer="27"/>
+</element>
+<element name="LED14" library="badge" package="WS2812B" value="WS2812B" x="58.42291875" y="19.47430625" smashed="yes" rot="R344">
+<attribute name="NAME" x="54.913325" y="17.592815625" size="0.8128" layer="25" font="vector" rot="R170"/>
+<attribute name="VALUE" x="54.986121875" y="16.558665625" size="0.8128" layer="27" rot="R344"/>
+</element>
+<element name="R9" library="rcl" package="R0603" value="47" x="83.312" y="59.69" smashed="yes" rot="R90">
+<attribute name="NAME" x="82.423" y="58.801" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="85.344" y="58.801" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C8" library="rcl" package="C0402K" value=".1u" x="77.216" y="59.69" smashed="yes" rot="R90">
+<attribute name="NAME" x="76.537" y="59.19" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="78.666" y="59.19" size="1.016" layer="27" rot="R90"/>
+</element>
+<element name="C9" library="rcl" package="C0402K" value=".1u" x="86.36" y="57.912" smashed="yes" rot="R68">
+<attribute name="NAME" x="85.524640625" y="57.861615625" size="0.8128" layer="25" font="vector" rot="R68"/>
+<attribute name="VALUE" x="87.5171125" y="56.905228125" size="1.016" layer="27" rot="R68"/>
+</element>
+<element name="C10" library="rcl" package="C0402K" value=".1u" x="92.456" y="55.372" smashed="yes" rot="R68">
+<attribute name="NAME" x="91.366640625" y="54.813615625" size="0.8128" layer="25" font="vector" rot="R68"/>
+<attribute name="VALUE" x="93.6131125" y="54.365228125" size="1.016" layer="27" rot="R68"/>
+</element>
+<element name="C11" library="rcl" package="C0402K" value=".1u" x="98.806" y="52.832" smashed="yes" rot="R68">
+<attribute name="NAME" x="97.840384375" y="53.012640625" size="0.8128" layer="25" font="vector" rot="R158"/>
+<attribute name="VALUE" x="99.9631125" y="51.825228125" size="1.016" layer="27" rot="R68"/>
+</element>
+<element name="C12" library="rcl" package="C0402K" value=".1u" x="74.676" y="53.594" smashed="yes" rot="R68">
+<attribute name="NAME" x="74.676" y="60.248384375" size="0.8128" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="75.8331125" y="52.587228125" size="1.016" layer="27" rot="R68"/>
+</element>
+<element name="C13" library="rcl" package="C0402K" value=".1u" x="72.898" y="48.26" smashed="yes" rot="R68">
+<attribute name="NAME" x="74.676" y="59.131615625" size="0.8128" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="74.0551125" y="47.253228125" size="1.016" layer="27" rot="R68"/>
+</element>
+<element name="C14" library="rcl" package="C0402K" value=".1u" x="93.472" y="33.528" smashed="yes" rot="R338">
+<attribute name="NAME" x="90.119615625" y="34.36335625" size="0.8128" layer="25" font="vector" rot="R338"/>
+<attribute name="VALUE" x="92.465228125" y="32.370884375" size="1.016" layer="27" rot="R338"/>
+</element>
+<element name="C15" library="rcl" package="C0402K" value=".1u" x="87.122" y="36.322" smashed="yes" rot="R338">
+<attribute name="NAME" x="85.902384375" y="37.26464375" size="0.8128" layer="25" font="vector" rot="R158"/>
+<attribute name="VALUE" x="86.115228125" y="35.164884375" size="1.016" layer="27" rot="R338"/>
+</element>
+<element name="C16" library="rcl" package="C0402K" value=".1u" x="80.772" y="38.862" smashed="yes" rot="R338">
+<attribute name="NAME" x="79.552384375" y="39.80464375" size="0.8128" layer="25" font="vector" rot="R158"/>
+<attribute name="VALUE" x="79.765228125" y="37.704884375" size="1.016" layer="27" rot="R338"/>
+</element>
+<element name="C17" library="rcl" package="C0402K" value=".1u" x="74.676" y="41.402" smashed="yes" rot="R338">
+<attribute name="NAME" x="74.676" y="58.09264375" size="0.8128" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="73.669228125" y="40.244884375" size="1.016" layer="27" rot="R338"/>
+</element>
+<element name="S7" library="badge" package="SW-200D" value="SW-200D" x="47.117" y="86.614" smashed="yes" rot="R90">
+<attribute name="NAME" x="44.879" y="81.614" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="51.117" y="81.114" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C19" library="rcl" package="C0603K" value="300p" x="104.648" y="51.308" smashed="yes" rot="R90">
+<attribute name="NAME" x="105.014" y="54.318" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="106.298" y="50.508" size="1.016" layer="27" rot="R90"/>
+</element>
+<element name="C23" library="rcl" package="C0603K" value="300p" x="107.696" y="51.308" smashed="yes" rot="R90">
+<attribute name="NAME" x="108.062" y="53.302" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="109.346" y="50.508" size="1.016" layer="27" rot="R90"/>
+</element>
+<element name="SD1" library="badge" package="114-00841-68" value="114-00841-68" x="94.488" y="77.978" smashed="yes">
+<attribute name="NAME" x="88.488" y="90.478" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="88.488" y="91.978" size="1.27" layer="27"/>
+</element>
+<element name="JP1" library="pinhead" package="2X04" value="" x="22.606" y="71.628" smashed="yes" rot="R270">
+<attribute name="NAME" x="25.781" y="76.708" size="0.8128" layer="25" font="vector" ratio="10" rot="R270"/>
+<attribute name="VALUE" x="18.161" y="76.708" size="1.27" layer="27" rot="R270"/>
+</element>
+<element name="J2" library="badge" package="2X5X1.27" value="M05X2X1.27" x="120.777" y="71.247" smashed="yes" rot="R332">
+<attribute name="NAME" x="117.182509375" y="66.744509375" size="0.8128" layer="25" font="vector" rot="R62"/>
+<attribute name="VALUE" x="121.159884375" y="63.85159375" size="1.27" layer="27" rot="R62"/>
+</element>
+<element name="C24" library="rcl" package="C0402K" value=".1u" x="107.188" y="68.58" smashed="yes" rot="R270">
+<attribute name="NAME" x="105.581" y="70.604" size="0.8128" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="105.738" y="69.08" size="1.016" layer="27" rot="R270"/>
+</element>
+<element name="C25" library="rcl" package="C0402K" value=".1u" x="50.038" y="75.946" smashed="yes" rot="R90">
+<attribute name="NAME" x="50.375" y="77.478" size="0.8128" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="51.488" y="75.446" size="1.016" layer="27" rot="R90"/>
+</element>
+<element name="C26" library="rcl" package="C0402K" value=".1u" x="94.488" y="76.2" smashed="yes" rot="R270">
+<attribute name="NAME" x="94.913" y="76.7" size="0.8128" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="93.038" y="76.7" size="1.016" layer="27" rot="R270"/>
+</element>
+<element name="C27" library="rcl" package="C0402K" value=".1u" x="22.606" y="77.724" smashed="yes">
+<attribute name="NAME" x="21.852" y="78.403" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="22.106" y="76.274" size="1.016" layer="27"/>
+</element>
+<element name="C28" library="rcl" package="C0402K" value=".1u" x="119.126" y="71.628" smashed="yes" rot="R242">
+<attribute name="NAME" x="121.424053125" y="72.2379875" size="0.8128" layer="25" font="vector" rot="R332"/>
+<attribute name="VALUE" x="118.080459375" y="72.75020625" size="1.016" layer="27" rot="R242"/>
+</element>
+<element name="OLED1" library="badge" package="CFAF128128B" value="CFAF128128B" x="68.199" y="86.106" smashed="yes"/>
+<element name="C18" library="rcl" package="C0402K" value=".1u" x="56.896" y="24.257" smashed="yes" rot="R90">
+<attribute name="NAME" x="50.411" y="25.737" size="0.8128" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="58.346" y="23.757" size="1.016" layer="27" rot="R90"/>
+</element>
+<element name="C20" library="rcl" package="C0402K" value=".1u" x="51.816" y="47.879" smashed="yes" rot="R90">
+<attribute name="NAME" x="52.713" y="46.907" size="0.8128" layer="25" font="vector"/>
+<attribute name="VALUE" x="53.266" y="47.379" size="1.016" layer="27" rot="R90"/>
+</element>
 </elements>
 <signals>
 <signal name="N$1">
@@ -2433,7 +2612,6 @@ design rules under a new name.
 <wire x1="43.434" y1="18.288" x2="43.688" y2="18.288" width="0.7112" layer="1"/>
 <wire x1="43.688" y1="18.288" x2="48.006" y2="13.97" width="0.7112" layer="1"/>
 <wire x1="48.006" y1="13.97" x2="63.5" y2="13.97" width="0.7112" layer="1"/>
-<wire x1="63.5" y1="13.97" x2="93.218" y2="13.97" width="0.7112" layer="1"/>
 <wire x1="118.9883125" y1="67.88296875" x2="118.80703125" y2="67.88296875" width="0.4064" layer="1"/>
 <wire x1="118.80703125" y1="67.88296875" x2="117.856" y2="68.834" width="0.4064" layer="1"/>
 <via x="117.856" y="68.834" extent="1-16" drill="0.4572"/>
@@ -3469,4 +3647,10 @@ design rules under a new name.
 </errors>
 </board>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
