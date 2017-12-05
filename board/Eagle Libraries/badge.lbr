@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
@@ -328,10 +328,10 @@
 <wire x1="13.85" y1="14.62" x2="13.85" y2="-14.62" width="0.127" layer="21"/>
 <wire x1="13.85" y1="-14.62" x2="-13.85" y2="-14.62" width="0.127" layer="21"/>
 <wire x1="-13.85" y1="-14.62" x2="-13.85" y2="14.62" width="0.127" layer="21"/>
-<wire x1="-15" y1="-21" x2="15" y2="-21" width="0" layer="20"/>
-<wire x1="15" y1="-21" x2="15" y2="-23" width="0" layer="20"/>
-<wire x1="15" y1="-23" x2="-15" y2="-23" width="0" layer="20"/>
-<wire x1="-15" y1="-23" x2="-15" y2="-21" width="0" layer="20"/>
+<wire x1="-15" y1="-21.5" x2="15" y2="-21.5" width="0" layer="20"/>
+<wire x1="15" y1="-21.5" x2="15" y2="-23.5" width="0" layer="20"/>
+<wire x1="15" y1="-23.5" x2="-15" y2="-23.5" width="0" layer="20"/>
+<wire x1="-15" y1="-23.5" x2="-15" y2="-21.5" width="0" layer="20"/>
 <hole x="-16.3" y="16.3" drill="0.7"/>
 <hole x="16.3" y="16.3" drill="0.7"/>
 </package>
