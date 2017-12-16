@@ -144,68 +144,6 @@ static void __mbp_bling_rainbow_eyes_callback(uint8_t frame, void *data) {
 	*p_data = (uint8_t) (hue * 100.0);
 }
 
-static void __mbp_bling_backer_april_callback(uint8_t frame, void *p_data) {
-	if ((frame % 2) == 0) {
-		uint32_t neongreen = util_led_to_rgb(0, 199, 0);
-		uint32_t blue = util_led_to_rgb(0, 72, 255);
-		uint32_t magenta = util_led_to_rgb(166, 45, 170);
-
-		uint32_t colors[] = { neongreen, blue, magenta };
-
-		uint8_t rows[LED_MATRIX_H][LED_MATRIX_W] = LED_MATRIX_ROWS;
-
-		util_led_set_all(0, 0, 0);
-		for (uint8_t x = 0; x < LED_MATRIX_W; x++) {
-			uint8_t h = util_math_rand8_max(LED_MATRIX_H) + 1;
-			//Set the grill
-			for (uint8_t y = 0; y < h; y++) {
-				util_led_set_rgb(rows[LED_MATRIX_H - y - 1][x], colors[y]);
-			}
-
-			//Set the Eyes
-			if ((h == LED_MATRIX_H) && (x == 0)) { //The first column & the column is high
-				util_led_set_rgb(12, magenta);
-			}
-			if ((h == LED_MATRIX_H) && (x == 3)) { //The last column & the column is high
-				util_led_set_rgb(13, magenta);
-			}
-
-			//Set the Cig
-			if ((h >= (LED_MATRIX_H - 1)) && (x == 3)) {
-				util_led_set_rgb(14, blue);
-			}
-		}
-		util_led_show();
-	}
-}
-
-void mbp_bling_backer_april() {
-	util_led_clear();
-	util_gfx_draw_raw_file("BLING/BACKERS/KSAPRIL.RAW", 0, 0, 128, 128, &__mbp_bling_backer_april_callback, true, NULL);
-}
-
-static void __mbp_bling_backer_btcctf_callback(uint8_t frame, void *p_data) {
-	uint8_t i = util_math_rand8_max(LED_COUNT);
-	util_led_set_rgb(i, LED_COLOR_WHITE);
-	util_led_show();
-
-	nrf_delay_ms(20);
-
-	if (frame % 2 == 0) {
-		util_led_set_rgb(i, LED_COLOR_YELLOW);
-	}
-	else {
-		util_led_set_rgb(i, LED_COLOR_PURPLE);
-	}
-
-	util_led_show();
-}
-
-void mbp_bling_backer_btcctf() {
-	util_led_clear();
-	util_gfx_draw_raw_file("BLING/BACKERS/KSBTCCTF.RAW", 0, 0, 128, 128, &__mbp_bling_backer_btcctf_callback, true, NULL);
-}
-
 static void __mbp_bling_backer_abraxas3d_callback(uint8_t frame, void *p_data) {
 	uint32_t indigo = LED_COLOR_INDIGO;
 	uint32_t coral = LED_COLOR_CORAL;
@@ -367,46 +305,6 @@ void mbp_bling_led_rainbow_callback(uint8_t frame, void *p_data) {
 
 	//Pack the data and store for next time
 	*data = (int) (hue * 100);
-}
-
-void mbp_bling_backer_cybersulu() {
-	uint8_t cycle = 0;
-	util_led_clear();
-	util_gfx_draw_raw_file("BLING/BACKERS/KSCYSULU.RAW", 0, 0, 128, 128, &mbp_bling_led_rainbow_callback, true, &cycle);
-}
-
-static void __mbp_bling_backer_sol_callback(uint8_t frame, void *p_data) {
-	uint8_t i = util_math_rand8_max(LED_COUNT);
-	uint8_t j = util_math_rand8_max(LED_COUNT);
-	util_led_set(i, 255, 255, 255);
-	util_led_set(j, 255, 255, 255);
-	util_led_show();
-
-	nrf_delay_ms(20);
-
-	//Super Fourth of July 'Merica Sparkle
-	if (frame % 2 == 0) {
-		util_led_set(i, 255, 0, 0); //RED
-		util_led_set(j, 0, 0, 255); //BLUE
-	}
-	else {
-		util_led_set(j, 255, 0, 0); //RED
-		util_led_set(i, 0, 0, 255); //BLUE
-	}
-
-	util_led_show();
-}
-
-void mbp_bling_backer_sol(void *data) {
-	util_led_clear();
-	util_gfx_draw_raw_file("BLING/BACKERS/KSSOL.RAW", 0, 0, 128, 128, &__mbp_bling_backer_sol_callback, true, NULL);
-}
-
-void mbp_bling_backer_credits() {
-	util_led_clear();
-	UTIL_LED_ANIM_INIT(anim);
-	util_led_load_rgb_file("BLING/GOLD.RGB", &anim);
-	util_gfx_draw_raw_file("BLING/BACKERS/BACKERS.RAW", 0, 0, 128, 128, &__rgb_file_callback, true, (void *) &anim);
 }
 
 void mbp_bling_badgers() {

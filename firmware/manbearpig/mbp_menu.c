@@ -327,21 +327,11 @@ uint8_t mbp_submenu(menu_t *p_menu) {
 
 static void mbp_menu_bling_ks() {
 	char *backer_images[] = {
-			"BLING/BACKERS/APRIL.RAW",
-			"BLING/BACKERS/BTCCTF.RAW",
 			"BLING/BACKERS/ABRAXAS.RAW",
-			"BLING/BACKERS/CYBERS.RAW",
-			"BLING/BACKERS/SOL.RAW",
-			"BLING/BACKERS/BACKERSM.RAW"
 	};
 
 	menu_callback_t backer_callbacks[] = {
-			&mbp_bling_backer_april,
-			&mbp_bling_backer_btcctf,
 			&mbp_bling_backer_abraxas3d,
-			&mbp_bling_backer_cybersulu,
-			&mbp_bling_backer_sol,
-			&mbp_bling_backer_credits
 	};
 
 	uint8_t selected = 0;

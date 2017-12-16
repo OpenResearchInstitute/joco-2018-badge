@@ -31,12 +31,7 @@
 #define LED_CIGAR_INDEX			14
 #define LED_MATRIX_LAST_INDEX	11
 
-extern void mbp_bling_backer_credits();
-extern void mbp_bling_backer_april();
-extern void mbp_bling_backer_btcctf();
 extern void mbp_bling_backer_abraxas3d(void *data);
-extern void mbp_bling_backer_cybersulu();
-extern void mbp_bling_backer_sol(void *data);
 extern void mbp_bling_badgers();
 extern void mbp_bling_bender();
 extern void mbp_bling_damon();

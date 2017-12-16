@@ -26,7 +26,7 @@
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 #define VERSION							"v1.6"
-#define VERSION_SD						20
+#define VERSION_SD						21
 //#define BLE_ONLY_BUILD					1
 
 #define SETTING_INPUT_MAX				8
