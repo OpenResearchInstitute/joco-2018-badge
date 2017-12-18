@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -418,21 +418,6 @@
 </library>
 <library name="badge">
 <packages>
-<package name="12BH331P-GR">
-<pad name="+" x="26.7" y="-15" drill="1.2"/>
-<pad name="-" x="26.7" y="-2.2" drill="1.2"/>
-<hole x="0" y="-15" drill="4"/>
-<hole x="0" y="15" drill="4"/>
-<wire x1="-29" y1="-24.15" x2="29" y2="-24.15" width="0.127" layer="21"/>
-<wire x1="29" y1="-24.15" x2="29" y2="24.15" width="0.127" layer="21"/>
-<wire x1="29" y1="24.15" x2="-29" y2="24.15" width="0.127" layer="21"/>
-<wire x1="-29" y1="24.15" x2="-29" y2="-24.15" width="0.127" layer="21"/>
-<text x="30.48" y="-15.24" size="1.27" layer="21">+</text>
-<text x="30.48" y="-2.54" size="1.27" layer="21">-</text>
-<text x="27.94" y="26.67" size="1.27" layer="25" rot="R180">&gt;NAME</text>
-<text x="27.94" y="-25.4" size="1.27" layer="27" rot="R180">&gt;VALUE</text>
-<rectangle x1="-30.48" y1="-25.4" x2="30.48" y2="25.4" layer="39"/>
-</package>
 <package name="PTS810">
 <smd name="1" x="-2.075" y="1.075" dx="1.05" dy="0.65" layer="1"/>
 <smd name="2" x="2.075" y="1.075" dx="1.05" dy="0.65" layer="1"/>
@@ -585,6 +570,19 @@
 <wire x1="-15" y1="-23.5" x2="-15" y2="-21.5" width="0" layer="20"/>
 <hole x="-16.3" y="16.3" drill="0.7"/>
 <hole x="16.3" y="16.3" drill="0.7"/>
+</package>
+<package name="2464">
+<pad name="+" x="26.416" y="-14.9225" drill="1.2"/>
+<pad name="-" x="26.416" y="-2.2225" drill="1.2"/>
+<wire x1="-29" y1="-24.15" x2="29" y2="-24.15" width="0.127" layer="21"/>
+<wire x1="29" y1="-24.15" x2="29" y2="24.15" width="0.127" layer="21"/>
+<wire x1="29" y1="24.15" x2="-29" y2="24.15" width="0.127" layer="21"/>
+<wire x1="-29" y1="24.15" x2="-29" y2="-24.15" width="0.127" layer="21"/>
+<text x="30.48" y="-15.24" size="1.27" layer="21">+</text>
+<text x="30.48" y="-2.54" size="1.27" layer="21">-</text>
+<text x="27.94" y="26.67" size="1.27" layer="25" rot="R180">&gt;NAME</text>
+<text x="27.94" y="-25.4" size="1.27" layer="27" rot="R180">&gt;VALUE</text>
+<rectangle x1="-30.48" y1="-25.4" x2="30.48" y2="25.4" layer="39"/>
 </package>
 </packages>
 <symbols>
@@ -755,22 +753,6 @@
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="12BH331P-GR" prefix="B">
-<gates>
-<gate name="G$1" symbol="BATT-HOLDER" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="12BH331P-GR">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="PTS810" prefix="S">
 <gates>
 <gate name="G$1" symbol="SW" x="0" y="0"/>
@@ -952,6 +934,22 @@
 </gates>
 <devices>
 <device name="" package="CFAF128128B">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="2464" prefix="B">
+<gates>
+<gate name="G$1" symbol="BATT-HOLDER" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="2464">
+<connects>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
+</connects>
 <technologies>
 <technology name=""/>
 </technologies>
@@ -5468,7 +5466,6 @@ Source: AVX .. aphvc.pdf</description>
 <parts>
 <part name="U1" library="BMD-300" deviceset="BMD-300" device="" value="BMD-300"/>
 <part name="FRAME13" library="frames" deviceset="FRAME_B_L" device="" value="21"/>
-<part name="B1" library="badge" deviceset="12BH331P-GR" device=""/>
 <part name="S1" library="badge" deviceset="PTS810" device=""/>
 <part name="S2" library="badge" deviceset="PTS810" device=""/>
 <part name="S3" library="badge" deviceset="PTS810" device=""/>
@@ -5590,6 +5587,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="R10" library="rcl" deviceset="R-US_" device="R0603" value="1.0k"/>
 <part name="C21" library="rcl" deviceset="C-US" device="C0402K" value=".1u"/>
 <part name="SUPPLY31" library="supply2" deviceset="GND" device=""/>
+<part name="B1" library="badge" deviceset="2464" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5610,10 +5608,6 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="U1" gate="G$1" x="187.96" y="182.88"/>
 <instance part="FRAME13" gate="G$1" x="0" y="0"/>
 <instance part="FRAME13" gate="G$2" x="325.12" y="0"/>
-<instance part="B1" gate="G$1" x="22.86" y="241.3" smashed="yes" rot="R90">
-<attribute name="NAME" x="19.05" y="237.49" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="17.78" y="245.11" size="1.778" layer="96" rot="R90"/>
-</instance>
 <instance part="S1" gate="G$1" x="83.82" y="195.58" smashed="yes">
 <attribute name="NAME" x="80.01" y="199.39" size="1.27" layer="95"/>
 </instance>
@@ -5750,6 +5744,7 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="R10" gate="G$1" x="238.76" y="162.56" rot="R90"/>
 <instance part="C21" gate="G$1" x="259.08" y="146.05" rot="MR0"/>
 <instance part="SUPPLY31" gate="GND" x="259.08" y="138.43"/>
+<instance part="B1" gate="G$1" x="22.86" y="241.3" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -5955,12 +5950,12 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="IC1" gate="G$1" pin="GND"/>
 <wire x1="41.91" y1="238.76" x2="29.21" y2="238.76" width="0.1524" layer="91"/>
 <wire x1="29.21" y1="238.76" x2="29.21" y2="231.14" width="0.1524" layer="91"/>
-<pinref part="B1" gate="G$1" pin="-"/>
 <wire x1="29.21" y1="231.14" x2="29.21" y2="228.6" width="0.1524" layer="91"/>
 <wire x1="22.86" y1="233.68" x2="22.86" y2="231.14" width="0.1524" layer="91"/>
 <wire x1="22.86" y1="231.14" x2="29.21" y2="231.14" width="0.1524" layer="91"/>
 <junction x="29.21" y="231.14"/>
 <pinref part="SUPPLY8" gate="GND" pin="GND"/>
+<pinref part="B1" gate="G$1" pin="-"/>
 </segment>
 <segment>
 <pinref part="C6" gate="G$1" pin="2"/>
@@ -6172,10 +6167,10 @@ Source: AVX .. aphvc.pdf</description>
 </net>
 <net name="VIN" class="0">
 <segment>
-<pinref part="B1" gate="G$1" pin="+"/>
 <pinref part="S6" gate="G$1" pin="3"/>
 <wire x1="22.86" y1="248.92" x2="22.86" y2="264.16" width="0.1524" layer="91"/>
 <wire x1="22.86" y1="264.16" x2="24.13" y2="264.16" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="+"/>
 </segment>
 </net>
 <net name="VBAT" class="0">
@@ -6840,12 +6835,6 @@ Source: AVX .. aphvc.pdf</description>
 <text x="358.14" y="31.75" size="1.778" layer="95">JoCo Badge</text>
 <wire x1="147.32" y1="53.34" x2="223.52" y2="53.34" width="1.27" layer="95"/>
 <wire x1="147.32" y1="7.62" x2="223.52" y2="7.62" width="1.27" layer="95"/>
-<wire x1="147.32" y1="12.7" x2="223.52" y2="12.7" width="0.6096" layer="95"/>
-<wire x1="147.32" y1="17.78" x2="223.52" y2="17.78" width="0.6096" layer="95"/>
-<wire x1="147.32" y1="27.94" x2="223.52" y2="27.94" width="0.6096" layer="95"/>
-<wire x1="147.32" y1="33.02" x2="223.52" y2="33.02" width="0.6096" layer="95"/>
-<wire x1="147.32" y1="43.18" x2="223.52" y2="43.18" width="0.6096" layer="95"/>
-<wire x1="147.32" y1="48.26" x2="223.52" y2="48.26" width="0.6096" layer="95"/>
 <text x="12.7" y="264.16" size="2.54" layer="95">NOTES (UNLESS OTHERWISE SPECIFIED)</text>
 <text x="17.78" y="259.08" size="2.54" layer="95">1. THE PWB MUST BE LEAD FREE ASSEMBLY PROCESS COMPATIBLE</text>
 <text x="17.78" y="254" size="2.54" layer="95">2. PLATING FINISH - BOTH SIDES ENIG (ELECTROLESS NICKEL IMMERSION GOLD):</text>
@@ -6860,36 +6849,22 @@ Source: AVX .. aphvc.pdf</description>
 <text x="17.78" y="208.28" size="2.54" layer="95">9. DIMENSIONAL OUTLINE OF PWB IN COMPONENT SILKSCREEN FILE</text>
 <text x="17.78" y="198.12" size="2.54" layer="95">11. FILE DESIGNATIONS:</text>
 <text x="25.4" y="180.34" size="2.54" layer="95">".CMP"  COMPONENT SIDE GERBER RS274X</text>
-<text x="25.4" y="170.18" size="2.54" layer="95">".LY2"  LAYER 2 GERBER RS274X</text>
-<text x="25.4" y="165.1" size="2.54" layer="95">".LY3"  LAYER 3 GERBER RS274X</text>
-<text x="25.4" y="139.7" size="2.54" layer="95">".SOL"  SOLDER SIDE GERBER RS274X</text>
+<text x="25.4" y="170.18" size="2.54" layer="95">".SOL"  SOLDER SIDE GERBER RS274X</text>
 <text x="25.4" y="190.5" size="2.54" layer="95">".PLC"  COMPONENT SIDE SILKSCREEN</text>
-<text x="25.4" y="129.54" size="2.54" layer="95">".PLS"  SOLDER SIDE SILKSCREEN</text>
-<text x="25.4" y="124.46" size="2.54" layer="95">".CRC"  COMPONENT SIDE CREAM</text>
-<text x="25.4" y="119.38" size="2.54" layer="95">".CRS"  SOLDER SIDE CREAM</text>
+<text x="25.4" y="160.02" size="2.54" layer="95">".PLS"  SOLDER SIDE SILKSCREEN</text>
+<text x="25.4" y="154.94" size="2.54" layer="95">".CRC"  COMPONENT SIDE CREAM</text>
+<text x="25.4" y="149.86" size="2.54" layer="95">".CRS"  SOLDER SIDE CREAM</text>
 <text x="25.4" y="185.42" size="2.54" layer="95">".STC"  COMPONENT SIDE SOLDER MASK STOP</text>
-<text x="25.4" y="134.62" size="2.54" layer="95">".STS"  SOLDER SIDE SOLDER MASK STOP</text>
-<text x="25.4" y="109.22" size="2.54" layer="95">".DRD"  EXCELLON DRILL FILE</text>
-<text x="25.4" y="104.14" size="2.54" layer="95">".MNT"  XYRS DATA FILE FOR PLACEMENT</text>
+<text x="25.4" y="165.1" size="2.54" layer="95">".STS"  SOLDER SIDE SOLDER MASK STOP</text>
+<text x="25.4" y="139.7" size="2.54" layer="95">".DRD"  EXCELLON DRILL FILE</text>
+<text x="25.4" y="134.62" size="2.54" layer="95">".MNT"  XYRS DATA FILE FOR PLACEMENT</text>
 <text x="229.87" y="52.07" size="2.54" layer="95">LAYER 1 - COMPONENT SIDE, 1oz FINISH</text>
-<text x="229.87" y="46.99" size="2.54" layer="95">LAYER 2 - GROUND, 1/2oz</text>
-<text x="229.87" y="41.91" size="2.54" layer="95">LAYER 3 - INNER SIGNAL LAYER, 1/2oz</text>
-<text x="229.87" y="31.75" size="2.54" layer="95">LAYER 4 - GROUND , 1/2oz</text>
-<text x="229.87" y="26.67" size="2.54" layer="95">LAYER 5 - POWER, 1/2oz</text>
-<text x="229.87" y="16.51" size="2.54" layer="95">LAYER 6 - INNER SIGNAL LAYER, 1/2oz</text>
-<text x="229.87" y="11.43" size="2.54" layer="95">LAYER 7 - GROUND, 1/2oz</text>
-<text x="229.87" y="6.35" size="2.54" layer="95">LAYER 8 - SOLDER SIDE, 1oz FINISH</text>
+<text x="229.87" y="6.35" size="2.54" layer="95">LAYER 2 - SOLDER SIDE, 1oz FINISH</text>
 <text x="101.219" y="36.957" size="2.54" layer="95">DIELECTRIC THICKNESSES</text>
-<text x="181.61" y="49.53" size="2.1844" layer="95">6 mil</text>
-<text x="181.61" y="8.89" size="2.1844" layer="95">6 mil</text>
-<text x="181.61" y="44.45" size="2.1844" layer="95">6 mil</text>
-<text x="181.61" y="29.21" size="2.1844" layer="95">6 mil</text>
-<text x="181.61" y="13.97" size="2.1844" layer="95">6 mil</text>
-<text x="180.34" y="36.83" size="2.1844" layer="95">15 mil</text>
-<text x="180.34" y="21.59" size="2.1844" layer="95">15 mil</text>
+<text x="181.61" y="29.21" size="2.1844" layer="95">60 mil</text>
 <text x="161.417" y="63.119" size="3.175" layer="95">LAYER STACKUP DETAIL</text>
-<text x="16.51" y="97.79" size="2.54" layer="95">12. PLATED HOLE TOLERANCE  .003"</text>
-<text x="25.4" y="114.3" size="2.54" layer="97">".MIL"  MILLING LAYER FOR INNER CUTOUTS (NOT PLATED)</text>
+<text x="16.51" y="128.27" size="2.54" layer="95">12. PLATED HOLE TOLERANCE  .003"</text>
+<text x="25.4" y="144.78" size="2.54" layer="97">".MIL"  MILLING LAYER FOR INNER CUTOUTS (NOT PLATED)</text>
 <text x="17.78" y="203.2" size="2.54" layer="95">10. 15mil MAX RADIUS  INSIDE MILLING CORNERS FOR SMALL RECTANGULAR OPENINGS</text>
 <text x="25.4" y="175.26" size="2.54" layer="95">".DIM"  DIMENSION LAYER WITH OUTSIDE DIMENSIONS IN MM</text>
 </plain>
