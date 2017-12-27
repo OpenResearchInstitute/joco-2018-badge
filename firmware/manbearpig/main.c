@@ -67,7 +67,7 @@ void __boot() {
 
 	//Loop the intro animation. Loop=true allows user to quit
 	//The callback will manually force the raw to stop
-	util_gfx_draw_raw_file("INTRO.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, __boot_frame_callback, true, NULL);
+	util_gfx_draw_raw_file("JINTRO.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, __boot_frame_callback, true, NULL);
 
 	util_led_clear();
 }
