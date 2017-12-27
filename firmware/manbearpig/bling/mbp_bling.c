@@ -612,10 +612,6 @@ void mbp_bling_pirate() {
 	//Prevent escape from bling (so we can catch action button)
 	while ((button & BUTTON_MASK_LEFT) == 0) {
 		button = util_gfx_draw_raw_file("BLING/AND!XOR/PIRATES.RAW", 0, 0, 128, 128, &__rgb_file_callback, true, (void *) &anim);
-		if ((button & BUTTON_MASK_ACTION) > 0) {
-			util_gfx_draw_raw_file("BLING/AND!XOR/WPCODE.RAW", 0, 0, 128, 128, NULL, false, NULL);
-			nrf_delay_ms(2000);
-		}
 	}
 }
 
