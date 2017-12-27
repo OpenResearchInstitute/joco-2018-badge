@@ -37,7 +37,7 @@ void mbp_system_about() {
 	sd_ble_version_get(&ble);
 	memset(about, '\0', 64);
 	sprintf(about, "Firmware:\n%s\nSoft Device:\n%#X\nDevice ID:\n%#X", version, ble.subversion_number, serial);
-	mbp_ui_popup("AND!XOR", about);
+	mbp_ui_popup("JOCO2018", about);
 }
 
 void mbp_system_airplane_mode_select() {

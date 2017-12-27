@@ -204,14 +204,12 @@ void mbp_medea_hack(void *p_data) {
 		util_gfx_print("Connected to host\n");
 		util_gfx_print("Running exploit\n");
 
-		//Send AND!XOR
-		__send_message("AND!XOR", false);
-		util_gfx_print("  AND!XOR\n");
+		__send_message("JOCO2018", false);
+		util_gfx_print(" JOCO2018\n");
 		nrf_delay_ms(4500);
 
-		//Send DEFCON25
-		__send_message("DEFCON25", false);
-		util_gfx_print("  DEFCON25\n");
+		__send_message("HAXXORS", false);
+		util_gfx_print("   HAXXORS\n");
 		nrf_delay_ms(4500);
 
 		//Send name repeating

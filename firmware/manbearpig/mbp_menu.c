@@ -545,7 +545,7 @@ void mbp_menu_main() {
 //	}
 
 	menu.items = items;
-	menu.title = "AND!XOR";
+	menu.title = "JOCO2018";
 
 	mbp_tooth_eye_start();
 	mbp_menu(&menu);

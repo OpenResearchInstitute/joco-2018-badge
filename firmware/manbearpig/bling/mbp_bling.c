@@ -760,7 +760,7 @@ void mbp_bling_scroll_cycle() {
 
 	uint8_t index = 0;
 	uint8_t count = 3;
-	char *messages[] = { "DEFCON 25", "AND!XOR", name };
+	char *messages[] = { "JoCo Cruise 2018", "Badge Crewe", name };
 
 	//Start up led timer for scroll
 	APP_ERROR_CHECK(app_timer_create(&m_scroll_led_timer, APP_TIMER_MODE_REPEATED, __scroll_callback));

@@ -113,7 +113,7 @@ int main(void) {
 	}
 
 	if (!mbp_state_load()) {
-		mbp_ui_popup("AND!XOR", "Welcome to the AND!XOR DC25 Badge! Select a name. You can change your name later from settings.");
+		mbp_ui_popup("JOCO2018", "Welcome to the JoCo Cruise 2018 Badge! Select a name. You can change your name later from settings.");
 		mbp_state_new();
 		mbp_system_name_select();
 		mbp_state_save();
