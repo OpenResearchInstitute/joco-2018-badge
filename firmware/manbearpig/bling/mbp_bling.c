@@ -26,10 +26,10 @@
 
 #include "../system.h"
 
-#define CIGAR_EYES_TIME_MS			10
-#define CIGAR_HUE_LOW				0.05
-#define CIGAR_HUE_HIGH				0.17
-#define CIGAR_HUE_STEP				0.0005
+#define TOOTH_EYES_TIME_MS			10
+#define TOOTH_HUE_LOW				0.05
+#define TOOTH_HUE_HIGH				0.17
+#define TOOTH_HUE_STEP				0.0005
 
 #define EYE_HUE_STEP				.00015
 #define SCROLL_CHAR_WIDTH			16
@@ -37,13 +37,13 @@
 #define SCROLL_SPEED				-2
 #define SCROLL_TIME_MS				20
 
-APP_TIMER_DEF(m_cigar_timer);
+APP_TIMER_DEF(m_tooth_timer);
 APP_TIMER_DEF(m_scroll_led_timer);
 
-static float m_cigar_hue = CIGAR_HUE_LOW;
-static float m_cigar_hue_step = CIGAR_HUE_STEP;
+static float m_tooth_hue = TOOTH_HUE_LOW;
+static float m_tooth_hue_step = TOOTH_HUE_STEP;
 static float m_eye_hue = 0;
-static bool m_cigar_eyes_running = false;
+static bool m_tooth_eye_running = false;
 
 typedef struct {
 	uint8_t index;
@@ -127,12 +127,11 @@ static void __spectrum_analyzer_callback(uint8_t frame, void *p_data) {
 	}
 }
 
-static void __mbp_bling_rainbow_eyes_callback(uint8_t frame, void *data) {
+static void __mbp_bling_rainbow_eye_callback(uint8_t frame, void *data) {
 	uint8_t *p_data = (uint8_t *) data;
 	float hue = ((float) *p_data) / 100.0;
 
 	uint32_t rgb = util_led_hsv_to_rgb(hue, 1.0, 1.0);
-	util_led_set_rgb(LED_LEFT_EYE_INDEX, rgb);
 	util_led_set_rgb(LED_RIGHT_EYE_INDEX, rgb);
 	util_led_show();
 
@@ -310,7 +309,7 @@ void mbp_bling_led_rainbow_callback(uint8_t frame, void *p_data) {
 void mbp_bling_badgers() {
 	uint8_t hue = 0;
 	util_led_clear();
-	util_gfx_draw_raw_file("BLING/AND!XOR/BADGERS.RAW", 0, 0, 128, 128, &__mbp_bling_rainbow_eyes_callback, true, &hue);
+	util_gfx_draw_raw_file("BLING/AND!XOR/BADGERS.RAW", 0, 0, 128, 128, &__mbp_bling_rainbow_eye_callback, true, &hue);
 }
 
 static void __led_bender(uint8_t f_unused, void *p_data) {
@@ -326,7 +325,6 @@ static void __led_bender(uint8_t f_unused, void *p_data) {
 	//Compute and set the eye colors
 	float eye_hue = 0.025 * (float) frame;
 	uint32_t eye_color = util_led_hsv_to_rgb(eye_hue, 1, 1);
-	util_led_set_rgb(LED_LEFT_EYE_INDEX, eye_color);
 	util_led_set_rgb(LED_RIGHT_EYE_INDEX, eye_color);
 
 	//Compute and set the cig color
@@ -337,7 +335,7 @@ static void __led_bender(uint8_t f_unused, void *p_data) {
 		cig_hue = .00625 * (float) (40 - frame);
 	}
 	uint32_t cig_color = util_led_hsv_to_rgb(cig_hue, 1, 1);
-	util_led_set_rgb(LED_CIGAR_INDEX, cig_color);
+	util_led_set_rgb(LED_TOOTH_INDEX, cig_color);
 
 	//Mouth
 	if (frame < 20) {
@@ -560,7 +558,7 @@ void mbp_bling_owl() {
 
 	//If anything other than left button is pressed cycle modes
 	while ((button & BUTTON_MASK_LEFT) == 0) {
-		button = util_gfx_draw_raw_file(modes[index], 0, 0, 128, 128, &__mbp_bling_rainbow_eyes_callback, true, &hue);
+		button = util_gfx_draw_raw_file(modes[index], 0, 0, 128, 128, &__mbp_bling_rainbow_eye_callback, true, &hue);
 		index = (index + 1) % count;
 	}
 }
@@ -791,8 +789,8 @@ void mbp_bling_hello_schedule_handler(void * p_event_data, uint16_t event_size) 
 	char *name = (char *) p_event_data;
 	uint16_t w, h;
 	app_sched_pause();
-	bool cigar = mbp_cigar_eyes_running();
-	mbp_cigar_eyes_stop();
+	bool tooth = mbp_tooth_eye_running();
+	mbp_tooth_eye_stop();
 
 	//Pick colors
 	float h1 = ((float) util_math_rand8_max(100) / 100.0);
@@ -886,8 +884,8 @@ void mbp_bling_hello_schedule_handler(void * p_event_data, uint16_t event_size) 
 
 	//Cleanup and give control back to user
 	util_gfx_invalidate();
-	if (cigar) {
-		mbp_cigar_eyes_start();
+	if (tooth) {
+		mbp_tooth_eye_start();
 	}
 	app_sched_resume();
 	util_button_clear();
@@ -895,8 +893,8 @@ void mbp_bling_hello_schedule_handler(void * p_event_data, uint16_t event_size) 
 
 void mbp_bling_hello_cpv_schedule_handler(void * p_event_data, uint16_t event_size) {
 	app_sched_pause();
-	bool cigar = mbp_cigar_eyes_running();
-	mbp_cigar_eyes_stop();
+	bool tooth = mbp_tooth_eye_running();
+	mbp_tooth_eye_stop();
 
 	UTIL_LED_ANIM_INIT(anim);
 	util_led_load_rgb_file("BLING/PINKBLUE.RGB", &anim);
@@ -911,8 +909,8 @@ void mbp_bling_hello_cpv_schedule_handler(void * p_event_data, uint16_t event_si
 	//Cleanup and give control back to user
 	util_led_clear();
 	util_gfx_invalidate();
-	if (cigar) {
-		mbp_cigar_eyes_start();
+	if (tooth) {
+		mbp_tooth_eye_start();
 	}
 	app_sched_resume();
 	util_button_clear();
@@ -920,8 +918,8 @@ void mbp_bling_hello_cpv_schedule_handler(void * p_event_data, uint16_t event_si
 
 void mbp_bling_hello_dc503_schedule_handler(void * p_event_data, uint16_t event_size) {
 	app_sched_pause();
-	bool cigar = mbp_cigar_eyes_running();
-	mbp_cigar_eyes_stop();
+	bool tooth = mbp_tooth_eye_running();
+	mbp_tooth_eye_stop();
 
 	UTIL_LED_ANIM_INIT(anim);
 	util_led_load_rgb_file("BLING/TUNNEL2.RGB", &anim);
@@ -936,8 +934,8 @@ void mbp_bling_hello_dc503_schedule_handler(void * p_event_data, uint16_t event_
 	//Cleanup and give control back to user
 	util_led_clear();
 	util_gfx_invalidate();
-	if (cigar) {
-		mbp_cigar_eyes_start();
+	if (tooth) {
+		mbp_tooth_eye_start();
 	}
 	app_sched_resume();
 	util_button_clear();
@@ -945,8 +943,8 @@ void mbp_bling_hello_dc503_schedule_handler(void * p_event_data, uint16_t event_
 
 void mbp_bling_hello_dc801_schedule_handler(void * p_event_data, uint16_t event_size) {
 	app_sched_pause();
-	bool cigar = mbp_cigar_eyes_running();
-	mbp_cigar_eyes_stop();
+	bool tooth = mbp_tooth_eye_running();
+	mbp_tooth_eye_stop();
 
 	UTIL_LED_ANIM_INIT(anim);
 	util_led_load_rgb_file("BLING/GRNBLUE.RGB", &anim);
@@ -961,8 +959,8 @@ void mbp_bling_hello_dc801_schedule_handler(void * p_event_data, uint16_t event_
 	//Cleanup and give control back to user
 	util_led_clear();
 	util_gfx_invalidate();
-	if (cigar) {
-		mbp_cigar_eyes_start();
+	if (tooth) {
+		mbp_tooth_eye_start();
 	}
 	app_sched_resume();
 	util_button_clear();
@@ -970,8 +968,8 @@ void mbp_bling_hello_dc801_schedule_handler(void * p_event_data, uint16_t event_
 
 void mbp_bling_hello_queercon_schedule_handler(void * p_event_data, uint16_t event_size) {
 	app_sched_pause();
-	bool cigar = mbp_cigar_eyes_running();
-	mbp_cigar_eyes_stop();
+	bool tooth = mbp_tooth_eye_running();
+	mbp_tooth_eye_stop();
 
 	UTIL_LED_ANIM_INIT(anim);
 	util_led_load_rgb_file("BLING/COLORS.RGB", &anim);
@@ -986,8 +984,8 @@ void mbp_bling_hello_queercon_schedule_handler(void * p_event_data, uint16_t eve
 	//Cleanup and give control back to user
 	util_led_clear();
 	util_gfx_invalidate();
-	if (cigar) {
-		mbp_cigar_eyes_start();
+	if (tooth) {
+		mbp_tooth_eye_start();
 	}
 	app_sched_resume();
 	util_button_clear();
@@ -1082,15 +1080,14 @@ void mbp_bling_defrag() {
 	util_gfx_draw_raw_file("BLING/AND!XOR/DEFRAG.RAW", 0, 0, 128, 128, &__mbp_defrag_callback, true, &defrag);
 }
 
-static void __cigar_sch_handler(void * p_event_data, uint16_t event_size) {
+static void __tooth_sch_handler(void * p_event_data, uint16_t event_size) {
 	uint32_t eye_rgb = util_led_hsv_to_rgb(m_eye_hue, 1.0, 1.0);
-	uint32_t rgb = util_led_hsv_to_rgb(m_cigar_hue, 1.0, 1.0);
+	uint32_t rgb = util_led_hsv_to_rgb(m_tooth_hue, 1.0, 1.0);
 
 	//Update the LEDs
-	util_led_set_rgb(LED_LEFT_EYE_INDEX, eye_rgb);
         util_led_set_rgb(LED_RIGHT_EYE_INDEX, eye_rgb);
 
-	util_led_set_rgb(LED_CIGAR_INDEX, rgb);
+	util_led_set_rgb(LED_TOOTH_INDEX, rgb);
 	util_led_show();
 
 	//Change the hue
@@ -1099,43 +1096,42 @@ static void __cigar_sch_handler(void * p_event_data, uint16_t event_size) {
 		m_eye_hue -= 1.0;
 	}
 
-	//Change cigar hue
-	m_cigar_hue += m_cigar_hue_step;
-	if (m_cigar_hue > CIGAR_HUE_HIGH) {
-		m_cigar_hue = CIGAR_HUE_HIGH;
-		m_cigar_hue_step = 0 - m_cigar_hue_step;
-	} else if (m_cigar_hue < CIGAR_HUE_LOW) {
-		m_cigar_hue = CIGAR_HUE_LOW;
-		m_cigar_hue_step = 0 - m_cigar_hue_step;
+	//Change tooth hue
+	m_tooth_hue += m_tooth_hue_step;
+	if (m_tooth_hue > TOOTH_HUE_HIGH) {
+		m_tooth_hue = TOOTH_HUE_HIGH;
+		m_tooth_hue_step = 0 - m_tooth_hue_step;
+	} else if (m_tooth_hue < TOOTH_HUE_LOW) {
+		m_tooth_hue = TOOTH_HUE_LOW;
+		m_tooth_hue_step = 0 - m_tooth_hue_step;
 	}
 }
 
-static void __cigar_timer_handler(void *p_data) {
-	app_sched_event_put(NULL, 0, __cigar_sch_handler);
+static void __tooth_timer_handler(void *p_data) {
+	app_sched_event_put(NULL, 0, __tooth_sch_handler);
 }
 
-bool mbp_cigar_eyes_running() {
-	return m_cigar_eyes_running;
+bool mbp_tooth_eye_running() {
+	return m_tooth_eye_running;
 }
 
-void mbp_cigar_eyes_start() {
-	if (!m_cigar_eyes_running) {
-		//Start up cigar flicker timer
-		APP_ERROR_CHECK(app_timer_create(&m_cigar_timer, APP_TIMER_MODE_REPEATED, __cigar_timer_handler));
-		APP_ERROR_CHECK(app_timer_start(m_cigar_timer, APP_TIMER_TICKS(CIGAR_EYES_TIME_MS, UTIL_TIMER_PRESCALER), NULL));
+void mbp_tooth_eye_start() {
+	if (!m_tooth_eye_running) {
+		//Start up tooth flicker timer
+		APP_ERROR_CHECK(app_timer_create(&m_tooth_timer, APP_TIMER_MODE_REPEATED, __tooth_timer_handler));
+		APP_ERROR_CHECK(app_timer_start(m_tooth_timer, APP_TIMER_TICKS(TOOTH_EYES_TIME_MS, UTIL_TIMER_PRESCALER), NULL));
 
-		m_cigar_eyes_running = true;
+		m_tooth_eye_running = true;
 	}
 }
 
-void mbp_cigar_eyes_stop() {
-	if (m_cigar_eyes_running) {
-		util_led_set(LED_LEFT_EYE_INDEX, 0, 0, 0);
+void mbp_tooth_eye_stop() {
+	if (m_tooth_eye_running) {
 		util_led_set(LED_RIGHT_EYE_INDEX, 0, 0, 0);
-		util_led_set(LED_CIGAR_INDEX, 0, 0, 0);
+		util_led_set(LED_TOOTH_INDEX, 0, 0, 0);
 		util_led_show();
-		APP_ERROR_CHECK(app_timer_stop(m_cigar_timer));
+		APP_ERROR_CHECK(app_timer_stop(m_tooth_timer));
 
-		m_cigar_eyes_running = false;
+		m_tooth_eye_running = false;
 	}
 }

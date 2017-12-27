@@ -341,7 +341,7 @@ void mbp_system_shouts() {
 }
 
 void mbp_system_test() {
-	mbp_cigar_eyes_stop();
+	mbp_tooth_eye_stop();
 	//clear out app_scheduler
 	app_sched_execute();
 	util_gfx_set_font(FONT_SMALL);
@@ -495,7 +495,7 @@ void mbp_system_test() {
 
 	util_led_clear();
 	util_button_clear();
-	mbp_cigar_eyes_start();
+	mbp_tooth_eye_start();
 }
 
 void mbp_system_tilt_mode_select() {
@@ -510,7 +510,7 @@ void mbp_system_tilt_mode_select() {
 void mbp_system_unlock_state() {
 	uint16_t unlock = mbp_state_unlock_get();
 
-	mbp_cigar_eyes_stop();
+	mbp_tooth_eye_stop();
 	//Clear out scheduler of any cig events
 	app_sched_execute();
 
@@ -533,5 +533,5 @@ void mbp_system_unlock_state() {
 	util_button_clear();
 	util_led_clear();
 
-	mbp_cigar_eyes_start();
+	mbp_tooth_eye_start();
 }

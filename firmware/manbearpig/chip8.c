@@ -673,9 +673,9 @@ void chip8_run(chip8_game_t *p_game) {
 	err_code = app_timer_create(&m_chip8_timer, APP_TIMER_MODE_REPEATED, __chip8_timer_handler);
 	APP_ERROR_CHECK(err_code);
 
-	//Stop cigar/eyes
+	//Stop tooth/eyes
 	util_led_clear();
-	mbp_cigar_eyes_stop();
+	mbp_tooth_eye_stop();
 	app_sched_pause();
 
 	uint32_t ticks = APP_TIMER_TICKS(1000 / p_game->hz, UTIL_TIMER_PRESCALER);
@@ -690,9 +690,9 @@ void chip8_run(chip8_game_t *p_game) {
 	app_timer_stop(m_chip8_timer);
 	util_button_clear();
 
-	//restart cigar/eyes
+	//restart tooth/eyes
 	app_sched_resume();
-	mbp_cigar_eyes_start();
+	mbp_tooth_eye_start();
 	util_led_clear();
 	util_gfx_invalidate();
 }

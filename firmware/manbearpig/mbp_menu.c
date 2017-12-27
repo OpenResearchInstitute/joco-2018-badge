@@ -440,11 +440,11 @@ static void mbp_menu_bling() {
 		items[menu.count++] = (menu_item_t ) { "Trolol", "MENU/TROLOLOL.ICO", "MENU/TROLOLOL.PRV", &mbp_bling_trololol, NULL };
 	}
 
-	mbp_cigar_eyes_stop();
+	mbp_tooth_eye_stop();
 	//clear out app_scheduler
 	app_sched_execute();
 	mbp_menu(&menu);
-	mbp_cigar_eyes_start();
+	mbp_tooth_eye_start();
 }
 
 static void mbp_menu_games() {
@@ -547,6 +547,6 @@ void mbp_menu_main() {
 	menu.items = items;
 	menu.title = "AND!XOR";
 
-	mbp_cigar_eyes_start();
+	mbp_tooth_eye_start();
 	mbp_menu(&menu);
 }

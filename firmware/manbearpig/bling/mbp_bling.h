@@ -26,9 +26,9 @@
 #ifndef MBP_ANIM_H_
 #define MBP_ANIM_H_
 
-#define LED_LEFT_EYE_INDEX		13
+//#define LED_LEFT_EYE_INDEX		13
 #define LED_RIGHT_EYE_INDEX		12
-#define LED_CIGAR_INDEX			14
+#define LED_TOOTH_INDEX			13
 #define LED_MATRIX_LAST_INDEX	11
 
 extern void mbp_bling_backer_abraxas3d(void *data);
@@ -62,8 +62,8 @@ extern void mbp_bling_trololol();
 extern void mbp_bling_twitter();
 extern void mbp_bling_meatspin();
 extern void mbp_bling_whats_up();
-extern bool mbp_cigar_eyes_running();
-extern void mbp_cigar_eyes_start();
-extern void mbp_cigar_eyes_stop();
+extern bool mbp_tooth_eye_running();
+extern void mbp_tooth_eye_start();
+extern void mbp_tooth_eye_stop();
 
 #endif /* MBP_ANIM_H_ */

@@ -192,7 +192,7 @@ void flappy() {
 	state.flap_end_time = 0;
 	state.velocity = 0;
 
-	mbp_cigar_eyes_stop();
+	mbp_tooth_eye_stop();
 	app_sched_pause();
 
 	util_gfx_load_raw(state.skull_down_raw, "FLAPPY/SKULLD.RAW", FLAPPY_SKULL_BC);
@@ -229,5 +229,5 @@ void flappy() {
 	nrf_delay_ms(2000);
 	mbp_ui_popup("Flappy", "Game Over!");
 	app_sched_resume();
-	mbp_cigar_eyes_start();
+	mbp_tooth_eye_start();
 }

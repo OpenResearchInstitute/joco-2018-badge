@@ -124,8 +124,8 @@ static void __bling_schedule_handler(void *p_data, uint16_t length) {
 	uint8_t mode = *((uint8_t *) p_data);
 
 	app_sched_pause();
-	bool cigar_running = mbp_cigar_eyes_running();
-	mbp_cigar_eyes_stop();
+	bool tooth_running = mbp_tooth_eye_running();
+	mbp_tooth_eye_stop();
 
 	util_button_clear();
 	switch (mode) {
@@ -159,9 +159,9 @@ static void __bling_schedule_handler(void *p_data, uint16_t length) {
 	util_gfx_invalidate();
 	app_sched_resume();
 
-	//Only start cigar if previously running
-	if (cigar_running) {
-		mbp_cigar_eyes_start();
+	//Only start tooth if previously running
+	if (tooth_running) {
+		mbp_tooth_eye_start();
 	}
 }
 

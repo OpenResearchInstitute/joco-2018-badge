@@ -727,13 +727,13 @@ void mbp_tcl_exec_file(char *filename) {
 	f_read(&file, tcl, fsize, &count);
 	f_close(&file);
 
-	mbp_cigar_eyes_stop();
+	mbp_tooth_eye_stop();
 	//Clear out app_scheduler
 	app_sched_execute();
 	util_led_clear();
 
 	mbp_tcl_exec(tcl);
-	mbp_cigar_eyes_start();
+	mbp_tooth_eye_start();
 	util_led_clear();
 	util_gfx_invalidate();
 }
