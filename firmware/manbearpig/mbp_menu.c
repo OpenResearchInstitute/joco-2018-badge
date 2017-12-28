@@ -386,6 +386,7 @@ static void mbp_menu_bling() {
 	items[menu.count++] = (menu_item_t ) { "Bender", "MENU/MASTER.ICO", "MENU/BENDER.PRV", &mbp_bling_bender, NULL };
 	items[menu.count++] = (menu_item_t ) { "Custom", "MENU/WRENCH.ICO", NULL, &mbp_bling_menu_custom, NULL };
 	items[menu.count++] = (menu_item_t ) { "Badger", "MENU/BADGERS.ICO", "MENU/BADGERS.PRV", &mbp_bling_badgers, NULL };
+	items[menu.count++] = (menu_item_t ) { "Wheaton", "MENU/WWSPIN.ICO", "MENU/WWSPIN.PRV", &mbp_bling_wheaton, NULL };
 	items[menu.count++] = (menu_item_t ) { "Flames", "MENU/FLAMES.ICO", "MENU/FLAMES.PRV", &mbp_bling_flames, NULL };
 	items[menu.count++] = (menu_item_t ) { "Party", "MENU/PARTY.ICO", "MENU/PARTY.PRV", &mbp_bling_party, NULL };
 

@@ -34,6 +34,7 @@
 extern void mbp_bling_backer_abraxas3d(void *data);
 extern void mbp_bling_backer_andnxor(void *data);
 extern void mbp_bling_badgers();
+extern void mbp_bling_wheaton();
 extern void mbp_bling_bender();
 extern void mbp_bling_damon();
 extern void mbp_bling_defrag();

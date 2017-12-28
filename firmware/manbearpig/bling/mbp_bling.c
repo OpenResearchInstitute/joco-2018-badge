@@ -143,6 +143,23 @@ static void __mbp_bling_rainbow_eye_callback(uint8_t frame, void *data) {
 	*p_data = (uint8_t) (hue * 100.0);
 }
 
+static void __mbp_bling_spin_callback(uint8_t frame, void *data) {
+    // TODO -spc- make this a chase
+	uint8_t *p_data = (uint8_t *) data;
+	float hue = ((float) *p_data) / 100.0;
+
+	uint32_t rgb = util_led_hsv_to_rgb(hue, 1.0, 1.0);
+	util_led_set_rgb(LED_RIGHT_EYE_INDEX, rgb);
+	util_led_show();
+
+	hue -= .01;
+	if (hue <= 0) {
+		hue = .99;
+	}
+
+	*p_data = (uint8_t) (hue * 100.0);
+}
+
 static void __mbp_bling_backer_abraxas3d_callback(uint8_t frame, void *p_data) {
 	uint32_t indigo = LED_COLOR_INDIGO;
 	uint32_t coral = LED_COLOR_CORAL;
@@ -329,6 +346,12 @@ void mbp_bling_badgers() {
 	uint8_t hue = 0;
 	util_led_clear();
 	util_gfx_draw_raw_file("BLING/AND!XOR/BADGERS.RAW", 0, 0, 128, 128, &__mbp_bling_rainbow_eye_callback, true, &hue);
+}
+
+void mbp_bling_wheaton() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/WWSPIN.RAW", 0, 0, 128, 128, &__mbp_bling_spin_callback, true, &hue);
 }
 
 static void __led_bender(uint8_t f_unused, void *p_data) {
