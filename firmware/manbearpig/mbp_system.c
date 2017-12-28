@@ -276,8 +276,8 @@ void mbp_system_name_edit() {
 
 void mbp_system_name_select() {
 	char *names[] = {
-			"BENDER", "LEELA", "ZOIDBERG", "FRY", "AMY",
-			"SCRUFFY", "CLAMPS", "KIFF", "ZAPP", "NIXON"
+			"MONKEY", "REDSHIRT", "GLaDOS", "KVOTHE", "DENNA",
+			"AURI", "WESLEY", "GEORDI", "KINGA", "MAX"
 	};
 	uint8_t name_count = 10;
 
@@ -320,24 +320,10 @@ bool mbp_system_seekrit_get() {
 void mbp_system_shouts() {
 	mbp_ui_popup(
 			"Shouts",
-			"Spouses\n"
-					"Children\n"
-					"Fur Children (Dogs & Cats)\n"
-					"DC24 Fans\n"
-					"Crowd Funders\n"
-					"Phobos\n"
-					"bg3t\n"
-					"g8\n"
-					"manchmod\n"
-					"Rigado\n"
-					"Macrofab\n"
-					"OSH Park\n"
-					"#badgelife\n"
-					"#pirateirc\n"
-					"\n\n\n\n\n\n\n\n\n\n\n"
-					"Nothing down here"
-					"\n\n\n\n\n\n\n\n\n\n\n"
-					"VN2D85FF");
+                        "@ANDnXOR\n"
+			"Partners\n"
+			"JOCO Fans\n"
+			"#badgelife\n");
 }
 
 void mbp_system_test() {
