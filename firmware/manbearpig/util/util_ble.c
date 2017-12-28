@@ -133,7 +133,7 @@ static void __advertising_init(void) {
 	uint32_t err_code;
 	uint16_t device_id = util_get_device_id();
 
-	m_manuf_data.company_identifier = COMPANY_ID;
+	m_manuf_data.company_identifier = COMPANY_ID_JOCO;
 	m_manuf_data.data.p_data = (uint8_t *) malloc(10);
 	m_manuf_data.data.size = 10;
 	m_manuf_data.data.p_data[8] = 0;
@@ -417,8 +417,8 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 		else if (field_type == GAP_TYPE_COMPANY_DATA) {
 			badge.company_id = field_data[0] | (field_data[1] << 8);
 
-			//Fellow bender, parse additional data
-			if (badge.company_id == COMPANY_ID) {
+			//Fellow joco, parse additional data
+			if (badge.company_id == COMPANY_ID_JOCO) {
 				badge.device_id = field_data[2] | (field_data[3] << 8);
 				badge.level = field_data[BLE_DATA_INDEX_LEVEL + 2];	//Read badge level (adjusted for company id)
 				badge.avatar = field_data[BLE_DATA_INDEX_AVATAR + 2];
@@ -428,6 +428,11 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 
 				//Parse global time sync
 				time = (field_data[BLE_DATA_INDEX_GLOBAL_TIME + 2] << 8) | field_data[BLE_DATA_INDEX_GLOBAL_TIME + 3];
+			}
+			//Bender badge detected
+			else if (badge.company_id == COMPANY_ID) {
+				sprintf(badge.name, "AND!XOR");
+				badge.device_id = p_report->peer_addr.addr[1] << 8 | p_report->peer_addr.addr[0];
 			}
 			//CPV badge detected
 			else if (badge.company_id == COMPANY_ID_CPV) {
@@ -455,11 +460,12 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 		adv_index += field_length + 1;
 	}
 
-	if (((badge.company_id == COMPANY_ID) && valid_name)	//Fellow bender
-	|| badge.company_id == COMPANY_ID_CPV
-			|| badge.company_id == COMPANY_ID_DC801
-			|| badge.company_id == COMPANY_ID_DC503
-			|| badge.company_id == COMPANY_ID_QUEERCON) {
+	if (((badge.company_id == COMPANY_ID_JOCO) && valid_name)	//Fellow joco
+            || ((badge.company_id == COMPANY_ID) && valid_name)
+            || badge.company_id == COMPANY_ID_CPV
+            || badge.company_id == COMPANY_ID_DC801
+            || badge.company_id == COMPANY_ID_DC503
+            || badge.company_id == COMPANY_ID_QUEERCON) {
 
 		//Find the index to store the badge in
 		uint16_t db_index = (m_badge_db.badge_count);
@@ -488,8 +494,16 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 		//Say hello!
 		else if (badge.rssi > HELLO_MIN_RSSI && badge.said_hello == false) {
 
-			//Say hello to fellow bender
-			if (badge.company_id == COMPANY_ID) {
+			//Say hello to fellow joco
+			if (badge.company_id == COMPANY_ID_JOCO) {
+				if (util_millis() >= m_next_hello) {
+					m_next_hello += HELLO_INTERVAL;
+					APP_ERROR_CHECK(app_sched_event_put(badge.name, strlen(badge.name), mbp_bling_hello_schedule_handler));
+				}
+				badge.said_hello = true;
+			}
+			//Say hello to bender
+			else if (badge.company_id == COMPANY_ID) {
 				if (util_millis() >= m_next_hello) {
 					m_next_hello += HELLO_INTERVAL;
 					APP_ERROR_CHECK(app_sched_event_put(badge.name, strlen(badge.name), mbp_bling_hello_schedule_handler));
@@ -537,7 +551,7 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 		__badge_db_sort();
 
 		//handle global time sync with other benders
-		if (badge.company_id == COMPANY_ID && time > 0) {
+		if (badge.company_id == COMPANY_ID_JOCO && time > 0) {
 			__global_time_advertisement_process(time, badge.device_id);
 		}
 	}
