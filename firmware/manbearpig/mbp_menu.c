@@ -328,14 +328,16 @@ uint8_t mbp_submenu(menu_t *p_menu) {
 static void mbp_menu_bling_ks() {
 	char *backer_images[] = {
 			"BLING/BACKERS/ABRAXAS.RAW",
+			"BLING/BACKERS/BENDERL.RAW"
 	};
 
 	menu_callback_t backer_callbacks[] = {
 			&mbp_bling_backer_abraxas3d,
+			&mbp_bling_backer_andnxor
 	};
 
 	uint8_t selected = 0;
-	uint8_t count = 6;
+	uint8_t count = 2;
 	util_gfx_invalidate();
 
 	while (1) {
