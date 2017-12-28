@@ -28,22 +28,25 @@
 #define APP_SCHED_MAX_EVENT_SIZE    48   	/**< Maximum size of scheduler events. */
 #define APP_SCHED_QUEUE_SIZE        32   	/**< Maximum number of events in the scheduler queue. */
 
+static uint8_t boot_frame;
 static void __boot_frame_callback(uint8_t frame, void *p_data) {
-	if (frame < 128) {
-		util_led_set_all(0, frame * 2, 0);
-	} else if (frame < 200) {
+	if (boot_frame < 128) {
+            util_led_set_all(0, 0, boot_frame * 2);
+	} else if (boot_frame < 200) {
 		util_led_set(util_math_rand8_max(LED_COUNT), 255, 255, 255);
 	} else {
-		uint8_t b = (222 - frame) * 11;
+		uint8_t b = (222 - boot_frame) * 11;
 		util_led_set_all(b, b, b);
 	}
 
 	util_led_show();
 
 	//This is a bit of a hack but it only allows animation to play once
-	if (frame > 220) {
+	if (boot_frame > 220) {
 		util_gfx_draw_raw_file_stop();
+                boot_frame = 1;
 	}
+        boot_frame++;
 }
 
 void __boot() {
