@@ -143,6 +143,23 @@ static void __mbp_bling_rainbow_eye_callback(uint8_t frame, void *data) {
 	*p_data = (uint8_t) (hue * 100.0);
 }
 
+static void __mbp_bling_spin_callback(uint8_t frame, void *data) {
+    // TODO -spc- make this a chase
+	uint8_t *p_data = (uint8_t *) data;
+	float hue = ((float) *p_data) / 100.0;
+
+	uint32_t rgb = util_led_hsv_to_rgb(hue, 1.0, 1.0);
+	util_led_set_rgb(LED_RIGHT_EYE_INDEX, rgb);
+	util_led_show();
+
+	hue -= .01;
+	if (hue <= 0) {
+		hue = .99;
+	}
+
+	*p_data = (uint8_t) (hue * 100.0);
+}
+
 static void __mbp_bling_backer_abraxas3d_callback(uint8_t frame, void *p_data) {
 	uint32_t indigo = LED_COLOR_INDIGO;
 	uint32_t coral = LED_COLOR_CORAL;
@@ -266,128 +283,17 @@ static void __mbp_bling_backer_abraxas3d_callback(uint8_t frame, void *p_data) {
 	*data = (uint8_t) cycle;
 }
 
-// TODO -spc- change this to something custom for AND!XOR (copies from abraxas3d)
 static void __mbp_bling_backer_andnxor_callback(uint8_t frame, void *p_data) {
-	uint32_t indigo = LED_COLOR_INDIGO;
-	uint32_t coral = LED_COLOR_CORAL;
-	uint32_t gold = LED_COLOR_GOLD;
-	uint32_t yellow = LED_COLOR_YELLOW;
-	uint32_t white = LED_COLOR_WHITE;
-
-	//Unpack cycle
-	uint8_t *data = (uint8_t *) p_data;
-	uint8_t cycle = (uint8_t) *data;
-
-	if (cycle == 0) {
-		//Move Column 1 & 4 Up Vertically
-		util_led_set_rgb(13, indigo);
-		util_led_set_rgb(0, gold);
-		util_led_set_rgb(4, coral);
-		util_led_set_rgb(8, yellow);
-		util_led_set_rgb(12, indigo);
-		util_led_set_rgb(3, gold);
-		util_led_set_rgb(7, coral);
-		util_led_set_rgb(11, yellow);
-
-		//1-5-9 / 2-6-10
-		util_led_set(1, 0, 0, 0); //CLEAR
-		util_led_set(2, 0, 0, 0); //CLEAR
-		util_led_set(6, 0, 0, 0); //CLEAR
-		util_led_set(10, 0, 0, 0); //CLEAR
-		util_led_set(9, 0, 0, 0); //CLEAR
-		util_led_set(5, 0, 0, 0); //CLEAR
-		util_led_set_rgb(1, indigo);
-		util_led_set_rgb(5, indigo);
-		util_led_set_rgb(9, indigo);
-		util_led_set_rgb(14, indigo); //Set the Cig
-	}
-
-	else if (cycle == 1) {
-		//Move Column 1 & 4 Up Vertically
-		util_led_set_rgb(13, gold);
-		util_led_set_rgb(0, coral);
-		util_led_set_rgb(4, yellow);
-		util_led_set_rgb(8, indigo);
-		util_led_set_rgb(12, gold);
-		util_led_set_rgb(3, coral);
-		util_led_set_rgb(7, yellow);
-		util_led_set_rgb(11, indigo);
-
-		//1-5-9 / 2-6-10
-		util_led_set(1, 0, 0, 0); //CLEAR
-		util_led_set(2, 0, 0, 0); //CLEAR
-		util_led_set(6, 0, 0, 0); //CLEAR
-		util_led_set(10, 0, 0, 0); //CLEAR
-		util_led_set(9, 0, 0, 0); //CLEAR
-		util_led_set(5, 0, 0, 0); //CLEAR
-		util_led_set_rgb(1, white);
-		util_led_set_rgb(5, white);
-		util_led_set_rgb(9, white);
-
-		util_led_set_rgb(14, white); //Set the Cig
-	}
-
-	else if (cycle == 2) {
-		//Move Column 1 & 4 Up Vertically
-		util_led_set_rgb(13, coral);
-		util_led_set_rgb(0, yellow);
-		util_led_set_rgb(4, indigo);
-		util_led_set_rgb(8, gold);
-		util_led_set_rgb(12, coral);
-		util_led_set_rgb(3, yellow);
-		util_led_set_rgb(7, indigo);
-		util_led_set_rgb(11, gold);
-
-		//1-5-9 / 2-6-10
-		util_led_set(1, 0, 0, 0); //CLEAR
-		util_led_set(2, 0, 0, 0); //CLEAR
-		util_led_set(6, 0, 0, 0); //CLEAR
-		util_led_set(10, 0, 0, 0); //CLEAR
-		util_led_set(9, 0, 0, 0); //CLEAR
-		util_led_set(5, 0, 0, 0); //CLEAR
-		util_led_set_rgb(2, indigo);
-		util_led_set_rgb(6, indigo);
-		util_led_set_rgb(10, indigo);
-		util_led_set_rgb(14, indigo); //Set the Cig
-	}
-
-	else {
-		//Move Column 1 & 4 Up Vertically
-		util_led_set_rgb(13, yellow);
-		util_led_set_rgb(0, indigo);
-		util_led_set_rgb(4, gold);
-		util_led_set_rgb(8, coral);
-		util_led_set_rgb(12, yellow);
-		util_led_set_rgb(3, indigo);
-		util_led_set_rgb(7, gold);
-		util_led_set_rgb(11, coral);
-
-		//1-5-9 / 2-6-10
-		util_led_set(1, 0, 0, 0); //CLEAR
-		util_led_set(2, 0, 0, 0); //CLEAR
-		util_led_set(6, 0, 0, 0); //CLEAR
-		util_led_set(10, 0, 0, 0); //CLEAR
-		util_led_set(9, 0, 0, 0); //CLEAR
-		util_led_set(5, 0, 0, 0); //CLEAR
-		util_led_set_rgb(2, white);
-		util_led_set_rgb(6, white);
-		util_led_set_rgb(10, white);
-		util_led_set_rgb(14, white); //Set the Cig
+	if (frame < 128) {
+		util_led_set_all(0, frame * 2, 0);
+	} else if (frame < 200) {
+		util_led_set(util_math_rand8_max(LED_COUNT), 255, 255, 255);
+	} else {
+		uint8_t b = (222 - frame) * 11;
+		util_led_set_all(b, b, b);
 	}
 
 	util_led_show();
-	nrf_delay_ms(30);
-
-	//Increment the Cycle
-	if (cycle < 3) {
-		cycle++;
-	}
-	else {
-		cycle = 0;
-	}
-
-	//Pack the cycle
-	*data = (uint8_t) cycle;
 }
 
 void mbp_bling_backer_abraxas3d(void *data) {
@@ -440,6 +346,12 @@ void mbp_bling_badgers() {
 	uint8_t hue = 0;
 	util_led_clear();
 	util_gfx_draw_raw_file("BLING/AND!XOR/BADGERS.RAW", 0, 0, 128, 128, &__mbp_bling_rainbow_eye_callback, true, &hue);
+}
+
+void mbp_bling_wheaton() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/WWSPIN.RAW", 0, 0, 128, 128, &__mbp_bling_spin_callback, true, &hue);
 }
 
 static void __led_bender(uint8_t f_unused, void *p_data) {

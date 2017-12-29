@@ -1,0 +1,39 @@
+There are three file sizes 
+
+PRV file size is always 22624, a single frame at 101x112 pixels
+ICO file size is always 800, a single frame at 20x20 pixels
+RAW size is 128x128 pixels, multiple frames
+
+format is rgb565be
+       16 bits per pixel, 5,6,5 for RBG; Big Endian
+
+What follows are the calculation notes
+
+MENU_SIZE = 27
+MENU_INDICATOR_H = 16
+GFX_WIDTH = 128
+GFX_HEIGHT = 128
+MENU_PADDING = 2
+MENU_ICON_SIZE = 20
+
+
+=== Drawing a preview ===
+
+origin = MENU_SIZE, y + MENU_INDICATOR_H
+size = GFX_WIDTH-MENU_SIZE, GFX_HEIGHT-MENU_INDICATOR_H
+size = 101 x 112
+
+util_gfx_draw_raw_file(selected.preview, MENU_SIZE, MENU_INDICATOR_H, GFX_WIDTH - MENU_SIZE, GFX_HEIGHT - MENU_INDICATOR_H, NULL, false, NULL);
+
+=== Drawing an Icon ===
+origin = x + MENU_PADDING, y + MENU_PADDING
+size = MENU_ICON_SIZE, MENU_ICON_SIZE
+size = 20 x 20
+
+util_gfx_draw_raw(x + MENU_PADDING, y + MENU_PADDING, MENU_ICON_SIZE, MENU_ICON_SIZE, icons[p_menu->top + i]);
+
+=== Playing a RAW file ===
+origin = 0,0
+size = 128 x 128
+
+util_gfx_draw_raw_file("BLING/WWSPIN.RAW", 0, 0, 128, 128, &__mbp_bling_spin_callback, true, &hue);

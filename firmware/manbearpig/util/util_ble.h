@@ -26,7 +26,8 @@
 #ifndef UTIL_UTIL_BLE_H_
 #define UTIL_UTIL_BLE_H_
 
-#define COMPANY_ID							0x049E		/** AND!XOR LLC :-) **/
+#define COMPANY_ID						0x049E		/** AND!XOR LLC :-) **/
+#define COMPANY_ID_JOCO						0x0B25
 #define COMPANY_ID_CPV						0x0C97
 #define COMPANY_ID_DC503					0x0503
 #define COMPANY_ID_DC801					0x0801		/** DC801?? **/
