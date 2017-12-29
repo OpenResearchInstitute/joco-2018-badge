@@ -1,0 +1,13 @@
+#!/bin/sh
+
+EXPECTED_ARGS=2
+E_BADARGS=65
+
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: `basename $0` gifinputfile rawoutputfile"
+  exit $E_BADARGS
+fi
+
+ffmpeg -i $1 -r 22 -f rawvideo -s 128x128 -pix_fmt rgb565be $2
+
