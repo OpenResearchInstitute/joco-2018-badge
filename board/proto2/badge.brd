@@ -23,20 +23,20 @@
 <layer number="13" name="Route13" color="4" fill="5" visible="no" active="no"/>
 <layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
 <layer number="15" name="Route15" color="4" fill="6" visible="no" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="29" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
@@ -1663,11 +1663,11 @@ design rules under a new name.
 <param name="psElongationOffset" value="100"/>
 <param name="mvStopFrame" value="1"/>
 <param name="mvCreamFrame" value="0"/>
-<param name="mlMinStopFrame" value="4mil"/>
-<param name="mlMaxStopFrame" value="4mil"/>
+<param name="mlMinStopFrame" value="10mil"/>
+<param name="mlMaxStopFrame" value="8mil"/>
 <param name="mlMinCreamFrame" value="0mil"/>
 <param name="mlMaxCreamFrame" value="0mil"/>
-<param name="mlViaStopLimit" value="0mil"/>
+<param name="mlViaStopLimit" value="12mil"/>
 <param name="srRoundness" value="0"/>
 <param name="srMinRoundness" value="0mil"/>
 <param name="srMaxRoundness" value="0mil"/>
@@ -1981,9 +1981,9 @@ design rules under a new name.
 <attribute name="NAME" x="74.676" y="58.09264375" size="0.8128" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="73.669228125" y="40.244884375" size="1.016" layer="27" rot="R338"/>
 </element>
-<element name="S7" library="badge" package="SW-200D" value="SW-200D" x="47.117" y="87.122" smashed="yes" rot="R90">
-<attribute name="NAME" x="44.879" y="82.122" size="0.8128" layer="25" font="vector" rot="R90"/>
-<attribute name="VALUE" x="51.117" y="81.622" size="1.27" layer="27" rot="R90"/>
+<element name="S7" library="badge" package="SW-200D" value="SW-200D" x="47.117" y="87.122" smashed="yes" rot="MR90">
+<attribute name="NAME" x="49.355" y="82.122" size="0.8128" layer="26" font="vector" rot="MR90"/>
+<attribute name="VALUE" x="43.117" y="81.622" size="1.27" layer="28" rot="MR90"/>
 </element>
 <element name="C19" library="rcl" package="C0603K" value="300p" x="104.648" y="51.308" smashed="yes" rot="R90">
 <attribute name="NAME" x="105.014" y="54.318" size="0.8128" layer="25" font="vector" rot="R90"/>
@@ -3617,8 +3617,9 @@ design rules under a new name.
 <contactref element="C21" pad="1"/>
 <wire x1="45.466" y1="97.628" x2="47.156" y2="97.628" width="0.4064" layer="1"/>
 <wire x1="47.156" y1="97.628" x2="47.156" y2="97.79" width="0.4064" layer="1"/>
-<wire x1="47.117" y1="96.022" x2="47.156" y2="96.022" width="0.4064" layer="1"/>
-<wire x1="47.156" y1="96.022" x2="47.156" y2="97.79" width="0.4064" layer="1"/>
+<wire x1="47.117" y1="96.022" x2="47.156" y2="96.022" width="0.4064" layer="16"/>
+<wire x1="47.156" y1="97.79" x2="47.117" y2="97.751" width="0.508" layer="1"/>
+<wire x1="47.117" y1="97.751" x2="47.117" y2="96.022" width="0.508" layer="1"/>
 </signal>
 </signals>
 <errors>
