@@ -42,7 +42,7 @@ void mbp_system_about() {
 
 void mbp_system_airplane_mode_select() {
 	if (mbp_state_airplane_mode_get()) {
-		bool enabled = mbp_ui_toggle_popup("Airplne Mode", 0, "Enable", "Disable", "Currently: ENABLED") == 0;
+		bool enabled = mbp_ui_toggle_popup("Airplane Mode", 0, "Enable", "Disable", "Currently: ENABLED") == 0;
 		mbp_state_airplane_mode_set(enabled);
 		mbp_state_save();
 
@@ -51,7 +51,7 @@ void mbp_system_airplane_mode_select() {
 			util_ble_on();
 		}
 	} else {
-		bool enabled = mbp_ui_toggle_popup("Airplne Mode", 1, "Enable", "Disable", "Currently: DISABLED") == 0;
+		bool enabled = mbp_ui_toggle_popup("Airplane Mode", 1, "Enable", "Disable", "Currently: DISABLED") == 0;
 		mbp_state_airplane_mode_set(enabled);
 		mbp_state_save();
 
