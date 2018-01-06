@@ -149,7 +149,7 @@ int main(void) {
 
 	bool activated = mbp_state_activated_get();
 	if (!activated) {
-		mbp_ui_error("Not activated\n\nFollow @andnxor for code.");
+		mbp_ui_error("Not activated\n\n");
 	}
 
 	//Read seekrit resistor and set unlocked state appropriately
@@ -162,6 +162,9 @@ int main(void) {
 	}
 
 //	mbp_system_test();
+
+// -spc- uncomment to test all bling modes
+//        mbp_state_unlock_set(0x7FFF);
 
 	while (1) {
 		app_sched_execute();
