@@ -27,9 +27,13 @@
 #include "../system.h"
 
 #define TOOTH_EYES_TIME_MS			10
-#define TOOTH_HUE_LOW				0.05
-#define TOOTH_HUE_HIGH				0.17
-#define TOOTH_HUE_STEP				0.0005
+
+#define TOOTH_HUE_GOLD				0.142; //51.0 / 360.0
+#define TOOTH_SAT			       1.0
+#define TOOTH_VAL			       0.5 // (brightness)
+#define TOOTH_FLASH_MINTIME		       50 // min time between flashes in tens of mS
+#define TOOTH_FLASH_MAXTIME		       500 // max time between flashes in tens of mS
+#define TOOTH_FLASH_LEN			       3 // min flash length in tens of mS
 
 #define EYE_HUE_STEP				.00015
 #define SCROLL_CHAR_WIDTH			16
@@ -40,8 +44,13 @@
 APP_TIMER_DEF(m_tooth_timer);
 APP_TIMER_DEF(m_scroll_led_timer);
 
-static float m_tooth_hue = TOOTH_HUE_LOW;
-static float m_tooth_hue_step = TOOTH_HUE_STEP;
+// For a shiny gold tooth
+static float m_tooth_hue = TOOTH_HUE_GOLD;
+static float m_tooth_sat = 1.0;
+static float m_tooth_val = 1.0;
+static uint32_t tooth_flash_counter = 100;
+static bool tooth_flashing = false;
+
 static float m_eye_hue = 0;
 static bool m_tooth_eye_running = false;
 
@@ -369,15 +378,15 @@ static void __led_bender(uint8_t f_unused, void *p_data) {
 	uint32_t eye_color = util_led_hsv_to_rgb(eye_hue, 1, 1);
 	util_led_set_rgb(LED_RIGHT_EYE_INDEX, eye_color);
 
-	//Compute and set the cig color
-	float cig_hue;
+	//Compute and set the tooth color
+	float tooth_hue;
 	if (frame < 20) {
-		cig_hue = .00625 * (float) frame;
+		tooth_hue = .00625 * (float) frame;
 	} else {
-		cig_hue = .00625 * (float) (40 - frame);
+		tooth_hue = .00625 * (float) (40 - frame);
 	}
-	uint32_t cig_color = util_led_hsv_to_rgb(cig_hue, 1, 1);
-	util_led_set_rgb(LED_TOOTH_INDEX, cig_color);
+	uint32_t tooth_color = util_led_hsv_to_rgb(tooth_hue, 1, 1);
+	util_led_set_rgb(LED_TOOTH_INDEX, tooth_color);
 
 	//Mouth
 	if (frame < 20) {
@@ -1118,30 +1127,43 @@ void mbp_bling_defrag() {
 	util_gfx_draw_raw_file("BLING/AND!XOR/DEFRAG.RAW", 0, 0, 128, 128, &__mbp_defrag_callback, true, &defrag);
 }
 
+// called every TOOTH_EYES_TIME_MS
 static void __tooth_sch_handler(void * p_event_data, uint16_t event_size) {
+
 	uint32_t eye_rgb = util_led_hsv_to_rgb(m_eye_hue, 1.0, 1.0);
-	uint32_t rgb = util_led_hsv_to_rgb(m_tooth_hue, 1.0, 1.0);
+	uint32_t rgb = util_led_hsv_to_rgb(m_tooth_hue, m_tooth_sat, m_tooth_val);
 
 	//Update the LEDs
         util_led_set_rgb(LED_RIGHT_EYE_INDEX, eye_rgb);
-
 	util_led_set_rgb(LED_TOOTH_INDEX, rgb);
 	util_led_show();
 
-	//Change the hue
+        // Update the tooth for next pass
+        if (tooth_flashing) {
+            // we're twinkling, see if we're done
+            if (--tooth_flash_counter == 0) {
+                m_tooth_hue = TOOTH_HUE_GOLD;
+                m_tooth_sat = TOOTH_SAT;
+                m_tooth_val = TOOTH_VAL;
+                tooth_flash_counter = util_math_rand32_max(TOOTH_FLASH_MAXTIME-TOOTH_FLASH_MINTIME) + TOOTH_FLASH_MINTIME;
+                tooth_flashing = false;
+            }
+        } else {
+            // we're waiting to twinkle again, see if we're done
+            if (--tooth_flash_counter == 0) {
+                // start a flash
+                m_tooth_hue = TOOTH_HUE_GOLD;
+                m_tooth_sat = 0;
+                m_tooth_val = TOOTH_VAL;
+                tooth_flash_counter = TOOTH_FLASH_LEN;
+                tooth_flashing = true;
+            }
+        }
+
+	//Change the eye hue for next pass
 	m_eye_hue += EYE_HUE_STEP;
 	if (m_eye_hue >= 1.0) {
 		m_eye_hue -= 1.0;
-	}
-
-	//Change tooth hue
-	m_tooth_hue += m_tooth_hue_step;
-	if (m_tooth_hue > TOOTH_HUE_HIGH) {
-		m_tooth_hue = TOOTH_HUE_HIGH;
-		m_tooth_hue_step = 0 - m_tooth_hue_step;
-	} else if (m_tooth_hue < TOOTH_HUE_LOW) {
-		m_tooth_hue = TOOTH_HUE_LOW;
-		m_tooth_hue_step = 0 - m_tooth_hue_step;
 	}
 }
 
