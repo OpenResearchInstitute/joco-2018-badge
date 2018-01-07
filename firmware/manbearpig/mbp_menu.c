@@ -452,14 +452,13 @@ static void mbp_menu_bling() {
 
 static void mbp_menu_games() {
 	menu_item_t items[] = {
-			{ "Flappy DEF CON", NULL, NULL, &flappy, NULL },
 			{ "Ski Free", NULL, NULL, &ski, NULL },
 			{ "CHIP-8", NULL, NULL, &chip8_menu, NULL },
 	};
 
 	menu_t menu;
 	menu.items = items;
-	menu.count = 3;
+	menu.count = 2;
 	menu.selected = 0;
 	menu.title = "Games";
 	menu.top = 0;

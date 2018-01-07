@@ -70,7 +70,6 @@ SRC_FILES += \
 	$(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
 	bling/mbp_bling.c \
 	bling/mbp_custom_bling.c \
-	flappydefcon.c \
 	ntshell/core/ntlibc.c \
 	ntshell/core/ntshell.c \
 	ntshell/core/text_editor.c \
