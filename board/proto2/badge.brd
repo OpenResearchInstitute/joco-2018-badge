@@ -1651,8 +1651,8 @@ design rules under a new name.
 <param name="mdCopperDimension" value="40mil"/>
 <param name="mdDrill" value="8mil"/>
 <param name="mdSmdStop" value="0mil"/>
-<param name="msWidth" value="8mil"/>
-<param name="msDrill" value="8mil"/>
+<param name="msWidth" value="10mil"/>
+<param name="msDrill" value="10mil"/>
 <param name="msMicroVia" value="9.99mm"/>
 <param name="msBlindViaRatio" value="0.5"/>
 <param name="rvPadTop" value="0.25"/>
@@ -3438,8 +3438,8 @@ design rules under a new name.
 <wire x1="102.87" y1="75.946" x2="102.362" y2="76.454" width="0.254" layer="16"/>
 <wire x1="102.362" y1="76.454" x2="99.06" y2="76.454" width="0.254" layer="16"/>
 <wire x1="99.06" y1="76.454" x2="98.425" y2="77.089" width="0.254" layer="16"/>
-<wire x1="111.76" y1="75.692" x2="111.379" y2="76.073" width="0.2032" layer="16"/>
-<wire x1="111.379" y1="76.073" x2="109.22" y2="76.073" width="0.2032" layer="16"/>
+<wire x1="111.76" y1="75.692" x2="111.379" y2="76.073" width="0.254" layer="16"/>
+<wire x1="111.379" y1="76.073" x2="109.22" y2="76.073" width="0.254" layer="16"/>
 <wire x1="109.22" y1="76.073" x2="109.093" y2="76.073" width="0.254" layer="16"/>
 <wire x1="109.093" y1="76.073" x2="108.966" y2="75.946" width="0.254" layer="16"/>
 <wire x1="108.966" y1="75.946" x2="102.87" y2="75.946" width="0.254" layer="16"/>

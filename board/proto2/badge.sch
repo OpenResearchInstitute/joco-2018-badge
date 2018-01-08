@@ -6,36 +6,36 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
-<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="no"/>
-<layer number="3" name="Route3" color="4" fill="3" visible="yes" active="no"/>
-<layer number="4" name="Route4" color="1" fill="4" visible="yes" active="no"/>
-<layer number="5" name="Route5" color="4" fill="4" visible="yes" active="no"/>
-<layer number="6" name="Route6" color="1" fill="8" visible="yes" active="no"/>
-<layer number="7" name="Route7" color="4" fill="8" visible="yes" active="no"/>
-<layer number="8" name="Route8" color="1" fill="2" visible="yes" active="no"/>
-<layer number="9" name="Route9" color="4" fill="2" visible="yes" active="no"/>
-<layer number="10" name="Route10" color="1" fill="7" visible="yes" active="no"/>
-<layer number="11" name="Route11" color="4" fill="7" visible="yes" active="no"/>
-<layer number="12" name="Route12" color="1" fill="5" visible="yes" active="no"/>
-<layer number="13" name="Route13" color="4" fill="5" visible="yes" active="no"/>
-<layer number="14" name="Route14" color="1" fill="6" visible="yes" active="no"/>
-<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
-<layer number="19" name="Unrouted" color="29" fill="1" visible="yes" active="no"/>
-<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
+<layer number="4" name="Route4" color="1" fill="4" visible="no" active="no"/>
+<layer number="5" name="Route5" color="4" fill="4" visible="no" active="no"/>
+<layer number="6" name="Route6" color="1" fill="8" visible="no" active="no"/>
+<layer number="7" name="Route7" color="4" fill="8" visible="no" active="no"/>
+<layer number="8" name="Route8" color="1" fill="2" visible="no" active="no"/>
+<layer number="9" name="Route9" color="4" fill="2" visible="no" active="no"/>
+<layer number="10" name="Route10" color="1" fill="7" visible="no" active="no"/>
+<layer number="11" name="Route11" color="4" fill="7" visible="no" active="no"/>
+<layer number="12" name="Route12" color="1" fill="5" visible="no" active="no"/>
+<layer number="13" name="Route13" color="4" fill="5" visible="no" active="no"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
+<layer number="19" name="Unrouted" color="29" fill="1" visible="no" active="no"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,18 +53,18 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
-<layer number="57" name="tCAD" color="7" fill="1" visible="yes" active="no"/>
-<layer number="58" name="bCAD" color="7" fill="1" visible="yes" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
+<layer number="58" name="bCAD" color="7" fill="1" visible="no" active="no"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
@@ -6852,16 +6852,16 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="147.32" y1="53.34" x2="223.52" y2="53.34" width="1.27" layer="95"/>
 <wire x1="147.32" y1="7.62" x2="223.52" y2="7.62" width="1.27" layer="95"/>
 <text x="12.7" y="264.16" size="2.54" layer="95">NOTES (UNLESS OTHERWISE SPECIFIED)</text>
-<text x="17.78" y="259.08" size="2.54" layer="95">1. THE PWB MUST BE LEAD FREE ASSEMBLY PROCESS COMPATIBLE</text>
+<text x="17.78" y="259.08" size="2.54" layer="95">1. THE PWB MAY BE LEAD FREE OR LEADED AT CM DISCRETION</text>
 <text x="17.78" y="254" size="2.54" layer="95">2. PLATING FINISH - BOTH SIDES ENIG (ELECTROLESS NICKEL IMMERSION GOLD):</text>
 <text x="40.64" y="248.92" size="2.54" layer="95">1-3u INCH OF GOLD OVER</text>
 <text x="40.64" y="243.84" size="2.54" layer="95">2.54-6.350 MICRON (100-250 MICROINCH) OF NICKEL.</text>
 <text x="17.78" y="238.76" size="2.54" layer="95">3. ALL THROUGH HOLE VIAS MAY BE PLATED SHUT</text>
 <text x="17.78" y="233.68" size="2.54" layer="95">4. SOLDERMASK - BLACK  COLOR, BOTH SIDES</text>
-<text x="17.78" y="228.6" size="2.54" layer="95">5. SILKSCREEN - WHITE INK, BOTH SIDES.  NO SILK ON PADS.</text>
+<text x="17.78" y="228.6" size="2.54" layer="95">5. SILKSCREEN - WHITE INK, BOTH SIDES.  NO SILK ON PADS.  SILK SCREEN MAY BE TRIMMED TO AVOID INTERFERENCE WITH PADS</text>
 <text x="17.78" y="223.52" size="2.54" layer="95">6. ELECTRICAL TEST - 100%</text>
 <text x="17.78" y="218.44" size="2.54" layer="95">7. SUPPLIER MARKINGS - ALL MUST BE ON REAR OF PWB</text>
-<text x="17.78" y="213.36" size="2.54" layer="95">8. MINIMUM CONDUCTIVE WIDTH/SPACING TO BE .004" / .004" EXCEPT IN DDR3 SIGNALS WHICH IS .004" / .0037"</text>
+<text x="17.78" y="213.36" size="2.54" layer="95">8. MINIMUM CONDUCTIVE WIDTH/SPACING TO BE .010" / .008" EXCEPT NEAR SD CONNECTOR WHICH ARE 0.010" / 0.006"</text>
 <text x="17.78" y="208.28" size="2.54" layer="95">9. DIMENSIONAL OUTLINE OF PWB IN COMPONENT SILKSCREEN FILE</text>
 <text x="17.78" y="198.12" size="2.54" layer="95">11. FILE DESIGNATIONS:</text>
 <text x="25.4" y="180.34" size="2.54" layer="95">".CMP"  COMPONENT SIDE GERBER RS274X</text>
@@ -6879,7 +6879,7 @@ Source: AVX .. aphvc.pdf</description>
 <text x="101.219" y="36.957" size="2.54" layer="95">DIELECTRIC THICKNESSES</text>
 <text x="181.61" y="29.21" size="2.1844" layer="95">60 mil</text>
 <text x="161.417" y="63.119" size="3.175" layer="95">LAYER STACKUP DETAIL</text>
-<text x="16.51" y="128.27" size="2.54" layer="95">12. PLATED HOLE TOLERANCE  .003"</text>
+<text x="16.51" y="128.27" size="2.54" layer="95">12. PLATED HOLE TOLERANCE  .004"</text>
 <text x="25.4" y="144.78" size="2.54" layer="97">".MIL"  MILLING LAYER FOR INNER CUTOUTS (NOT PLATED)</text>
 <text x="17.78" y="203.2" size="2.54" layer="95">10. 15mil MAX RADIUS  INSIDE MILLING CORNERS FOR SMALL RECTANGULAR OPENINGS</text>
 <text x="25.4" y="175.26" size="2.54" layer="95">".DIM"  DIMENSION LAYER WITH OUTSIDE DIMENSIONS IN MM</text>
