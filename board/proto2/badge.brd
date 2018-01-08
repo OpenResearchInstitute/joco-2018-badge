@@ -1206,16 +1206,16 @@
 <vertex x="62.832" y="49.452" curve="31.366039"/>
 </polygon>
 <text x="27.432" y="66.04" size="0.8128" layer="21" font="vector" rot="R180">EXPANSION</text>
-<text x="47.879" y="92.583" size="1.27" layer="22" font="vector" rot="MR0" align="center">#badgelife
+<text x="117.475" y="40.513" size="1.27" layer="22" font="vector" rot="MR0" align="center">#badgelife
 JoCo Badge Team: </text>
-<text x="47.0154" y="85.335871875" size="1.27" layer="22" font="vector" rot="MR54" align="center-left">AI4QR</text>
-<text x="48.7426" y="85.335871875" size="1.27" layer="22" font="vector" rot="MR126" align="center-left">N5AC</text>
-<text x="48.895" y="84.3788" size="1.27" layer="22" font="vector" rot="MR198" align="center-left">W5NYV</text>
-<text x="47.879" y="83.6422" size="1.27" layer="22" font="vector" rot="MR270" align="center-left">AI6TK</text>
-<text x="46.863" y="84.3788" size="1.27" layer="22" font="vector" rot="MR342" align="center-left">AI6ZU</text>
+<text x="116.6114" y="33.265871875" size="1.27" layer="22" font="vector" rot="MR54" align="center-left">AI4QR</text>
+<text x="118.3386" y="33.265871875" size="1.27" layer="22" font="vector" rot="MR126" align="center-left">N5AC</text>
+<text x="118.491" y="32.3088" size="1.27" layer="22" font="vector" rot="MR198" align="center-left">W5NYV</text>
+<text x="117.475" y="31.5722" size="1.27" layer="22" font="vector" rot="MR270" align="center-left">AI6TK</text>
+<text x="116.459" y="32.3088" size="1.27" layer="22" font="vector" rot="MR342" align="center-left">AI6ZU</text>
 <hole x="17.272" y="74.93" drill="5"/>
 <hole x="123.952" y="75.692" drill="5"/>
-<text x="47.879" y="75.565" size="1.016" layer="22" font="vector" rot="MR0" align="center">Special thanks to team AND\!XOR</text>
+<text x="117.475" y="23.749" size="1.016" layer="22" font="vector" rot="MR0" align="center">Special thanks to team AND\!XOR</text>
 <hole x="111.76" y="17.78" drill="4"/>
 <hole x="17.78" y="19.05" drill="4"/>
 <hole x="11.43" y="21.59" drill="4"/>
@@ -2002,7 +2002,7 @@ design rules under a new name.
 <attribute name="VALUE" x="73.669228125" y="40.244884375" size="1.016" layer="27" rot="R338"/>
 </element>
 <element name="S7" library="badge" package="SW-200D" value="SW-200D" x="47.117" y="87.122" smashed="yes" rot="MR90">
-<attribute name="NAME" x="49.355" y="82.122" size="0.8128" layer="26" font="vector" rot="MR90"/>
+<attribute name="NAME" x="49.609" y="86.44" size="0.8128" layer="26" font="vector" rot="MR90"/>
 <attribute name="VALUE" x="43.117" y="81.622" size="1.27" layer="28" rot="MR90"/>
 </element>
 <element name="C19" library="rcl" package="C0603K" value="300p" x="104.648" y="51.308" smashed="yes" rot="R90">
