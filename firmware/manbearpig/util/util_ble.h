@@ -33,6 +33,9 @@
 #define COMPANY_ID_DC801					0x0801		/** DC801?? **/
 #define COMPANY_ID_QUEERCON					0x04D3
 
+#define APPEARANCE_ID_ANDNXOR_DC25				0x19DC
+
+
 typedef struct {
 	ble_gap_addr_t address;
 	char name[SETTING_NAME_LENGTH];

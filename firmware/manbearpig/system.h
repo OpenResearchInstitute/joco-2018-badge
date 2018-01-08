@@ -27,10 +27,12 @@
 #define SYSTEM_H_
 #define VERSION							"v1.6"
 #define VERSION_SD						23
+
+
 //#define BLE_ONLY_BUILD					1
 
 #define SETTING_INPUT_MAX				8
-#define SETTING_NAME_DEFAULT			"BENDER"
+#define SETTING_NAME_DEFAULT			"REDSHIRT"
 #define SETTING_NAME_LENGTH				9
 #define SETTING_PW_LENGTH				9
 #define SETTING_AIRPLANE_MODE_DEFAULT	false

@@ -765,7 +765,7 @@ static void __gap_init(void) {
 	err_code = sd_ble_gap_device_name_set(&sec_mode, (const uint8_t *) DEVICE_NAME, strlen(DEVICE_NAME));
 	APP_ERROR_CHECK(err_code);
 
-	err_code = sd_ble_gap_appearance_set(0x19DC);
+	err_code = sd_ble_gap_appearance_set(APPEARANCE_ID_ANDNXOR_DC25);
 	APP_ERROR_CHECK(err_code);
 
 	memset(&gap_conn_params, 0, sizeof(gap_conn_params));
