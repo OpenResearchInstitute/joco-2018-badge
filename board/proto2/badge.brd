@@ -1213,8 +1213,8 @@ JoCo Badge Team: </text>
 <text x="118.491" y="32.3088" size="1.27" layer="22" font="vector" rot="MR198" align="center-left">W5NYV</text>
 <text x="117.475" y="31.5722" size="1.27" layer="22" font="vector" rot="MR270" align="center-left">AI6TK</text>
 <text x="116.459" y="32.3088" size="1.27" layer="22" font="vector" rot="MR342" align="center-left">AI6ZU</text>
-<hole x="17.272" y="74.93" drill="5"/>
-<hole x="123.952" y="75.692" drill="5"/>
+<hole x="17.272" y="74.93" drill="4"/>
+<hole x="123.952" y="75.692" drill="4"/>
 <text x="117.475" y="23.749" size="1.016" layer="22" font="vector" rot="MR0" align="center">Special thanks to team AND\!XOR</text>
 <hole x="111.76" y="17.78" drill="4"/>
 <hole x="17.78" y="19.05" drill="4"/>
