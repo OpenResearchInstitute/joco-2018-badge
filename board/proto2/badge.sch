@@ -6857,7 +6857,7 @@ Source: AVX .. aphvc.pdf</description>
 <text x="40.64" y="248.92" size="2.54" layer="95">1-3u INCH OF GOLD OVER</text>
 <text x="40.64" y="243.84" size="2.54" layer="95">2.54-6.350 MICRON (100-250 MICROINCH) OF NICKEL.</text>
 <text x="17.78" y="238.76" size="2.54" layer="95">3. ALL THROUGH HOLE VIAS MAY BE PLATED SHUT</text>
-<text x="17.78" y="233.68" size="2.54" layer="95">4. SOLDERMASK - 250 "A" UNITS WILL HAVE BLACK  COLOR, BOTH SIDES, 5 "B" UNITS WILL HAVE RED SOLDERMASK ON BOTH SIDES</text>
+<text x="17.78" y="233.68" size="2.54" layer="95">4. SOLDERMASK - 250 "A" UNITS WILL HAVE BLACK  COLOR, BOTH SIDES, 5 "B" UNITS WILL HAVE BLUE SOLDERMASK ON BOTH SIDES</text>
 <text x="17.78" y="228.6" size="2.54" layer="95">5. SILKSCREEN - WHITE INK, BOTH SIDES.  NO SILK ON PADS.  SILK SCREEN MAY BE TRIMMED TO AVOID INTERFERENCE WITH PADS</text>
 <text x="17.78" y="223.52" size="2.54" layer="95">6. ELECTRICAL TEST - 100%</text>
 <text x="17.78" y="218.44" size="2.54" layer="95">7. SUPPLIER MARKINGS - ALL MUST BE ON REAR OF PWB</text>
