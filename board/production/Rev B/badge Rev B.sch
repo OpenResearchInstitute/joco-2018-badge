@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -6891,17 +6891,17 @@ Source: AVX .. aphvc.pdf</description>
 <text x="25.4" y="149.86" size="2.54" layer="95">".CRS"  SOLDER SIDE CREAM</text>
 <text x="25.4" y="185.42" size="2.54" layer="95">".STC"  COMPONENT SIDE SOLDER MASK STOP</text>
 <text x="25.4" y="165.1" size="2.54" layer="95">".STS"  SOLDER SIDE SOLDER MASK STOP</text>
-<text x="25.4" y="139.7" size="2.54" layer="95">".DRD"  EXCELLON DRILL FILE</text>
-<text x="25.4" y="134.62" size="2.54" layer="95">".MNT"  XYRS DATA FILE FOR PLACEMENT</text>
+<text x="25.4" y="144.78" size="2.54" layer="95">".DRD"  EXCELLON DRILL FILE</text>
+<text x="25.4" y="139.7" size="2.54" layer="95">".MNT"  XYRS DATA FILE FOR PLACEMENT</text>
 <text x="229.87" y="52.07" size="2.54" layer="95">LAYER 1 - COMPONENT SIDE, 1oz FINISH</text>
 <text x="229.87" y="6.35" size="2.54" layer="95">LAYER 2 - SOLDER SIDE, 1oz FINISH</text>
 <text x="101.219" y="36.957" size="2.54" layer="95">DIELECTRIC THICKNESSES</text>
 <text x="181.61" y="29.21" size="2.1844" layer="95">60 mil</text>
 <text x="161.417" y="63.119" size="3.175" layer="95">LAYER STACKUP DETAIL</text>
-<text x="16.51" y="128.27" size="2.54" layer="95">12. PLATED HOLE TOLERANCE  .004"</text>
-<text x="25.4" y="144.78" size="2.54" layer="97">".MIL"  MILLING LAYER FOR INNER CUTOUTS (NOT PLATED)</text>
+<text x="16.51" y="133.35" size="2.54" layer="95">12. PLATED HOLE TOLERANCE  .004"</text>
 <text x="17.78" y="203.2" size="2.54" layer="95">10. 15mil MAX RADIUS  INSIDE MILLING CORNERS FOR SMALL RECTANGULAR OPENINGS</text>
 <text x="25.4" y="175.26" size="2.54" layer="95">".DIM"  DIMENSION LAYER WITH OUTSIDE DIMENSIONS IN MM</text>
+<text x="16.51" y="128.27" size="2.54" layer="95">13. 0 WIDTH LINE IN .PLC DEFINES SQUARE HOLE IN MIDDLE OF PCB IN DIMENSION LAYER.  THIS HOLE MUST BE MILLED WITH ANY SUITABLE RADIUS</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
