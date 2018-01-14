@@ -350,22 +350,22 @@ void mbp_system_test() {
 			util_gfx_print("Tilt");
 
 			util_gfx_set_cursor(0, 24);
-			util_gfx_print("Nearby");
-
-			util_gfx_set_cursor(0, 36);
 			util_gfx_print("Up");
 
-			util_gfx_set_cursor(0, 48);
+			util_gfx_set_cursor(0, 36);
 			util_gfx_print("Down");
 
-			util_gfx_set_cursor(0, 60);
+			util_gfx_set_cursor(0, 48);
 			util_gfx_print("Left");
 
-			util_gfx_set_cursor(0, 72);
+			util_gfx_set_cursor(0, 60);
 			util_gfx_print("Right");
 
-			util_gfx_set_cursor(0, 84);
+			util_gfx_set_cursor(0, 72);
 			util_gfx_print("Action");
+
+			util_gfx_set_cursor(0, 84);
+			util_gfx_print("Nearby");
 
 			util_gfx_set_cursor(0, 96);
 			util_gfx_print("Time");
@@ -380,63 +380,80 @@ void mbp_system_test() {
 		//Test for microsd
 		util_gfx_set_cursor(90, 0);
 		if (util_sd_file_size("BG.RAW") > 0) {
+			util_gfx_set_color(COLOR_GREEN);
 			util_gfx_print("Yes");
 		} else {
+			util_gfx_set_color(COLOR_RED);
 			util_gfx_print("No");
 		}
 
 		//Test tilt
 		util_gfx_set_cursor(90, 12);
 		if (util_tilt_inverted()) {
+			util_gfx_set_color(COLOR_BLUE);
 			util_gfx_print("Inv");
 		} else {
+			util_gfx_set_color(COLOR_YELLOW);
 			util_gfx_print("Norm");
 		}
 
-		//Show badge db count
-		util_gfx_set_cursor(90, 24);
-		sprintf(buffer, "%d", util_ble_badge_db_get()->badge_count);
-		util_gfx_print(buffer);
-
 		//up button
-		util_gfx_set_cursor(90, 36);
+		util_gfx_set_cursor(90, 24);
 		if (util_button_up()) {
+			util_gfx_set_color(COLOR_GREEN);
 			util_gfx_print("true");
 		} else {
+			util_gfx_set_color(COLOR_RED);
 			util_gfx_print("false");
 		}
 
 		//down button
-		util_gfx_set_cursor(90, 48);
+		util_gfx_set_cursor(90, 36);
 		if (util_button_down()) {
+			util_gfx_set_color(COLOR_GREEN);
 			util_gfx_print("true");
 		} else {
+			util_gfx_set_color(COLOR_RED);
 			util_gfx_print("false");
 		}
 
 		//left button
-		util_gfx_set_cursor(90, 60);
+		util_gfx_set_cursor(90, 48);
 		if (util_button_left()) {
+			util_gfx_set_color(COLOR_GREEN);
 			util_gfx_print("true");
 		} else {
+			util_gfx_set_color(COLOR_RED);
 			util_gfx_print("false");
 		}
 
 		//right button
-		util_gfx_set_cursor(90, 72);
+		util_gfx_set_cursor(90, 60);
 		if (util_button_right()) {
+			util_gfx_set_color(COLOR_GREEN);
 			util_gfx_print("true");
 		} else {
+			util_gfx_set_color(COLOR_RED);
 			util_gfx_print("false");
 		}
 
 		//action button
-		util_gfx_set_cursor(90, 84);
+		util_gfx_set_cursor(90, 72);
 		if (util_button_action()) {
+			util_gfx_set_color(COLOR_GREEN);
 			util_gfx_print("true");
 		} else {
+			util_gfx_set_color(COLOR_RED);
 			util_gfx_print("false");
 		}
+
+                util_gfx_set_color(COLOR_WHITE);
+
+		//Show badge db count
+                util_gfx_set_color(COLOR_WHITE);
+		util_gfx_set_cursor(90, 84);
+		sprintf(buffer, "%d", util_ble_badge_db_get()->badge_count);
+		util_gfx_print(buffer);
 
 		//Current time
 		util_gfx_set_cursor(90, 96);
@@ -449,27 +466,27 @@ void mbp_system_test() {
 
 		util_gfx_validate();
 
-		//Test LEDs
-		switch (color) {
-		case 0:
-			util_led_set_all(255, 0, 0);
-			break;
-		case 1:
-			util_led_set_all(0, 255, 0);
-			break;
-		case 2:
-			util_led_set_all(0, 0, 255);
-			break;
-		case 3:
-			util_led_set_all(255, 255, 0);
-			break;
-		case 4:
-			util_led_set_all(255, 255, 255);
-			break;
-		}
-		util_led_show();
-		color = (color + 1) % 5;
+		if (util_tilt_inverted()) {
+                    util_led_set_all(100, 100, 100);
+                    util_led_show();
+                } else {
+                    //Test LEDs
+                    switch (color) {
+                    case 0:
+                            util_led_set_all(100, 0, 0);
+                            break;
+                    case 1:
+                            util_led_set_all(0, 100, 0);
+                            break;
+                    case 2:
+                            util_led_set_all(0, 0, 100);
+                            break;
+                    }
+                    util_led_show();
+                    color = (color + 1) % 3;
+                }
 
+                util_gfx_set_color(COLOR_WHITE);
 		//Allow user to quit
 		if (util_button_left() > 0) {
 			break;
