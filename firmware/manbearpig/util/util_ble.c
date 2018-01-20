@@ -32,7 +32,7 @@
 #define BLE_BADGE_DB_UPDATE_TIME_MS		(1000 * 60)			/** 1 minute updates to badge DB**/
 #define BLE_BADGE_DB_MAX_AGE			(1000 * 30)			/** 30 second max age**/
 #define BLE_TX_POWER					0					/** 0dbm gain **/
-#define DEVICE_NAME 					"BENDER25"
+#define DEVICE_NAME 					"JOCO2018"
 #define APP_ADV_INTERVAL	      		0x0320                                       /**Advertising interval in units of 0.625ms */
 //#define APP_ADV_TIMEOUT_IN_SECONDS      180
 #define APP_FEATURE_NOT_SUPPORTED		BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2         /**< Reply when unsupported features are requested. */
