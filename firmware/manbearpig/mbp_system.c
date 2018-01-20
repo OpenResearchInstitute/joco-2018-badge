@@ -517,7 +517,7 @@ void mbp_system_unlock_state() {
 	//Clear out scheduler of any cig events
 	app_sched_execute();
 
-	util_gfx_draw_raw_file("BENDERL.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, false, NULL);
+	util_gfx_draw_raw_file("BLING/JOCO/SKLCROSS.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, false, NULL);
 	util_led_clear();
 
 	//If they've unlocked all 16 set all LEDs to blue

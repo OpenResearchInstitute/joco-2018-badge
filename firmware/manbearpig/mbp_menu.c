@@ -26,8 +26,8 @@
 #include "system.h"
 
 //New menu defines
-#define MAX_ITEMS				4
-#define MENU_COLOR				COLOR_WHITE
+#define MAX_ITEMS			4
+#define MENU_COLOR			COLOR_WHITE
 #define MENU_COLOR_BG			COLOR_BLACK
 #define MENU_ICON_SIZE			20
 #define MENU_INDICATOR_BG		COLOR_BLACK
@@ -36,7 +36,7 @@
 #define MENU_PADDING			2
 #define MENU_SCROLL_DELAY		200
 #define MENU_SELECTED_COLOR		COLOR_WHITE
-#define MENU_SIZE				27
+#define MENU_SIZE			27
 #define MENU_SELECTED_SIZE		114
 
 #define SUBMENU_SELECTED_COLOR	COLOR_CYAN
@@ -375,7 +375,7 @@ static void mbp_menu_bling() {
 	uint16_t unlock = mbp_state_unlock_get();
 
 	menu_t menu;
-	menu_item_t items[32];
+	menu_item_t items[48];
 	menu.items = items;
 	menu.selected = 0;
 	menu.top = 0;
@@ -383,16 +383,37 @@ static void mbp_menu_bling() {
 	menu.count = 0;
 
 	items[menu.count++] = (menu_item_t ) { "Backers", "MENU/KSLOGO.ICO", "MENU/KSLOGO.PRV", &mbp_menu_bling_ks, NULL };
-	items[menu.count++] = (menu_item_t ) { "Bender", "MENU/MASTER.ICO", "MENU/BENDER.PRV", &mbp_bling_bender, NULL };
 	items[menu.count++] = (menu_item_t ) { "Custom", "MENU/WRENCH.ICO", NULL, &mbp_bling_menu_custom, NULL };
+// uncomment this block and it fails when you try to use custom bling
+/*
+	items[menu.count++] = (menu_item_t ) { "Skull", "MENU/SKLCROSS.ICO", "MENU/SKLCROSS.PRV", &mbp_bling_skull_crossbones, NULL };
+	items[menu.count++] = (menu_item_t ) { "5thEl", "MENU/5THEL.ICO", "MENU/5THEL.PRV", &mbp_bling_5th_element_dance, NULL };
+	items[menu.count++] = (menu_item_t ) { "CandyMt", "MENU/CANDYMTN.ICO", "MENU/CANDYMTN.PRV", &mbp_bling_candy_mountain, NULL };
+	items[menu.count++] = (menu_item_t ) { "Concert", "MENU/CFLAME.ICO", "MENU/CFLAME.PRV", &mbp_bling_concert_flame, NULL };
+	items[menu.count++] = (menu_item_t ) { "Cyber", "MENU/CYBERMAN.ICO", "MENU/CYBERMAN.PRV", &mbp_bling_dancing_cyberman, NULL };
+	items[menu.count++] = (menu_item_t ) { "WhoTime", "MENU/DRWHOTIM.ICO", "MENU/DRWHOTIM.PRV", &mbp_bling_drwho_time, NULL };
+	items[menu.count++] = (menu_item_t ) { "Duck", "MENU/DUCKHUNT.ICO", "MENU/DUCKHUNT.PRV", &mbp_bling_duckhunt, NULL };
+	items[menu.count++] = (menu_item_t ) { "FoDrink", "MENU/FODRINK.ICO", "MENU/FODRINK.PRV", &mbp_bling_fallout_boygirl_drinking, NULL };
+*/
+	items[menu.count++] = (menu_item_t ) { "FoSci", "MENU/FOSCI.ICO", "MENU/FOSCI.PRV", &mbp_bling_fallout_boy_science, NULL };
+	items[menu.count++] = (menu_item_t ) { "MyHorse", "MENU/MYHORSE.ICO", "MENU/MYHORSE.PRV", &mbp_bling_get_on_my_horse, NULL };
+	items[menu.count++] = (menu_item_t ) { "Mltipas", "MENU/MLTIPASS.ICO", "MENU/MLTIPASS.PRV", &mbp_bling_multipass_leelo, NULL };
+	items[menu.count++] = (menu_item_t ) { "Outer", "MENU/OUTERLIM.ICO", "MENU/OUTERLIM.PRV", &mbp_bling_outer_limits, NULL };
+	items[menu.count++] = (menu_item_t ) { "PortFp", "MENU/PORTALFP.ICO", "MENU/PORTALFP.PRV", &mbp_bling_portal_frying_pan, NULL };
+	items[menu.count++] = (menu_item_t ) { "PortWk", "MENU/PORTALWN.ICO", "MENU/PORTALWN.PRV", &mbp_bling_portal_wink, NULL };
+	items[menu.count++] = (menu_item_t ) { "Portals", "MENU/PORTALS.ICO", "MENU/PORTALS.PRV", &mbp_bling_portals, NULL };
+	items[menu.count++] = (menu_item_t ) { "Slees", "MENU/SLEESTAK.ICO", "MENU/SLEESTAK.PRV", &mbp_bling_sleestaks, NULL };
+	items[menu.count++] = (menu_item_t ) { "TrdNyan", "MENU/TARDNYAN.ICO", "MENU/TARDNYAN.PRV", &mbp_bling_tardis_nyan, NULL };
+	items[menu.count++] = (menu_item_t ) { "Twilite", "MENU/TWILITE.ICO", "MENU/TWILITE.PRV", &mbp_bling_twilight_zone, NULL };
+	items[menu.count++] = (menu_item_t ) { "ZmbNyan", "MENU/ZOMBNYAN.ICO", "MENU/ZOMBNYAN.PRV", &mbp_bling_zombie_nyan, NULL };
 	items[menu.count++] = (menu_item_t ) { "Badger", "MENU/BADGERS.ICO", "MENU/BADGERS.PRV", &mbp_bling_badgers, NULL };
 	items[menu.count++] = (menu_item_t ) { "Wheaton", "MENU/WWSPIN.ICO", "MENU/WWSPIN.PRV", &mbp_bling_wheaton, NULL };
 	items[menu.count++] = (menu_item_t ) { "Flames", "MENU/FLAMES.ICO", "MENU/FLAMES.PRV", &mbp_bling_flames, NULL };
-	items[menu.count++] = (menu_item_t ) { "Party", "MENU/PARTY.ICO", "MENU/PARTY.PRV", &mbp_bling_party, NULL };
+//	items[menu.count++] = (menu_item_t ) { "Party", "MENU/PARTY.ICO", "MENU/PARTY.PRV", &mbp_bling_party, NULL };
 
-	if ((unlock & UNLOCK_MASK_MASTER) > 0) {
-		items[menu.count++] = (menu_item_t ) { "Rager", "MENU/PARTY.ICO", "MENU/PARTY.PRV", &mbp_bling_rager, NULL };
-	}
+//	if ((unlock & UNLOCK_MASK_MASTER) > 0) {
+//		items[menu.count++] = (menu_item_t ) { "Rager", "MENU/PARTY.ICO", "MENU/PARTY.PRV", &mbp_bling_rager, NULL };
+//	}
 
 	items[menu.count++] = (menu_item_t ) { "Toad", "MENU/TOAD.ICO", "MENU/TOAD.PRV", &mbp_bling_toad, NULL };
 #ifndef OPSEC

@@ -360,10 +360,11 @@ void mbp_bling_badgers() {
 void mbp_bling_wheaton() {
 	uint8_t hue = 0;
 	util_led_clear();
-	util_gfx_draw_raw_file("BLING/WWSPIN.RAW", 0, 0, 128, 128, &__mbp_bling_spin_callback, true, &hue);
+	util_gfx_draw_raw_file("BLING/JOCO/WWSPIN.RAW", 0, 0, 128, 128, &__mbp_bling_spin_callback, true, &hue);
 }
 
-static void __led_bender(uint8_t f_unused, void *p_data) {
+static void __led_jollyroger(uint8_t f_unused, void *p_data) {
+// TODO -spc- Redo this for jolly roger pirate monkey eye - it's still the bender LED code
 	uint8_t mouth_closed[] = { 4, 5, 6, 7 };
 	uint8_t mouth_open[] = { 1, 2, 4, 7, 9, 10 };
 	uint8_t frame = *((uint8_t *) p_data);
@@ -406,6 +407,120 @@ static void __led_bender(uint8_t f_unused, void *p_data) {
 	*((uint8_t *) p_data) = frame;
 }
 
+void mbp_bling_skull_crossbones() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/SKLCROSS.RAW", 0, 0, 128, 128, &__led_jollyroger, true, &hue);
+}
+
+void mbp_bling_5th_element_dance() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/5THEL.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_candy_mountain() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/CANDYMTN.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_concert_flame() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/CFLAME.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_dancing_cyberman() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/CYBERMAN.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_drwho_time() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/DRWHOTIM.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_duckhunt() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/DUCKHUNT.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_fallout_boygirl_drinking() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/FODRINK.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_fallout_boy_science() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/FOSCI.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_get_on_my_horse() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/MYHORSE.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_multipass_leelo() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/MLTIPASS.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_outer_limits() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/OUTERLIM.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_portal_frying_pan() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/PORTALFP.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_portal_wink() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/PORTALWN.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_portals() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/PORTALS.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_sleestaks() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/SLEESTAK.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_tardis_nyan() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/TARDNYAN.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_twilight_zone() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/TWILITE.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
+void mbp_bling_zombie_nyan() {
+	uint8_t hue = 0;
+	util_led_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/ZOMBNYAN.RAW", 0, 0, 128, 128, &__spectrum_analyzer_callback, true, &hue);
+}
+
 static void __led_chase_cw_callback(uint8_t frame, void *p_data) {
 	uint8_t *p_index = (uint8_t *) p_data;
 	uint8_t order[] = { 0, 1, 2, 3, 7, 11, 10, 9, 8, 4 };
@@ -420,7 +535,7 @@ static void __led_chase_cw_callback(uint8_t frame, void *p_data) {
 	}
 }
 
-extern void __led_hue_cycle(uint8_t frame, void *p_data) {
+void __led_hue_cycle(uint8_t frame, void *p_data) {
 	uint8_t *p_hue = (uint8_t *) p_data;
 	float hue = (float) (*p_hue) / 100.0;
 	uint32_t color = util_led_hsv_to_rgb(hue, .6, .8);
@@ -432,30 +547,6 @@ extern void __led_hue_cycle(uint8_t frame, void *p_data) {
 		hue = 0;
 	}
 	*p_hue = (hue * 100.0);
-}
-
-void mbp_bling_bender() {
-	util_led_clear();
-	uint8_t index = 0;
-	uint8_t count = 5;
-
-	//Unlock more bender bling
-	if ((mbp_state_unlock_get() & UNLOCK_MASK_CARD) > 0) {
-		count = 8;
-	}
-
-	char *modes[] = { "BLING/AND!XOR/BENDER8.RAW", "BLING/AND!XOR/BENDER9.RAW", "BLING/AND!XOR/BENDERA.RAW", "BLING/AND!XOR/BENDERB.RAW",
-			"BLING/AND!XOR/BENDERC.RAW", "BLING/AND!XOR/BENDERD.RAW", "BLING/AND!XOR/BENDERE.RAW", "BLING/AND!XOR/BENDERH.RAW" };
-	uint8_t button = 0;
-
-	util_led_clear();
-
-	//If anything other than left button is pressed cycle modes
-	while ((button & BUTTON_MASK_LEFT) == 0) {
-		uint8_t frame = 0;
-		button = util_gfx_draw_raw_file(modes[index], 0, 0, 128, 128, &__led_bender, true, &frame);
-		index = (index + 1) % count;
-	}
 }
 
 void mbp_bling_damon() {
@@ -610,46 +701,6 @@ void mbp_bling_owl() {
 	//If anything other than left button is pressed cycle modes
 	while ((button & BUTTON_MASK_LEFT) == 0) {
 		button = util_gfx_draw_raw_file(modes[index], 0, 0, 128, 128, &__mbp_bling_rainbow_eye_callback, true, &hue);
-		index = (index + 1) % count;
-	}
-}
-
-void mbp_bling_party() {
-	uint8_t index = 0;
-	uint8_t count = 3;
-
-	if ((mbp_state_unlock_get() & UNLOCK_MASK_SCROLL) > 0) {
-		count = 6;
-	}
-	char *modes[] = { "BLING/AND!XOR/FRY1.RAW", "BLING/AND!XOR/BENDER5.RAW", "BLING/AND!XOR/ZOIDBRG2.RAW", "BLING/AND!XOR/BENDER6.RAW",
-			"BLING/AND!XOR/BENDER7.RAW", "BLING/AND!XOR/ZOIDBRG4.RAW" };
-	uint8_t button = 0;
-
-	util_led_clear();
-
-	//If anything other than left button is pressed cycle modes
-	while ((button & BUTTON_MASK_LEFT) == 0) {
-		button = util_gfx_draw_raw_file(modes[index], 0, 0, 128, 128, &__spectrum_analyzer_callback, true, NULL);
-		index = (index + 1) % count;
-	}
-}
-
-void mbp_bling_rager() {
-	uint8_t index = 0;
-	uint8_t count = 3;
-
-	if ((mbp_state_unlock_get() & UNLOCK_MASK_SCROLL) > 0) {
-		count = 6;
-	}
-	char *modes[] = { "BLING/AND!XOR/RGFRY.RAW", "BLING/AND!XOR/RGBW.RAW", "BLING/AND!XOR/RGZB1.RAW", "BLING/AND!XOR/RGBN.RAW",
-			"BLING/AND!XOR/RGHM.RAW", "BLING/AND!XOR/RGZB2.RAW" };
-	uint8_t button = 0;
-
-	util_led_clear();
-
-	//If anything other than left button is pressed cycle modes
-	while ((button & BUTTON_MASK_LEFT) == 0) {
-		button = util_gfx_draw_raw_file(modes[index], 0, 0, 128, 128, &__spectrum_analyzer_callback, true, NULL);
 		index = (index + 1) % count;
 	}
 }
