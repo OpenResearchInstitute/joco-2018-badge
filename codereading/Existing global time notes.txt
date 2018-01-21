@@ -1,0 +1,16 @@
+Notes on AND!XOR Global Time processing
+2018-01-20 ptw
+
+This is all in util_ble.c and util.c
+
+In __handle_advertisement, after updating the database, if the advertisement came from another Bender badge and has a time update, we call __global_time_advertisement_process(t,id).
+
+__global_time_advertisement_process() decrypts the new time by XORing with the sending device_id and the BLE_GLOBAL_TIME_SECRET. The decrypted time is then converted into milliseconds (from units of 16.384 seconds) and compared with our local millisecond counter. If greater, it is effectively loaded into the local millisecond counter. This is implemented by computing a new time offset and giving that to util_millis_offset_set().
+
+There is a timer called m_ble_global_time_timer, repeating every BLE_GLOBAL_TIME_UPDATE_MS (1000ms). __global_time_timer_handler(p_data) then schedules an event for the main thread. On the main thread, this invokes __global_time_schedule_handler(p_data, len). When this runs (once per second), it gets the current time, converts it to units of 16.384 seconds, encrypts it with our device_id and BLE_GLOBAL_TIME_SECRET, and updates our advertising data in memory (m_adv_data) and then calls ble_advdata_set() to start using the new time value.
+
+So, everybody is broadcasting their idea of time every 16 seconds, and the later time always wins. For any partition of the badges that is frequently in communications range, the badges will quickly come to agree on what time it is, based on time from the badge that was turned on first.
+
+Time rolls over after 12.4 days. This is not a problem for a conference badge as long as nobody is cheating or purposely trying to subvert it. Cheating turns out to be easy enough -- at DC25 the BLE_GLOBAL_TIME_SECRET was reversed and people were able to subvert the time distribution system.
+
+There is a restriction in util_millis_offset_set() that prevents jumps of more than 3 days.

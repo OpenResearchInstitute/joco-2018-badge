@@ -1,0 +1,18 @@
+Notes on AND!XOR Beacon processing
+2018-01-20 ptw
+
+At the bottom of __handle_advertisement() we call beacon_ble_on_ble_advertisement(). If it's a valid beacon, we call __cpv_test() and __wh_test() and (formerly) __activation_test().
+
+Valid beacon means: 31 bytes data length, type (at offset 2) is TYPE_BEACON (6).
+
+__cpv_test() checks for a matching UUID at UUID_OFFSET and schedules __cpv_unlock() to run on the main thread if CPV hasn't already been unlocked.
+
+__wh_test() does the same thing, calling __wh_unlock().
+
+__cpv_unlock() displays "Welcome to CPV. New bling mode unlocked." and sets the UNLOCK_MASK_CPV bit using mbp_state_unlock_set().
+
+__wh_unlock() on the other hand says "You found the White Hat. 5 levels and 500 botnet points gained." and behaves accordingly. It unlocks UNLOCK_MASK_WH and also updates botnet state.
+
+The activation code is commented out, but it says "Badge Activated!" and calls mbp_state_activate_set() to update the state.
+
+These UUID comparisons are against 16-byte values that are hard-coded at the top of beacon_ble.c, found at offset 9 into the data field.

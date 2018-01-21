@@ -1,0 +1,63 @@
+Notes on AND!XOR Badge database code
+2018-01-20 ptw
+
+This is all hiding in util_ble.h and util_ble.c
+
+typedef struct {
+	ble_gap_addr_t address;		// one byte of type + 6 bytes of address
+	char name[SETTING_NAME_LENGTH];
+	uint16_t company_id;
+	uint16_t device_id;
+	uint32_t last_seen;
+	uint8_t level;
+	int8_t rssi;
+	bool said_hello;
+	uint8_t avatar;
+} ble_badge_t;
+
+#define BADGE_DB_SIZE						32
+typedef struct {
+	ble_badge_t badges[BADGE_DB_SIZE];
+	volatile uint16_t badge_count;
+} ble_badge_db_t;
+
+//Local badge database
+static ble_badge_db_t m_badge_db;
+
+There's a timer called m_ble_badge timer. Its handler is called __badge_db_timer_handler(). It walks backwards through the database, computing the age of each entry by comparing last_seen to util_millis(). If the entry is older than BLE_BADGE_DB_MAX_AGE (30 secs) it is deleted; if not, the routine exits. That's a bug. NOTE that util_millis() is subject to jumping ahead based on received advertisements.
+
+Badges are identified by device_id, as implemented in __badge_is_same()
+
+Badges are compared by rssi, as implemented in __badge_compare(), for the purpose of sorting as implemented in __badge_db_sort().
+
+Every discovery event gets forwarded to 11 different places, one of which is __on_ble_evt(). If __on_ble_evt() finds a GAP advertising report, it passes it to __handle_advertisement(p_report).
+
+In __handle_advertisement(), if the company_id is from the recognized list (AND!XOR, CPV, DC801, DC503, Queercon) and the name is valid, we process:
+  * badge database
+  * C2 processing OR Hello processing
+  * global time updates
+
+We search the existing database for a badge that's the same, i.e. has the same device_id. If it isn't found and there's room, we add it. If it isn't found and there isn't room, we overwrite the last entry.
+
+Once that's done we re-sort the database, on rssi.
+
+
+Data collected/stored:
+
+	* rssi comes directly from the Bluetooth stack report.
+	
+	* said_hello is initialized to false. If we find an existing database record, said_hello is updated from the record. If we decide to say hello, it's set to true.
+	
+	* address is copied directly from the Bluetooth stack report. Type info included. Type could be public, random static, random private resolvable, or random private nonresolvable. This address is never used except in the case of Medea vodka bottles.
+	
+	* name is copied out of the name record, if there is one. If there isn't, we will skip most processing. However, if there's a company specific data record from CPV, DC503, DC801, or Queercon, we overwrite the name with the corresponding constant string. 
+	
+	* company_id is parsed out of the company specific data record, if there is one. If there isn't, it defaults to garbage, which could accidentally match a valid company_id.
+	
+	* device_id is parsed out of the company specific data record if there is one, and if its company ID matches AND!XOR.
+	
+	* level is parsed out of the company specific data record if there is one. Otherwise, defaults to garbage.
+	
+	* avatar is parsed out of the company specific data record if there is one. Otherwise, defaults to garbage.
+	
+Besides that, c2 data is parsed out of the company specific data record, and sent to mbp_master_c2_process().

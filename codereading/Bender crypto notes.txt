@@ -1,0 +1,92 @@
+Analyzing mbp_state.c on 2018-01-19 ptw
+
+__nonce_generate(buf)
+	uses util_math_rand8()
+
+__ctr_init()
+	uses util_get_device_id()
+	fills up m_ecb_data struct with key, global nonce, counter
+	m_ecb_data has key and cleartext and is a nrf_ecb_hal_data_t from Nordic
+
+__crypt(buf, len)
+	uses sd_ecb_block_encrypt() on m_ecb_data -- from Nordic SDK
+	... which encrypts using key and cleartext to create ciphertext
+	... that is, encrypts the key, nonce, and counter.
+	... this gives us private bytes which we XOR into the buffer
+
+__ctr_encrypt(buf, len)
+	wraps __crypt(), changes nothing.
+
+__ctr_decrypt(buf, len)
+	also wraps crypt(), changes nothing. (XOR is its own complement)
+
+comments promise that counter will only be incremented if there are no errors, but is that really the case?
+
+mbp_state_new()
+	Set up a blank badge with defaults: name, airplane mode, tilt enable, game values, etc. all go into m_badge_state.
+	AND the counter gets reset.
+
+mbp_state_load()
+	loads m_cbc_state from hard-coded SHADOW.DAT file, creates if not found.
+	__ctr_init()
+	decrypts cipher text from m_cbc_state
+	re-inits counter from the cleartext
+	copies the decrypted data into m_badge_state
+	after a canary check, initializes stuff from the values in m_badge_state
+
+__save_schedule_handler(buf, len)
+	*** this gets called to save the state (is it on a schedule?)
+	new nonce
+	new __ctr_init()
+	puts m_badge_state into m_cbc_state and encrypts it
+	writes it to SHADOW.DAT
+	if all goes well, copies the counter back to global counter.
+
+mbp_state_save()
+	schedules __save_schedule_handler to run?
+	this is called from all over.
+
+mbp_state_activated_get()
+	used to check an activation list, now just returns true.
+
+mbp_state_activated_set(bool)
+	used to create an activation list entry, now does nothing.
+
+plus get/set/show routines for everything in m_badge_state
+
+=========
+key starts with a hard-coded 16-byte value, but last two bytes get overwritten with the device id. This happens every time the state is written, for no obvious reason.
+
+global m_cbc_state contains counter (init to 0 by mbp_state_new, updated from m_ecb_data.cleartext in mbp_state_load), nonce (randomized on each save), cipher_text (read from SHADOW.DAT and decrypted by mbp_state_load)
+
+So, each time mbp_state_save is called:
+	__save_schedule_handler is scheduled to run. This lets us call mbp_state_save even from interrupt context and still have the save happen on the main thread.
+	randomly generate a nonce of 12 bytes (goes into m_cbc_state)
+	copy the key (from global) into m_ecb_data.key
+	copy the counter (from m_cbc_state) and nonce into m_ecb_data.cleartext
+	copy the payload into m_cbc_state.cipher_text
+	__ctr_encrypt() to encrypt m_ecb_data.cleartext and XOR into m_cbc_state.cipher_text
+	write m_cbc_state out into SHADOW.DAT -- includes counter, nonce, and ciphertext.
+
+==========
+
+Comments talk about "serialization" but the badge_state_t is simply dumped in in-memory binary format. Not portable, but hey!
+
+Function names include "cbc" but there is no CBC code here. It's all CTR.
+
+
+==========
+
+Size assumptions. There are some?
+The nonce is fixed at NONCE_RAND_BYTE_LEN bytes. 12. Not a problem.
+The counter is fixed at 32 bytes. Not a problem for reasonable data rates.
+The cipher_text in cbc_badge_state_t is fixed to sizeof(badge_state_t), so some of these routines are specific to saving the badge state struct.
+
+CTR block size is limited to 16, which is a built-in limitation of the SDK's AES ECB function. However, it's spelled ECB_KEY_LEN, the key size, which is not necessarily the same thing. It so happens that it is also 16, so OK.
+
+__crypt is smart enough to do multiple blocks, up to 65535 bytes total data. Counter increments for each block.
+
+=========
+
+To use this scheme for other data, we need to replace m_cbc_state (of type cbc_badge_state_t) with a structure that can hold our other data. This could be a copy-and-paste of routines here, or the routines here could be generalized to handle variable size data.
+
