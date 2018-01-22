@@ -54,10 +54,10 @@ uint8_t mbp_menu(menu_t *p_menu) {
 
 	uint32_t size = MENU_ICON_SIZE * MENU_ICON_SIZE * 2;
 	uint8_t text_offset = 11;
-	uint8_t icons[p_menu->count][size];
+	uint8_t icons[MAX_ITEMS][size];	// Only the ones on screen now
 
-	//Load icons
-	for (uint8_t i = 0; i < p_menu->count; i++) {
+	//Preload icons for the first screenful of the menu
+	for (uint8_t i = 0; i < p_menu->count && i < MAX_ITEMS; i++) {
 		if (p_menu->items[i].icon != NULL) {
 			util_sd_load_file(p_menu->items[i].icon, icons[i], size);
 		}
@@ -113,7 +113,7 @@ uint8_t mbp_menu(menu_t *p_menu) {
 			}
 
 			if (p_menu->items[p_menu->top + i].icon != NULL) {
-				util_gfx_draw_raw(x + MENU_PADDING, y + MENU_PADDING, MENU_ICON_SIZE, MENU_ICON_SIZE, icons[p_menu->top + i]);
+				util_gfx_draw_raw(x + MENU_PADDING, y + MENU_PADDING, MENU_ICON_SIZE, MENU_ICON_SIZE, icons[i]);
 			}
 		}
 
@@ -134,6 +134,10 @@ uint8_t mbp_menu(menu_t *p_menu) {
 				//If already at bottom, scroll
 				else {
 					p_menu->top++;
+					memmove(icons[0], icons[1], size * (MAX_ITEMS-1));
+					if (p_menu->items[p_menu->selected].icon != NULL) {
+						util_sd_load_file(p_menu->items[p_menu->selected].icon, icons[MAX_ITEMS-1], size);
+					}
 				}
 
 				nrf_delay_ms(MENU_SCROLL_DELAY);
@@ -149,6 +153,10 @@ uint8_t mbp_menu(menu_t *p_menu) {
 				//If already at top scroll
 				else {
 					p_menu->top--;
+					memmove(icons[1], icons[0], size * (MAX_ITEMS-1));
+					if (p_menu->items[p_menu->selected].icon != NULL) {
+						util_sd_load_file(p_menu->items[p_menu->selected].icon, icons[0], size);
+					}
 				}
 
 				nrf_delay_ms(MENU_SCROLL_DELAY);
@@ -384,8 +392,6 @@ static void mbp_menu_bling() {
 
 	items[menu.count++] = (menu_item_t ) { "Backers", "MENU/KSLOGO.ICO", "MENU/KSLOGO.PRV", &mbp_menu_bling_ks, NULL };
 	items[menu.count++] = (menu_item_t ) { "Custom", "MENU/WRENCH.ICO", NULL, &mbp_bling_menu_custom, NULL };
-// uncomment this block and it fails when you try to use custom bling
-/*
 	items[menu.count++] = (menu_item_t ) { "Skull", "MENU/SKLCROSS.ICO", "MENU/SKLCROSS.PRV", &mbp_bling_skull_crossbones, NULL };
 	items[menu.count++] = (menu_item_t ) { "5thEl", "MENU/5THEL.ICO", "MENU/5THEL.PRV", &mbp_bling_5th_element_dance, NULL };
 	items[menu.count++] = (menu_item_t ) { "CandyMt", "MENU/CANDYMTN.ICO", "MENU/CANDYMTN.PRV", &mbp_bling_candy_mountain, NULL };
@@ -394,7 +400,7 @@ static void mbp_menu_bling() {
 	items[menu.count++] = (menu_item_t ) { "WhoTime", "MENU/DRWHOTIM.ICO", "MENU/DRWHOTIM.PRV", &mbp_bling_drwho_time, NULL };
 	items[menu.count++] = (menu_item_t ) { "Duck", "MENU/DUCKHUNT.ICO", "MENU/DUCKHUNT.PRV", &mbp_bling_duckhunt, NULL };
 	items[menu.count++] = (menu_item_t ) { "FoDrink", "MENU/FODRINK.ICO", "MENU/FODRINK.PRV", &mbp_bling_fallout_boygirl_drinking, NULL };
-*/
+
 	items[menu.count++] = (menu_item_t ) { "FoSci", "MENU/FOSCI.ICO", "MENU/FOSCI.PRV", &mbp_bling_fallout_boy_science, NULL };
 	items[menu.count++] = (menu_item_t ) { "MyHorse", "MENU/MYHORSE.ICO", "MENU/MYHORSE.PRV", &mbp_bling_get_on_my_horse, NULL };
 	items[menu.count++] = (menu_item_t ) { "Mltipas", "MENU/MLTIPASS.ICO", "MENU/MLTIPASS.PRV", &mbp_bling_multipass_leelo, NULL };
@@ -409,12 +415,6 @@ static void mbp_menu_bling() {
 	items[menu.count++] = (menu_item_t ) { "Badger", "MENU/BADGERS.ICO", "MENU/BADGERS.PRV", &mbp_bling_badgers, NULL };
 	items[menu.count++] = (menu_item_t ) { "Wheaton", "MENU/WWSPIN.ICO", "MENU/WWSPIN.PRV", &mbp_bling_wheaton, NULL };
 	items[menu.count++] = (menu_item_t ) { "Flames", "MENU/FLAMES.ICO", "MENU/FLAMES.PRV", &mbp_bling_flames, NULL };
-//	items[menu.count++] = (menu_item_t ) { "Party", "MENU/PARTY.ICO", "MENU/PARTY.PRV", &mbp_bling_party, NULL };
-
-//	if ((unlock & UNLOCK_MASK_MASTER) > 0) {
-//		items[menu.count++] = (menu_item_t ) { "Rager", "MENU/PARTY.ICO", "MENU/PARTY.PRV", &mbp_bling_rager, NULL };
-//	}
-
 	items[menu.count++] = (menu_item_t ) { "Toad", "MENU/TOAD.ICO", "MENU/TOAD.PRV", &mbp_bling_toad, NULL };
 #ifndef OPSEC
 	items[menu.count++] = (menu_item_t ) { "Twitter", "MENU/TWITTER.ICO", "MENU/TWITTER.PRV", &mbp_bling_twitter, NULL };
