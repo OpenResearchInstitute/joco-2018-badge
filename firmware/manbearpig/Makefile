@@ -59,10 +59,13 @@ SRC_FILES += \
 	$(SDK_ROOT)/components/libraries/util/app_util_platform.c \
 	$(SDK_ROOT)/components/libraries/util/nrf_assert.c \
 	$(SDK_ROOT)/components/libraries/util/sdk_mapped_flags.c \
+	$(SDK_ROOT)/components/nfc/t2t_lib/hal_t2t/hal_nfc_t2t.c \
+	$(SDK_ROOT)/components/nfc/ndef/generic/message/nfc_ndef_msg.c \
+	$(SDK_ROOT)/components/nfc/ndef/text/nfc_text_rec.c \
+	$(SDK_ROOT)/components/nfc/ndef/generic/record/nfc_ndef_record.c \
 	$(SDK_ROOT)/components/softdevice/common/softdevice_handler/softdevice_handler.c \
 	$(SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf52.S \
 	$(SDK_ROOT)/components/toolchain/system_nrf52.c \
-	$(SDK_ROOT)/components/nfc/t2t_lib/hal_t2t/hal_nfc_t2t.c \
 	$(SDK_ROOT)/external/fatfs/port/diskio_blkdev.c \
 	$(SDK_ROOT)/external/fatfs/src/ff.c \
 	$(SDK_ROOT)/external/segger_rtt/RTT_Syscalls_GCC.c \
@@ -101,7 +104,6 @@ SRC_FILES += \
 	mbp_term.c \
 	mbp_ui.c \
 	skifree.c 
-
 
 # Include folders common to all targets
 INC_FOLDERS += \
@@ -197,6 +199,9 @@ INC_FOLDERS += \
 	$(SDK_ROOT)/components/toolchain/gcc \
 	$(SDK_ROOT)/components/nfc/t2t_lib/hal_t2t \
 	$(SDK_ROOT)/components/nfc/t2t_lib \
+	$(SDK_ROOT)/components/nfc/ndef/generic/message \
+	$(SDK_ROOT)/components/nfc/ndef/generic/record \
+	$(SDK_ROOT)/components/nfc/ndef/text \
 	$(SDK_ROOT)/external/fatfs/port \
 	$(SDK_ROOT)/external/fatfs/src \
 	$(SDK_ROOT)/external/protothreads \
@@ -215,6 +220,7 @@ INC_FOLDERS += \
 
 # Libraries common to all targets
 LIB_FILES += \
+  $(SDK_ROOT)/components/nfc/t2t_lib/nfc_t2t_lib_gcc.a \
 
 # C flags common to all targets
 CFLAGS += -DDEBUG
@@ -296,7 +302,6 @@ LDFLAGS += -Wl,--gc-sections
 LDFLAGS += --specs=nano.specs -lc -lnosys
 # Enable printf float support
 LDFLAGS += -u _printf_float
-
 
 .PHONY: $(TARGETS) default all clean help flash  flash_softdevice
 # Default target - first one defined

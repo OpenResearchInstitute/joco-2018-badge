@@ -111,6 +111,9 @@
 #include <peer_manager.h>
 #include <softdevice_handler.h>
 #include <hal_nfc_t2t.h>
+#include <nfc_t2t_lib.h>
+#include <nfc_ndef_msg.h>
+#include <nfc_text_rec.h>
 
 //Nordic external FATFS
 #include "diskio_blkdev.h"

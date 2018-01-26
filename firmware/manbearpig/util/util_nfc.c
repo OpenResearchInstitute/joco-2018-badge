@@ -21,23 +21,44 @@
 #include "../system.h"
 
 //#defines
+#define MAX_REC_COUNT      1     /**< Maximum records count. */
 
 //Local nfc data
+uint8_t m_ndef_msg_buf[32];
 
-
-
-/**@brief Function for registering the sequence of internal bytes.
- *
- * @details This refers to the first 10 bytes of the tag memory. The library will
- * set a sensible default for these bytes. The application can use this function
- * to override the default.
- *
- * See: https://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.sdk5.v12.2.0%2Fgroup__nfc__t2t__lib.html
- *
- * @param[in] p_data  pointer to the data.
- * @param[in] data_length  data length.
+/**
+ * @brief Function for creating a record in English.
  */
-void nfc_t2t_internal_set(uint8_t *p_data, size_t data_length) {
+static void en_record_add(nfc_ndef_msg_desc_t * p_ndef_msg_desc)
+{
+    uint32_t             err_code;
+    static const uint8_t en_payload[] =
+                  {'J', 'o', 'c', 'o', ' ', '2', '0', '1', '8', '!'};
+    static const uint8_t en_code[] = {'e', 'n'};
+
+    NFC_NDEF_TEXT_RECORD_DESC_DEF(en_text_rec,
+                                  UTF_8,
+                                  en_code,
+                                  sizeof(en_code),
+                                  en_payload,
+                                  sizeof(en_payload));
+
+    err_code = nfc_ndef_msg_record_add(p_ndef_msg_desc,
+                                       &NFC_NDEF_TEXT_RECORD_DESC(en_text_rec));
+    APP_ERROR_CHECK(err_code);
+}
+
+
+static void welcome_msg_encode(uint8_t * p_buffer, uint32_t * p_len)
+{
+    NFC_NDEF_MSG_DEF(welcome_msg, MAX_REC_COUNT);
+
+    en_record_add(&NFC_NDEF_MSG(welcome_msg));
+ 
+     uint32_t err_code = nfc_ndef_msg_encode(&NFC_NDEF_MSG(welcome_msg),
+                                            p_buffer,
+                                            p_len);
+    APP_ERROR_CHECK(err_code);
 }
 
 /**@brief Function for handling the Application's NFC events.
@@ -46,11 +67,9 @@ void nfc_t2t_internal_set(uint8_t *p_data, size_t data_length) {
  *
  * @param[in] TODO_FILL_THIS_IN  Advertising event.
  */
-static void __on_nfc_evt(void *p_context, hal_nfc_event_t nfc_evt, const uint8_t *p_data, size_t data_length) {
-	uint32_t err_code = 0;
-	UNUSED_VARIABLE(err_code);
+static void nfc_callback(void * p_context, nfc_t2t_event_t event, const uint8_t * p_data, size_t data_length) {
 
-	switch (nfc_evt) {
+	switch (event) {
 	case HAL_NFC_EVENT_FIELD_ON:
 		break; // HAL_NFC_EVENT_FIELD_ON
 	case HAL_NFC_EVENT_FIELD_OFF:
@@ -78,14 +97,19 @@ void util_nfc_start() {
 }
 
 void util_nfc_init() {
+        uint32_t  len = sizeof(m_ndef_msg_buf);
 	uint32_t err_code;
-        // Intialize context if needed, for now we don't use it
-        void *p_context = 0;
 
-        err_code = hal_nfc_setup(__on_nfc_evt, p_context);
+        err_code = nfc_t2t_setup(nfc_callback, NULL);
 	APP_ERROR_CHECK(err_code);
 
-        // Set parameters as needed
-        //err_code = hal_nfc_parameter_set (hal_nfc_param_id_t id, void *p_data, size_t data_length)
-	//APP_ERROR_CHECK(err_code);
+        /* Encode welcome message */
+        welcome_msg_encode(m_ndef_msg_buf, &len);
+
+        /* Set created message as the NFC payload */
+        err_code = nfc_t2t_payload_set(m_ndef_msg_buf, len);
+        APP_ERROR_CHECK(err_code);
+
+        err_code = nfc_t2t_emulation_start();
+        APP_ERROR_CHECK(err_code);
 }

@@ -41,6 +41,17 @@
 #define NFC_HAL_ENABLED 1
 #endif
 
+#ifndef NFCT_CONFIG_IRQ_PRIORITY
+#define NFCT_CONFIG_IRQ_PRIORITY 7
+#endif
+
+//==========================================================
+// <e> NFC_NDEF_MSG_ENABLED -
+//==========================================================
+#ifndef NFC_NDEF_MSG_ENABLED
+#define NFC_NDEF_MSG_ENABLED 1
+#endif
+
 //==========================================================
 // <e> GPIOTE_ENABLED - nrf_drv_gpiote - GPIOTE peripheral driver
 //==========================================================
