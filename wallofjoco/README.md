@@ -1,4 +1,4 @@
-# Wall of Joco 2018 at DEFCON 25
+# Wall of Joco 2018
 
 Brought to you by Abraxas3D and Skunkwrx.
 
