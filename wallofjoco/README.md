@@ -44,13 +44,18 @@ other resolution.
 The NFC hardware was an Adafruit PN532 breakout board, connected to the
 Raspberry Pi Zero W's serial port.
 
+An Adafruit 3013 DS3231 realtime clock breakout was connected to the
+Raspberry Pi Zero W and configured according to Adafruit's
+[Adding a Real Time Clock to Raspberry Pi](https://learn.adafruit.com/adding-a-real-time-clock-to-raspberry-pi).
+
 ## Deployment Notes
 
 ### Operating System
 
-We used
+We originally used
 [NOOBS](https://www.raspberrypi.org/blog/introducing-noobs/) 2.4.2 to install
-[Raspbian](http://raspbian.org) Jessie on an 8GB SD card.
+[Raspbian](http://raspbian.org) Jessie on an 8GB SD card, and updated the
+system regularly thereafter.
 
 ### Permissions
 
