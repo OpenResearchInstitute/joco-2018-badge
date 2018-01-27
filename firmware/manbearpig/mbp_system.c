@@ -68,66 +68,50 @@ void mbp_system_code() {
 	mbp_ui_input("Code", "Enter Code:", code, 8);
 
 	//Master mode
-	if (strcmp(code, "BD88ED") == 0) {
+	if (strcmp(code, "GB6RFP4U") == 0) {
 		mbp_state_master_set(true);
 		mbp_state_save();
 		mbp_ui_popup("Master", "Master Mode Engaged.");
 	}
-	//Badge activation
-	else if (strcmp(code, "RHAC6+7X") == 0) {
-		mbp_state_activated_set(true);
-		mbp_state_save();
-		mbp_ui_popup("Activated", "Badge Activated!");
-	}
-	//TCL
+	//DAMON
 	else if (strcmp(code, "DAMON") == 0) {
 		uint16_t unlock = mbp_state_unlock_get();
 		mbp_state_unlock_set(unlock | UNLOCK_MASK_DAMON);
 		mbp_state_save();
 		mbp_ui_popup("Unlocked", "Matt Damon mode enabled.");
 	}
-	//Business Card
-	else if (strcmp(code, "YJ9XZHFA") == 0) {
-		uint16_t unlock = mbp_state_unlock_get();
-		mbp_state_unlock_set(unlock | UNLOCK_MASK_CARD);
-		mbp_state_save();
-		mbp_ui_popup("Unlocked", "New Bender bling unlocked.");
-	}
-	//Chip 8 #2
-	else if (strcmp(code, "7CA3FF1D") == 0) {
-		uint16_t unlock = mbp_state_unlock_get();
-		mbp_state_unlock_set(unlock | UNLOCK_MASK_CHIP8);
-		mbp_state_save();
-		mbp_ui_popup("Unlocked", "Fry avatar unlocked.");
-	}
-	//Scroll unlock
-	else if (strcmp(code, "VN2D85FF") == 0) {
-		uint16_t unlock = mbp_state_unlock_get();
-		mbp_state_unlock_set(unlock | UNLOCK_MASK_SCROLL);
-		mbp_state_save();
-		mbp_ui_popup("Unlocked", "New Party Modes!");
-	}
-	//TCL
-	else if (strcmp(code, "Y_AN:LRN") == 0) {
-		uint16_t unlock = mbp_state_unlock_get();
-		mbp_state_unlock_set(unlock | UNLOCK_MASK_TCL);
-		mbp_state_save();
-		mbp_ui_popup("Unlocked", "Owl mode unlocked.");
-	}
 	//Twitter
-	else if (strcmp(code, "3TNXFBBN") == 0) {
+	else if (strcmp(code, "NUKACOLA") == 0) {
 		uint16_t unlock = mbp_state_unlock_get();
 		mbp_state_unlock_set(unlock | UNLOCK_MASK_TWITTER);
 		mbp_state_save();
 		mbp_ui_popup("Unlocked", "Illusion Bling unlocked.");
 	}
-	//Whiskey Pirates
-	else if (strcmp(code, "XXXXXXXX") == 0) {
+
+	//Hack Time
+	else if (strcmp(code, "HAXXOR") == 0) {
 		uint16_t unlock = mbp_state_unlock_get();
-		mbp_state_unlock_set(unlock | UNLOCK_MASK_WHISKEY_PIRATES);
+		mbp_state_unlock_set(unlock | UNLOCK_MASK_DATE_TIME);
 		mbp_state_save();
-		mbp_ui_popup("Unlocked", "Zero Wing avatar unlocked.");
+		mbp_ui_popup("Unlocked", "Hack Time Bling unlocked.");
 	}
+
+	//Defrag
+	else if (strcmp(code, "DISKFULL") == 0) {
+		uint16_t unlock = mbp_state_unlock_get();
+		mbp_state_unlock_set(unlock | UNLOCK_MASK_DEFRAG);
+		mbp_state_save();
+		mbp_ui_popup("Unlocked", "Defrag Bling unlocked.");
+	}
+
+	//He Man
+	else if (strcmp(code, "WHATSUP") == 0) {
+		uint16_t unlock = mbp_state_unlock_get();
+		mbp_state_unlock_set(unlock | UNLOCK_MASK_WHATS_UP);
+		mbp_state_save();
+		mbp_ui_popup("Unlocked", "He Man Bling unlocked.");
+	}
+
 	//Everything else
 	else {
 		mbp_ui_error(":(");

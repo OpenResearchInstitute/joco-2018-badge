@@ -44,21 +44,23 @@
 #define SETTING_MASTER_DEFAULT			false
 #define SETTING_UNLOCK_DEFAULT			0
 
-#define UNLOCK_MASK_MASTER			0x0001 // rager mode party bling 
-#define UNLOCK_MASK_WHISKEY_PIRATES		0x0002 // Avatar name Zero Wing
-#define UNLOCK_MASK_CPV				0x0004 // lazer bling
-#define UNLOCK_MASK_WHATS_UP			0x0008 // what's up bling
-#define UNLOCK_MASK_DATE_TIME			0x0010 // hack time bling
-#define UNLOCK_MASK_DEFRAG			0x0020 // defrag bling
-#define UNLOCK_MASK_C2				0x0040 // avatar name Zapp
-#define UNLOCK_MASK_TCL				0x0080 // Unlock Owl Bling and TCL functionality
+#define UNLOCK_MASK_MASTER_1			0x0001 // master unlock
+#define UNLOCK_MASK_MASTER_2			0x0002 // master unlock
+#define UNLOCK_MASK_MASTER_3			0x0004 // master unlock
+#define UNLOCK_MASK_MASTER_4			0x0008 // master unlock
+#define UNLOCK_MASK_DATE_TIME			0x0010 // hack time bling (in terminal)
+#define UNLOCK_MASK_DEFRAG			0x0020 // defrag bling (in terminal)
+#define UNLOCK_MASK_WHATS_UP			0x0040 // What's up (in terminal)
+#define UNLOCK_MASK_80				0x0080 // joco_unused
 #define UNLOCK_MASK_TWITTER			0x0100 // Twitter bling
 #define UNLOCK_MASK_SEEKRIT			0x0200 // trololol bling
 #define UNLOCK_MASK_DAMON			0x0400 // Matt Damon bling
-#define UNLOCK_MASK_CHIP8			0x0800 // Avatar fry
-#define UNLOCK_MASK_SCROLL			0x1000 // increases party bling, rager bling
-#define UNLOCK_MASK_WH				0x2000 // White Hat detected
-#define UNLOCK_MASK_CARD			0x4000 // more bender bling modes
+#define UNLOCK_MASK_0800			0x0800 // joco_unused
+#define UNLOCK_MASK_1000			0x1000 // joco_unused
+#define UNLOCK_MASK_WH				0x2000 // White Hat detected  (joco_unused)
+#define UNLOCK_MASK_4000			0x4000 // joco_unused
+
+#define UNLOCK_MASK_ALLMASTERS (UNLOCK_MASK_MASTER_1 | UNLOCK_MASK_MASTER_2 | UNLOCK_MASK_MASTER_3 | UNLOCK_MASK_MASTER_4)
 
 //Nordic config
 #include "sdk_config.h"
