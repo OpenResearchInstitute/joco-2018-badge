@@ -28,7 +28,6 @@
 
 #define TOOTH_EYES_TIME_MS			10
 
-#define TOOTH_HUE_GOLD				0.142; //51.0 / 360.0
 #define TOOTH_SAT			       1.0
 #define TOOTH_VAL			       0.5 // (brightness)
 #define TOOTH_FLASH_MINTIME		       50 // min time between flashes in tens of mS
@@ -364,9 +363,8 @@ void mbp_bling_wheaton() {
 }
 
 static void __led_jollyroger(uint8_t f_unused, void *p_data) {
-// TODO -spc- Redo this for jolly roger pirate monkey eye - it's still the bender LED code
-	uint8_t mouth_closed[] = { 4, 5, 6, 7 };
-	uint8_t mouth_open[] = { 1, 2, 4, 7, 9, 10 };
+	uint8_t eye_closed[] = { 4, 5, 6, 7 };
+	uint8_t eye_open[] = { 1, 2, 4, 7, 9, 10 };
 	uint8_t frame = *((uint8_t *) p_data);
 
 	//Clear all colors
@@ -375,28 +373,19 @@ static void __led_jollyroger(uint8_t f_unused, void *p_data) {
 	}
 
 	//Compute and set the eye colors
-	float eye_hue = 0.025 * (float) frame;
-	uint32_t eye_color = util_led_hsv_to_rgb(eye_hue, 1, 1);
-	util_led_set_rgb(LED_RIGHT_EYE_INDEX, eye_color);
+	util_led_set_rgb(LED_RIGHT_EYE_INDEX, LED_COLOR_EYES);
 
-	//Compute and set the tooth color
-	float tooth_hue;
-	if (frame < 20) {
-		tooth_hue = .00625 * (float) frame;
-	} else {
-		tooth_hue = .00625 * (float) (40 - frame);
-	}
-	uint32_t tooth_color = util_led_hsv_to_rgb(tooth_hue, 1, 1);
+	uint32_t tooth_color = util_led_hsv_to_rgb(TOOTH_HUE_GOLD, 1, 0.5);
 	util_led_set_rgb(LED_TOOTH_INDEX, tooth_color);
 
-	//Mouth
+	//Large Eye
 	if (frame < 20) {
 		for (uint8_t i = 0; i < 6; i++) {
-			util_led_set_rgb(mouth_open[i], LED_COLOR_WHITE);
+			util_led_set_rgb(eye_open[i], LED_COLOR_EYES);
 		}
 	} else {
 		for (uint8_t i = 0; i < 4; i++) {
-			util_led_set_rgb(mouth_closed[i], LED_COLOR_WHITE);
+			util_led_set_rgb(eye_closed[i], LED_COLOR_EYES);
 		}
 	}
 

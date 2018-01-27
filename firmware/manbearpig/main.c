@@ -162,7 +162,7 @@ int main(void) {
 //	mbp_system_test();
 
 // -spc- uncomment to test all bling modes
-//        mbp_state_unlock_set(0xFFFF);
+        mbp_state_unlock_set(0xFFFF);
 
 	while (1) {
 		app_sched_execute();

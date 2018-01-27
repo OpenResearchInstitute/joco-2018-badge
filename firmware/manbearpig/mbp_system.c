@@ -498,7 +498,7 @@ void mbp_system_unlock_state() {
 	uint16_t unlock = mbp_state_unlock_get();
 
 	mbp_tooth_eye_stop();
-	//Clear out scheduler of any cig events
+	//Clear out scheduler of any eye/tooth events
 	app_sched_execute();
 
 	util_gfx_draw_raw_file("BLING/JOCO/SKLCROSS.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, false, NULL);
