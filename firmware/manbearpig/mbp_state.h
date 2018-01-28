@@ -35,6 +35,8 @@ typedef struct {
 	bool game_led_sound;
 	uint16_t chip8_fg_color;
 	uint16_t chip8_bg_color;
+	uint16_t joco_score;
+	uint8_t joco_last_level_dispensed;
 	uint16_t unlock_state;
 	bool master_badge;
 	char pw_scruffy[9];
@@ -82,6 +84,14 @@ extern void mbp_state_master_set(bool master);
 //Get and set tilt state
 extern bool mbp_state_tilt_get();
 extern void mbp_state_tilt_set(bool tilt_state);
+
+//Get and set joco score
+extern uint16_t mbp_state_score_get();
+extern void mbp_state_score_set(uint16_t score_state);
+
+//Get and set joco last level dispensed
+extern uint8_t mbp_state_lastlevel_get();
+extern void mbp_state_lastlevel_set(uint8_t lastlevel_state);
 
 //Get and set unlocked state
 extern uint16_t mbp_state_unlock_get();

@@ -95,6 +95,7 @@ SRC_FILES += \
 	drv_apa102.c \
 	drv_st7735.c \
 	drv_ws2812b.c \
+	joco_gameplay.c \
 	main.c \
 	mbp_medea.c \
 	mbp_menu.c \

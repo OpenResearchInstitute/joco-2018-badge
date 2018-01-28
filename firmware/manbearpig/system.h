@@ -125,7 +125,7 @@
 //Libraries
 #include "gfxfont.h"
 
-//AND!XOR
+//JOCO
 #include "beacon_ble.h"
 #include "chip8.h"
 #include "drv_apa102.h"
@@ -134,6 +134,7 @@
 #include "bling/mbp_bling.h"
 #include "bling/mbp_custom_bling.h"
 #include "joco_gamedata.h"
+#include "joco_gameplay.h"
 #include "mbp_medea.h"
 #include "mbp_menu.h"
 #include "mbp_state.h"

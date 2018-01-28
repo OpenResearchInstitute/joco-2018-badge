@@ -206,8 +206,11 @@ void mbp_state_new() {
 	m_badge_state.chip8_bg_color = SETTING_CHIP8_BG_COLOR_DEFAULT;
 	m_badge_state.unlock_state = SETTING_UNLOCK_DEFAULT;
 	m_badge_state.master_badge = SETTING_MASTER_DEFAULT;
-	strcpy(m_badge_state.pw_scruffy, "12345");
-	strcpy(m_badge_state.pw_root, "goodnews");
+	m_badge_state.joco_score = GAME_SCORE_DEFAULT;
+	m_badge_state.joco_last_level_dispensed = GAME_LASTLEVEL_DEFAULT;
+
+	strcpy(m_badge_state.pw_scruffy, "54321");
+	strcpy(m_badge_state.pw_root, "hamneggs");
 
 	strcpy(m_badge_state.wall_messages[0], "Msg 1 None");
 	strcpy(m_badge_state.wall_messages[1], "Msg 2 None");
@@ -454,6 +457,22 @@ uint16_t mbp_state_unlock_get() {
 
 void mbp_state_unlock_set(uint16_t unlock_state) {
 	m_badge_state.unlock_state = unlock_state;
+}
+
+uint16_t mbp_state_score_get() {
+	return m_badge_state.joco_score;
+}
+
+void mbp_state_score_set(uint16_t score_state) {
+	m_badge_state.joco_score = score_state;
+}
+
+uint8_t mbp_state_lastlevel_get() {
+	return m_badge_state.joco_last_level_dispensed;
+}
+
+void mbp_state_lastlevel_set(uint8_t lastlevel_state) {
+	m_badge_state.joco_last_level_dispensed = lastlevel_state;
 }
 
 void mbp_state_pw_scruffy_set(char *pw) {
