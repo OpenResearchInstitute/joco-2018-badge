@@ -38,10 +38,10 @@
 #define POINTS_4_ALL_MASTERS 200
 
 // 'visiting' parameters
-#define VISIT_RSSI_MIN 42
+#define VISIT_RSSI_MIN -55
 #define VISIT_TIME_LENGTH 30
 #define VISIT_LOST_TIME_LENGTH 5
-#define SPARKLE_VISIT_RSSI_MIN 42
+#define SPARKLE_VISIT_RSSI_MIN -55
 
 
 // 
