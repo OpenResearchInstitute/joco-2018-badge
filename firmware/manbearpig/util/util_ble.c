@@ -25,19 +25,20 @@
  *****************************************************************************/
 #include "../system.h"
 
-#define BLE_DATA_INDEX_AVATAR			3
-#define BLE_DATA_INDEX_LEVEL			2						//Byte offset in manuf data GAP (adjusted for 2-byte company id)
-#define BLE_DATA_INDEX_C2				4
-#define BLE_DATA_INDEX_GLOBAL_TIME		8
+#define BLE_DATA_LEN				11
+#define BLE_DATA_INDEX_LLD			2			// Last Level Dispensed - Byte offset in manuf data GAP (adjusted for 2-byte company id)
+#define BLE_DATA_INDEX_SCORE			3                 //
+#define BLE_DATA_INDEX_C2			5
+#define BLE_DATA_INDEX_GLOBAL_TIME		9
 #define BLE_BADGE_DB_UPDATE_TIME_MS		(1000 * 60)			/** 1 minute updates to badge DB**/
 #define BLE_BADGE_DB_MAX_AGE			(1000 * 30)			/** 30 second max age**/
-#define BLE_TX_POWER					0					/** 0dbm gain **/
-#define DEVICE_NAME 					"JOCO2018"
+#define BLE_TX_POWER				0					/** 0dbm gain **/
+#define DEVICE_NAME 				"JOCO2018"
 #define APP_ADV_INTERVAL	      		0x0320                                       /**Advertising interval in units of 0.625ms */
 //#define APP_ADV_TIMEOUT_IN_SECONDS      180
 #define APP_FEATURE_NOT_SUPPORTED		BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2         /**< Reply when unsupported features are requested. */
 
-#define GAP_TYPE_NAME					0x09
+#define GAP_TYPE_NAME				0x09
 #define GAP_TYPE_COMPANY_DATA			0xFF
 
 //#define MIN_CONN_INTERVAL               MSEC_TO_UNITS(500, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (0.5 seconds).  */
@@ -134,12 +135,10 @@ static void __advertising_init(void) {
 	uint16_t device_id = util_get_device_id();
 
 	m_manuf_data.company_identifier = COMPANY_ID_JOCO;
-	m_manuf_data.data.p_data = (uint8_t *) malloc(10);
-	m_manuf_data.data.size = 10;
-	m_manuf_data.data.p_data[8] = 0;
-	m_manuf_data.data.p_data[9] = 0;
+	m_manuf_data.data.p_data = (uint8_t *) malloc(BLE_DATA_LEN);
+	memset(m_manuf_data.data.p_data, 0, BLE_DATA_LEN);
+	m_manuf_data.data.size = BLE_DATA_LEN;
 
-	memset(m_manuf_data.data.p_data, 0, 8);
 	m_manuf_data.data.p_data[0] = device_id & 0xFF;
 	m_manuf_data.data.p_data[1] = device_id >> 8;
 
@@ -420,8 +419,8 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 			//Fellow joco, parse additional data
 			if (badge.company_id == COMPANY_ID_JOCO) {
 				badge.device_id = field_data[2] | (field_data[3] << 8);
-				badge.level = field_data[BLE_DATA_INDEX_LEVEL + 2];	//Read badge level (adjusted for company id)
-				badge.avatar = field_data[BLE_DATA_INDEX_AVATAR + 2];
+				badge.lld = field_data[BLE_DATA_INDEX_LLD + 2];	//Read badge last level dispensed (adjusted for company id)
+				badge.score = (field_data[BLE_DATA_INDEX_SCORE + 2] << 8) | field_data[BLE_DATA_INDEX_SCORE + 3];
 
 				//Parse C2 data
 				memcpy(&c2, field_data + BLE_DATA_INDEX_C2 + 2, sizeof(master_c2_t));
@@ -923,11 +922,15 @@ static void sys_evt_dispatch(uint32_t sys_evt) {
 	__sys_evt_handler(sys_evt);
 }
 
-void util_ble_avatar_update() {
+void util_ble_score_update() {
+	uint16_t score;
 	ble_gap_conn_sec_mode_t sec_mode;
+
+	score = mbp_state_score_get();
 	BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
-        // joco TODO This field was used by the bender badge for avatar
-	m_manuf_data.data.p_data[BLE_DATA_INDEX_AVATAR] = 0; //p_state->avatar;
+
+	m_manuf_data.data.p_data[BLE_DATA_INDEX_SCORE] = (score >> 8);
+	m_manuf_data.data.p_data[BLE_DATA_INDEX_SCORE + 1] = score;
 	ble_advdata_set(&m_adv_data, NULL);
 }
 
@@ -1023,11 +1026,11 @@ void util_ble_init() {
 #endif
 }
 
-void util_ble_level_set(uint8_t level) {
+void util_ble_lld_set(uint8_t lld) {
 #ifndef BLE_ONLY_BUILD
 	ble_gap_conn_sec_mode_t sec_mode;
 	BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
-	m_adv_data.p_manuf_specific_data->data.p_data[BLE_DATA_INDEX_LEVEL] = level;
+	m_adv_data.p_manuf_specific_data->data.p_data[BLE_DATA_INDEX_LLD] = lld;
 	ble_advdata_set(&m_adv_data, NULL);
 #endif
 }
@@ -1123,30 +1126,3 @@ void util_ble_c2_set(master_c2_t *p_c2) {
 
 	ble_advdata_set(&m_adv_data, NULL);
 }
-//
-//void util_ble_special_byte_set(uint8_t byte) {
-//	ble_gap_conn_sec_mode_t sec_mode;
-//	BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
-//	m_adv_data.p_manuf_specific_data->data.p_data[BLE_DATA_SPECIAL_BYTE_INDEX] = byte;
-//	ble_advdata_set(&m_adv_data, NULL);
-//}
-//
-///**
-// * Set up worm advertisement in BLE GAP, this assumes all appropriate firewall and service checks have occurred
-// */
-//void util_ble_worm_set(uint8_t payload, uint8_t service, uint8_t sophistication) {
-//	//Infect the badge if the attack is more sophisticated than the last (or it's being cleared)
-//	if (sophistication >= m_adv_data.p_manuf_specific_data->data.p_data[BLE_DATA_WORM_SOPHISTICATION] || sophistication == 0) {
-//		ble_gap_conn_sec_mode_t sec_mode;
-//		BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
-//		m_adv_data.p_manuf_specific_data->data.p_data[BLE_DATA_WORM_PAYLOAD] = payload;
-//		m_adv_data.p_manuf_specific_data->data.p_data[BLE_DATA_WORM_SERVICE] = service;
-//
-//		if (sophistication > 0) {
-//			m_adv_data.p_manuf_specific_data->data.p_data[BLE_DATA_WORM_SOPHISTICATION] = sophistication - 1;
-//		} else {
-//			m_adv_data.p_manuf_specific_data->data.p_data[BLE_DATA_WORM_SOPHISTICATION] = 0;
-//		}
-//		ble_advdata_set(&m_adv_data, NULL);
-//	}
-//}

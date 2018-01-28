@@ -270,7 +270,6 @@ bool mbp_state_load() {
 
 	if ((m_badge_state.canary == CANARY)) {
 		util_ble_name_set(m_badge_state.name);
-		util_ble_avatar_update();
 		return true;
 	}
 
@@ -465,6 +464,7 @@ uint16_t mbp_state_score_get() {
 
 void mbp_state_score_set(uint16_t score_state) {
 	m_badge_state.joco_score = score_state;
+	util_ble_score_update();
 }
 
 uint8_t mbp_state_lastlevel_get() {
@@ -473,6 +473,7 @@ uint8_t mbp_state_lastlevel_get() {
 
 void mbp_state_lastlevel_set(uint8_t lastlevel_state) {
 	m_badge_state.joco_last_level_dispensed = lastlevel_state;
+        util_ble_lld_set(lastlevel_state);
 }
 
 void mbp_state_pw_scruffy_set(char *pw) {
