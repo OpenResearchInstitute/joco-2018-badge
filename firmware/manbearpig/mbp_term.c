@@ -926,11 +926,6 @@ void mbp_term_init() {
  */
 /**@snippet [Handling the data received over BLE] */
 void mbp_term_nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length) {
-	//Only respond to NUS if badge is activated
-	if (!mbp_state_activated_get()) {
-		return;
-	}
-
 	if(length > 20){ //todo verify if this is valid
 		return;
 	}

@@ -147,11 +147,6 @@ int main(void) {
 
 	util_gfx_set_font(FONT_SMALL);
 
-	bool activated = mbp_state_activated_get();
-	if (!activated) {
-		mbp_ui_error("Not activated\n\n");
-	}
-
 	//Read seekrit resistor and set unlocked state appropriately
         //State persists across boot
 	if (mbp_system_seekrit_get()) {

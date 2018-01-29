@@ -31,7 +31,6 @@
 #define DATA_LENGTH				31
 #define UUID_OFFSET				9
 #define UUID_LENGTH				16
-#define BEACON_UUID_ACTIVATE	{0x64, 0x7b, 0x81, 0x27, 0xab, 0xda, 0x45, 0x52, 0xb7, 0x9b, 0xe0, 0x33, 0xd5, 0xf2, 0x7a, 0x33}
 #define BEACON_UUID_CPV			{0x04, 0xbb, 0xc1, 0x81, 0x13, 0xa6, 0x4f, 0x6a, 0x85, 0x1b, 0x94, 0xd3, 0x0c, 0x87, 0x49, 0xef}
 #define BEACON_UUID_WH			{0x8f, 0xfd, 0xa0, 0x67, 0x0b, 0xb7, 0x41, 0x3f, 0xba, 0xcb, 0x91, 0xab, 0x7b, 0xa4, 0x07, 0x6f}
 /*
@@ -59,26 +58,7 @@ static void __wh_unlock(void * p_event_data, uint16_t event_size) {
 	app_sched_resume();
 }
 */
-//static void __activation_test(ble_gap_evt_adv_report_t *p_report) {
-//	//Do not activate twice
-//	if (mbp_state_activated_get()) {
-//		return;
-//	}
-//
-//	uint8_t activation_uuid[UUID_LENGTH] = BEACON_UUID_ACTIVATE;
-//
-//	//Test for activation beacon
-//	bool beacon_found = true;
-//	for (uint8_t i = 0; i < UUID_LENGTH; i++) {
-//		if (activation_uuid[i] != p_report->data[i + UUID_OFFSET]) {
-//			beacon_found = false;
-//			break;
-//		}
-//	}
-//	if (beacon_found) {
-//		app_sched_event_put(NULL, 0, __activate);
-//	}
-//}
+
 /*
 static void __cpv_test(ble_gap_evt_adv_report_t *p_report) {
 	//Do not unlock twice
@@ -137,5 +117,4 @@ void beacon_ble_on_ble_advertisement(ble_gap_evt_adv_report_t *p_report) {
 
 //	__cpv_test(p_report);
 //	__wh_test(p_report);
-//	__activation_test(p_report);
 }

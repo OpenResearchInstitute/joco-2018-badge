@@ -64,10 +64,6 @@ extern void mbp_state_game_exit_pop_up_set(bool b);
 extern bool mbp_state_game_led_sound_get();
 extern void mbp_state_game_led_sound_set(bool b);
 
-//Activation state
-extern bool mbp_state_activated_get();
-extern void mbp_state_activated_set(bool activated);
-
 //Get and set the airplane mode setting
 extern bool mbp_state_airplane_mode_get();
 extern void mbp_state_airplane_mode_set(bool enabled);

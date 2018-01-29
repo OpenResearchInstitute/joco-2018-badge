@@ -26,20 +26,12 @@
 
 #include "system.h"
 
-#define CANARY						(0x19)
+#define CANARY				(0x19)
 #define ECB_KEY_LEN          		(16UL)
 #define COUNTER_BYTE_LEN     		(4UL)
 #define NONCE_RAND_BYTE_LEN   		(12UL)
 
-#define STATE_FILE_PATH				"SHADOW.DAT"
-
-//Activation
-#define ACTIVATION_FILE_ID			0x1337
-#define ACTIVATION_RECORD_ID		0x1337
-#define ACTIVATION_UNKNOWN			0
-#define ACTIVATION_ACTIVATED		1
-#define ACTIVATION_NOT_ACTIVATED	2
-uint8_t m_activated = ACTIVATION_UNKNOWN;
+#define STATE_FILE_PATH			"SHADOW.DAT"
 
 uint8_t key[ECB_KEY_LEN] = {
 		0xCC, 0x09, 0x9D, 0xFA,
@@ -318,65 +310,6 @@ static void __save_schedule_handler(void *p_data, uint16_t length) {
 
 void mbp_state_save() {
 	app_sched_event_put(NULL, 0, __save_schedule_handler);
-}
-
-bool mbp_state_activated_get() {
-//	bool activated = false;
-//	fds_flash_record_t flash_record;
-//	fds_record_desc_t record_desc;
-//	fds_find_token_t token;
-//
-//	//Shortcut
-//	if (m_activated != ACTIVATION_UNKNOWN) {
-//		return m_activated == ACTIVATION_ACTIVATED;
-//	}
-//
-//	memset(&token, 0x00, sizeof(fds_find_token_t));
-//
-//	// Loop until all records with the given key and file ID have been found.
-//	while (fds_record_find(ACTIVATION_FILE_ID, ACTIVATION_RECORD_ID, &record_desc, &token) == FDS_SUCCESS) {
-//		if (fds_record_open(&record_desc, &flash_record) != FDS_SUCCESS) {
-//			mbp_ui_error("Unable to read activation status");
-//			return false;
-//		}
-//
-//		activated = *((uint32_t *)(flash_record.p_data)) > 0;
-//		if (activated) {
-//			m_activated = ACTIVATION_ACTIVATED;
-//		} else {
-//			m_activated = ACTIVATION_NOT_ACTIVATED;
-//		}
-//
-//		// Access the record through the flash_record structure.
-//		// Close the record when done.
-//		if (fds_record_close(&record_desc) != FDS_SUCCESS) {
-//		}
-//	}
-//
-//	return activated;
-
-	//Badges are permanently activated
-	return true;
-}
-
-void mbp_state_activated_set(bool activated) {
-//	uint32_t data = activated;
-//
-//	fds_record_t record;
-//	fds_record_desc_t record_desc;
-//	fds_record_chunk_t record_chunk;
-//
-//	// Set up data
-//	record_chunk.p_data = &data;
-//	record_chunk.length_words = 1;
-//
-//	// Set up record
-//	record.file_id = ACTIVATION_FILE_ID;
-//	record.key = ACTIVATION_RECORD_ID;
-//	record.data.p_chunks = &record_chunk;
-//	record.data.num_chunks = 1;
-//
-//	fds_record_write(&record_desc, &record);
 }
 
 bool mbp_state_airplane_mode_get() {
