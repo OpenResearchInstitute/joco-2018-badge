@@ -1,0 +1,21 @@
+Connected "Master" operation in AND!XOR DC25 Badge
+2018-01-29 ptw
+
+Master mode BLE (which shows signs of having been a copy-and-paste from botnet BLE) defines a service with a single characteristic. It can only be written with a response. It contains m_master_data, a uint32_t. Processing is simple: the sending (master) badge writes a 32-bit code into the characteristic, and if it's a valid code, the receiving (human) badge does the required action.
+
+In mbp_master_ble.c:
+
+__init_char() - sets up the characteristic
+
+__on_master_data_schedule_handler() -- just pops up a message with header "Master" (Incoming)
+
+__on_master_data() -- called when the characteristic gets written. It processes one of four magic codes (defined in mbp_master.h) to tweak game variables. Each one also pops up a message using __on_master_data_schedule_handler(). (Incoming)
+
+__on_master_ble_on_ble_evt() -- handler for BLE events on the master service. Mostly updates globals, but in case of write to the characteristic it calls __on_master_data() to handle it. (Incoming)
+
+mbp_master_ble_init() -- sets up the service and calls __init_char() to set up the characteristic. Also registers with the discovery database. (Incoming)
+
+mbp_master_ble_on_db_disc_evt() -- handler for discovery events on the master service. Writes down the handles discovered in globals. (Outgoing)
+
+mbp_master_ble_send_data() -- establishes a connection, writes the characteristic, and disconnects. (Outgoing)
+

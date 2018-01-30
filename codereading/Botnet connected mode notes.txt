@@ -1,0 +1,84 @@
+Connected Botnet Operation in AND!XOR DC25 Badge
+2018-01-29 ptw
+
+Connected mode is used for attacking in the Botnet game. All the transactions are done in terms of BLE "characteristics". There's a read-only characteristic that contains the badge's enabled services, which is set up in __init_char_scan(), which calls sd_ble_gatts_characteristic_add() and stores the results in global m_s_service_status_handle. And there's a multibyte read-write characteristic through which an attack packet is written to the badge, processed, and then read back out. The attack characteristic is set up in __init_char_attack(), which calls sd_ble_gatts_characteristic_add() and stores the results in global m_s_attack_handle.
+ 
+No Bluetooth authentication is enabled for these characteristics.
+
+Let's trace an attack. Start in __attack() in botnet.c.
+
+There's a database of recently heard neighbor badges. The menu lets the user choose one by its advertised name. The display says "Scanning ..." while:
+
+botnet_ble_connect_blocking() is called, passing in the badge record. That's in botnet_ble.c. It in turn calls util_ble_connect, passing in a pointer to just the address field in the badge record. That address field is a ble_gap_addr_t, which is a one-byte type field and a six-byte address.
+
+util_ble_connect() is in util_ble.c. It aborts any GAP scan that might already be in progress (can it be?) and sets up for a call to sd_ble_gap_connect(), with the badge address, scanning parameters, and connection parameters.
+
+All this returns nothing but status codes, but it sets the global variable m_c_conn_handle.
+
+Next step in __attack() is to call botnet_ble_scan_get(). This is also a blocking call. It calls sd_ble_gattc_read on m_c_conn_handle and then waits 5000ms for the results to be placed in m_c_scan_result, which is then returned. There's a m_waiting flag that's set while we're waiting.
+
+Meanwhile m_c_scan_result is set by an event handler, __on_read_response(), if the event turns out to be a result matching m_c_scan_handle. This clears the m_waiting flag.
+
+The data we expect to have retrieved from the scan is a bitmap of botnet "services" that are enabled, which is stored in a BLE characteristic tagged BOTNET_CHAR_SCAN_UUID. The enabled ones are translated to service names and displayed. They come out at 200ms intervals to make it feel like scanning.
+
+Next in __attack() we call mbp_state_name_get() to fill in the name field of a botnet_attack_t record with our own current name. Then we call __menu_pick_exploit() to let the user pick an available exploit. This goes in the exploit field of the botnet_attack_t.
+
+If all this menuing goes off the rails, we call util_ble_disconnect() to clean up the connection.
+
+Next we pick a "payload" for the attack and fill that in. Easter egg: if we are silly enough to choose a payload of GOATSE, our attack is aborted and we're rickrolled.
+
+We get a confirmation from the user, and finally call botnet_ble_attack().
+
+botnet_ble_attack() constructs an attack packet, type botnet_ble_attack_packet_t, which contains a botnet_attack_t and a boolean response.
+
+typedef struct {
+	botnet_exploit_t exploit;
+	uint8_t payload;
+	uint8_t result;
+	char name[SETTING_NAME_LENGTH];
+	uint16_t result_data;
+	uint8_t level;
+} botnet_attack_t;
+
+Then botnet_ble_attack() writes the attack packet to the target's attack characteristic by calling sd_ble_gattc_write(). It waits half a second, then reads back the results from the same characteristic (?). It waits up to 5 seconds for a response to be returned, and then copies it into the return parameter p_attack.
+
+Back in __attack(), we are done with the connection so we util_ble_disconnect(). Then we process the results in __attack_result().
+
+__attack_result() doesn't do any authentication on the results. The attacked badge is responsible for deciding what happens.
+
+
+So, on to the target side!
+
+It starts with a BLE event, processed by botnet_ble_on_ble_evt(). If it's an BLE_GATTS_EVT_WRITE, and if the handle matches m_s_attack_handle, we call botnet_eval_incoming_attack().
+
+botnet_eval_incoming_attack() just applies game logic. If the attack is on an open service, and attacker strength exceeds defender strength, and we're not immune at the moment, it's a successful attack. We schedule __execute_payload_sched_handler() to implement the consequences. Otherwise, it's a failed attack and we get points for resisting.
+
+That's all. No authentication and no BLE activity.
+
+
+Cross-checking by walking through botnet_ble.c:
+===============================================
+
+We've got three magic numbers: service ID and two characteristic IDs
+
+We have a mess of static global variables that capture the current status of BLE operations
+
+__init_char_attack() -- sets up the attack characteristic
+
+__init_char_scan() -- sets up the "port scan" characteristic
+
+__on_read_response() -- handler for read responses. If it's the response we're waiting for, update the globals and clear m_waiting. Doesn't actually do anything itself with the results.
+
+botnet_ble_attack() -- orchestrates the characteristic write/readback that constitutes an attack.
+
+botnet_ble_connect_blocking() -- establishes a connection
+
+botnet_ble_init() -- creates the service and calls functions to set up its two characteristics. Also registers with the discovery database.
+
+botnet_ble_on_ble_evt() -- handler for BLE events. Mostly just updates globals, but in the case of an incoming attack characteristic write, fires off botnet_eval_incoming_attack()
+
+botnet_ble_on_db_disc_evt() -- handler for BLE discovery events. Specifically, if we discovered a botnet service on the other badge, we write down the handles to the service and characteristics in globals. Once that's done, we establish encryption on the connection. (Security parameters were set in __pm_init() in util_ble.c.)
+
+botnet_ble_scan_get() -- starts a "port scan" characteristic read and waits for completion.
+
+botnet_ble_update_service_status() -- called from botnet_update_service_status(), this just sets the published value for the "port scan" characteristic.
