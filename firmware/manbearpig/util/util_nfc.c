@@ -31,9 +31,16 @@ uint8_t m_ndef_msg_buf[32];
  */
 static void en_record_add(nfc_ndef_msg_desc_t * p_ndef_msg_desc)
 {
-    uint32_t             err_code;
-    static const uint8_t en_payload[] =
-                  {'J', 'o', 'c', 'o', ' ', '2', '0', '1', '8', '!'};
+    uint32_t        err_code;
+    ble_gap_addr_t  gap_addr;
+    static uint8_t  en_payload[12]; // 6 bytes of GAP address, in Hexadecimal
+
+    err_code = sd_ble_gap_addr_get(&gap_addr);
+    APP_ERROR_CHECK(err_code);
+
+    for (int i = 0; i < 6; i++)
+	snprintf((char *) &en_payload+(i*2), 3, "%02X", gap_addr.addr[i]);
+
     static const uint8_t en_code[] = {'e', 'n'};
 
     NFC_NDEF_TEXT_RECORD_DESC_DEF(en_text_rec,
