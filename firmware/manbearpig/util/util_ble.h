@@ -42,10 +42,9 @@ typedef struct {
 	uint16_t company_id;
 	uint16_t device_id;
 	uint32_t last_seen;
-	uint8_t lld; // last level dispensed
 	int8_t rssi;
 	bool said_hello;
-	uint16_t score;
+	uint16_t score; // High bit indicates that there are uncollected trinkets
 } ble_badge_t;
 
 #define BADGE_DB_SIZE						32
@@ -61,7 +60,6 @@ extern uint32_t util_ble_connect(ble_gap_addr_t *p_address);
 extern uint32_t util_ble_disconnect();
 extern void util_ble_c2_set(master_c2_t *p_c2);
 extern void util_ble_init();
-extern void util_ble_lld_set(uint8_t level);
 extern void util_ble_name_get(char *name);
 extern void util_ble_name_set(char *name);
 extern uint32_t util_ble_nus_send(char *p_string, uint16_t length);

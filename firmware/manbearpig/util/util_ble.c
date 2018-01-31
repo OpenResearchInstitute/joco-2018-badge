@@ -25,11 +25,10 @@
  *****************************************************************************/
 #include "../system.h"
 
-#define BLE_DATA_LEN				11
-#define BLE_DATA_INDEX_LLD			2			// Last Level Dispensed - Byte offset in manuf data GAP (adjusted for 2-byte company id)
-#define BLE_DATA_INDEX_SCORE			3                 //
-#define BLE_DATA_INDEX_C2			5
-#define BLE_DATA_INDEX_GLOBAL_TIME		9
+#define BLE_DATA_LEN				10
+#define BLE_DATA_INDEX_SCORE			2                 //
+#define BLE_DATA_INDEX_C2			4
+#define BLE_DATA_INDEX_GLOBAL_TIME		8
 #define BLE_BADGE_DB_UPDATE_TIME_MS		(1000 * 60)			/** 1 minute updates to badge DB**/
 #define BLE_BADGE_DB_MAX_AGE			(1000 * 30)			/** 30 second max age**/
 #define BLE_TX_POWER				0					/** 0dbm gain **/
@@ -419,8 +418,8 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 			//Fellow joco, parse additional data
 			if (badge.company_id == COMPANY_ID_JOCO) {
 				badge.device_id = field_data[2] | (field_data[3] << 8);
-				badge.lld = field_data[BLE_DATA_INDEX_LLD + 2];	//Read badge last level dispensed (adjusted for company id)
-				badge.score = (field_data[BLE_DATA_INDEX_SCORE + 2] << 8) | field_data[BLE_DATA_INDEX_SCORE + 3];
+				// Mask off the trinket dispensing flag
+				badge.score = ((field_data[BLE_DATA_INDEX_SCORE + 2] << 8) | field_data[BLE_DATA_INDEX_SCORE + 3]) & 0x7FFF;
 
 				//Parse C2 data
 				memcpy(&c2, field_data + BLE_DATA_INDEX_C2 + 2, sizeof(master_c2_t));
@@ -927,6 +926,10 @@ void util_ble_score_update() {
 	ble_gap_conn_sec_mode_t sec_mode;
 
 	score = mbp_state_score_get();
+	if (mbp_state_lastlevel_get() < gamelevel()) {
+	    score |= 0x8000; // high bit indicates that there are trinkets to be retrieved
+	}
+
 	BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
 
 	m_manuf_data.data.p_data[BLE_DATA_INDEX_SCORE] = (score >> 8);
@@ -1023,15 +1026,6 @@ void util_ble_init() {
 	//Startup global time sync timer
 	APP_ERROR_CHECK(app_timer_create(&m_ble_global_time_timer, APP_TIMER_MODE_REPEATED, __global_time_timer_handler));
 	APP_ERROR_CHECK(app_timer_start(m_ble_global_time_timer, APP_TIMER_TICKS(BLE_GLOBAL_TIME_UPDATE_MS, UTIL_TIMER_PRESCALER), NULL));
-#endif
-}
-
-void util_ble_lld_set(uint8_t lld) {
-#ifndef BLE_ONLY_BUILD
-	ble_gap_conn_sec_mode_t sec_mode;
-	BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
-	m_adv_data.p_manuf_specific_data->data.p_data[BLE_DATA_INDEX_LLD] = lld;
-	ble_advdata_set(&m_adv_data, NULL);
 #endif
 }
 

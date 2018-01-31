@@ -26,7 +26,8 @@
 
 // Gameplay definitions
 #define POINTS_PER_LEVEL 250
-#define MAX_POINTS 24750
+// Max points must be less than 32768 because we use the high bit to indicate trinkets should be dispensed
+#define MAX_POINTS 24750 // 32768 MAX
 #define MAX_LEVEL 99
 #define SPARKLE_ODDS 1
 #define SPARKLE_LENGTH_SECONDS 30

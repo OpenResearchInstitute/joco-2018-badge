@@ -406,7 +406,6 @@ uint8_t mbp_state_lastlevel_get() {
 
 void mbp_state_lastlevel_set(uint8_t lastlevel_state) {
 	m_badge_state.joco_last_level_dispensed = lastlevel_state;
-        util_ble_lld_set(lastlevel_state);
 }
 
 void mbp_state_pw_scruffy_set(char *pw) {
@@ -454,3 +453,5 @@ extern void mbp_state_wall_put(char *msg){
 
 	mbp_state_save();
 }
+
+// Functions for saving and reading a simple 'database' of other badges we've visited.
