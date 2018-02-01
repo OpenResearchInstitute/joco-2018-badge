@@ -262,6 +262,7 @@ bool mbp_state_load() {
 
 	if ((m_badge_state.canary == CANARY)) {
 		util_ble_name_set(m_badge_state.name);
+		util_ble_score_update();
 		return true;
 	}
 
