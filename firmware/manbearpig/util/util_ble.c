@@ -229,6 +229,7 @@ static void __ble_evt_dispatch(ble_evt_t * p_ble_evt) {
 	ble_db_discovery_on_ble_evt(&m_ble_db_discovery, p_ble_evt);
 	ble_conn_params_on_ble_evt(p_ble_evt);
 	//mbp_master_ble_on_ble_evt(p_ble_evt);
+	score_ble_on_ble_evt(p_ble_evt);
 	mbp_medea_on_ble_evt(p_ble_evt);
 	nrf_ble_gatt_on_ble_evt(&m_gatt, p_ble_evt);
 	ble_nus_on_ble_evt(&m_nus, p_ble_evt);

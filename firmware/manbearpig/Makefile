@@ -3,7 +3,7 @@ TARGETS          := nrf52832_xxaa
 OUTPUT_DIRECTORY := _build
 
 SDK_ROOT ?= SET_SDK_ROOT_ENV_VARIABLE
-PROJ_DIR := 
+PROJ_DIR :=
 NRFJ_BIN ?= SET_NRFJ_BIN_ENV_VARIABLE
 
 $(OUTPUT_DIRECTORY)/nrf52832_xxaa.out: \
@@ -96,6 +96,7 @@ SRC_FILES += \
 	drv_st7735.c \
 	drv_ws2812b.c \
 	joco_gameplay.c \
+	score_ble.c \
 	main.c \
 	mbp_medea.c \
 	mbp_menu.c \
@@ -104,7 +105,7 @@ SRC_FILES += \
 	mbp_tcl.c \
 	mbp_term.c \
 	mbp_ui.c \
-	skifree.c 
+	skifree.c
 
 # Include folders common to all targets
 INC_FOLDERS += \
@@ -217,7 +218,7 @@ INC_FOLDERS += \
 	ntshell/util \
 	partcl \
 	util \
-	$(PROJ_ROOT) 
+	$(PROJ_ROOT)
 
 # Libraries common to all targets
 LIB_FILES += \
@@ -257,8 +258,8 @@ CFLAGS +=  -Wall -Werror -O0 -g3
 CFLAGS += -Wno-error=char-subscripts
 CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in separate section, this allows linker to discard unused ones
-CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing 
-CFLAGS += -fno-builtin --short-enums 
+CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
+CFLAGS += -fno-builtin --short-enums
 # generate dependency output file
 CFLAGS += -MP -MD
 
@@ -328,7 +329,7 @@ flash: $(OUTPUT_DIRECTORY)/nrf52832_xxaa.hex
 # Flash softdevice
 flash_softdevice:
 	@echo Flashing: s132_nrf52_3.0.0_softdevice.hex
-	$(NRFJ_BIN)/nrfjprog/nrfjprog --program $(SDK_ROOT)/components/softdevice/s132/hex/s132_nrf52_3.0.0_softdevice.hex -f nrf52 --chiperase 
+	$(NRFJ_BIN)/nrfjprog/nrfjprog --program $(SDK_ROOT)/components/softdevice/s132/hex/s132_nrf52_3.0.0_softdevice.hex -f nrf52 --chiperase
 	$(NRFJ_BIN)/nrfjprog/nrfjprog --reset -f nrf52
 
 full_erase:

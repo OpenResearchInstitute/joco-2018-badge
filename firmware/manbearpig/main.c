@@ -122,9 +122,9 @@ int main(void) {
 		mbp_state_save();
 	}
 
-        // Near-Field Comms setup
-        util_nfc_init();
-        util_nfc_start();
+	// Near-Field Comms setup
+	util_nfc_init();
+	util_nfc_start();
 
 	//Airplane mode?
 	if (mbp_state_airplane_mode_get()) {
@@ -135,6 +135,7 @@ int main(void) {
 
 	//Startup game
 	// TBD
+	score_ble_init();
 
 	//Start terminal
 	mbp_term_start();
