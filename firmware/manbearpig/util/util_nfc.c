@@ -38,8 +38,7 @@ static void en_record_add(nfc_ndef_msg_desc_t * p_ndef_msg_desc)
     err_code = sd_ble_gap_addr_get(&gap_addr);
     APP_ERROR_CHECK(err_code);
 
-    for (int i = 0; i < 6; i++)
-	snprintf((char *) &en_payload+(i*2), 3, "%02X", gap_addr.addr[i]);
+    util_hex_encode(gap_addr.addr, 6, en_payload);
 
     static const uint8_t en_code[] = {'e', 'n'};
 

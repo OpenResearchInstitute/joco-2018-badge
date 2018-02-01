@@ -73,3 +73,14 @@ void util_timers_start() {
 //	err_code = app_timer_start(m_timer_1, APP_TIMER_TICKS(1, UTIL_TIMER_PRESCALER), NULL);
 //	APP_ERROR_CHECK(err_code);
 }
+
+void util_hex_encode(uint8_t *input, uint8_t input_len, uint8_t *output) {
+    uint8_t *pin = input;
+    const uint8_t hex[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+    uint8_t *pout = output;
+    for(; pin < input+input_len; pout+=2, pin++){
+        pout[0] = hex[(*pin>>4) & 0xF];
+        pout[1] = hex[ *pin     & 0xF];
+    }
+}
+
