@@ -96,6 +96,7 @@ SRC_FILES += \
 	drv_st7735.c \
 	drv_ws2812b.c \
 	joco_gameplay.c \
+	joco_db.c \
 	score_ble.c \
 	main.c \
 	mbp_medea.c \

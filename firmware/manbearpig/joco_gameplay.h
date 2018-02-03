@@ -44,9 +44,6 @@
 #define VISIT_LOST_TIME_LENGTH 5
 #define SPARKLE_VISIT_RSSI_MIN -55
 
-
-// 
 extern int8_t gamelevel();
-
 
 #endif /* JOCO_GAMEPLAY_H_ */

@@ -135,6 +135,7 @@
 #include "bling/mbp_custom_bling.h"
 #include "joco_gamedata.h"
 #include "joco_gameplay.h"
+#include "joco_db.h"
 #include "score_ble.h"
 #include "mbp_medea.h"
 #include "mbp_menu.h"

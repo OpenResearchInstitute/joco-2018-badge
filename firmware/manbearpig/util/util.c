@@ -74,7 +74,7 @@ void util_timers_start() {
 //	APP_ERROR_CHECK(err_code);
 }
 
-void util_hex_encode(uint8_t *input, uint8_t input_len, uint8_t *output) {
+void util_hex_encode(uint8_t *output, uint8_t *input, uint8_t input_len) {
     uint8_t *pin = input;
     const uint8_t hex[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
     uint8_t *pout = output;
