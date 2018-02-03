@@ -1,0 +1,79 @@
+How crypto works on AND!XOR Bender badge DC25
+2018-02-01 ptw
+
+[Some of the names mentioned below have actually been changed since the
+AND!XOR version of the code.]
+
+The crypto library from Nordic supports many modes, including a CTR
+counter-based mode which is similar to what the Bender badge uses.
+However, the Bender code does not use this mode from the library, for
+whatever reason. It uses the library in ECB (Electronic Code Book) mode.
+That means that, as far as the library is concerned, all it does is use
+the key to encrypt a block, from cleartext to ciphertext. The badge code
+wraps that in a scheme very similar to the standard CTR mode, wherein an
+incrementing counter and a random nonce are used as a sort of initialization
+vector. In the badge implementation, the nonce and the counter are the
+entire cleartext. This is then converted, ECB-style, to a ciphertext, and
+that ciphertext is XORed with the actual data to obtain the actual encrypted
+text. In order to reverse this operation, the decryption needs to have the
+nonce and counter values that were originally used. The nonce and counter
+values have to be saved with the encrypted data.
+
+The key is hard coded (protected only by the difficulty of extracting code
+from a programmed nRF52). At runtime it is modified by replacing the last
+two bytes with the device ID of the badge.
+
+The file written to the SD card is in the following format:
+
+typedef struct {
+	uint32_t counter;
+	uint8_t nonce[NONCE_RAND_BYTE_LEN];
+	uint8_t cipher_text[sizeof(badge_state_t)];
+} cbc_badge_state_t;
+
+and there's a global variable m_cbc_state of that type.
+
+The counter counts, starting at 0 when the badge creates a file from scratch
+(on first powerup, or when the badge fails to read the old file). The counter
+is incremented when an encryption or decryption is performed, and the new
+counter value is saved when the new file is successfully written. (Bug?)
+Counter is also saved (from m_ecb_data.cleartext) when a decryption is
+successfully completed. Note that the counter stored in the file is the
+counter value used to encrypt the *first* block of the configuration data,
+whereas the counter value in m_cbc_state after an encryption or a
+decryption is the counter value *after* the one used for the *last* block
+of that operation.
+
+Nonce is generated randomly when a file save is to be attempted, and stored
+in m_cbc_state. So, it's only used once for encryption and then for however
+many times that saved file is decrypted without modification.
+
+When the file is to be read, it is slurped into m_cbc_state. This sets
+the counter, the nonce, and the ciphertext all at once. All three of
+these are needed to decrypt successfully.
+
+In order to actually call the library function that does encryption,
+the data has to be in this format:
+
+typedef struct
+{
+  soc_ecb_key_t        key;            /**< Encryption key. */
+  soc_ecb_cleartext_t  cleartext;      /**< Cleartext data. */
+  soc_ecb_ciphertext_t ciphertext;     /**< Ciphertext data. */
+} nrf_ecb_hal_data_t;
+
+and there's a global variable m_ecb_data of that type.
+
+__ctr_init() loads the key into m_ecb_data.key, and the counter and
+nonce (both from m_cbc_state) into m_ecb_data.cleartext.
+
+__ctr_encrypt() and __ctr_decrypt() are just passhthroughs to __crypt().
+
+__crypt() takes a buffer pointer and length, so the data to encrypt or
+decrypt can be anywhere. It first checks that __ctr_init() has been
+called by checking m_ctr_initialized. Then, for each block or partial
+block of data in the buffer, it calls the library function
+sd_ecb_block_encrypt(&m_ecb_data), which takes input from .cleartext
+and puts the output in .ciphertext. The resulting ciphertext is then
+XORed into the buffer, and counter is incremented (where it resides
+in the first 4 bytes of .cleartext).
