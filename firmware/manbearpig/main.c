@@ -100,6 +100,9 @@ int main(void) {
 	//Init buttons - this needs to happen in case an error is popped up
 	util_button_init();
 
+	//Init crypto utilities. This should happen before state loading.
+	util_crypto_init();
+
 	//Init the SD
 	bool sd_available = util_sd_init();
 

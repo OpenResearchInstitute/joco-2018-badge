@@ -90,6 +90,7 @@ SRC_FILES += \
 	util/util_math.c \
 	util/util_sd.c \
 	util/util_tilt.c \
+	util/util_crypto.c \
 	beacon_ble.c \
 	chip8.c \
 	drv_apa102.c \

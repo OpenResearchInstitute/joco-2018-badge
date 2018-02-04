@@ -25,8 +25,10 @@
  *****************************************************************************/
 #ifndef MBP_BADGE_STATE_H_
 #define MBP_BADGE_STATE_H_
+#include "util/util_crypto.h"
 
 typedef struct {
+	util_crypto_cryptable_t	cryptable;		// must be the first member!
 	uint8_t canary;
 	char name[SETTING_NAME_LENGTH];
 	bool airplane_mode_enabled;

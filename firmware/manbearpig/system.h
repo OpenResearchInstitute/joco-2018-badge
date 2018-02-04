@@ -157,5 +157,6 @@
 #include "util_math.h"
 #include "util_sd.h"
 #include "util_tilt.h"
+#include "util_crypto.h"
 
 #endif /* SYSTEM_H_ */
