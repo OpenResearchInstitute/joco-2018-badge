@@ -29,7 +29,7 @@
 #define CANARY				(0x19)
 #define STATE_FILE_PATH		"SHADOW.DAT"
 
-//Badge State, global storage. Headed with a cryptable.
+//Badge State, global storage.
 static badge_state_t m_badge_state;
 
 
@@ -117,14 +117,15 @@ static void __save_schedule_handler(void *p_data, uint16_t length) {
 	uint32_t err_code;
 	FIL file;
 	FRESULT result;
-	UINT expected_count = sizeof(m_badge_state) - sizeof(m_badge_state.cryptable.data_len);
 	UINT count;
+	badge_state_t encrypted_badge_state = m_badge_state;
 
 	//Let util_crypto know the length of our data
-	m_badge_state.cryptable.data_len = expected_count;
+	encrypted_badge_state.cryptable.data_len = sizeof(badge_state_t)
+						- sizeof(encrypted_badge_state.cryptable.data_len);
 
 	//Encrypt the data
-	err_code = util_crypto_encrypt(&(m_badge_state.cryptable));
+	err_code = util_crypto_encrypt(&(encrypted_badge_state.cryptable));
 	APP_ERROR_CHECK(err_code);
 
 	//Write the data to SD
@@ -134,9 +135,9 @@ static void __save_schedule_handler(void *p_data, uint16_t length) {
 		return;
 	}
 
-	result = f_write(&file, (void *) &(m_badge_state.cryptable.cryptinfo),
-					expected_count, &count);
-	if (result != FR_OK || count != expected_count) {
+	result = f_write(&file, (void *) &(encrypted_badge_state.cryptable.cryptinfo),
+					encrypted_badge_state.cryptable.data_len, &count);
+	if (result != FR_OK || count != encrypted_badge_state.cryptable.data_len) {
 		mbp_ui_error("Could not write to settings file.");
 	}
 
