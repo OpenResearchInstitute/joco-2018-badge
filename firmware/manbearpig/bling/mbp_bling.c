@@ -872,6 +872,32 @@ void mbp_bling_scroll_cycle() {
 	util_button_clear();
 }
 
+void mbp_bling_score_schedule_handler(void * p_event_data, uint16_t event_size) {
+    // This is a clone of the cpv village hello bling, it needs to be replaced.
+	app_sched_pause();
+	bool tooth = mbp_tooth_eye_running();
+	mbp_tooth_eye_stop();
+
+	UTIL_LED_ANIM_INIT(anim);
+	util_led_load_rgb_file("BLING/PINKBLUE.RGB", &anim);
+	util_gfx_draw_raw_file("B2B/CPV.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, false, NULL);
+
+	//4 second hello time (20 FPS)
+	for (uint16_t i = 0; i < (20 * 4); i++) {
+		util_led_play_rgb_frame(&anim);
+		nrf_delay_ms(50);
+	}
+
+	//Cleanup and give control back to user
+	util_led_clear();
+	util_gfx_invalidate();
+	if (tooth) {
+		mbp_tooth_eye_start();
+	}
+	app_sched_resume();
+	util_button_clear();
+}
+
 void mbp_bling_hello_schedule_handler(void * p_event_data, uint16_t event_size) {
 	char *name = (char *) p_event_data;
 	uint16_t w, h;
@@ -1002,6 +1028,7 @@ void mbp_bling_hello_cpv_schedule_handler(void * p_event_data, uint16_t event_si
 	app_sched_resume();
 	util_button_clear();
 }
+
 
 void mbp_bling_hello_dc503_schedule_handler(void * p_event_data, uint16_t event_size) {
 	app_sched_pause();

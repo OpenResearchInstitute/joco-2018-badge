@@ -150,6 +150,8 @@
 #include "skifree.h"
 #include "util.h"
 #include "util_ble.h"
+#include "util_hello.h"
+#include "util_ble_lists.h"
 #include "util_nfc.h"
 #include "util_button.h"
 #include "util_gfx.h"

@@ -83,6 +83,8 @@ SRC_FILES += \
 	partcl/tcl.c \
 	util/util.c \
 	util/util_ble.c \
+	util/util_hello.c \
+	util/util_ble_lists.c \
 	util/util_nfc.c \
 	util/util_button.c \
 	util/util_gfx.c \

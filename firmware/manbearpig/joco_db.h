@@ -20,9 +20,9 @@
 #ifndef JOCO_DB_H_
 #define JOCO_DB_H_
 
-extern void gen_filename(char *filename, uint8_t *gap_address, uint8_t *device_id);
+extern void gen_filename(char *filename, uint8_t *gap_address, uint16_t device_id);
 
-extern bool was_contacted(uint8_t *address, uint8_t *device_id);
-extern void save_contact(uint8_t *address, uint8_t *device_id);
+extern bool was_contacted(uint8_t *address, uint16_t device_id);
+extern void save_contact(uint8_t *address, uint16_t device_id);
 
 #endif /* JOCO_DB_H_ */
