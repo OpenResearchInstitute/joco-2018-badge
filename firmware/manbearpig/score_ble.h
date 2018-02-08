@@ -28,8 +28,7 @@
 #ifndef SCORE_BLE_H_
 #define SCORE_BLE_H_
 
-extern void score_ble_score_set(uint16_t newscore);
-extern void score_ble_lld_set(uint8_t new_lld);
+extern void score_ble_score_update(void);
 extern uint32_t score_ble_init(void);
 extern void score_ble_on_ble_evt(const ble_evt_t * p_ble_evt);
 #endif /* SCORE_BLE_H_ */

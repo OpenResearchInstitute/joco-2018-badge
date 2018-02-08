@@ -25,12 +25,14 @@
 #define	UTIL_CRYPTO_CRYPTINFO_LENGTH	16
 #define UTIL_CRYPTO_NONCE_LEN			12
 
+#define	UTIL_CRYPTO_STORAGE(x)	(x.cryptable.cryptinfo)
+#define	UTIL_CRYPTO_STORAGE_LEN(x)	(sizeof(x) - sizeof(x.cryptable.data_len))
 
 // Treat this struct as opaque. You don't need to know!
 typedef	struct {
 	uint32_t	counter;
 	uint8_t		nonce[UTIL_CRYPTO_NONCE_LEN];
-} util_crypto_cryptinfo_t;
+} __attribute__ ((packed)) util_crypto_cryptinfo_t;
 STATIC_ASSERT(sizeof(util_crypto_cryptinfo_t) == UTIL_CRYPTO_CRYPTINFO_LENGTH);
 
 // See below for instructions on using this struct.

@@ -23,40 +23,63 @@
 #define	SCORE_CHAR_SCORE_UUID	0x2e15	// read the badge's score and LLD
 #define	SCORE_CHAR_CMD_UUID		0x553f	// write command codes to the badge
 
-// Secret codes
+// Secret read validation code
+#define	SCORE_READ_COOKIE	0x8cd1e5a6
+
+// Secret command codes
 #define	SCORE_CMD_SET_LLD	0x6e46d5fad7441e00	// LSbyte filled with value
 #define SCORE_CMD_SET_SCORE	0xfb9a251e1e5e0000	// LSword filled with value
 
-typedef	uint64_t command_code_t;
-static command_code_t m_command_code = 0L;
+typedef struct {
+		util_crypto_cryptable_t	cryptable;
+		uint64_t				code;
+} __attribute__ ((packed)) score_ble_command_code_t;
+static score_ble_command_code_t m_command_code;
 
 typedef struct {
+	util_crypto_cryptable_t	cryptable;
+	uint32_t	cookie;
+	uint16_t	device_id;
 	uint16_t	score;
 	uint8_t		lld;
-	uint8_t		spare;
-} score_ble_readscore_t;
+} __attribute__ ((packed)) score_ble_readscore_t;
+
 static score_ble_readscore_t m_score_ble_readscore;
 
 static uint16_t m_score_service_handle;
 static volatile uint16_t m_s_conn_handle = BLE_CONN_HANDLE_INVALID;
 static volatile uint16_t m_s_cmd_handle = BLE_CONN_HANDLE_INVALID;
 
-void score_ble_score_set(uint16_t new_score) {
-	m_score_ble_readscore.score = new_score;
-}
+void score_ble_score_update(void) {
+	uint32_t err_code;
 
-void score_ble_lld_set(uint8_t new_lld) {
-	m_score_ble_readscore.lld = new_lld;
+	m_score_ble_readscore.cryptable.data_len = UTIL_CRYPTO_STORAGE_LEN(m_score_ble_readscore);
+	m_score_ble_readscore.cookie = SCORE_READ_COOKIE;
+	m_score_ble_readscore.device_id = util_get_device_id();
+	m_score_ble_readscore.score = mbp_state_score_get();
+	m_score_ble_readscore.lld = mbp_state_lastlevel_get();
+
+	err_code = util_crypto_encrypt(&(m_score_ble_readscore.cryptable));
+	if (NRF_SUCCESS != err_code) {
+		mbp_ui_error("Could not encrypt score");
+	}
 }
 
 void score_eval_command(void) {
-	if ((m_command_code & 0xFFFFFFFFFFFFFF00) == SCORE_CMD_SET_LLD) {
-		mbp_state_lastlevel_set((uint8_t)(m_command_code & 0xFF));
-	} else if ((m_command_code & 0xFFFFFFFFFFFF0000) == SCORE_CMD_SET_SCORE) {
-		mbp_state_score_set((uint16_t)(m_command_code & 0x7FFF));
+	uint32_t err_code;
+
+	err_code = util_crypto_decrypt(&(m_command_code.cryptable));
+	if (NRF_SUCCESS != err_code) {
+		return;
 	}
 
-	m_command_code = 0L;
+	if ((m_command_code.code & 0xFFFFFFFFFFFFFF00) == SCORE_CMD_SET_LLD) {
+		mbp_state_lastlevel_set((uint8_t)(m_command_code.code & 0xFF));
+		mbp_state_save();
+	} else if ((m_command_code.code & 0xFFFFFFFFFFFF0000) == SCORE_CMD_SET_SCORE) {
+		mbp_state_score_set((uint16_t)(m_command_code.code & 0x7FFF));
+		mbp_state_save();
+	}
 }
 
 /**
@@ -99,8 +122,8 @@ static uint32_t __init_char_cmd() {
 	attr_char_value.p_attr_md = &attr_md;
 	attr_char_value.init_len = 0;
 	attr_char_value.init_offs = 0;
-	attr_char_value.max_len = sizeof(command_code_t);
-	attr_char_value.p_value = (uint8_t *) &m_command_code;
+	attr_char_value.max_len = UTIL_CRYPTO_STORAGE_LEN(m_command_code);
+	attr_char_value.p_value = (uint8_t *) &UTIL_CRYPTO_STORAGE(m_command_code);
 
 	uint32_t result = sd_ble_gatts_characteristic_add(m_score_service_handle, &char_md, &attr_char_value, &char_handles);
 	m_s_cmd_handle = char_handles.value_handle;
@@ -109,7 +132,7 @@ static uint32_t __init_char_cmd() {
 
 /**
  * Initialize the score characteristic
- * This is simply a read of the badge's score and lld.
+ * This reads an encrypted packet containing the badge's score and lld.
  */
 static uint32_t __init_char_score() {
 	ble_gatts_char_md_t char_md;
@@ -145,10 +168,10 @@ static uint32_t __init_char_score() {
 
 	attr_char_value.p_uuid = &ble_uuid;
 	attr_char_value.p_attr_md = &attr_md;
-	attr_char_value.init_len = sizeof(score_ble_readscore_t);
+	attr_char_value.init_len = UTIL_CRYPTO_STORAGE_LEN(m_score_ble_readscore);
 	attr_char_value.init_offs = 0;
-	attr_char_value.max_len = sizeof(score_ble_readscore_t);
-	attr_char_value.p_value = (uint8_t *) &m_score_ble_readscore;
+	attr_char_value.max_len = UTIL_CRYPTO_STORAGE_LEN(m_score_ble_readscore);
+	attr_char_value.p_value = (uint8_t *) &UTIL_CRYPTO_STORAGE(m_score_ble_readscore);
 
 	uint32_t result = sd_ble_gatts_characteristic_add(m_score_service_handle, &char_md, &attr_char_value, &char_handles);
 	// m_s_score_handle = char_handles.value_handle;
@@ -163,6 +186,9 @@ uint32_t score_ble_init(void) {
 	uint32_t err_code;
 	ble_uuid_t ble_uuid;
 
+	// Set up initial values for the score read characteristic
+	score_ble_score_update();
+
 	// Add service
 	BLE_UUID_BLE_ASSIGN(ble_uuid, SCORE_SVC_UUID);
 	err_code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY, &ble_uuid, &m_score_service_handle);
@@ -172,8 +198,6 @@ uint32_t score_ble_init(void) {
 
 	//Register with discovery db so we can talk to GATT
 	APP_ERROR_CHECK(ble_db_discovery_evt_register(&ble_uuid));
-
-	m_score_ble_readscore.spare = 0x00;
 
 	__init_char_score();
 	__init_char_cmd();

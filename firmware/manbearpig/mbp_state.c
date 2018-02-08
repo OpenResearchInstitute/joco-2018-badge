@@ -65,7 +65,7 @@ bool mbp_state_load() {
 	FIL file;
 	FILINFO info;
 	FRESULT result;
-	UINT expected_count = sizeof(m_badge_state) - sizeof(m_badge_state.cryptable.data_len);
+	UINT expected_count = UTIL_CRYPTO_STORAGE_LEN(m_badge_state);
 	UINT count;
 
 	//check if file exists, if not create it
@@ -80,7 +80,7 @@ bool mbp_state_load() {
 		return false;
 	}
 
-	result = f_read(&file, (void *) &(m_badge_state.cryptable.cryptinfo),
+	result = f_read(&file, (void *) &UTIL_CRYPTO_STORAGE(m_badge_state),
 					expected_count, &count);
 	if (result != FR_OK || count != expected_count) {
 		mbp_ui_error("Could not read settings file.");
@@ -105,8 +105,7 @@ bool mbp_state_load() {
 	if ((m_badge_state.canary == CANARY)) {
 		util_ble_name_set(m_badge_state.name);
 		util_ble_score_update();
-		score_ble_score_set(m_badge_state.joco_score);
-		score_ble_lld_set(m_badge_state.joco_last_level_dispensed);
+		score_ble_score_update();
 		return true;
 	}
 
@@ -237,7 +236,7 @@ uint16_t mbp_state_score_get() {
 void mbp_state_score_set(uint16_t score_state) {
 	m_badge_state.joco_score = score_state;
 	util_ble_score_update();
-	score_ble_score_set(score_state);
+	score_ble_score_update();
 }
 
 uint8_t mbp_state_lastlevel_get() {
@@ -246,7 +245,7 @@ uint8_t mbp_state_lastlevel_get() {
 
 void mbp_state_lastlevel_set(uint8_t lastlevel_state) {
 	m_badge_state.joco_last_level_dispensed = lastlevel_state;
-	score_ble_lld_set(lastlevel_state);
+	score_ble_score_update();
 }
 
 void mbp_state_pw_scruffy_set(char *pw) {
