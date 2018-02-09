@@ -4,6 +4,8 @@ PRV file size is always 22624, a single frame at 101x112 pixels
 ICO file size is always 800, a single frame at 20x20 pixels
 RAW size is 128x128 pixels, multiple frames
 
+A single frame of 128x128 is 32768 bytes
+
 format is rgb565be
        16 bits per pixel, 5,6,5 for RBG; Big Endian
 

@@ -880,7 +880,7 @@ void mbp_bling_score_schedule_handler(void * p_event_data, uint16_t event_size) 
 
 	UTIL_LED_ANIM_INIT(anim);
 	util_led_load_rgb_file("BLING/PINKBLUE.RGB", &anim);
-	util_gfx_draw_raw_file("B2B/CPV.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, false, NULL);
+	util_gfx_draw_raw_file("MBSCORE.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, false, NULL);
 
 	//4 second hello time (20 FPS)
 	for (uint16_t i = 0; i < (20 * 4); i++) {
@@ -898,7 +898,113 @@ void mbp_bling_score_schedule_handler(void * p_event_data, uint16_t event_size) 
 	util_button_clear();
 }
 
-void mbp_bling_hello_schedule_handler(void * p_event_data, uint16_t event_size) {
+void mbp_bling_hello_joco_schedule_handler(void * p_event_data, uint16_t event_size) {
+	char *name = (char *) p_event_data;
+	uint16_t w, h;
+	app_sched_pause();
+	bool tooth = mbp_tooth_eye_running();
+	mbp_tooth_eye_stop();
+
+	//Pick colors
+	float h1 = ((float) util_math_rand8_max(100) / 100.0);
+	float h2 = h1 + 0.5;
+	if (h2 >= 1.0) {
+		h2 -= 1.0;
+	}
+	uint32_t color_1 = util_led_hsv_to_rgb(h1, 1, 1);
+	uint32_t color_2 = util_led_hsv_to_rgb(h2, 1, 1);
+
+	util_gfx_draw_raw_file("B2B/PM_HELLO.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, false, NULL);
+	uint16_t fg = util_gfx_rgb_to_565(color_1);
+	uint16_t bg = util_gfx_rgb_to_565(color_2);
+
+	//Compute name coords
+	util_gfx_set_font(FONT_LARGE);
+	util_gfx_get_text_bounds(name, 0, 0, &w, &h);
+	uint16_t y = (GFX_HEIGHT / 2) + 4;
+	uint16_t x = (GFX_WIDTH - w) / 2;
+
+	//Print shadow
+	util_gfx_set_color(bg);
+	util_gfx_set_cursor(x + 1, y + 1);
+	util_gfx_print(name);
+
+	//Print name
+	util_gfx_set_color(fg);
+	util_gfx_set_cursor(x, y);
+	util_gfx_print(name);
+
+	//Compute hello coords
+	char hello[] = "Hello";
+	util_gfx_get_text_bounds(hello, 0, 0, &w, &h);
+	x = (GFX_WIDTH - w) / 2;
+	y = (GFX_HEIGHT / 2) - 4 - h;
+
+	//Print shadow
+	util_gfx_set_color(bg);
+	util_gfx_set_cursor(x + 1, y + 1);
+	util_gfx_print(hello);
+
+	//Print hello
+	util_gfx_set_color(fg);
+	util_gfx_set_cursor(x, y);
+	util_gfx_print(hello);
+
+	//Set all LEDs
+	util_led_set_all_rgb(color_1);
+	util_led_show();
+	nrf_delay_ms(2000);
+
+	uint8_t cols[5][4] = {
+			{ 8, 4, 0, 12 },
+			{ 9, 5, 1, 255 },
+			{ 10, 6, 2, 255 },
+			{ 11, 7, 3, 13 },
+			{ 255, 255, 255, 14 }
+	};
+	uint8_t height[] = { 4, 4, 4, 4, 4 };
+
+	while (1) {
+		//pick a random column to lower
+		uint8_t col = util_math_rand8_max(5);
+		if (height[col] > 0) {
+			height[col]--;
+			uint8_t index = cols[col][height[col]];
+
+			if (index < LED_COUNT) {
+				util_led_set_rgb(index, color_2);
+				util_led_show();
+				nrf_delay_ms(40);
+				util_led_set(index, 0, 0, 0);
+				util_led_show();
+			}
+		}
+
+		nrf_delay_ms(30);
+
+		bool done = true;
+		for (uint8_t i = 0; i < 5; i++) {
+			if (height[i] > 0) {
+				done = false;
+				break;
+			}
+		}
+
+		if (done) {
+			break;
+		}
+	}
+
+	//Cleanup and give control back to user
+	util_gfx_invalidate();
+	if (tooth) {
+		mbp_tooth_eye_start();
+	}
+	app_sched_resume();
+	util_button_clear();
+}
+
+void mbp_bling_hello_bender_schedule_handler(void * p_event_data, uint16_t event_size) {
 	char *name = (char *) p_event_data;
 	uint16_t w, h;
 	app_sched_pause();

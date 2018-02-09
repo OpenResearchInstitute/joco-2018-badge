@@ -498,7 +498,7 @@ static void mbp_menu_nearby() {
 	menu_item_t items[NEARBY_BADGE_LIST_LEN + MEDEA_DB_SIZE];
 	menu.items = items;
 	menu.count = 0;
-	menu.title = "Nearby UnVisited";
+	menu.title = "Tracking";
 
 	list = malloc(NEARBY_BADGE_LIST_LEN * sizeof( ble_badge_list_menu_text_t));
 	if (!list) {
@@ -509,7 +509,7 @@ static void mbp_menu_nearby() {
 	badge_list_size = get_nearby_badge_list(NEARBY_BADGE_LIST_LEN, list);
 
 	if (badge_list_size == 0 && mbp_medea_bottle_count() == 0) {
-		mbp_ui_popup("Nearby", "Sorry no neighbors :(");
+		mbp_ui_popup("Tracking", "Sorry no neighbors :(");
 		return;
 	}
 
@@ -563,7 +563,7 @@ void mbp_menu_main() {
 	menu.count = 0;
 	items[menu.count++] = (menu_item_t ) { "Bling!", "MENU/BLING.ICO", NULL, &mbp_menu_bling, NULL };
 	items[menu.count++] = (menu_item_t ) { "Games", "MENU/CONTROL.ICO", NULL, &mbp_menu_games, NULL };
-	items[menu.count++] = (menu_item_t ) { "Nearby", "MENU/NEARBY.ICO", NULL, &mbp_menu_nearby, NULL };
+	items[menu.count++] = (menu_item_t ) { "Tracking", "MENU/NEARBY.ICO", NULL, &mbp_menu_nearby, NULL };
         items[menu.count++] = (menu_item_t ) { "TCL", "MENU/TCL.ICO", NULL, &mbp_tcl_menu, NULL };
 	items[menu.count++] = (menu_item_t ) { "Code", "MENU/CODE.ICO", NULL, &mbp_system_code, NULL };
 	items[menu.count++] = (menu_item_t ) { "System", "MENU/GEAR.ICO", NULL, &mbp_menu_system, NULL };

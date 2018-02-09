@@ -33,10 +33,10 @@ bool try_to_hello(uint16_t company_id, char *name) {
 	m_next_hello = now + HELLO_INTERVAL;
 	switch (company_id) {
 	case COMPANY_ID_JOCO:
-	    APP_ERROR_CHECK(app_sched_event_put(name, strlen(name), mbp_bling_hello_schedule_handler));
+	    APP_ERROR_CHECK(app_sched_event_put(name, strlen(name), mbp_bling_hello_joco_schedule_handler));
 	    break;
 	case COMPANY_ID:
-	    APP_ERROR_CHECK(app_sched_event_put(name, strlen(name), mbp_bling_hello_schedule_handler));
+	    APP_ERROR_CHECK(app_sched_event_put(name, strlen(name), mbp_bling_hello_bender_schedule_handler));
 	    break;
 	case COMPANY_ID_CPV:
 	    APP_ERROR_CHECK(app_sched_event_put(NULL, 0, mbp_bling_hello_cpv_schedule_handler));
