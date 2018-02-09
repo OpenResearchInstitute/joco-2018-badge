@@ -27,7 +27,7 @@
 
 typedef struct {
     uint8_t gap_addr[BLE_GAP_ADDR_LEN]; // six bytes
-    uint8_t device_id[2];
+    uint16_t device_id;
 } contact_db_data_t;
 
 typedef struct {
@@ -37,10 +37,10 @@ typedef struct {
 
 static contact_db_fileinfo_t contact_db_write_data;
 
-static bool __db_data_valid(contact_db_data_t *record, uint8_t *gap_addr, uint8_t *device_id) {
+static bool __db_data_valid(contact_db_data_t *record, uint8_t *gap_addr, uint16_t device_id) {
     if (memcmp(gap_addr, &record->gap_addr, BLE_GAP_ADDR_LEN))
 	return false;
-    if (memcmp(device_id, &record->device_id, 2))
+    if (memcmp(&device_id, &record->device_id, sizeof(device_id)))
 	return false;
     return true;
 }
@@ -64,7 +64,7 @@ static bool __db_data_valid(contact_db_data_t *record, uint8_t *gap_addr, uint8_
  * 
  */
 
-void gen_filename(char *filename, uint8_t *gap_address, uint8_t *device_id) {
+void gen_filename(char *filename, uint8_t *gap_address, uint16_t device_id) {
     // assumes that filename has 13 bytes plus the length of the prefix available
     strcpy(filename, DB_PREFIX);
     util_hex_encode((uint8_t *) &filename[DB_PREFIX_LEN], gap_address, BLE_GAP_ADDR_LEN);
@@ -98,7 +98,7 @@ static void __db_save_schedule_handler(void *p_data, uint16_t length) {
     }
 }
 
-bool was_contacted(uint8_t *address, uint8_t *device_id) {
+bool was_contacted(uint8_t *address, uint16_t device_id) {
     FRESULT result;
     FIL file;
     FILINFO info;
@@ -144,7 +144,7 @@ bool was_contacted(uint8_t *address, uint8_t *device_id) {
     return false;
 }
 
-void save_contact(uint8_t *address, uint8_t *device_id) {
+void save_contact(uint8_t *address, uint16_t device_id) {
     // We're going to assume that the caller has already insured that the record
     // does not exist and add it without checking.
     int idx;
@@ -154,8 +154,7 @@ void save_contact(uint8_t *address, uint8_t *device_id) {
     // save the information to hand off to the scheduled write
     for(idx=0; idx<BLE_GAP_ADDR_LEN; idx++)
 	contact_db_write_data.data.gap_addr[idx] = address[idx];
-    contact_db_write_data.data.device_id[0] = device_id[0];
-    contact_db_write_data.data.device_id[1] = device_id[1];
+    contact_db_write_data.data.device_id = device_id;
 
     // schedule the write
     app_sched_event_put(NULL, 0, __db_save_schedule_handler);

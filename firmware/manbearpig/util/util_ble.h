@@ -35,27 +35,8 @@
 
 #define APPEARANCE_ID_ANDNXOR_DC25				0x19DC
 
-
-typedef struct {
-	ble_gap_addr_t address;
-	char name[SETTING_NAME_LENGTH];
-	uint16_t company_id;
-	uint16_t device_id;
-	uint32_t last_seen;
-	int8_t rssi;
-	bool said_hello;
-	uint16_t score; // High bit indicates that there are uncollected trinkets
-} ble_badge_t;
-
-#define BADGE_DB_SIZE						32
-typedef struct {
-	ble_badge_t badges[BADGE_DB_SIZE];
-	volatile uint16_t badge_count;
-} ble_badge_db_t;
-
 extern void util_ble_advertising_start();
 extern void util_ble_score_update();
-extern ble_badge_db_t *util_ble_badge_db_get();
 extern uint32_t util_ble_connect(ble_gap_addr_t *p_address);
 extern uint32_t util_ble_disconnect();
 extern void util_ble_c2_set(master_c2_t *p_c2);

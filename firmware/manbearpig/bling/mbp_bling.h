@@ -50,6 +50,7 @@ extern void mbp_bling_pirate();
 extern void mbp_bling_rickroll();
 extern uint8_t mbp_bling_scroll(char *text, bool loop);
 extern void mbp_bling_scroll_cycle();
+extern void mbp_bling_score_schedule_handler(void * p_event_data, uint16_t event_size);
 extern void mbp_bling_hello_schedule_handler(void * p_event_data, uint16_t event_size);
 extern void mbp_bling_hello_cpv_schedule_handler(void * p_event_data, uint16_t event_size);
 extern void mbp_bling_hello_dc503_schedule_handler(void * p_event_data, uint16_t event_size);

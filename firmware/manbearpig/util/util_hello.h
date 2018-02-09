@@ -17,22 +17,11 @@
  * 	@mustbeart
  * 	@abraxas3d
  *****************************************************************************/
+#ifndef UTIL_HELLO_H_
+#define UTIL_HELLO_H_
 
-#include "system.h"
+#define HELLO_MIN_RSSI -55
 
-int8_t gamelevel() {
-    return (mbp_state_score_get()/POINTS_PER_LEVEL);
-}
+extern bool try_to_hello(uint16_t company_id, char *name);
 
-void add_to_score(int16_t points, char *name) {
-    int16_t scorenow;
-    scorenow = mbp_state_score_get() + points;
-    if (scorenow > MAX_POINTS) {
-        scorenow = MAX_POINTS;
-    }
-    mbp_state_score_set(scorenow);
-    mbp_state_save();
-    // schedule a score bling display
-    // -spc- TODO change the bling for a level up
-    APP_ERROR_CHECK(app_sched_event_put(name, strlen(name), mbp_bling_score_schedule_handler));
-}
+#endif /* UTIL_HELLO_H_ */

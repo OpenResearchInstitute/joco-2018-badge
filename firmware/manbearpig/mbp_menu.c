@@ -490,27 +490,35 @@ static void mbp_menu_games() {
 }
 
 static void mbp_menu_nearby() {
-	if (util_ble_badge_db_get()->badge_count == 0 && mbp_medea_bottle_count() == 0) {
+	int badge_list_size;
+	 ble_badge_list_menu_text_t *list;
+	uint8_t start_of_medea;
+
+	menu_t menu;
+	menu_item_t items[NEARBY_BADGE_LIST_LEN + MEDEA_DB_SIZE];
+	menu.items = items;
+	menu.count = 0;
+	menu.title = "Nearby UnVisited";
+
+	list = malloc(NEARBY_BADGE_LIST_LEN * sizeof( ble_badge_list_menu_text_t));
+	if (!list) {
+	    mbp_ui_error("badge list malloc fail.");
+	    return;
+	}
+
+	badge_list_size = get_nearby_badge_list(NEARBY_BADGE_LIST_LEN, list);
+
+	if (badge_list_size == 0 && mbp_medea_bottle_count() == 0) {
 		mbp_ui_popup("Nearby", "Sorry no neighbors :(");
 		return;
 	}
 
-	menu_t menu;
-	menu_item_t items[BADGE_DB_SIZE + MEDEA_DB_SIZE];
-	menu.items = items;
-	menu.count = 0;
-	menu.title = "Nearby";
-
-	//Add nearby badges
-	ble_badge_db_t *p_badges = util_ble_badge_db_get();
-	for (uint8_t i = 0; i < p_badges->badge_count; i++) {
-		ble_badge_t *p_badge = &(p_badges->badges[i]);
-		char *badge_text = (char *) malloc(32);
-		sprintf(badge_text, "%s %ddB", p_badge->name, p_badge->rssi);
-		items[menu.count++] = (menu_item_t ) { badge_text, NULL, NULL, NULL, NULL };
+	for (uint8_t i = 0; i < badge_list_size; i++) {
+		items[menu.count++] = (menu_item_t ) { list[i].text, NULL, NULL, NULL, NULL };
 	}
 
 	//Add bottles
+	start_of_medea = menu.count;
 	medea_bottle_t *bottles = mbp_medea_bottle_db_get();
 	for (uint8_t i = 0; i < mbp_medea_bottle_count(); i++) {
 		uint8_t *a = bottles[i].address.addr;
@@ -521,7 +529,9 @@ static void mbp_menu_nearby() {
 
 	mbp_submenu(&menu);
 
-	for (uint8_t i = 0; i < menu.count; i++) {
+	free(list);
+
+	for (uint8_t i = start_of_medea; i < menu.count; i++) {
 		free(items[i].text);
 	}
 }

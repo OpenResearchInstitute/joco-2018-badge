@@ -433,12 +433,14 @@ void mbp_system_test() {
 
                 util_gfx_set_color(COLOR_WHITE);
 
+/*
+  TODO put this back
 		//Show badge db count
                 util_gfx_set_color(COLOR_WHITE);
 		util_gfx_set_cursor(90, 84);
 		sprintf(buffer, "%d", util_ble_badge_db_get()->badge_count);
 		util_gfx_print(buffer);
-
+*/
 		//Current time
 		util_gfx_set_cursor(90, 96);
 		sprintf(buffer, "%lu", util_millis() / 1000);

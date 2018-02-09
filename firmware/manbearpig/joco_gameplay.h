@@ -40,10 +40,11 @@
 
 // 'visiting' parameters
 #define VISIT_RSSI_MIN -55
-#define VISIT_TIME_LENGTH 30
-#define VISIT_LOST_TIME_LENGTH 5
+#define VISIT_TIME_LENGTH 60000 // Milliseconds
+#define VISIT_LOST_TIME_LENGTH 15000
 #define SPARKLE_VISIT_RSSI_MIN -55
 
 extern int8_t gamelevel();
+extern void add_to_score(int16_t points, char *name);
 
 #endif /* JOCO_GAMEPLAY_H_ */
