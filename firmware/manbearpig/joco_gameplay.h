@@ -38,11 +38,19 @@
 #define POINTS_4_DISPENSING 100
 #define POINTS_4_ALL_MASTERS 200
 
+// Advertising interval is set to twice per second
+
 // 'visiting' parameters
 #define VISIT_RSSI_MIN -55
 #define VISIT_TIME_LENGTH 60000 // Milliseconds
 #define VISIT_LOST_TIME_LENGTH 15000
 #define SPARKLE_VISIT_RSSI_MIN -55
+
+// 'master' badge definitions
+#define MASTER_1_SPECIAL_ID 1
+#define MASTER_2_SPECIAL_ID 2
+#define MASTER_3_SPECIAL_ID 3
+#define MASTER_4_SPECIAL_ID 4
 
 extern int8_t gamelevel();
 extern void add_to_score(int16_t points, char *name);

@@ -34,6 +34,7 @@
 extern uint16_t util_get_device_id();
 extern int16_t util_index_of(char *p_text, char c);
 extern uint32_t util_millis();
+extern uint32_t util_local_millis();
 extern void util_millis_offset_set(uint32_t offset);
 extern void util_timers_start();
 extern void util_hex_encode(uint8_t *, uint8_t *, uint8_t);

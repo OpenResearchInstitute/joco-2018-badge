@@ -161,7 +161,7 @@ int try_to_add_to_active(uint8_t *address, uint16_t device_id, int8_t rssi, char
 	p_entry = &active[active_index[i]];
 	if (!p_entry->first_seen) {
 	    // we found an unused one
-	    uint32_t now = util_millis();
+	    uint32_t now = util_local_millis();
 	    memcpy(p_entry->address, address, BLE_GAP_ADDR_LEN);
 	    strncpy(p_entry->name, name, SETTING_NAME_LENGTH);
 	    p_entry->device_id = device_id;
@@ -223,7 +223,7 @@ void sort_active(bool reset_timers) {
     // if reset_timers set, then sets all first_seen timestamps to now.
     // unused entries are at the end of the list.
     //Lazy bubble sort
-    uint32_t now = util_millis();
+    uint32_t now = util_local_millis();
 
     // First walk them all for maintenance
     for (uint8_t i = 0; i < BADGE_ACTIVE_LIST_SIZE; i++) {

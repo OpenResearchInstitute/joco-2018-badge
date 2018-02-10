@@ -64,6 +64,7 @@
 #define BUTTON_DELAY		200 // mS
 
 char INPUT_CHARS[] = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.!?,()[]{}<>/\\|;:&^%$#@*-_+";
+char INPUT_DIGITS[] = "0123456789";
 
 static void __mbp_ui_popup(char *title, char *text, uint16_t title_bg, uint16_t title_fg) {
 	int16_t x = POPUP_MARGIN;
@@ -208,14 +209,27 @@ void mbp_ui_error(char *text) {
 	__mbp_ui_popup("ERROR", text, ERROR_TITLE_BG, ERROR_TITLE_FG);
 }
 
-void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars) {
+void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars, bool numeric) {
 	int8_t cursor = 0;
 	int16_t input_x = INPUT_PADDING;
 	int16_t input_y = 70;
+	char *input_charset;
+	int16_t input_charset_count;
+
+	if (numeric) {
+	    input_charset = INPUT_DIGITS;
+	    input_charset_count = INPUT_DIGITS_COUNT;
+	} else {
+	    input_charset = INPUT_CHARS;
+	    input_charset_count = INPUT_CHARS_COUNT;
+	}
+
+	if (max_chars > SETTING_INPUT_MAX)
+	    max_chars = SETTING_INPUT_MAX;
 
 	//Make sure input doesn't extend past max input
-	if (strlen(p_input) > SETTING_INPUT_MAX) {
-		p_input[SETTING_INPUT_MAX] = 0;
+	if (strlen(p_input) > max_chars) {
+		p_input[max_chars] = 0;
 	}
 
 	//Setup temporary storage for input
@@ -223,8 +237,8 @@ void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars
 	//Make sure input is all spaces, we'll truncate at the end
 	memset(temp_input, ' ', SETTING_INPUT_MAX);
 	//Ensure null termination
-	temp_input[SETTING_INPUT_MAX] = 0;
-	memcpy(temp_input, p_input, MIN(strlen(p_input), SETTING_INPUT_MAX));
+	temp_input[max_chars] = 0;
+	memcpy(temp_input, p_input, MIN(strlen(p_input), max_chars));
 
 	uint16_t temp_w, temp_h;
 
@@ -261,15 +275,15 @@ void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars
 
 		char temp[2];
 
-		for (uint8_t i = 0; i < SETTING_INPUT_MAX; i++) {
-			int8_t index = util_index_of(INPUT_CHARS, temp_input[i]);
+		for (uint8_t i = 0; i < max_chars; i++) {
+			int8_t index = util_index_of(input_charset, temp_input[i]);
 
 			for (int8_t j = -3; j <= 3; j++) {
 				int8_t temp_index = index + j;
 				if (temp_index < 0) {
-					temp_index += INPUT_CHARS_COUNT;
-				} else if (temp_index >= INPUT_CHARS_COUNT) {
-					temp_index -= INPUT_CHARS_COUNT;
+					temp_index += input_charset_count;
+				} else if (temp_index >= input_charset_count) {
+					temp_index -= input_charset_count;
 				}
 
 				//Drawing row for actual user text
@@ -280,14 +294,14 @@ void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars
 						util_gfx_set_color(COLOR_WHITE);
 					}
 					util_gfx_set_cursor(8 + (i * 14), 66 - (j * 15));
-					sprintf(temp, "%c", INPUT_CHARS[temp_index]);
+					sprintf(temp, "%c", input_charset[temp_index]);
 					util_gfx_print(temp);
 				}
 				//All other rows
 				else if (i == cursor) {
 					util_gfx_set_color(COLOR_DARKGREY);
 					util_gfx_set_cursor(8 + (i * 14), 66 - (j * 15));
-					sprintf(temp, "%c", INPUT_CHARS[temp_index]);
+					sprintf(temp, "%c", input_charset[temp_index]);
 					util_gfx_print(temp);
 				}
 			}
@@ -319,21 +333,21 @@ void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars
 		if (util_button_up() > 0) {
 			nrf_delay_ms(BUTTON_DELAY);
 			util_gfx_fill_rect(0, INPUT_TITLE_H + 1, GFX_WIDTH, GFX_HEIGHT - INPUT_TITLE_H, COLOR_BLACK);
-			int8_t index = util_index_of(INPUT_CHARS, temp_input[cursor]);
-			index = (index + 1) % INPUT_CHARS_COUNT;
-			temp_input[cursor] = INPUT_CHARS[index];
+			int8_t index = util_index_of(input_charset, temp_input[cursor]);
+			index = (index + 1) % input_charset_count;
+			temp_input[cursor] = input_charset[index];
 		}
 
 		//If down is pressed, rotate rolodex
 		if (util_button_down() > 0) {
 			nrf_delay_ms(BUTTON_DELAY);
 			util_gfx_fill_rect(0, INPUT_TITLE_H + 1, GFX_WIDTH, GFX_HEIGHT - INPUT_TITLE_H, COLOR_BLACK);
-			int8_t index = util_index_of(INPUT_CHARS, temp_input[cursor]);
+			int8_t index = util_index_of(input_charset, temp_input[cursor]);
 			index--;
 			if (index < 0) {
-				index += INPUT_CHARS_COUNT;
+				index += input_charset_count;
 			}
-			temp_input[cursor] = INPUT_CHARS[index];
+			temp_input[cursor] = input_charset[index];
 		}
 
 		//If action button pressed, quit
@@ -343,10 +357,10 @@ void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars
 	}
 
 	//Ensure null terminated
-	temp_input[SETTING_INPUT_MAX] = 0;
+	temp_input[max_chars] = 0;
 
 	//Truncate spaces
-	for (uint8_t i = SETTING_INPUT_MAX - 1; i >= 0; i--) {
+	for (uint8_t i = max_chars - 1; i >= 0; i--) {
 		if (temp_input[i] == ' ') {
 			temp_input[i] = 0;
 		} else {
@@ -354,38 +368,12 @@ void mbp_ui_input(char *p_title, char *p_label, char *p_input, uint8_t max_chars
 		}
 	}
 
-	memcpy(p_input, temp_input, SETTING_INPUT_MAX + 1);
+	memcpy(p_input, temp_input, max_chars + 1);
 
 	//Cleanup
 	util_button_clear();
 	util_gfx_cursor_area_reset();
 }
-
-//void mbp_ui_input_box(int16_t x, int16_t y, uint8_t w, char *p_text, uint8_t max_chars) {
-//	uint8_t text_len = strlen(p_text);	//Size of the text
-//	uint8_t cursor = text_len; 			//Location of cursor in the text, put cursor at end of message to continue
-//	uint8_t max_text_len;				//Maximum number of characters allowed after accounting for viewport
-//	uint8_t c_index = 0;   				//index within input char array
-//	UNUSED_VARIABLE(c_index);
-//
-//	util_gfx_set_font(FONT_SMALL_MONO);
-//	uint8_t font_w = util_gfx_font_width();
-//	uint8_t font_h = util_gfx_font_height();
-//	uint8_t h = font_h + INPUT_PADDING + INPUT_PADDING;
-//
-//	max_text_len = MIN(max_chars, w / font_w);
-//
-//	//Determine maximum input length
-////	uint16_t max_cols = w / util_gfx_get_font_width(); //Max number of characters displayable
-//	util_gfx_draw_rect(x, y, w, h, POPUP_FG);
-//	area_t area = { x, y, x + w, y + h };
-//	util_gfx_cursor_area_set(area);
-//
-//	//Offset with the input padding, do this after border is drawn
-//	x += INPUT_PADDING;
-//	y += INPUT_PADDING;
-//
-//}
 
 /**
  * Display the game popup with start and cancel buttons with a space to scroll the description.

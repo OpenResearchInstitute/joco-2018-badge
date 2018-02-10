@@ -543,6 +543,8 @@ static void mbp_menu_system() {
 	menu.count = 0;
 
 	items[menu.count++] = (menu_item_t ) { "Name", "MENU/NAME.ICO", NULL, &mbp_system_name_edit, NULL };
+	if (mbp_state_master_get())
+	    items[menu.count++] = (menu_item_t ) { "Special", "MENU/NAME.ICO", NULL, &mbp_system_special_edit, NULL };
 	items[menu.count++] = (menu_item_t ) { "About", "MENU/ABOUT.ICO", NULL, &mbp_system_about, NULL };
 	items[menu.count++] = (menu_item_t ) { "Shouts", "MENU/SHOUTS.ICO", NULL, &mbp_system_shouts, NULL };
 	items[menu.count++] = (menu_item_t ) { "Games", "MENU/CONTROL.ICO", NULL, &mbp_system_game_menu, NULL };

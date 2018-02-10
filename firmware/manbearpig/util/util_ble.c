@@ -109,6 +109,7 @@ typedef struct {
     uint32_t first_seen;               // 4
     uint32_t last_seen;                // 4
     int8_t rssi;                       // 1
+    uint8_t special;                   // 1
 } ble_badge_t;
 
 //Declare these early
@@ -178,6 +179,40 @@ static void __ble_evt_dispatch(ble_evt_t * p_ble_evt) {
     __on_ble_evt(p_ble_evt);
     ble_advertising_on_ble_evt(p_ble_evt);
 }
+
+void __check_for_master_unlock(uint8_t special) {
+    // Four 'master' badges trigger unlocking of bling when visited
+    uint16_t unlock = mbp_state_unlock_get();
+
+    if (!(unlock & UNLOCK_MASK_MASTER_1)) {
+	if (special == MASTER_1_SPECIAL_ID) {
+	    mbp_state_unlock_set(unlock | UNLOCK_MASK_MASTER_1);
+	    mbp_state_save();
+	}
+    }
+
+    if (!(unlock & UNLOCK_MASK_MASTER_2)) {
+	if (special == MASTER_2_SPECIAL_ID) {
+	    mbp_state_unlock_set(unlock | UNLOCK_MASK_MASTER_2);
+	    mbp_state_save();
+	}
+    }
+
+    if (!(unlock & UNLOCK_MASK_MASTER_3)) {
+	if (special == MASTER_3_SPECIAL_ID) {
+	    mbp_state_unlock_set(unlock | UNLOCK_MASK_MASTER_3);
+	    mbp_state_save();
+	}
+    }
+
+    if (!(unlock & UNLOCK_MASK_MASTER_4)) {
+	if (special == MASTER_4_SPECIAL_ID) {
+	    mbp_state_unlock_set(unlock | UNLOCK_MASK_MASTER_4);
+	    mbp_state_save();
+	}
+    }
+}
+
 
 /**@brief Function for handling an event from the Connection Parameters Module.
  *
@@ -314,6 +349,7 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 
     badge.rssi = p_report->rssi;
     badge.said_hello = false;
+
     // peer adress includes the address type, we only care about the 6 byte GAP address
     memcpy(&badge.address, &p_report->peer_addr.addr, BLE_GAP_ADDR_LEN);
 
@@ -344,8 +380,14 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 //        snprintf(badge.name, MIN(SETTING_NAME_LENGTH, field_length), "%s", (char *) field_data);
             memset(badge.name, 0x00, SETTING_NAME_LENGTH);
             uint8_t index = 0;
+	    badge.special = 0;
+	    char inchar;
+
             for (uint8_t i = 0; i < strlen((char*) field_data); i++) {
-                const char *ptr = strchr(INPUT_CHARS, toupper(field_data[i]));
+		inchar = field_data[i];
+		if (islower((int)inchar))
+		    badge.special |= (1 << i);
+                const char *ptr = strchr(INPUT_CHARS, toupper((int)inchar));
                 badge.name[index++] = *ptr;
                 if (index >= SETTING_NAME_LENGTH - 1) {
                     break;
@@ -420,11 +462,14 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
     if ((badge.company_id == COMPANY_ID_JOCO) && valid_name) {
 	p_active_entry = in_active_list(badge.address, badge.device_id);
 	if (p_active_entry) {
-	    p_active_entry->last_seen = util_millis();
+	    p_active_entry->last_seen = util_local_millis();
 	    if ((p_active_entry->last_seen - p_active_entry->first_seen) > VISIT_TIME_LENGTH) {
+		// SCORE!!
 		uint8_t flags;
 		// add it to the db on disk
 		save_contact(badge.address, badge.device_id);
+		// See if it's one of the master badges
+		__check_for_master_unlock(badge.special);
 		// add it to the seen list with visited set
 		if (p_active_entry->said_hello)
 		    flags = (SEEN_FLAG_VISITED | SEEN_FLAG_SAID_HELLO);
@@ -447,24 +492,18 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 	    // Not active, but have we seen it?
 	    seen_flags = check_and_add_to_seen(badge.address, badge.device_id, SEEN_TYPE_JOCO);
 
-	    if (seen_flags) { 
-		if((!p_active_entry->said_hello) && ( badge.rssi > HELLO_MIN_RSSI)) {
+	    if(seen_flags) {
+		if((!(seen_flags & SEEN_FLAG_SAID_HELLO)) && (badge.rssi > HELLO_MIN_RSSI)) {
 		    if (try_to_hello(badge.company_id, badge.name))
 			set_seen_flags(badge.address, badge.device_id, SEEN_FLAG_SAID_HELLO);
 		}
-		// DONE
+	    // DONE
 	    } else {
 		//we've not seen this one before
 		// add to active if there's room and rssi is high enough
 		// if we can't add we just ignore this one
-		if (try_to_add_to_active(badge.address, badge.device_id, badge.rssi, badge.name)) {
-		    // We added it, No need to resort list since this one has zero visit time and will be at end
-		    if (badge.rssi > HELLO_MIN_RSSI) {
-			if (try_to_hello(badge.company_id, badge.name)) {
-			    p_active_entry->said_hello = true;
-			}
-		    }
-		}
+		// If added it, No need to resort list since this one has zero visit time and will be at end
+		try_to_add_to_active(badge.address, badge.device_id, badge.rssi, badge.name);
 	    }
 	}
     } else if (((badge.company_id == COMPANY_ID) && valid_name) || friendly) {
@@ -971,9 +1010,25 @@ void util_ble_name_get(char *name) {
 }
 
 void util_ble_name_set(char *name) {
+    uint8_t special = mbp_state_special_get();
+    int maxlen = 8;
+    char name_temp[9];
+
+    strcpy(name_temp, name);
+
+    int sl = strlen(name_temp);
+    if (sl < maxlen)
+	maxlen = sl;
+
+    for (int i=0; i<maxlen ; i++) {
+	if ((1<<i) & special) {
+	    name_temp[i] = tolower((int) name_temp[i]);
+	}
+    }    
+
     ble_gap_conn_sec_mode_t sec_mode;
     BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&sec_mode);
-    APP_ERROR_CHECK(sd_ble_gap_device_name_set(&sec_mode, (const uint8_t * ) name, strlen(name)));
+    APP_ERROR_CHECK(sd_ble_gap_device_name_set(&sec_mode, (const uint8_t * ) name_temp, strlen(name_temp)));
     ble_advdata_set(&m_adv_data, NULL);
 }
 

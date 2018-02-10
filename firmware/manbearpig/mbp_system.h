@@ -38,6 +38,7 @@ extern void mbp_system_code();
 //extern bool mbp_system_interuptable_get();
 //extern void mbp_system_interuptable_set(bool interuptable);
 extern void mbp_system_shouts();
+extern void mbp_system_special_edit();
 extern void mbp_system_name_edit();
 extern void mbp_system_name_select();
 extern void mbp_system_game_menu();

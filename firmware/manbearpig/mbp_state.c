@@ -40,6 +40,7 @@ void mbp_state_new() {
 	m_badge_state.airplane_mode_enabled = SETTING_AIRPLANE_MODE_DEFAULT;
 	m_badge_state.tilt_enabled = SETTING_TILT_ENABLED_DEFAULT;
 	m_badge_state.canary = CANARY;
+	m_badge_state.special = 0;
 	m_badge_state.game_exit_pop_up = SETTING_GAME_EXIT_POPUP_DEFAULT;
 	m_badge_state.game_led_sound = SETTING_GAME_LED_SOUND_DEFAULT;
 	m_badge_state.chip8_fg_color = SETTING_CHIP8_FG_COLOR_DEFAULT;
@@ -246,6 +247,15 @@ uint8_t mbp_state_lastlevel_get() {
 void mbp_state_lastlevel_set(uint8_t lastlevel_state) {
 	m_badge_state.joco_last_level_dispensed = lastlevel_state;
 	score_ble_score_update();
+}
+
+uint8_t mbp_state_special_get() {
+	return m_badge_state.special;
+}
+
+void mbp_state_special_set(uint8_t special) {
+	m_badge_state.special = special;
+	util_ble_name_set(m_badge_state.name);
 }
 
 void mbp_state_pw_scruffy_set(char *pw) {

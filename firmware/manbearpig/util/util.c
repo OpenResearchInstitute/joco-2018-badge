@@ -57,6 +57,10 @@ uint32_t util_millis() {
 	return m_millis_offset + (app_timer_cnt_get() / 32);
 }
 
+uint32_t util_local_millis() {
+	return (app_timer_cnt_get() / 32);
+}
+
 void util_millis_offset_set(uint32_t offset) {
 	//Don't jump ahead more than 3 days
 	if (offset < (1000 * 60 * 60 * 24 * 3)) {

@@ -65,14 +65,15 @@ void mbp_system_airplane_mode_select() {
 void mbp_system_code() {
 	char code[9];
 	memset(code, 0, 9);
-	mbp_ui_input("Code", "Enter Code:", code, 8);
+	mbp_ui_input("Code", "Enter Code:", code, 8, false);
 
 	//Master mode
-	if (strcmp(code, "GB6RFP4U") == 0) {
+	if (strcmp(code, "UP2RIGHT") == 0) {
 		mbp_state_master_set(true);
 		mbp_state_save();
 		mbp_ui_popup("Master", "Master Mode Engaged.");
 	}
+
 	//DAMON
 	else if (strcmp(code, "DAMON") == 0) {
 		uint16_t unlock = mbp_state_unlock_get();
@@ -229,6 +230,38 @@ void mbp_system_game_menu() {
 
 }
 
+#define SPECIAL_STRING_LEN 4
+void mbp_system_special_edit() {
+    uint8_t special;
+    special = mbp_state_special_get();
+    char special_buf[SPECIAL_STRING_LEN];
+
+//Ask if they want to clear
+    char message[64];
+    sprintf(message, "Value is '%03d' (MAX 255), edit existing or clear?", special);
+    if (mbp_ui_toggle_popup("Value", 0, "Edit", "Clear", message) == 1) {
+	special = 0;
+    }
+
+//Edit the special value
+    sprintf(special_buf, "%03d", special);
+    mbp_ui_input("Value", "Enter Value:", special_buf, SPECIAL_STRING_LEN - 1, true);
+    special = atoi(special_buf) % 256;
+
+    sprintf(message, "Change value to: '%03d'?", special);
+    if (mbp_ui_toggle_popup("Name", 0, "No", "Yes", message) == 1) {
+	mbp_state_special_set(special);
+	mbp_state_save();
+	
+	sprintf(message, "Value changed to '%03d'.", special);
+	mbp_ui_popup("Value", message);
+    }
+    //Aborted
+    else {
+	mbp_ui_popup("Value", "Value not changed.");
+    }
+}
+
 void mbp_system_name_edit() {
 	char name[SETTING_NAME_LENGTH];
 	mbp_state_name_get(name);
@@ -241,7 +274,7 @@ void mbp_system_name_edit() {
 	}
 
 //Edit the name
-	mbp_ui_input("Name", "Enter Name:", name, SETTING_NAME_LENGTH - 1);
+	mbp_ui_input("Name", "Enter Name:", name, SETTING_NAME_LENGTH - 1, false);
 
 	sprintf(message, "Change name to: '%s'?", name);
 	if (mbp_ui_toggle_popup("Name", 0, "No", "Yes", message) == 1) {
@@ -260,7 +293,7 @@ void mbp_system_name_edit() {
 
 void mbp_system_name_select() {
 	char *names[] = {
-			"MONKEY", "REDSHIRT", "GLaDOS", "KVOTHE", "DENNA",
+			"MONKEY", "REDSHIRT", "GLADOS", "KVOTHE", "DENNA",
 			"AURI", "WESLEY", "GEORDI", "KINGA", "MAX"
 	};
 	uint8_t name_count = 10;
