@@ -74,7 +74,7 @@ static void __send_message(char *message, bool loop) {
 
 	//Make sure message is all upper case and copy into packet
 	for (uint8_t i = 0; i < MIN(strlen(message), 17); i++) {
-		data[i + 2] = toupper(message[i]);
+	    data[i + 2] = toupper((int)message[i]);
 	}
 	//Make sure rest of message has blanks to overwrite other data
 	for (uint8_t i = MIN(strlen(message), 17); i < 17; i++) {

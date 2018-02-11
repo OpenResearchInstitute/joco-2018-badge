@@ -716,7 +716,7 @@ uint8_t mbp_bling_scroll(char *text, bool loop) {
 
 	//Make sure all scroll text is upper case
 	for (uint8_t i = 0; i < strlen(text); i++) {
-		text[i] = toupper(text[i]);
+	    text[i] = toupper((int)text[i]);
 	}
 	int16_t y = (GFX_HEIGHT - SCROLL_CHAR_HEIGHT) / 2;
 	int16_t x = GFX_WIDTH;

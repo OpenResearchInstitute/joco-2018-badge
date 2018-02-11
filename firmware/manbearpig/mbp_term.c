@@ -474,7 +474,7 @@ static int __cmd_namechg(int argc, char **argv) {
 			bool valid_char = false;
 
 			//Make sure upper case
-			argv[1][i] = toupper(argv[1][i]);
+			argv[1][i] = toupper((int)argv[1][i]);
 
 			//Make sure it's in our char set
 			for (uint8_t j = 0; j < strlen(INPUT_CHARS); j++) {
