@@ -24,7 +24,7 @@
 #define MAX_REC_COUNT      1     /**< Maximum records count. */
 
 //Local nfc data
-uint8_t m_ndef_msg_buf[32];
+uint8_t m_ndef_msg_buf[48];
 
 /**
  * @brief Function for creating a record in English.
@@ -33,12 +33,29 @@ static void en_record_add(nfc_ndef_msg_desc_t * p_ndef_msg_desc)
 {
     uint32_t        err_code;
     ble_gap_addr_t  gap_addr;
-    static uint8_t  en_payload[12]; // 6 bytes of GAP address, in Hexadecimal
+    static uint8_t  en_payload[21]; // 12 chars of GAP address in Hexadecimal, plus 8 max for name, plus terminator
+    char name[9];
+    int maxlen = 8;
+    uint8_t special = mbp_state_special_get();
 
     err_code = sd_ble_gap_addr_get(&gap_addr);
     APP_ERROR_CHECK(err_code);
 
     util_hex_encode(en_payload, gap_addr.addr, 6);
+    en_payload[12] = 0;
+
+    mbp_state_name_get(name);
+
+    int sl = strlen(name);
+    if (sl < maxlen)
+	maxlen = sl;
+
+    for (int i=0; i<maxlen ; i++) {
+	if ((1<<i) & special) {
+	    name[i] = tolower((int) name[i]);
+	}
+    }
+    strcat((char *)en_payload, name);
 
     static const uint8_t en_code[] = {'e', 'n'};
 
