@@ -54,5 +54,6 @@
 
 extern int8_t gamelevel();
 extern void add_to_score(int16_t points, char *name);
+extern void game_status_screen();
 
 #endif /* JOCO_GAMEPLAY_H_ */
