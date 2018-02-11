@@ -22,6 +22,7 @@
 
 #define HELLO_MIN_RSSI -55
 
+extern void hello_init();
 extern bool try_to_hello(uint16_t company_id, char *name);
 
 #endif /* UTIL_HELLO_H_ */

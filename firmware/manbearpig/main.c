@@ -83,6 +83,8 @@ int main(void) {
 	//Enable terminal
 	mbp_term_init();
 
+	hello_init();
+
 	// set up the lists we use to track badges we hear
 	ble_lists_init();
 

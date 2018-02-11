@@ -22,11 +22,15 @@
 //Badge to badge hellos
 #define HELLO_INTERVAL                (1000 * 60) // Limit hellos to 1 per minute
 
-static uint32_t m_next_hello = 0;
+static uint32_t m_next_hello;
+
+void hello_init() {
+    m_next_hello = util_local_millis() + HELLO_INTERVAL;
+}
 
 bool try_to_hello(uint16_t company_id, char *name) {
     uint32_t now;
-    now = util_millis();
+    now = util_local_millis();
     if (now < m_next_hello) {
 	return false;
     } else {
