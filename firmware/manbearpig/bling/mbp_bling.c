@@ -1301,14 +1301,41 @@ void mbp_bling_defrag() {
 }
 
 // called every TOOTH_EYES_TIME_MS
+// 10
+static int eye_cycle_count;
+#define EYE_CYCLE_LEN 500
+#define EYE_CYCLE_HALF 20
+
 static void __tooth_sch_handler(void * p_event_data, uint16_t event_size) {
+	uint8_t eye_closed[] = { 4, 5, 6, 7 };
+	uint8_t eye_open[] = { 1, 2, 4, 7, 9, 10 };
 
-	uint32_t eye_rgb = util_led_hsv_to_rgb(m_eye_hue, 1.0, 1.0);
-	uint32_t rgb = util_led_hsv_to_rgb(m_tooth_hue, m_tooth_sat, m_tooth_val);
+	//Clear all colors
+	for (uint8_t i = 0; i < LED_COUNT; i++) {
+		util_led_set_rgb(i, LED_COLOR_BLACK);
+	}
 
-	//Update the LEDs
-        util_led_set_rgb(LED_RIGHT_EYE_INDEX, eye_rgb);
-	util_led_set_rgb(LED_TOOTH_INDEX, rgb);
+	//Compute and set the eye colors
+	uint32_t eye_color = util_led_hsv_to_rgb(m_eye_hue, 1, 0.8);
+	util_led_set_rgb(LED_RIGHT_EYE_INDEX, eye_color);
+
+	uint32_t tooth_color = util_led_hsv_to_rgb(m_tooth_hue, 1, 0.5);
+	util_led_set_rgb(LED_TOOTH_INDEX, tooth_color);
+
+	if (eye_cycle_count > EYE_CYCLE_HALF) {
+		//Large Eye
+		for (uint8_t i = 0; i < 6; i++) {
+			util_led_set_rgb(eye_open[i], eye_color);
+		}
+	} else {
+		//Small Eye
+		for (uint8_t i = 0; i < 4; i++) {
+			util_led_set_rgb(eye_closed[i], eye_color);
+		}
+	}
+	if (++eye_cycle_count > EYE_CYCLE_LEN)
+	    eye_cycle_count = 0;
+
 	util_led_show();
 
         // Update the tooth for next pass
