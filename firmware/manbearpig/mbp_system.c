@@ -539,7 +539,6 @@ void mbp_system_unlock_state() {
 	//Clear out scheduler of any eye/tooth events
 	app_sched_execute();
 
-	util_gfx_draw_raw_file("BLING/JOCO/SKLCROSS.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, false, NULL);
 	util_led_clear();
 
 	//If they've unlocked all 16 set all LEDs to blue
@@ -554,8 +553,9 @@ void mbp_system_unlock_state() {
 	}
 
 	util_led_show();
-	util_button_wait();
-	util_button_clear();
+	util_gfx_draw_raw_file("BLING/JOCO/SKLCROSS.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, true, NULL);
+	//util_button_wait();
+	//util_button_clear();
 	util_led_clear();
 
 	mbp_tooth_eye_start();
