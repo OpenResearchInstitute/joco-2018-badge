@@ -24,12 +24,12 @@
 #define MAX_REC_COUNT      1     /**< Maximum records count. */
 
 //Local nfc data
-uint8_t m_ndef_msg_buf[48];
+static uint8_t m_ndef_msg_buf[48];
 
 /**
  * @brief Function for creating a record in English.
  */
-static void en_record_add(nfc_ndef_msg_desc_t * p_ndef_msg_desc)
+static void __en_record_add(nfc_ndef_msg_desc_t * p_ndef_msg_desc)
 {
     uint32_t        err_code;
     ble_gap_addr_t  gap_addr;
@@ -76,7 +76,7 @@ static void welcome_msg_encode(uint8_t * p_buffer, uint32_t * p_len)
 {
     NFC_NDEF_MSG_DEF(welcome_msg, MAX_REC_COUNT);
 
-    en_record_add(&NFC_NDEF_MSG(welcome_msg));
+    __en_record_add(&NFC_NDEF_MSG(welcome_msg));
  
      uint32_t err_code = nfc_ndef_msg_encode(&NFC_NDEF_MSG(welcome_msg),
                                             p_buffer,
@@ -134,5 +134,22 @@ void util_nfc_init() {
         APP_ERROR_CHECK(err_code);
 
         err_code = nfc_t2t_emulation_start();
+        APP_ERROR_CHECK(err_code);
+}
+
+void util_nfc_reload_payload() {
+        uint32_t  len = sizeof(m_ndef_msg_buf);
+	uint32_t err_code;
+
+        /* Encode welcome message */
+        welcome_msg_encode(m_ndef_msg_buf, &len);
+
+	err_code = nfc_t2t_emulation_stop();
+        APP_ERROR_CHECK(err_code);
+
+        err_code = nfc_t2t_payload_set(m_ndef_msg_buf, len);
+        APP_ERROR_CHECK(err_code);
+
+	err_code = nfc_t2t_emulation_start();
         APP_ERROR_CHECK(err_code);
 }

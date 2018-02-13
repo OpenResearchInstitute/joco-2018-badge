@@ -166,6 +166,7 @@ void mbp_state_name_get(char *name) {
 void mbp_state_name_set(char *name) {
 	snprintf(m_badge_state.name, SETTING_NAME_LENGTH, "%s", name);
 	util_ble_name_set(name);
+	util_nfc_reload_payload();
 }
 
 bool mbp_state_game_led_sound_get() {

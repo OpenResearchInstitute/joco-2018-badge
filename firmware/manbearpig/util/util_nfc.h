@@ -23,5 +23,6 @@
 
 extern void util_nfc_start();
 extern void util_nfc_init();
+extern void util_nfc_reload_payload();
 
 #endif /* UTIL_UTIL_NFC_H_ */
