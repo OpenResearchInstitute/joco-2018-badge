@@ -37,7 +37,7 @@
 #define POINTS_4_LOCALGAME_REPEAT 1
 #define POINTS_4_DISPENSING 100
 #define POINTS_4_ALL_MASTERS 200
-
+#define SCORE_DISPLAY_TIME 6
 // Advertising interval is set to twice per second
 
 // 'visiting' parameters

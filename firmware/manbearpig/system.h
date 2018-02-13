@@ -28,6 +28,8 @@
 #define VERSION							"v1.7"
 #define VERSION_SD						26
 
+//#define NO_DB_SAVE 1
+
 #define SETTING_INPUT_MAX				8
 #define SETTING_NAME_DEFAULT			"REDSHIRT"
 #define SETTING_NAME_LENGTH				9

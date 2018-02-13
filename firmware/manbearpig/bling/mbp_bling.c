@@ -873,23 +873,36 @@ void mbp_bling_scroll_cycle() {
 }
 
 void mbp_bling_score_schedule_handler(void * p_event_data, uint16_t event_size) {
-    // This is a clone of the cpv village hello bling, it needs to be replaced.
+	char *name = (char *) p_event_data;
+	uint16_t w, h;
 	app_sched_pause();
 	bool tooth = mbp_tooth_eye_running();
 	mbp_tooth_eye_stop();
 
 	UTIL_LED_ANIM_INIT(anim);
-	util_led_load_rgb_file("BLING/PINKBLUE.RGB", &anim);
+	util_led_load_rgb_file("BLING/GRNBLUE.RGB", &anim);
 	util_gfx_draw_raw_file("MBSCORE.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, false, NULL);
 
-	//4 second hello time (20 FPS)
-	for (uint16_t i = 0; i < (20 * 4); i++) {
+	uint16_t fg = util_gfx_rgb_to_565(COLOR_BLACK);
+
+	//Compute name coords
+	util_gfx_set_font(FONT_LARGE);
+	util_gfx_get_text_bounds(name, 0, 0, &w, &h);
+	uint16_t y = 80;
+	uint16_t x = (GFX_WIDTH - w) / 2;
+
+	//Print name
+	util_gfx_set_color(fg);
+	util_gfx_set_cursor(x, y);
+	util_gfx_print(name);
+
+	// 6 second score time (20 FPS)
+	for (uint16_t i = 0; i < (20 * SCORE_DISPLAY_TIME); i++) {
 		util_led_play_rgb_frame(&anim);
 		nrf_delay_ms(50);
 	}
 
 	//Cleanup and give control back to user
-	util_led_clear();
 	util_gfx_invalidate();
 	if (tooth) {
 		mbp_tooth_eye_start();

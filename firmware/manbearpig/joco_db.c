@@ -149,6 +149,10 @@ void save_contact(uint8_t *address, uint16_t device_id) {
     // does not exist and add it without checking.
     int idx;
 
+#ifdef NO_DB_SAVE
+    return;
+#endif
+
     gen_filename(contact_db_write_data.filename, address, device_id);
 
     // save the information to hand off to the scheduled write
