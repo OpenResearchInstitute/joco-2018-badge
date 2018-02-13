@@ -159,3 +159,28 @@ void save_contact(uint8_t *address, uint16_t device_id) {
     // schedule the write
     app_sched_event_put(NULL, 0, __db_save_schedule_handler);
 }
+
+uint16_t count_db_entries() {
+    FRESULT result;
+    DIR dir;
+    static FILINFO fno;
+    uint16_t count = 0;
+
+    result = f_opendir(&dir, "DB");
+    if (result == FR_OK) {
+	for (;;) {
+	    result = f_readdir(&dir, &fno); /* Read a directory item */
+	    if (result != FR_OK || fno.fname[0] == 0)
+		break; /* Break on error or end of dir */
+	    if (fno.fattrib & AM_DIR) { /* It is a directory */
+                //ignore
+	    } else { /* It is a file. */
+		if (!strcmp(fno.fname, "KEEPTHIS.FIL"))
+		    continue;
+		count++;
+	    }
+	}
+	f_closedir(&dir);
+    }
+    return count;
+}

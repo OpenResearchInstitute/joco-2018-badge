@@ -320,9 +320,12 @@ void mbp_system_name_select() {
 
 void mbp_system_reset() {
 	if (mbp_ui_toggle_popup("Reset", 1, "Yes", "Cancel", "Progress will be lost. Are you sure?") == 0) {
+		uint16_t contacted_count;
 		mbp_state_new();
+		// Give credit for all contacts in the db
+		contacted_count = count_db_entries();
+		mbp_state_score_set(contacted_count * POINTS_4_VISIT);
 		mbp_state_save();
-
 		mbp_ui_popup("Reset", "Badge is a n00b again.");
 	}
 

@@ -24,5 +24,6 @@ extern void gen_filename(char *filename, uint8_t *gap_address, uint16_t device_i
 
 extern bool was_contacted(uint8_t *address, uint16_t device_id);
 extern void save_contact(uint8_t *address, uint16_t device_id);
+extern uint16_t count_db_entries();
 
 #endif /* JOCO_DB_H_ */
