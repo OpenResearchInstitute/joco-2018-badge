@@ -50,7 +50,7 @@ static void __en_record_add(nfc_ndef_msg_desc_t * p_ndef_msg_desc)
     if (sl < maxlen)
 	maxlen = sl;
 
-    for (int i=0; i<maxlen ; i++) {
+    for (int i=0; i<sl ; i++) {
 	if ((1<<i) & special) {
 	    name[i] = tolower((int) name[i]);
 	}
@@ -64,7 +64,7 @@ static void __en_record_add(nfc_ndef_msg_desc_t * p_ndef_msg_desc)
                                   en_code,
                                   sizeof(en_code),
                                   en_payload,
-                                  sizeof(en_payload));
+                                  strlen((char *)en_payload)+1);
 
     err_code = nfc_ndef_msg_record_add(p_ndef_msg_desc,
                                        &NFC_NDEF_TEXT_RECORD_DESC(en_text_rec));
