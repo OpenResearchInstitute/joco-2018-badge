@@ -563,7 +563,7 @@ void mbp_menu_main() {
 	menu_t menu;
 	menu_item_t items[10];
 	menu.count = 0;
-	items[menu.count++] = (menu_item_t ) { "Score", "MENU/BLING.ICO", NULL, &game_status_screen, NULL };
+	items[menu.count++] = (menu_item_t ) { "Score", "MENU/SCORE.ICO", NULL, &game_status_screen, NULL };
 	items[menu.count++] = (menu_item_t ) { "Bling!", "MENU/BLING.ICO", NULL, &mbp_menu_bling, NULL };
 	items[menu.count++] = (menu_item_t ) { "Games", "MENU/CONTROL.ICO", NULL, &mbp_menu_games, NULL };
 	items[menu.count++] = (menu_item_t ) { "Tracking", "MENU/NEARBY.ICO", NULL, &mbp_menu_nearby, NULL };

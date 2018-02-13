@@ -25,11 +25,8 @@
  *****************************************************************************/
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
-#define VERSION							"v1.6"
-#define VERSION_SD						25
-
-
-//#define BLE_ONLY_BUILD					1
+#define VERSION							"v1.7"
+#define VERSION_SD						26
 
 #define SETTING_INPUT_MAX				8
 #define SETTING_NAME_DEFAULT			"REDSHIRT"

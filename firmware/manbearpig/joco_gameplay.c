@@ -97,10 +97,7 @@ void game_status_screen() {
 	util_gfx_validate();
 
 	util_button_wait();
-
-	if (util_button_left()) {
-	    util_button_clear();
-	    return;
-	}
+	util_button_clear();
+	return;
     }
 }
