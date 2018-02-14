@@ -34,7 +34,6 @@
 #define POINTS_4_VISIT 50
 #define POINTS_4_SPARKLE_VISIT 5
 #define POINTS_4_LOCAL_GAME 20
-#define POINTS_4_LOCALGAME_REPEAT 1
 #define POINTS_4_DISPENSING 100
 #define POINTS_4_ALL_MASTERS 200
 #define SCORE_DISPLAY_TIME 6
@@ -45,6 +44,9 @@
 #define VISIT_TIME_LENGTH 60000 // Milliseconds
 #define VISIT_LOST_TIME_LENGTH 15000
 #define SPARKLE_VISIT_RSSI_MIN -55
+
+// game play points parameters
+#define GAME_TIME_4_SCORE 60000 // play a game for a minute to score
 
 // 'master' badge definitions
 #define MASTER_1_SPECIAL_ID 1

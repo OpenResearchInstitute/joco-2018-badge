@@ -816,9 +816,16 @@ void chip8_run_file(char *filename) {
 		}
 	}
 
+        uint32_t start_timestamp = util_local_millis();
+
 	//Go time
 	chip8_run(&game);
 
+        uint32_t stop_timestamp = util_local_millis();
+        if ((stop_timestamp - start_timestamp) > GAME_TIME_4_SCORE) {
+            add_to_score(POINTS_4_LOCAL_GAME, "gameplay"); // schedules a bling automatically
+        }
+        
 	//cleanup
 	free(game.game_data);
 	free(game.note);
