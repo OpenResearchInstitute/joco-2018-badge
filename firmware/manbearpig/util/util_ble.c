@@ -121,7 +121,7 @@ static void pm_evt_handler(pm_evt_t const * p_evt);
 uint16_t m_time = 0;
 APP_TIMER_DEF(m_ble_global_time_timer);
 
-#define BLE_GLOBAL_TIME_SECRET        0x84b1
+#define BLE_GLOBAL_TIME_SECRET        0x8dc0
 #define BLE_GLOBAL_TIME_UPDATE_MS     (1000 * 1) // Update the global time in the advertisement every second)
 
 /**@brief Function for initializing the Advertising functionality.
