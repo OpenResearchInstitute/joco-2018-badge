@@ -20,11 +20,12 @@
 #include "../system.h"
 
 // Seen list, each entry is an array of bytes
-#define SEEN_DB_LEN 60
+#define SEEN_DB_LEN 30
 
 typedef struct {
     uint8_t address[BLE_GAP_ADDR_LEN]; // 6
     uint16_t device_id;                // 2
+    char name[SETTING_NAME_LENGTH];    // 9
     uint8_t flags;                     // 1
 } ble_badge_seen_entry_t;
 
@@ -47,6 +48,7 @@ void ble_lists_init() {
     for(int i=0; i<BADGE_ACTIVE_LIST_SIZE; i++) {
 	active_index[i] = i;
 	active[i].first_seen = 0;
+	active[i].name[0] = 0;
     }
     ble_lists_initialized = true;
     // -spc- TODO read as many records as we can
@@ -88,7 +90,7 @@ int __find_seen_index(uint8_t *address, uint16_t device_id) {
     return return_value;
 }
 
-void add_to_seen(uint8_t *address, uint16_t device_id, uint8_t type, uint8_t flags) {
+void add_to_seen(uint8_t *address, uint16_t device_id, char *name, uint8_t type, uint8_t flags) {
     type &= SEEN_TYPE_MASK;
     flags |= (SEEN_FLAG_MASK & flags);
     flags |= SEEN_FLAG_USED;
@@ -100,6 +102,7 @@ void add_to_seen(uint8_t *address, uint16_t device_id, uint8_t type, uint8_t fla
     memcpy(seen_db[previous_seen_write].address, address, BLE_GAP_ADDR_LEN);
     seen_db[previous_seen_write].device_id = device_id;
     seen_db[previous_seen_write].flags = flags;
+    strncpy(seen_db[previous_seen_write].name, name, SETTING_NAME_LENGTH);
 }
 
 //
@@ -108,7 +111,7 @@ void add_to_seen(uint8_t *address, uint16_t device_id, uint8_t type, uint8_t fla
 // If it's in the db, then add it to the seen list
 //
 
-uint8_t check_and_add_to_seen(uint8_t *address, uint16_t device_id, uint8_t type) {
+uint8_t check_and_add_to_seen(uint8_t *address, uint16_t device_id, char *name, uint8_t type) {
     // return zero or the seen_flags field from the entry
     uint8_t return_value = 0;
     int read_position = __find_seen_index(address, device_id);
@@ -120,11 +123,11 @@ uint8_t check_and_add_to_seen(uint8_t *address, uint16_t device_id, uint8_t type
 	if (type & SEEN_TYPE_JOCO) {
 	    // if it's a joco badge, check the db on disk
 	    if (was_contacted(address, device_id)) {
-		add_to_seen(address, device_id, SEEN_TYPE_JOCO, 0);
+		add_to_seen(address, device_id, name, SEEN_TYPE_JOCO, 0);
 		return_value = SEEN_FLAG_USED;
 	    }
 	} else if  (type & SEEN_TYPE_PEER) {
-	    add_to_seen(address, device_id, SEEN_TYPE_PEER, 0);
+	    add_to_seen(address, device_id, name, SEEN_TYPE_PEER, 0);
 	    return_value = SEEN_FLAG_USED;
 	}
     }

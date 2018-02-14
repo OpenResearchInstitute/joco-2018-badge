@@ -475,7 +475,7 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 		    flags = (SEEN_FLAG_VISITED | SEEN_FLAG_SAID_HELLO);
 		else
 		    flags = SEEN_FLAG_VISITED;
-		add_to_seen(badge.address, badge.device_id, SEEN_TYPE_JOCO, flags);
+		add_to_seen(badge.address, badge.device_id, badge.name, SEEN_TYPE_JOCO, flags);
 		// flag it for removal from the active list
 		p_active_entry->first_seen = 0;
 		// sort the active list and reset the visit timers
@@ -490,7 +490,7 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 	    // DONE
 	} else {
 	    // Not active, but have we seen it?
-	    seen_flags = check_and_add_to_seen(badge.address, badge.device_id, SEEN_TYPE_JOCO);
+	    seen_flags = check_and_add_to_seen(badge.address, badge.device_id, badge.name, SEEN_TYPE_JOCO);
 
 	    if(seen_flags) {
 		if((!(seen_flags & SEEN_FLAG_SAID_HELLO)) && (badge.rssi > HELLO_MIN_RSSI)) {
@@ -509,7 +509,7 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
     } else if (((badge.company_id == COMPANY_ID) && valid_name) || friendly) {
 	// NOT joco
 	// put it on the seen list if it's not already, automatic add for PEER type
-	seen_flags = check_and_add_to_seen(badge.address, badge.device_id, SEEN_TYPE_PEER);
+	seen_flags = check_and_add_to_seen(badge.address, badge.device_id, badge.name, SEEN_TYPE_PEER);
 	if (!(seen_flags & SEEN_FLAG_SAID_HELLO)) {
 	    if (try_to_hello(badge.company_id, badge.name))
 		set_seen_flags(badge.address, badge.device_id, SEEN_FLAG_SAID_HELLO);

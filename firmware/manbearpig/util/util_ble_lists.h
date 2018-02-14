@@ -57,8 +57,8 @@ void ble_lists_init();
 #define SEEN_TYPE_JOCO 0x01
 #define SEEN_TYPE_PEER 0x02
 
-void add_to_seen(uint8_t *address, uint16_t device_id, uint8_t type, uint8_t flags);
-uint8_t check_and_add_to_seen(uint8_t *address, uint16_t device_id, uint8_t type);
+void add_to_seen(uint8_t *address, uint16_t device_id, char *name, uint8_t type, uint8_t flags);
+uint8_t check_and_add_to_seen(uint8_t *address, uint16_t device_id, char *name, uint8_t type);
 int set_seen_flags(uint8_t *address, uint16_t device_id, uint8_t flags);
 
 //
