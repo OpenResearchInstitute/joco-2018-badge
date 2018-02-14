@@ -559,8 +559,6 @@ void mbp_system_unlock_state() {
 
 	util_led_show();
 	util_gfx_draw_raw_file("BLING/JOCO/SKLCROSS.RAW", 0, 0, GFX_WIDTH, GFX_HEIGHT, NULL, true, NULL);
-	//util_button_wait();
-	//util_button_clear();
 	util_led_clear();
 
 	mbp_tooth_eye_start();

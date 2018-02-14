@@ -51,8 +51,6 @@ void ble_lists_init() {
 	active[i].name[0] = 0;
     }
     ble_lists_initialized = true;
-    // -spc- TODO read as many records as we can
-    // from disk DB into the seen list to preload it.
 }
 
 //

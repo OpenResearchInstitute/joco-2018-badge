@@ -187,25 +187,6 @@ static void __mbp_bling_rainbow_eye_callback(uint8_t frame, void *data) {
     *p_data = (uint8_t) (hue * 100.0);
 }
 
-/*
-static void __mbp_bling_spin_callback(uint8_t frame, void *data) {
-    // TODO -spc- make this a chase
-    uint8_t *p_data = (uint8_t *) data;
-    float hue = ((float) *p_data) / 100.0;
-
-    uint32_t rgb = util_led_hsv_to_rgb(hue, 1.0, 1.0);
-    util_led_set_rgb(LED_RIGHT_EYE_INDEX, rgb);
-    util_led_show();
-
-    hue -= .01;
-    if (hue <= 0) {
-        hue = .99;
-    }
-
-    *p_data = (uint8_t) (hue * 100.0);
-}
-*/
-
 #define GLITTER_HANG_TIME 10
 static uint8_t hang_time = GLITTER_HANG_TIME;
 
