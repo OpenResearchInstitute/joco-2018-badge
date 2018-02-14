@@ -86,7 +86,7 @@ void game_status_screen() {
 	    util_gfx_print(temp);
 
 	    //Print trinkets available
-	    sprintf(temp, "Trinkets avail: %d\n", lastlevel-level);
+	    sprintf(temp, "Trinkets avail: %d\n", level - lastlevel);
 	    util_gfx_set_cursor(JOCO_UI_MARGIN, 100);
 	    util_gfx_print(temp);
 
