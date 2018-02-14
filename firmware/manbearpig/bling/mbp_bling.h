@@ -31,6 +31,7 @@
 #define LED_TOOTH_INDEX			13
 #define LED_MATRIX_LAST_INDEX	11
 
+extern void simple_filebased_bling(char *rawfile, char *rgbfile);
 extern void mbp_bling_backer_abraxas3d(void *data);
 extern void mbp_bling_backer_andnxor(void *data);
 extern void mbp_bling_badgers();
