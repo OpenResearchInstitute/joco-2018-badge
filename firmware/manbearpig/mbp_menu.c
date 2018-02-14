@@ -491,14 +491,14 @@ static void mbp_menu_games() {
 
 static void mbp_menu_nearby() {
 	int badge_list_size;
-	 ble_badge_list_menu_text_t *list;
+        ble_badge_list_menu_text_t *list;
 	uint8_t start_of_medea;
 
 	menu_t menu;
 	menu_item_t items[NEARBY_BADGE_LIST_LEN + MEDEA_DB_SIZE];
 	menu.items = items;
 	menu.count = 0;
-	menu.title = "Tracking";
+	menu.title = "Nearby";
 
 	list = malloc(NEARBY_BADGE_LIST_LEN * sizeof( ble_badge_list_menu_text_t));
 	if (!list) {

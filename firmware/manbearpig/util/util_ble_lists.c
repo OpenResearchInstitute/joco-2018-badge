@@ -90,6 +90,38 @@ int __find_seen_index(uint8_t *address, uint16_t device_id) {
     return return_value;
 }
 
+static int seen_list_walk_position;
+static int seen_list_walk_count;
+
+void __get_seen_set_first() {
+    // return the index of the first entry in seen_db, or -1 for not found
+    seen_list_walk_position = previous_seen_write;
+    seen_list_walk_count = SEEN_DB_LEN;
+}
+
+int __get_seen_next() {
+    // return the index into the seen_db, or -1 for not found
+    int return_value = -1;
+
+    // run over all entries (backwards)
+    if (seen_list_walk_count > 0) {
+	if (!(seen_db[seen_list_walk_position].flags & SEEN_FLAG_USED)) {
+	    // this entry (and all older ones) are unused
+	    return -1;;
+	}
+        // position for next read
+        seen_list_walk_position--;
+        if (seen_list_walk_position < 0)
+            seen_list_walk_position = SEEN_DB_LEN-1;
+
+        // see if we've run around the whole list
+        seen_list_walk_count--;
+        
+        return_value = seen_list_walk_position;
+    }
+    return return_value;
+}
+
 void add_to_seen(uint8_t *address, uint16_t device_id, char *name, uint8_t type, uint8_t flags) {
     type &= SEEN_TYPE_MASK;
     flags |= (SEEN_FLAG_MASK & flags);
@@ -261,22 +293,46 @@ void sort_active(bool reset_timers) {
 
 int get_nearby_badge_list(int size, ble_badge_list_menu_text_t *list) {
     int max_count = BADGE_ACTIVE_LIST_SIZE;
+    int seen_index;
     ble_badge_active_entry_t *p_entry;
     int return_count = 0;
-
+    uint8_t i;
+    uint8_t flags;
+    
     if (size < BADGE_ACTIVE_LIST_SIZE)
 	max_count = size;
 
     // no mutex, perhaps there should be but not a big deal
 
     // TODO no sorting, perhaps sort by rssi
-    for (uint8_t i=0; i<max_count; i++) {
+    for (i=0; i<max_count; i++) {
 	p_entry = &active[active_index[i]];
 	if (!p_entry->first_seen)
-	    break; // we've reached the first unused entry without finding it
+	    break; // we've reached the first unused entry
 	sprintf(list[i].text, "%s %ddB", p_entry->name, p_entry->rssi);
 	return_count++;
     }
 
+    // If there are any slots left in the list, fill them from the seen list
+    __get_seen_set_first();
+    while(i < max_count) {
+        seen_index = __get_seen_next();
+        if (seen_index < 0) {
+            // we're done
+            return return_count;
+        } else {
+            // we found an entry, ignore if it's not JoCo
+            flags = seen_db[seen_index].flags;
+            if ((flags & SEEN_TYPE_MASK) == SEEN_TYPE_JOCO) {
+                strncpy(list[i].text, seen_db[seen_index].name, SETTING_NAME_LENGTH);
+                if (flags & SEEN_FLAG_VISITED)
+                    strcat(list[i].text, " S");
+                if (flags & SEEN_FLAG_SAID_HELLO)
+                    strcat(list[i].text, " H");
+                return_count++;
+                i++;
+            }
+        }
+    }
     return return_count;
 }
