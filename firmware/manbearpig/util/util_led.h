@@ -22,6 +22,11 @@
  * 	@andrewnriley
  * 	@lacosteaef
  * 	@bitstr3m
+ * 
+ * Further modifications made by
+ *      @sconklin
+ *      @mustbeart
+ *
  *****************************************************************************/
 #ifndef UTIL_LED_H_
 #define UTIL_LED_H_

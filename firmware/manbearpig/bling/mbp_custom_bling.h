@@ -22,6 +22,11 @@
  * 	@andrewnriley
  * 	@lacosteaef
  * 	@bitstr3m
+ *
+ * Further modifications made by
+ *      @sconklin
+ *      @mustbeart
+ *
  *****************************************************************************/
 
 #ifndef BLING_MBP_CUSTOM_BLING_H_

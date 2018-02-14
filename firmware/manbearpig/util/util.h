@@ -22,7 +22,13 @@
  * 	@andrewnriley
  * 	@lacosteaef
  * 	@bitstr3m
- *****************************************************************************/#ifndef UTIL_UTIL_H_
+ * 
+ * Further modifications made by
+ *      @sconklin
+ *      @mustbeart
+ *
+ *****************************************************************************/
+#ifndef UTIL_UTIL_H_
 #define UTIL_UTIL_H_
 
 #define UTIL_TIMER_PRESCALER			0

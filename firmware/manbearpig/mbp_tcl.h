@@ -22,6 +22,11 @@
  * 	@andrewnriley
  * 	@lacosteaef
  * 	@bitstr3m
+ *
+ * Further modifications made by
+ *      @sconklin
+ *      @mustbeart
+ *
  *****************************************************************************/
 #ifndef MBP_TCL_H_
 #define MBP_TCL_H_

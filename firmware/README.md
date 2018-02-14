@@ -1,8 +1,6 @@
-# AND!XOR DC25 Firmware #
+# JoCo Cruise 2018 pirate badge firmware
 
-And the firmware itself...
-
-Everything is here, Master Badge mode, C2, Botnet, Bling, everything. 
+based on the AND!XOR DC25 Bender badge
 
 ## Building ##
 
@@ -15,9 +13,7 @@ That's it.
 
 ## Flashing ##
 
-nrfjprog has been provided in ../bin. This is used to recover the NRF52, flash the soft device, and firmware. All of this has been scripted in provision.sh.
-
-Or use make.
+Youll need to install nrfjprog and poin tto it usng environment variables. See the Makefile.
 
 make flash_softdevice
 make flash

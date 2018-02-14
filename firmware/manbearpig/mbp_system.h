@@ -22,6 +22,11 @@
  * 	@andrewnriley
  * 	@lacosteaef
  * 	@bitstr3m
+ *
+ * Further modifications made by
+ *      @sconklin
+ *      @mustbeart
+ *
  *****************************************************************************/
 #ifndef CONFIG_MBP_SYSTEM_H_
 #define CONFIG_MBP_SYSTEM_H_
