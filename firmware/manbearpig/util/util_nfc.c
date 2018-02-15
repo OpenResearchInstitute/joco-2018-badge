@@ -1,5 +1,5 @@
 /*****************************************************************************
- * (C) Copyright 2017 
+ * (C) Copyright 2017
  *
  * PROPRIETARY AND CONFIDENTIAL UNTIL FEBRUARY 26TH, 2018 then,
  *
@@ -33,16 +33,18 @@ static void __en_record_add(nfc_ndef_msg_desc_t * p_ndef_msg_desc)
 {
     uint32_t        err_code;
     ble_gap_addr_t  gap_addr;
-    static uint8_t  en_payload[21]; // 12 chars of GAP address in Hexadecimal, plus 8 max for name, plus terminator
+    static uint8_t  en_payload[25]; // 12 chars of GAP address in Hexadecimal, 4 for device_ID in hex, plus 8 max for name, plus terminator
     char name[9];
     int maxlen = 8;
     uint8_t special = mbp_state_special_get();
+	uint16_t device_id = util_get_device_id();
 
     err_code = sd_ble_gap_addr_get(&gap_addr);
     APP_ERROR_CHECK(err_code);
 
     util_hex_encode(en_payload, gap_addr.addr, 6);
-    en_payload[12] = 0;
+	util_hex_encode(en_payload+12, (uint8_t *)&device_id, 2);
+    en_payload[16] = 0;
 
     mbp_state_name_get(name);
 
@@ -77,7 +79,7 @@ static void welcome_msg_encode(uint8_t * p_buffer, uint32_t * p_len)
     NFC_NDEF_MSG_DEF(welcome_msg, MAX_REC_COUNT);
 
     __en_record_add(&NFC_NDEF_MSG(welcome_msg));
- 
+
      uint32_t err_code = nfc_ndef_msg_encode(&NFC_NDEF_MSG(welcome_msg),
                                             p_buffer,
                                             p_len);
