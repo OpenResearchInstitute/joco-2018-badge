@@ -28,7 +28,10 @@
 #define VERSION							"v1.7"
 #define VERSION_SD						26
 
+// Various testing options
+
 //#define NO_DB_SAVE 1
+//#define UNLOCK_ALL_BLING
 
 #define SETTING_INPUT_MAX				8
 #define SETTING_NAME_DEFAULT			"REDSHIRT"

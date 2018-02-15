@@ -157,10 +157,6 @@ int main(void) {
 	util_led_clear();
 	mbp_ui_cls();
 
-	__boot();
-
-	util_gfx_set_font(FONT_SMALL);
-
 	//Read seekrit resistor and set unlocked state appropriately
         //State persists across boot
 	if (mbp_system_seekrit_get()) {
@@ -168,10 +164,15 @@ int main(void) {
 		mbp_state_unlock_set(unlock | UNLOCK_MASK_SEEKRIT);
 	}
 
+	__boot();
+
+	util_gfx_set_font(FONT_SMALL);
+
 //	mbp_system_test();
 
-// uncomment to test all bling modes
-//        mbp_state_unlock_set(0xFFFF);
+#ifdef UNLOCK_ALL_BLING
+        mbp_state_unlock_set(0xFFFF);
+#endif
 
 	while (1) {
 		app_sched_execute();
