@@ -40,7 +40,7 @@
 // Advertising interval is set to twice per second
 
 // 'visiting' parameters
-#define VISIT_RSSI_MIN -55
+#define VISIT_RSSI_MIN -40
 #define VISIT_TIME_LENGTH 60000 // Milliseconds
 #define VISIT_LOST_TIME_LENGTH 15000
 #define SPARKLE_VISIT_RSSI_MIN -55
