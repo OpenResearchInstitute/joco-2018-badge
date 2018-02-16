@@ -340,3 +340,31 @@ int get_nearby_badge_list(int size, ble_badge_list_menu_text_t *list) {
     }
     return return_count;
 }
+
+int get_nearby_badge_count() {
+    int seen_index;
+    ble_badge_active_entry_t *p_entry;
+    int return_count = 0;
+    uint8_t i;
+    
+    // TODO no sorting, perhaps sort by rssi
+    for (i=0; i<BADGE_ACTIVE_LIST_SIZE; i++) {
+	p_entry = &active[active_index[i]];
+	if (!p_entry->first_seen)
+	    break; // we've reached the first unused entry
+	return_count++;
+    }
+
+    // If there are any slots left in the list, fill them from the seen list
+    __get_seen_set_first();
+    while(true) {
+        seen_index = __get_seen_next();
+        if (seen_index < 0) {
+            // we're done
+            return return_count;
+        } else {
+            return_count++;
+        }
+    }
+    return return_count;
+}

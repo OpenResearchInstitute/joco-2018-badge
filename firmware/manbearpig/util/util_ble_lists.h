@@ -90,5 +90,6 @@ typedef struct {
 #define NEARBY_BADGE_LIST_LEN 38
 
 extern int get_nearby_badge_list(int size, ble_badge_list_menu_text_t *list); 
+extern int get_nearby_badge_count(); 
 
 #endif /* UTIL_BLE_LISTS_H_ */
