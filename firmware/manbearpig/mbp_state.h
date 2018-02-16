@@ -47,7 +47,7 @@ typedef struct {
 	uint16_t joco_score;
 	uint16_t unlock_state;
 	bool master_badge;
-	char pw_scruffy[9];
+	char pw_glados[9];
 	char pw_root[9];
 	uint16_t wall_current_spot;
 	char wall_messages[5][16];
@@ -60,8 +60,8 @@ extern bool mbp_state_load();
 extern void mbp_state_new();
 extern void mbp_state_save();
 
-extern void mbp_state_pw_scruffy_set(char *pw);
-extern void mbp_state_pw_scruffy_get(char *pw);
+extern void mbp_state_pw_glados_set(char *pw);
+extern void mbp_state_pw_glados_get(char *pw);
 extern void mbp_state_pw_root_set(char *pw);
 extern void mbp_state_pw_root_get(char *pw);
 

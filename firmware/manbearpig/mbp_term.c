@@ -102,9 +102,9 @@ typedef struct {
 uint8_t m_hey_count = 0;
 uint8_t m_who_count = 0;
 uint8_t m_current_user_role = 0;
-uint8_t mm = 7;
-uint8_t dd = 27;
-uint16_t yyyy = 2017;
+uint8_t mm = 2;
+uint8_t dd = 18;
+uint16_t yyyy = 2018;
 APP_TIMER_DEF(m_terminal_inactivity_timer);
 uint32_t m_inactivity_end_time;
 uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;
@@ -460,7 +460,7 @@ static int __cmd_defrag(int argc, char **argv) {
 
 static int __cmd_ll(int argc, char **argv) {
 	mbp_term_print("rw-rw----");
-	mbp_term_print("root scruffy ");
+	mbp_term_print("root glados ");
 	mbp_term_print("/shadow.backup");
 	mbp_term_print("\r");
 	return 0;
@@ -514,13 +514,13 @@ static int __cmd_passwd(int argc, char **argv) {
 	if ((argc == 2) && (strlen(argv[1]) <= SETTING_PW_LENGTH - 1)) {
 		if (m_current_user_role == 0) {
 			mbp_term_print("Error!");
-			mbp_term_print("Fry not allowed pw");
+			mbp_term_print("codemonkey not allowed pw");
 			mbp_term_print("He always forgets it");
 			mbp_term_print("\r");
 		}
 		else if (m_current_user_role == 1) {
-			//Scruffy passwd
-			mbp_state_pw_scruffy_set(argv[1]);
+			//glados passwd
+			mbp_state_pw_glados_set(argv[1]);
 			mbp_term_print("Password Updated!");
 			mbp_term_print("\r");
 			mbp_state_save();
@@ -605,11 +605,11 @@ static int __cmd_less(int argc, char **argv) {
 			mbp_term_print("\r");
 		}
 		if ((strcmp(argv[1], "shadow.backup") == 0) && (m_current_user_role > 0)) {
-			mbp_term_print("#Backup for scruffy");
-			mbp_term_print("root:ff24fefce7040369fd4fda33fd2d036d");
+			mbp_term_print("#Backup for GLaDOS");
+			mbp_term_print("root:fb24c8828c599f6fad30fbed6f4074ad");
 			mbp_term_print("\r");
 			//Create Root Password Hash https://md5hashing.net/hash
-			//Default Root Password = goodnews
+			//Default Root Password = jcoulton
 			//User must less the file and crack MD5 encrypted password
 			//Hope they change it...
 		}
@@ -620,20 +620,20 @@ static int __cmd_less(int argc, char **argv) {
 static int __cmd_exit(int argc, char **argv) {
 	switch (m_current_user_role) {
 	case 0:
-		mbp_term_print("Huh. Did everything");
-		mbp_term_print("just taste purple");
-		mbp_term_print("for a second?");
+		mbp_term_print("Go ahead and leave me");
+		mbp_term_print("I think I prefer to stay inside");
+		mbp_term_print("Maybe you'll find someone else to help you");
 		mbp_term_print("\r");
 		break;
 	case 1:
-		mbp_term_print("Session End: scruffy");
-		mbp_term_print("Current User: fry");
+		mbp_term_print("Session End: GLaDOS");
+		mbp_term_print("Current User: codemonkey");
 		mbp_term_print("\r");
 		m_current_user_role = 0; //always jump to lowest privilege on exit
 		break;
 	case 2:
 		mbp_term_print("Session End: root");
-		mbp_term_print("Current User: fry");
+		mbp_term_print("Current User: codemonkey");
 		mbp_term_print("\r");
 		m_current_user_role = 0; //always jump to lowest privilege on exit
 		break;
@@ -656,8 +656,8 @@ static int __cmd_stop(int argc, char **argv) {
 }
 
 static int __cmd_su(int argc, char **argv) {
-	char pw_scruffy[9];
-	mbp_state_pw_scruffy_get(pw_scruffy);
+	char pw_glados[9];
+	mbp_state_pw_glados_get(pw_glados);
 
 	char pw_root[9];
 	mbp_state_pw_root_get(pw_root);
@@ -669,14 +669,14 @@ static int __cmd_su(int argc, char **argv) {
 	}
 
 	if (argc == 3) {
-		if ((strcmp(argv[1], "scruffy") == 0) && (strcmp(argv[2], pw_scruffy) == 0)) {
-			mbp_term_print("Welcome: Scruffy");
-			mbp_term_print("MOTD: My job.");
-			mbp_term_print("Toilets 'n boilers, ");
-			mbp_term_print("boilers 'n toilets.");
-			mbp_term_print("Dont forget to exit!");
-			mbp_term_print("\r");
-			m_current_user_role = 1;
+		if ((strcmp(argv[1], "glados") == 0) && (strcmp(argv[2], pw_glados) == 0)) {
+
+                    mbp_term_print("Aperture Science");
+                    mbp_term_print("We do what we must because we can");
+                    mbp_term_print("For the good of all of us");
+                    mbp_term_print("Except the ones who are dead");
+                    mbp_term_print("\r");
+                    m_current_user_role = 1;
 		}
 		else if ((strcmp(argv[1], "root") == 0) && ((strcmp(argv[2], pw_root) == 0) || (strcmp(argv[2], "xxxxxxxx") == 0))) {
 			//Did i just sneak in a backdoor?
@@ -761,14 +761,14 @@ static int __cmd_uname(int argc, char **argv) {
 }
 
 static int __cmd_motd(int argc, char **argv) {
-	mbp_term_print("AND!XOR DC25 BADGE");
-	mbp_term_print("@andnxor");
-	mbp_term_print("@zappbrandnxor");
-	mbp_term_print("@lacosteaef");
-	mbp_term_print("@andrewnriley");
-	mbp_term_print("@bitst3m");
-	mbp_term_print("@hyr0n1");
-	mbp_term_print("╚▒▒-▤8−◦");
+	mbp_term_print("JoCo 2018 Badge");
+	mbp_term_print("@sconklin");
+	mbp_term_print("@AmyH70");
+	mbp_term_print("@jeriellsworth");
+	mbp_term_print("@mustbeart");
+	mbp_term_print("@abraxas3d");
+	mbp_term_print("@n5ac");
+	mbp_term_print("@sewbuzzed");
 	mbp_term_print("\r");
 	mbp_term_print("Type 'help' to");
 	mbp_term_print("Kill All Humans!");
@@ -850,8 +850,6 @@ static int __cmd_whoami(int argc, char **argv) {
 	case 9:
 		mbp_term_print("Did you really think");
 		mbp_term_print("This would work?");
-		mbp_term_print("We didnt reuse *.*");
-		mbp_term_print("From DC24...");
 		mbp_term_print("¯\\_(ツ)_/¯");
 		mbp_term_print("\r");
 		break;

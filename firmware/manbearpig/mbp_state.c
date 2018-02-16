@@ -31,7 +31,7 @@
 
 #include "system.h"
 
-#define CANARY				(0x19)
+#define CANARY				(0xba)
 #define STATE_FILE_PATH		"SHADOW.DAT"
 
 //Badge State, global storage.
@@ -55,8 +55,8 @@ void mbp_state_new() {
 	m_badge_state.joco_score = GAME_SCORE_DEFAULT;
 	m_badge_state.joco_last_level_dispensed = GAME_LASTLEVEL_DEFAULT;
 
-	strcpy(m_badge_state.pw_scruffy, "54321");
-	strcpy(m_badge_state.pw_root, "hamneggs");
+	strcpy(m_badge_state.pw_glados, "aperture");
+	strcpy(m_badge_state.pw_root,   "diligent");
 
 	strcpy(m_badge_state.wall_messages[0], "Msg 1 None");
 	strcpy(m_badge_state.wall_messages[1], "Msg 2 None");
@@ -264,12 +264,12 @@ void mbp_state_special_set(uint8_t special) {
 	util_ble_name_set(m_badge_state.name);
 }
 
-void mbp_state_pw_scruffy_set(char *pw) {
-	snprintf(m_badge_state.pw_scruffy, SETTING_PW_LENGTH, "%s", pw);
+void mbp_state_pw_glados_set(char *pw) {
+	snprintf(m_badge_state.pw_glados, SETTING_PW_LENGTH, "%s", pw);
 }
 
-void mbp_state_pw_scruffy_get(char *pw) {
-	snprintf(pw, SETTING_PW_LENGTH, "%s", m_badge_state.pw_scruffy);
+void mbp_state_pw_glados_get(char *pw) {
+	snprintf(pw, SETTING_PW_LENGTH, "%s", m_badge_state.pw_glados);
 }
 
 void mbp_state_pw_root_set(char *pw) {
