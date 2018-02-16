@@ -170,7 +170,7 @@ static uint32_t __init_char_score() {
 
 	BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
 	BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&attr_md.write_perm);
-	attr_md.vloc = BLE_GATTS_VLOC_STACK;
+	attr_md.vloc = BLE_GATTS_VLOC_USER;
 	attr_md.rd_auth = 0;
 	attr_md.wr_auth = 0;
 	attr_md.vlen = 0;
