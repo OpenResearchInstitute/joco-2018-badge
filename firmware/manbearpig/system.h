@@ -26,7 +26,7 @@
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 #define VERSION							"v1.7"
-#define VERSION_SD						26
+#define VERSION_SD						27
 
 // Various testing options
 
