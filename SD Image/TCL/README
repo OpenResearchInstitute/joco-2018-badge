@@ -1,4 +1,4 @@
-AND!XOR DC25 TCL-ish Scripting
+The JoCo badge includes the AND!XOR DC25 TCL-ish Scripting
 
                         `. ___
                         __,' __`.                _..----....____
@@ -14,6 +14,8 @@ AND!XOR DC25 TCL-ish Scripting
                                    |       `._    `.    \
                                    `._________`-.   `.   `.___
                                                       `------'`
+
+AND!XOR Wrote:
 
 We wanted to build upon what we did at DC24 with an even more hackable badge. 
 But we’re taking a different route from last year. No POS Arduino IDE, no 
