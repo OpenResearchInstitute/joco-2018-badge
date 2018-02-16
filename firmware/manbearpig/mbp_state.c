@@ -252,6 +252,7 @@ uint8_t mbp_state_lastlevel_get() {
 
 void mbp_state_lastlevel_set(uint8_t lastlevel_state) {
 	m_badge_state.joco_last_level_dispensed = lastlevel_state;
+	util_ble_score_update();
 	score_ble_score_update();
 }
 
