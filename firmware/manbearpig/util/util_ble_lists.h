@@ -76,7 +76,7 @@ typedef struct {
 } ble_badge_active_entry_t;
 
 extern int try_to_add_to_active(uint8_t *address, uint16_t device_id, int8_t rssi, char *name);
-extern ble_badge_active_entry_t *in_active_list(uint8_t *address, uint16_t device_id);
+extern ble_badge_active_entry_t *in_active_list(uint8_t *address, uint16_t device_id, char *name);
 extern void sort_active(bool reset_timers);
 
 //

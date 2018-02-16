@@ -107,6 +107,9 @@ int __get_seen_next() {
 	    // this entry (and all older ones) are unused
 	    return -1;;
 	}
+        
+        return_value = seen_list_walk_position;
+
         // position for next read
         seen_list_walk_position--;
         if (seen_list_walk_position < 0)
@@ -114,8 +117,6 @@ int __get_seen_next() {
 
         // see if we've run around the whole list
         seen_list_walk_count--;
-        
-        return_value = seen_list_walk_position;
     }
     return return_value;
 }
@@ -132,7 +133,10 @@ void add_to_seen(uint8_t *address, uint16_t device_id, char *name, uint8_t type,
     memcpy(seen_db[previous_seen_write].address, address, BLE_GAP_ADDR_LEN);
     seen_db[previous_seen_write].device_id = device_id;
     seen_db[previous_seen_write].flags = flags;
-    strncpy(seen_db[previous_seen_write].name, name, SETTING_NAME_LENGTH);
+//    if (type == SEEN_TYPE_JOCO)
+        strncpy(seen_db[previous_seen_write].name, name, SETTING_NAME_LENGTH);
+        //  else
+        //seen_db[previous_seen_write].name[0] = 0;
 }
 
 //
@@ -150,13 +154,13 @@ uint8_t check_and_add_to_seen(uint8_t *address, uint16_t device_id, char *name, 
 	return_value =  seen_db[read_position].flags;
     } else {
 	// not in the seen list
-	if (type & SEEN_TYPE_JOCO) {
+	if (type == SEEN_TYPE_JOCO) {
 	    // if it's a joco badge, check the db on disk
 	    if (was_contacted(address, device_id)) {
-		add_to_seen(address, device_id, name, SEEN_TYPE_JOCO, 0);
-		return_value = SEEN_FLAG_USED;
+		add_to_seen(address, device_id, name, SEEN_TYPE_JOCO, SEEN_FLAG_VISITED);
+		return_value = (SEEN_FLAG_USED | SEEN_FLAG_VISITED);
 	    }
-	} else if  (type & SEEN_TYPE_PEER) {
+	} else if  (type == SEEN_TYPE_PEER) {
 	    add_to_seen(address, device_id, name, SEEN_TYPE_PEER, 0);
 	    return_value = SEEN_FLAG_USED;
 	}
@@ -174,7 +178,7 @@ int set_seen_flags(uint8_t *address, uint16_t device_id, uint8_t flags) {
     } else {
 	newflags = (flags & SEEN_FLAG_MASK);
 	newflags |= SEEN_FLAG_USED;
-	seen_db[read_position].flags = newflags;
+	seen_db[read_position].flags |= newflags;
 	return_value = 0;
     }
     return return_value;
@@ -195,6 +199,7 @@ int try_to_add_to_active(uint8_t *address, uint16_t device_id, int8_t rssi, char
 	if (!p_entry->first_seen) {
 	    // we found an unused one
 	    uint32_t now = util_local_millis();
+            memset(p_entry->name, 0x00, SETTING_NAME_LENGTH);
 	    memcpy(p_entry->address, address, BLE_GAP_ADDR_LEN);
 	    strncpy(p_entry->name, name, SETTING_NAME_LENGTH);
 	    p_entry->device_id = device_id;
@@ -204,12 +209,11 @@ int try_to_add_to_active(uint8_t *address, uint16_t device_id, int8_t rssi, char
 	    p_entry->said_hello = false;
 	    return i;
 	}
-	
     }
     return -1;
 }
 
-ble_badge_active_entry_t *in_active_list(uint8_t *address, uint16_t device_id) {
+ble_badge_active_entry_t *in_active_list(uint8_t *address, uint16_t device_id, char *name) {
     int i;
     ble_badge_active_entry_t *p_entry;
     ble_badge_active_entry_t *retval = 0;
@@ -221,8 +225,9 @@ ble_badge_active_entry_t *in_active_list(uint8_t *address, uint16_t device_id) {
     // the index is always sorted in order of , with unused at the end
     for (i=0; i<BADGE_ACTIVE_LIST_SIZE; i++) {
 	p_entry = &active[active_index[i]];
-	if (!p_entry->first_seen)
+	if (p_entry->first_seen == 0) {
 	    break; // we've reached the first unused p_entry without finding it
+        }
 	if ((p_entry->device_id == device_id) && !(memcmp(p_entry->address, address, BLE_GAP_ADDR_LEN))) {
 	    retval = p_entry;
 	    break;
@@ -235,11 +240,11 @@ int __compare_active_entries(int a, int b, bool ignore_timers) {
     // a - b
 
     // unused entries always count as 'less'
-    if ((active[active_index[a]].first_seen == 0) && (active[active_index[b]].first_seen == 0))
+    if ((active[a].first_seen == 0) && (active[b].first_seen == 0))
 	return 0;
-    else if (active[active_index[a]].first_seen == 0)
+    else if (active[a].first_seen == 0) // An unused entry is always lower
 	return -1;
-    else if (active[active_index[a]].first_seen == 0)
+    else if (active[b].first_seen == 0)
 	return 1;
 
     // if we just reset the timers they're all the same
@@ -247,8 +252,8 @@ int __compare_active_entries(int a, int b, bool ignore_timers) {
 	return 0;
 
     // if both used, sort based on time in contact.
-    return ((active[active_index[a]].last_seen - active[active_index[a]].first_seen)
-	    - (active[active_index[b]].last_seen - active[active_index[b]].first_seen));
+    return ((active[a].last_seen - active[a].first_seen)
+	    - (active[b].last_seen - active[b].first_seen));
 }
 
 void sort_active(bool reset_timers) {
@@ -257,31 +262,31 @@ void sort_active(bool reset_timers) {
     // unused entries are at the end of the list.
     //Lazy bubble sort
     uint32_t now = util_local_millis();
+    bool swapped = true;
 
     // First walk them all for maintenance
     for (uint8_t i = 0; i < BADGE_ACTIVE_LIST_SIZE; i++) {
 	// if we haven't seen it in a while, flag it unused
-	if ((now - active[active_index[i]].last_seen) > VISIT_LOST_TIME_LENGTH) {
-	    active[active_index[i]].first_seen = 0;
-	}
-
-	if (reset_timers) {
-	    // is it's in use then reset first_seen to start visit timing over
-	    if (active[active_index[i]].first_seen != 0) {
+        if (active[active_index[i]].first_seen != 0) {
+            if (reset_timers) {
 		active[active_index[i]].first_seen = now;
 		active[active_index[i]].last_seen = now; // no time travel allowed
-	    }
+	    } else if ((now - active[active_index[i]].last_seen) > VISIT_LOST_TIME_LENGTH) {
+                active[active_index[i]].first_seen = 0;
+            }
 	}
     }
 
-    // Then sort them in the index
-    for (uint8_t i = 0; i < BADGE_ACTIVE_LIST_SIZE; i++) {
-        for (uint8_t j = i; j < BADGE_ACTIVE_LIST_SIZE - 1; j++) {
-            if (__compare_active_entries(active_index[j], active_index[j + 1], reset_timers) < 0) {
+    // Then sort them in the index using a bubble sort
+    while (swapped) {
+        swapped = false;
+        for (uint8_t i = 0; i < BADGE_ACTIVE_LIST_SIZE-1; i++) {
+            if (__compare_active_entries(active_index[i], active_index[i + 1], reset_timers) < 0) {
                 //Swap
-		uint8_t tmp = active_index[j];
-		active_index[j] = active_index[j+1];
-		active_index[j+1] = tmp;
+                uint8_t tmp = active_index[i];
+                active_index[i] = active_index[i+1];
+                active_index[i+1] = tmp;
+                swapped = true;
             }
         }
     }
@@ -322,6 +327,7 @@ int get_nearby_badge_list(int size, ble_badge_list_menu_text_t *list) {
             // we found an entry, ignore if it's not JoCo
             flags = seen_db[seen_index].flags;
             if ((flags & SEEN_TYPE_MASK) == SEEN_TYPE_JOCO) {
+                memset(list[i].text, 0x00, SETTING_NAME_LENGTH);
                 strncpy(list[i].text, seen_db[seen_index].name, SETTING_NAME_LENGTH);
                 if (flags & SEEN_FLAG_VISITED)
                     strcat(list[i].text, " S");

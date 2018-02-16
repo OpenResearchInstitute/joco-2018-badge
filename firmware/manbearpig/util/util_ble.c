@@ -465,7 +465,7 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 #endif
 
     if ((badge.company_id == COMPANY_ID_JOCO) && valid_name) {
-	p_active_entry = in_active_list(badge.address, badge.device_id);
+	p_active_entry = in_active_list(badge.address, badge.device_id, badge.name);
 	if (p_active_entry) {
 	    p_active_entry->last_seen = util_local_millis();
 	    if ((p_active_entry->last_seen - p_active_entry->first_seen) > VISIT_TIME_LENGTH) {
@@ -521,7 +521,7 @@ static void __handle_advertisement(ble_gap_evt_adv_report_t *p_report) {
 	}
     }
 
-    //handle global time sync with other benders
+    //handle global time sync with other joco badges
     if (badge.company_id == COMPANY_ID_JOCO && time > 0) {
 	__global_time_advertisement_process(time, badge.device_id);
     }

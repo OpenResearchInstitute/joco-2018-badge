@@ -86,7 +86,7 @@ void mbp_system_code() {
 		mbp_state_save();
 		mbp_ui_popup("Unlocked", "Matt Damon mode enabled.");
 	}
-	//Twitter
+	//Illusion
 	else if (strcmp(code, "NUKACOLA") == 0) {
 		uint16_t unlock = mbp_state_unlock_get();
 		mbp_state_unlock_set(unlock | UNLOCK_MASK_TWITTER);
