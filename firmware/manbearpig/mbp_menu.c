@@ -395,7 +395,7 @@ static void mbp_menu_bling() {
 	menu.title = "Bling";
 	menu.count = 0;
 
-	items[menu.count++] = (menu_item_t ) { "Backers", "MENU/KSLOGO.ICO", "MENU/KSLOGO.PRV", &mbp_menu_bling_ks, NULL };
+	items[menu.count++] = (menu_item_t ) { "Backers", "MENU/KSLOGO.ICO", "MENU/BLACK.PRV", &mbp_menu_bling_ks, NULL };
 
         // Check for master encounter unlocks
 	if ((unlock & UNLOCK_MASK_MASTER_1) > 0) {
@@ -445,7 +445,7 @@ static void mbp_menu_bling() {
 	items[menu.count++] = (menu_item_t ) { "Matrix", "MENU/MATRIX.ICO", "MENU/MATRIX.PRV", &mbp_bling_matrix, NULL };
 	items[menu.count++] = (menu_item_t ) { "Meatspn", "MENU/MEATSPIN.ICO", "MENU/MEATSPIN.PRV", &mbp_bling_meatspin, NULL };
 	items[menu.count++] = (menu_item_t ) { "Nyan", "MENU/NYAN.ICO", "MENU/NYAN.PRV", &mbp_bling_nyan, NULL };
-	items[menu.count++] = (menu_item_t ) { "Scroll", "MENU/SCROLL.ICO", "MENU/SCROLL.PRV", &mbp_bling_scroll_cycle, NULL };
+	items[menu.count++] = (menu_item_t ) { "Scroll", "MENU/SCROLL.ICO", "MENU/BLACK.PRV", &mbp_bling_scroll_cycle, NULL };
 	items[menu.count++] = (menu_item_t ) { "Pirate", "MENU/PIRATES.ICO", "MENU/PIRATES.PRV", &mbp_bling_pirate, NULL };
 
 	//Add illusion bling
