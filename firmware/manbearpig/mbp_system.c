@@ -332,9 +332,8 @@ void mbp_system_reset() {
 		mbp_state_score_set(contacted_count * POINTS_4_VISIT);
 		mbp_state_save();
 		mbp_ui_popup("Reset", "Badge is a n00b again.");
+		mbp_system_name_select();
 	}
-
-	mbp_system_name_select();
 }
 
 bool mbp_system_seekrit_get() {
