@@ -44,7 +44,13 @@ static uint32_t __crypt(util_crypto_cryptable_t *cryptable) {
 
 	// The message will be changed in-place, encrypted or decrypted.
 	uint8_t	*buf = cryptable->message;
-	uint16_t length = cryptable->data_len - UTIL_CRYPTO_CRYPTINFO_LENGTH;
+	uint16_t 	length;
+
+	if (cryptable->data_len > UTIL_CRYPTO_CRYPTINFO_LENGTH) {
+		length = cryptable->data_len - UTIL_CRYPTO_CRYPTINFO_LENGTH;
+	} else {
+	return NRF_ERROR_DATA_SIZE;
+	}
 
 	// The library doesn't touch our message text. It just encrypts,
 	// electronic-codebook style, the counter and nonce (that is, the
