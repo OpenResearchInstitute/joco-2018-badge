@@ -47,7 +47,7 @@ void mbp_system_about() {
 
 void mbp_system_airplane_mode_select() {
 	if (mbp_state_airplane_mode_get()) {
-		bool enabled = mbp_ui_toggle_popup("Airplane Mode", 0, "Enable", "Disable", "Currently: ENABLED") == 0;
+		bool enabled = mbp_ui_toggle_popup("Airplne Mode", 0, "Enable", "Disable", "Currently: ENABLED") == 0;
 		mbp_state_airplane_mode_set(enabled);
 		mbp_state_save();
 
@@ -56,7 +56,7 @@ void mbp_system_airplane_mode_select() {
 			util_ble_on();
 		}
 	} else {
-		bool enabled = mbp_ui_toggle_popup("Airplane Mode", 1, "Enable", "Disable", "Currently: DISABLED") == 0;
+		bool enabled = mbp_ui_toggle_popup("Airplne Mode", 1, "Enable", "Disable", "Currently: DISABLED") == 0;
 		mbp_state_airplane_mode_set(enabled);
 		mbp_state_save();
 
@@ -257,7 +257,7 @@ void mbp_system_special_edit() {
     if (mbp_ui_toggle_popup("Name", 0, "No", "Yes", message) == 1) {
 	mbp_state_special_set(special);
 	mbp_state_save();
-	
+
 	sprintf(message, "Value changed to '%03d'.", special);
 	mbp_ui_popup("Value", message);
     }
