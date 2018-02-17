@@ -75,6 +75,8 @@ void mbp_system_code() {
 	//Master mode
 	if (strcmp(code, "UP2RIGHT") == 0) {
 		mbp_state_master_set(true);
+		uint16_t unlock = mbp_state_unlock_get();
+		mbp_state_unlock_set(unlock | UNLOCK_MASK_MASTER_1 | UNLOCK_MASK_MASTER_2 | UNLOCK_MASK_MASTER_3 | UNLOCK_MASK_MASTER_4);
 		mbp_state_save();
 		mbp_ui_popup("Master", "Master Mode Engaged.");
 	}
