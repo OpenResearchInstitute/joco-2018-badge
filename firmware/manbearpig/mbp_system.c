@@ -80,13 +80,19 @@ void mbp_system_code() {
 		mbp_state_save();
 		mbp_ui_popup("Master", "Master Mode Engaged.");
 	}
-
 	//DAMON
 	else if (strcmp(code, "DAMON") == 0) {
 		uint16_t unlock = mbp_state_unlock_get();
 		mbp_state_unlock_set(unlock | UNLOCK_MASK_DAMON);
 		mbp_state_save();
 		mbp_ui_popup("Unlocked", "Matt Damon mode enabled.");
+	}
+	//Wheaton
+	else if (strcmp(code, "TABLETOP") == 0) {
+		uint16_t unlock = mbp_state_unlock_get();
+		mbp_state_unlock_set(unlock | UNLOCK_MASK_WHEATON);
+		mbp_state_save();
+		mbp_ui_popup("Unlocked", "Wil Wheaton mode enabled.");
 	}
 	//Illusion
 	else if (strcmp(code, "NUKACOLA") == 0) {

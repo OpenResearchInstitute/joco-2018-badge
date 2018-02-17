@@ -53,7 +53,7 @@
 #define UNLOCK_MASK_DATE_TIME			0x0010 // hack time bling (in terminal)
 #define UNLOCK_MASK_DEFRAG			0x0020 // defrag bling (in terminal)
 #define UNLOCK_MASK_WHATS_UP			0x0040 // What's up (in terminal)
-#define UNLOCK_MASK_80				0x0080 // joco_unused
+#define UNLOCK_MASK_WHEATON    			0x0080 // Wheaton
 #define UNLOCK_MASK_TWITTER			0x0100 // Twitter bling
 #define UNLOCK_MASK_SEEKRIT			0x0200 // trololol bling
 #define UNLOCK_MASK_DAMON			0x0400 // Matt Damon bling

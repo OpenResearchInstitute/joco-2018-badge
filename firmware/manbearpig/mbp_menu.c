@@ -431,7 +431,11 @@ static void mbp_menu_bling() {
 	items[menu.count++] = (menu_item_t ) { "Twilite", "MENU/TWILITE.ICO", "MENU/TWILITE.PRV", &mbp_bling_twilight_zone, NULL };
 	items[menu.count++] = (menu_item_t ) { "ZmbNyan", "MENU/ZOMBNYAN.ICO", "MENU/ZOMBNYAN.PRV", &mbp_bling_zombie_nyan, NULL };
 	items[menu.count++] = (menu_item_t ) { "Badger", "MENU/BADGERS.ICO", "MENU/BADGERS.PRV", &mbp_bling_badgers, NULL };
-	items[menu.count++] = (menu_item_t ) { "Wheaton", "MENU/WWSPIN.ICO", "MENU/WWSPIN.PRV", &mbp_bling_wheaton, NULL };
+
+	if ((unlock & UNLOCK_MASK_WHEATON) > 0) {
+            items[menu.count++] = (menu_item_t ) { "Wheaton", "MENU/WWSPIN.ICO", "MENU/WWSPIN.PRV", &mbp_bling_wheaton, NULL };
+        }
+        
 	items[menu.count++] = (menu_item_t ) { "Flames", "MENU/FLAMES.ICO", "MENU/FLAMES.PRV", &mbp_bling_flames, NULL };
 	items[menu.count++] = (menu_item_t ) { "Toad", "MENU/TOAD.ICO", "MENU/TOAD.PRV", &mbp_bling_toad, NULL };
 
