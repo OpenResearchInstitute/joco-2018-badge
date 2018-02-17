@@ -1,5 +1,5 @@
 #!/bin/bash
-HEX_FILE=andnxor_dc25_1.6.hex
+HEX_FILE=joco_2018_1.9.hex
 NRF5_CHIP_FAMILY=nrf52
 : "${NRFJ_BIN:?Need to set NRFJ_BIN env variable (see project README)}"
 : "${SDK_ROOT:?Need to set SDK_ROOT env variable (see project README)}"

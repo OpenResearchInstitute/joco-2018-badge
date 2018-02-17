@@ -5,7 +5,7 @@
 cp manbearpig/_build/nrf52832_xxaa.hex .
 cp $SDK_ROOT/components/softdevice/s132/hex/s132_nrf52_3.0.0_softdevice.hex .
 
-$NRFJ_BIN/mergehex/mergehex -m nrf52832_xxaa.hex s132_nrf52_3.0.0_softdevice.hex -o andnxor_dc25_1.6.hex
+$NRFJ_BIN/mergehex/mergehex -m nrf52832_xxaa.hex s132_nrf52_3.0.0_softdevice.hex -o joco_2018_1.9.hex
 
 rm nrf52832_xxaa.hex
 rm s132_nrf52_3.0.0_softdevice.hex

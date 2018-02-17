@@ -25,7 +25,7 @@
  *****************************************************************************/
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
-#define VERSION							"v1.8"
+#define VERSION							"v1.9"
 #define VERSION_SD						27
 
 // Various testing options
