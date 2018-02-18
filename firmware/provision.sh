@@ -11,3 +11,5 @@ $NRFJ_BIN/nrfjprog/nrfjprog --recover -f $NRF5_CHIP_FAMILY
 echo ============= FIRMWARE ================
 echo Flashing $HEX_FILE
 $NRFJ_BIN/nrfjprog/nrfjprog --program $HEX_FILE --verify --chiperase -f $NRF5_CHIP_FAMILY
+echo Resetting . . . 
+$NRFJ_BIN/nrfjprog/nrfjprog --reset -f nrf52
