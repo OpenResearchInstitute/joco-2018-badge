@@ -91,3 +91,27 @@ or
 `make flash`
 
 The `make flash_softdevice` can be omitted after the first time.
+
+### Setting up the Segger Ozone debugger
+
+This was correct for Ubuntu 14.04.5 64 bit
+
+Install the Ozone package from here:
+https://www.segger.com/downloads/jlink/#Ozone
+
+The manual is useful (same link)
+
+IMPORTANT NOTE: 
+
+Ozone version 2.56 would not work for me. It would halt execution in seemingly random places and not load source code.
+
+Version 2.54b works fine
+
+
+If you're using the Segger edu device, Select the device as Nordic nRF52832_xxAA
+
+Choose SWD for the debugger device and NOT USB.
+
+open the badge .out file to bring in source files
+
+
