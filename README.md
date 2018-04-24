@@ -60,9 +60,9 @@ The Nordic SDK is the same.
 
 You should be able to `sudo apt-get install gcc-arm-none-eabi` to get the toolchain.
 
-You can get JLink software from <https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack>
+You can get JLink software [from Segger here](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack)
 
-The command line tools nrfjprog and mergehex are not currently available for ARM hosts. You can use the JLink tools to program the device, so you can probably work around nrfjprog. We still need to come up with an alternative for mergehex, but that should be simple.
+The command line tools nrfjprog and mergehex are not currently available for ARM hosts. You can use the JLink tools to program the device, so you can probably work around nrfjprog.
 
 ### Build the code
 
@@ -73,6 +73,18 @@ The command line tools nrfjprog and mergehex are not currently available for ARM
 `cd ..`
 
 `./update.sh`
+
+
+### JTAG interface hardware
+
+To flash the code to the badge and use the Ozone debugger, you'll need a JTAG hardware interface.
+The one that was used by the development team is the Segger [J-Link EDU Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/).
+
+It's much easier to connect to the board if you use a short flat cable and a mating header on the board end. All these can be purchased from these retailers:
+
+* [J-Link EDU Min from Adafruit](https://www.adafruit.com/product/3571)
+* [Ten pin JTAG cable from Adafruit](https://www.adafruit.com/product/1675) (not the same as the one that comes with the debugger)
+* [Header from Mouser](https://www.mouser.com/ProductDetail/Harwin/M50-3500542?qs=9fQaSFfsqsyXI0P9tFOVoQ%3D%3D)
 
 ### Flashing the target
 
@@ -96,8 +108,7 @@ The `make flash_softdevice` can be omitted after the first time.
 
 This was correct for Ubuntu 14.04.5 64 bit
 
-Install the Ozone package from here:
-https://www.segger.com/downloads/jlink/#Ozone
+Install the Ozone package [from here](https://www.segger.com/downloads/jlink/#Ozone)
 
 The manual is useful (same link)
 
@@ -106,7 +117,6 @@ IMPORTANT NOTE:
 Ozone version 2.56 would not work for me. It would halt execution in seemingly random places and not load source code.
 
 Version 2.54b works fine
-
 
 If you're using the Segger edu device, Select the device as Nordic nRF52832_xxAA
 
