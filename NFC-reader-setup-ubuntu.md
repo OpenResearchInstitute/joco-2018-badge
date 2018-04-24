@@ -25,12 +25,13 @@ $ sudo emacs /etc/nfc/devices.d/pn532_via_uart2usb.conf
 
 insert the following:
 
-## Typical configuration file for PN532 board (ie. microbuilder.eu / Adafruit) device
+```## Typical configuration file for PN532 board (ie. microbuilder.eu / Adafruit) device
 name = "Adafruit PN532 board via UART"
 connstring = pn532_uart:/dev/ttyUSB0
 allow_intrusive_scan = true
 log_level = 3
 < end of contents of pn532_via_uart2usb.conf>
+```
 
 ```$ sudo emacs /etc/nfc/libnfc.conf
 ```
@@ -41,6 +42,7 @@ Uncomment the “allow_autoscan = true” line
 ```
 
 [Or if force reinstall needed]
+
 ```sudo dpkg --force-all -i ../libnfc*.deb
 ```
 
@@ -55,9 +57,7 @@ And the command ‘nfc-poll’ should block until you bring a tag near the board
 information about the tag and exit.
 
 
-======================================================================
-
-Here are ALL the details, probably not in the right order
+## Here are ALL the details, probably not in the right order
 
 Install libnfc from the git repo like this, but stop short of the build and install:
 http://nfc-tools.org/index.php?title=Libnfc
