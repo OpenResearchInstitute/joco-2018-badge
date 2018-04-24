@@ -46,18 +46,21 @@ This assumes that you want to create the RAW file and preview from an animated g
 
 ### Generate the RAW file
 
-```./gif2raw input-128x128.gif outfile.RAW
+```
+./gif2raw input-128x128.gif outfile.RAW
 ```
 
 ### Generate the PRV file (uses the first frame of the gif for the preview)
 
-```./gif2prv input-101x112.gif outfile.PRV
+```
+./gif2prv input-101x112.gif outfile.PRV
 ```
 
 ### Generate the ICO file
 
 Create a 20x20 pixel icon using the tools of your choice. For consistency, make it black and white. Export/save it as a gif file.
 
-```./gif2prv input-20x20.gif outfile.ICO
+```
+./gif2prv input-20x20.gif outfile.ICO
 ```
 
