@@ -34,16 +34,16 @@ Download the GNU ARM Embedded Toolchain. Choose one of these methods:
 
 Then edit `$SDK_ROOT/components/toolchain/gcc/Makefile.posix` and change the value for `GNU_INSTALL_ROOT` to the directory where your toolchain was installed.
 
-If you plan to hook up hardware for programming and debugging, you'll need the Segger JLink software. If you're running Ubuntu on an Intel PC, you can just:
+If you plan to hook up hardware for programming and debugging, you'll need the Segger JLink software. It's available from <https://www.segger.com/downloads/jlink/> for a variety of host platforms. We used version V6.18b, but the latest version is probably fine. To install on Ubuntu on an Intel PC:
 
-`sudo dpkg -i ubuntu-dependencies/JLink_Linux_V618b_x86_64.deb`
+`sudo dpkg -i <path-to-downloads>/JLink_Linux_V618b_x86_64.deb`
 
-You'll also need a couple of command line tools. Install these in a location outside this project, like the Nordic SDK. For example using the location "/src/joco-support", you can do the following:
+You'll also need a couple of command line tools from Nordic. These are available from <http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.tools/dita/tools/nrf5x_command_line_tools/nrf5x_installation.html?cp=5_1_1>. We used version 9.7.0, but the latest version is probably fine. Install them in a location outside this project, like the Nordic SDK. For example using the location "/src/joco-support", you can do the following:
 
 ```
 mkdir -p /src/joco-support/bin
 cd /src/joco-support/bin
-tar xvf <path-to-joco-project>/ubuntu-dependencies/nRF5x-Command-Line-Tools_9_7_0_Linux-x86_64.tar
+tar xvf <path-to-downloads>/nRF5x-Command-Line-Tools_9_7_0_Linux-x86_64.tar
 ```
 
 Now edit your shell init or rc file to set the following environment variable when you create a shell, substituting your chosen path:
